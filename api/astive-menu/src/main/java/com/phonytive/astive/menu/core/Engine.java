@@ -277,9 +277,7 @@ public class Engine {
 
                 if (logger.isDebugEnabled()) {
                     logger.debug("pos = " + pos);
-                }
-
-                System.err.println("DEBUG 003");
+                }                
             }
         }
 

@@ -19,11 +19,6 @@
             <param name="ConversionPattern" value="[%-5p] %m%n" />
         </layout>
     </appender>
-    <logger name="com.phonytive.astive.core">
-        <level value="trace"/>
-        <appender-ref ref="consoleAppender" />
-        <appender-ref ref="fileAppender" />
-    </logger>
     <logger name="com.phonytive.astive.server">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
