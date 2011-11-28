@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Astive sound="welcome.mp3"
+    athenticator="#{Auth.mySQLAuth}">
+    <Menu key="1"
+        sound="aud00.mp3"
+        maxFailures="3"
+        onMaxFailureAction="#{App.getBack}"
+        action="#{App.sendMsg}">
+        <MenuItem key="1" sound="aud10.mp3" action="#{App.action1}"/>
+        <MenuItem key="2" sound="aud11.mp3" priority="1" action="#{App.action2}"/>
+        <MenuItem key="3" sound="aud12.mp3"action="#{App.action3}"/>
+        <Menu key="5" sound="aud14.mp3">
+            <MenuItem key="1" sound="aud20.mp3" action="#{App.action4}"/>
+            <MenuItem key="2" sound="aud21.mp3" action="#{App.action5}"/>
+            <MenuItem key="3" sound="aud22.mp3" action="#{App.action6}"/>
+            <MenuItem key="4" sound="aud23.mp3" action="#{App.goBack}"/>
+        </Menu>
+        <MenuItem key="4" sound="aud13.mp3" action="#{App.goBack}"/>
+    </Menu>
+    <Menu key="2"
+          priority="1"
+          sound="aud01.mp3"
+          maxFailures="4"
+          athenticator="#{Auth.mySQLAuth}"
+          onMaxFailureAction="#{App.goodbye}">
+        <MenuItem sound="aud30.mp3"/>
+        <MenuItem sound="aud31.mp3"/>
+        <MenuItem sound="aud32.mp3"/>
+        <MenuItem sound="aud33.mp3"/>
+    </Menu>
+</Astive>
