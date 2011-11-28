@@ -9,5 +9,7 @@
     <artifactId>examples</artifactId>
     <packaging>pom</packaging>
     <name>Astive :: Examples</name>
-  <modules></modules>
+  <modules>
+    <module>helloworld</module>
+  </modules>
 </project>
