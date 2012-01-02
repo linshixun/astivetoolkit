@@ -21,12 +21,9 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.astivlet;
 
-import com.phonytive.astive.api.agi.AgiRequest;
-import com.phonytive.astive.api.agi.fastagi.FastAgiConnection;
-
+import com.phonytive.astive.agi.AgiRequest;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import java.net.InetAddress;
-import java.net.Socket;
-
 import java.util.ArrayList;
 
 

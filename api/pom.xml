@@ -4,15 +4,15 @@
     <parent>
         <artifactId>astive</artifactId>
         <groupId>com.phonytive.astive</groupId>
-        <version>0.1</version>
+        <version>1.0.0-alpha-SNAPSHOT</version>
     </parent>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>api</artifactId>
     <packaging>pom</packaging>
     <name>Astive :: APIs</name>
     <modules>
-    	<module>astive-ami</module>
 	<module>astive-agi</module>
 	<module>astive-menu</module>
+	<module>astive-ami</module>
     </modules>
 </project>

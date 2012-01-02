@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=astive-archetype-1.0.0-alpha-SNAPSHOT.jar -DgroupId=com.phonytive.astive -DartifactId=astive-archetype -Dversion=1.0.0-alpha-SNAPSHOT -Dpackaging=jar

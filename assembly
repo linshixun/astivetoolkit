@@ -1,0 +1,2 @@
+#!/bin/sh
+mvn install package assembly:assembly -DskipTests=true

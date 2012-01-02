@@ -44,23 +44,20 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
     implements Service {
     // A usual logging class
     private static final Logger logger = Logger.getLogger(AbstractAstiveServer.class);
-    public static int DEFAULT_PORT = 4573;
-    public static int DEFAULT_BACKLOG = 50;
-    public static String DEFAULT_BIND_ADDR = "127.0.0.1";
     private InetAddress bindAddr;
     private int port;
     private int backlog;
 
     public AbstractAstiveServer() throws SystemException, IOException {
         // Using the default agi asterisk port
-        super(DEFAULT_PORT, DEFAULT_BACKLOG,
-            InetAddress.getByName(DEFAULT_BIND_ADDR));
-        this.port = DEFAULT_PORT;
-        this.backlog = DEFAULT_BACKLOG;
+        super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
+            InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
+        this.port = DEFAULT_AGI_SERVER_PORT;
+        this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
     }
 
     public AbstractAstiveServer(int port) throws SystemException, IOException {
-        super(port, DEFAULT_BACKLOG, InetAddress.getByName(DEFAULT_BIND_ADDR));
+        super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
     }
 
     public AbstractAstiveServer(int port, int backlog)

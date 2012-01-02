@@ -26,20 +26,11 @@ import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 import com.phonytive.astive.server.App;
 import com.phonytive.astive.server.AstiveException;
-import com.phonytive.astive.server.appmanager.ApplicationManager;
 import com.phonytive.astive.server.appmanager.ApplicationManagerImpl;
 import com.phonytive.astive.util.AppLocale;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
-import java.net.URL;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**

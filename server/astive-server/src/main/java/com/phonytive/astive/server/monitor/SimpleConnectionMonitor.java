@@ -21,12 +21,12 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server.monitor;
 
-import com.phonytive.astive.api.agi.AgiException;
-import com.phonytive.astive.api.agi.AgiResponse;
-import com.phonytive.astive.api.agi.Connection;
-import com.phonytive.astive.api.agi.command.AgiCommandHandler;
-import com.phonytive.astive.api.agi.fastagi.FastAgiConnection;
-import com.phonytive.astive.api.agi.fastagi.FastAgiResponse;
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.AgiResponse;
+import com.phonytive.astive.agi.Connection;
+import com.phonytive.astive.agi.command.AgiCommandHandler;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.agi.fastagi.FastAgiResponse;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
@@ -35,7 +35,6 @@ import com.phonytive.astive.server.FastAgiServerSocket;
 import com.phonytive.astive.server.appmanager.ApplicationManager;
 import com.phonytive.astive.server.appmanager.ConnectionManager;
 import com.phonytive.astive.server.appmanager.FastAgiConnectionManager;
-import com.phonytive.astive.server.monitor.ConnectionMonitor;
 import com.phonytive.astive.server.utils.AstivletRunner;
 import com.phonytive.astive.server.utils.Utils;
 import com.phonytive.astive.util.AppLocale;
@@ -48,10 +47,6 @@ import java.io.InputStream;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 
 
 /**
@@ -125,6 +120,8 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
 
             String appName = getAppName(getAstivlet());
 
+            System.out.println(aRequest);            
+            
             if (!requestAppName.equals(appName)) {
                 logger.error(AppLocale.getI18n("resourceNotExist",
                         new Object[] { requestAppName }));

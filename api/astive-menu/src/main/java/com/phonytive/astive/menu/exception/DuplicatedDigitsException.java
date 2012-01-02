@@ -21,7 +21,6 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.menu.exception;
 
-import com.phonytive.astive.menu.core.Menu;
 import com.phonytive.astive.util.AppLocale;
 
 import org.apache.log4j.Logger;

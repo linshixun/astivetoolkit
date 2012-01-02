@@ -22,7 +22,6 @@
 package com.phonytive.astive.server;
 
 import com.phonytive.astive.astivlet.Astivlet;
-import com.phonytive.astive.server.monitor.ConnectionMonitor;
 import com.phonytive.astive.server.monitor.SimpleConnectionMonitor;
 
 import org.apache.log4j.Logger;
@@ -52,7 +51,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     public SimpleAstiveServer(Astivlet astivlet)
         throws SystemException, IOException {
         super();
-        this.port = DEFAULT_PORT;
+        this.port = DEFAULT_AGI_SERVER_PORT;
         this.astivlet = astivlet;
     }
 
@@ -81,7 +80,6 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this,
                 astivlet);
         monitor.run();
-
         //executorService.execute(monitor);
     }
 

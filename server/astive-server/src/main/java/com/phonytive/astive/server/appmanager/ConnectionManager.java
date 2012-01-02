@@ -21,7 +21,7 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server.appmanager;
 
-import com.phonytive.astive.api.agi.Connection;
+import com.phonytive.astive.agi.Connection;
 
 import java.io.IOException;
 

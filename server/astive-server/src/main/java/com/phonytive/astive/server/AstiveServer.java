@@ -249,11 +249,11 @@ public class AstiveServer extends AbstractAstiveServer {
 
         stop.addOption("h", "host", false,
             AppLocale.getI18n("cli.option.stop.host",
-                new Object[] { DEFAULT_BIND_ADDR }));
+                new Object[] { DEFAULT_AGI_SERVER_BIND_ADDR }));
 
         stop.addOption("p", "port", false,
             AppLocale.getI18n("cli.option.stop.port",
-                new Object[] { DEFAULT_PORT }));
+                new Object[] { DEFAULT_AGI_SERVER_PORT }));
 
         Options deploy = new Options();
         deploy.addOption("h", "help", false,

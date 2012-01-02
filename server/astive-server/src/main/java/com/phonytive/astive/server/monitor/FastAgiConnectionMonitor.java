@@ -21,12 +21,12 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server.monitor;
 
-import com.phonytive.astive.api.agi.AgiException;
-import com.phonytive.astive.api.agi.AgiResponse;
-import com.phonytive.astive.api.agi.Connection;
-import com.phonytive.astive.api.agi.command.AgiCommandHandler;
-import com.phonytive.astive.api.agi.fastagi.FastAgiConnection;
-import com.phonytive.astive.api.agi.fastagi.FastAgiResponse;
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.AgiResponse;
+import com.phonytive.astive.agi.Connection;
+import com.phonytive.astive.agi.command.AgiCommandHandler;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.agi.fastagi.FastAgiResponse;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 import com.phonytive.astive.server.AstiveException;

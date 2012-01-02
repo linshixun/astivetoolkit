@@ -21,7 +21,8 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.api.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.agi.DefaultAgiServerSettings;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import com.phonytive.astive.util.AppLocale;
 
 import org.apache.log4j.Logger;
@@ -40,12 +41,13 @@ import java.net.ServerSocket;
  * @version $Id$
  * @see Service
  */
-public class FastAgiServerSocket extends ServerSocket implements Service {
+public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
     private static final Logger logger = Logger.getLogger(FastAgiServerSocket.class);
     private InetAddress bindAddr;
     private int port;
     private int backlog;
 
+    
     public FastAgiServerSocket(int port, int backlog, InetAddress bindAddr)
         throws IOException {
         super();

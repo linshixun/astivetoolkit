@@ -21,8 +21,8 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server.appmanager;
 
-import com.phonytive.astive.api.agi.Connection;
-import com.phonytive.astive.api.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.agi.Connection;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import com.phonytive.astive.util.AppLocale;
 
 import org.apache.log4j.Logger;

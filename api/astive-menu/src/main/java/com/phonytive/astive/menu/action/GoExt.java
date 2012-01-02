@@ -21,9 +21,8 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.menu.action;
 
-import com.phonytive.astive.api.agi.AgiException;
-import com.phonytive.astive.api.agi.AgiResponse;
-
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.AgiResponse;
 import org.apache.log4j.Logger;
 
 

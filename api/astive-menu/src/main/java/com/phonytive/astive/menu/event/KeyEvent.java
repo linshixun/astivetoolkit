@@ -21,7 +21,7 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.menu.event;
 
-import com.phonytive.astive.menu.core.KeyEnum;
+import com.phonytive.astive.menu.KeyEnum;
 
 
 /**

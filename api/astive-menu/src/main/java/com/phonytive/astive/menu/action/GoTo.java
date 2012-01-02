@@ -21,11 +21,13 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.menu.action;
 
-import com.phonytive.astive.api.agi.AgiException;
-import com.phonytive.astive.api.agi.AgiResponse;
-import com.phonytive.astive.menu.core.Engine;
-import com.phonytive.astive.menu.core.Menu;
-import com.phonytive.astive.menu.core.MenuException;
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.AgiResponse;
+import com.phonytive.astive.menu.Engine;
+import com.phonytive.astive.menu.Menu;
+import com.phonytive.astive.menu.exception.MenuException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -35,8 +37,7 @@ import com.phonytive.astive.menu.core.MenuException;
  * @version 0.1
  * @see GoExt
  */
-public class GoTo implements Action {
-    private AgiResponse agiResponse;
+public class GoTo implements Action {    private AgiResponse agiResponse;
     private Menu menu;
 
     /** <p>Creates a new instance of GoTo</p> */
@@ -48,12 +49,10 @@ public class GoTo implements Action {
     @Override
     public void doAction() {
         try {
-            Engine e = new Engine(agiResponse);
-
-            try {
-                e.run(menu);
-            } catch (AgiException ex) {
-            }
+            Engine e = new Engine(agiResponse);            
+            e.run(menu);
+        } catch (AgiException ex) {
+            // Manage this exception
         } catch (MenuException ex) {
             // Manage this exception
         }

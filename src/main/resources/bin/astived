@@ -1,5 +1,5 @@
 #!/bin/sh
-# Start or stop Astive server
+# Start or stop Astive server and deploy Apps
 export ASTIVE_HOME="$PWD"
 export ASTIVE_APPS="$ASTIVE_HOME/apps"
 java -Duser.country=US -Duser.language=en -classpath $ASTIVE_HOME/lib/astive-server-0.1.jar:$ASTIVE_HOME/lib/*:$ASTIVE_HOME/conf/log4j.xml com.phonytive.astive.server.AstiveServer "$@"

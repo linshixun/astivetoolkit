@@ -1,0 +1,36 @@
+<assembly
+ xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>sdk-${project.version}</id>
+    <formats>        
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <fileMode>761</fileMode>
+            <directory>src/main/resources/bin</directory>
+            <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
+            <excludes>
+                <exclude>astived</exclude>
+                <exclude>version.sh</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources/basedir</directory>
+            <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <moduleSets>        
+        <moduleSet>
+            <binaries>
+                <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
+                <unpack>false</unpack>
+            </binaries>
+            <includes>                
+                <include>com.phonytive.astive:astive-archetype</include>
+            </includes>
+        </moduleSet>       
+    </moduleSets>
+</assembly>

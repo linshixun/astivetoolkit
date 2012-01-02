@@ -21,7 +21,7 @@
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
 package com.phonytive.astive.server.monitor;
 
-import com.phonytive.astive.api.agi.Connection;
+import com.phonytive.astive.agi.Connection;
 import com.phonytive.astive.server.AstiveException;
 
 
