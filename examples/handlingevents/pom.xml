@@ -1,21 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.phonytive.astive.examples</groupId>
-    <artifactId>handlingevents</artifactId>
-    <version>1.0</version>
+    <parent>
+        <artifactId>examples</artifactId>
+        <groupId>com.phonytive.astive</groupId>
+        <version>1.0.0-alpha-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>    
+    <artifactId>handlingevents</artifactId>    
     <packaging>jar</packaging>
-
-    <name>Astive App</name>
+    <name>Handling Events</name>
     <url>http://www.phonytive.com</url>
 
     <dependencies>
-        <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-client</artifactId>
-            <version>0.1</version>
-        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -24,20 +20,25 @@
         </dependency>
         <dependency>
             <groupId>com.phonytive.astive</groupId>
+            <artifactId>astive-client</artifactId>
+            <version>1.0.0-alpha-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.phonytive.astive</groupId>
             <artifactId>astive-agi</artifactId>
-            <version>0.1</version>
+            <version>1.0.0-alpha-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.phonytive.astive</groupId>
             <artifactId>astive-menu</artifactId>
-            <version>0.1</version>
+            <version>1.0.0-alpha-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.phonytive.astive</groupId>
             <artifactId>astive-server</artifactId>
-            <version>0.1</version>
+            <version>1.0.0-alpha-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
     </dependencies>

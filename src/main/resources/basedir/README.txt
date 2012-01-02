@@ -3,7 +3,7 @@ README for Astive
 
 INTRODUCTION
 
-Astive is a toolkit and server for Java with an extensible architecture for 
+Astive is a toolkit and server for Java, with an extensible architecture for 
 developing, maintaining, and deploying telecom applications.
 
 Build high-quality products over Asterisk® PBX with the Astive developer 

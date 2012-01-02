@@ -1,6 +1,6 @@
 package ${packageName};
 
-import com.phonytive.astive.api.agi.AgiException;
+import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;

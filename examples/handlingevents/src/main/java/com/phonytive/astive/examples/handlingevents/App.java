@@ -1,13 +1,13 @@
 package com.phonytive.astive.examples.handlingevents;
 
-import com.phonytive.astive.api.agi.AgiException;
+import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import com.phonytive.astive.menu.core.Engine;
-import com.phonytive.astive.menu.core.Menu;
-import com.phonytive.astive.menu.core.MenuException;
-import com.phonytive.astive.menu.core.MenuItem;
+import com.phonytive.astive.menu.Engine;
+import com.phonytive.astive.menu.Menu;
+import com.phonytive.astive.menu.exception.MenuException;
+import com.phonytive.astive.menu.MenuItem;
 import com.phonytive.astive.menu.event.ActionEvent;
 import com.phonytive.astive.menu.event.ActionListener;
 import com.phonytive.astive.menu.event.KeyEvent;
@@ -21,6 +21,7 @@ import com.phonytive.astive.menu.event.PositionChangeListener;
  */
 public class App implements Astivlet {
 
+    @Override
     public void onModuleLoad(AstivletRequest request, AstivletResponse response) {
 
         MenuItem menuItemA = new MenuItem("1", "menu-item-a-sound");
@@ -72,7 +73,7 @@ public class App implements Astivlet {
         Engine e = new Engine(response);
         try {
             e.run(root);
-        } catch (MenuException ex) {            
+        } catch (MenuException ex) {
         } catch (AgiException ex) {
         }
     }

@@ -3,14 +3,11 @@ README for Astive
 
 INTRODUCTION
 
-Astive is a toolkit and server for Java that provides an extensible
-architecture for developing, maintaining, and deploying IVR applications.
+Astive is a toolkit and server for Java, with an extensible architecture for 
+developing, maintaining, and deploying telecom applications.
 
-Build high-quality IVR's for Asterisk® PBX faster with the Astive developer
-solutions - Astive Toolkit and Astive Server.
-
-See https://github.com/psanders/astive/wiki/ for examples and further
-details.
+Build high-quality products over Asterisk® PBX with the Astive developer 
+solutions.
 
 LEGAL
 
@@ -19,9 +16,8 @@ accompanying it.
 
 GETTING Astive
 
-At this time Astive has not a home page. However, you can download it Github.
-Please look into https://github.com/psanders/astive/wiki/Getting-started-with-Astive
-for more info.
+Please look into http://astive.phonytive.com/documentation/tutorials
+for more info on how to get Astive up and running.
 
 SYSTEM REQUIREMENTS
 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.phonytive.astive</groupId>
     <artifactId>astive</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>1.0.0-alpha-SNAPSHOT</version>
     <name>Astive</name>
     <url>http://astive.phonytive.com</url>
     <build>
@@ -33,16 +32,17 @@
                 <version>2.2-beta-3</version>
                 <configuration>
                     <descriptors>
-                        <descriptor>src/main/resources/assembly.xml</descriptor>
+                        <descriptor>src/main/resources/sdk-assembly.xml</descriptor>
+                        <descriptor>src/main/resources/server-assembly.xml</descriptor>
                     </descriptors>
                     <finalName>astive</finalName>
                     <outputDirectory>dist</outputDirectory>
                     <workDirectory>target/assembly/astive-${project.version}</workDirectory>                    
-                    <tasks>
-                      <mkdir dir="apps" />
-                    </tasks>
-                </configuration>
-            </plugin>
+                    <!--<tasks>
+                      <mkdir dir="apps"/>
+                    </tasks>-->
+                </configuration> 
+            </plugin>            
         </plugins>
     </build>
     <dependencies>
@@ -60,12 +60,15 @@
         </dependency>
     </dependencies>
     <description>Astive is a toolkit and server for Java that provides an extensible
-architecture for developing, maintaining, and deploying IVR applications.
+architecture for developing, maintaining, and deploying IVR applications as well
+as access to the Asterisk Manager.
     </description>
     <modules>
         <module>astive-commons</module>
         <module>api</module>
         <module>server</module>
         <module>astive-archetype</module>
-    </modules>
+    <!--<module>astbeans</module>-->
+    <!--<module>astive-ia</module>-->
+  </modules>
 </project>
