@@ -19,28 +19,13 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Astive.  If not, see <http://www.gnu.org/licenses/>.
-package com.phonytive.astive.menu.exception;
-
-import com.phonytive.astive.util.AppLocale;
-
-import org.apache.log4j.Logger;
-
+package com.phonytive.astive.server;
 
 /**
  *
  * @author Pedro Sanders <psanders@kaffeineminds.com>
  * @since 0.1
- * @version $id$
+ * @version $Id$
  */
-public class DuplicatedDigitsException extends RuntimeException {
-    // A usual logging class
-    private static final Logger logger = Logger.getLogger(DuplicatedDigitsException.class);
-    private static final String msg = AppLocale.getI18n(
-            "exeption.DuplicatedKeyInMenuException");
-
-    /** <p>Creates a new instance of DuplicatedDigitsException</p> */
-    public DuplicatedDigitsException() {
-        super(msg);
-        logger.error(msg);
-    }
+class DeploymentDescriptor {
 }

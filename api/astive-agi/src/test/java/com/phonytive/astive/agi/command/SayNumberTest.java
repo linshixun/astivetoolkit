@@ -1,0 +1,64 @@
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package com.phonytive.astive.agi.command;
+
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.command.SayAlpha;
+import com.phonytive.astive.agi.command.SayNumber;
+import com.phonytive.astive.agi.CommandProcessor;
+
+import junit.framework.TestCase;
+
+
+public class SayNumberTest extends TestCase {
+    public SayNumberTest(String testName) {
+        super(testName);
+    }
+
+    public void testCommand() throws AgiException {
+        Integer number = 123;
+        String escapeDigits = "";
+
+        // Testing first constructor
+        StringBuilder b = new StringBuilder("SAY NUMBER");
+        b.append(" ");
+        b.append(number);
+        b.append(" ");
+        b.append("\"");
+        b.append(escapeDigits);
+        b.append("\"");
+
+        SayNumber command = new SayNumber(number);
+        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+
+        // Testing second constructor
+        escapeDigits = "123";
+        b = new StringBuilder("SAY NUMBER");
+        b.append(" ");
+        b.append(number);
+        b.append(" ");
+        b.append("\"");
+        b.append(escapeDigits);
+        b.append("\"");
+
+        command = new SayNumber(number, escapeDigits);
+        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    }
+}

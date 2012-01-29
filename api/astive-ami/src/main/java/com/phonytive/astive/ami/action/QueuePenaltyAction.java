@@ -1,65 +1,97 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.ami.action;
 
 
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 public class QueuePenaltyAction extends ActionMessage {
-    private String iface;
-    private int penalty;
-    private String queue;
+  private String iface;
+  private String queue;
+  private int penalty;
 
-    public QueuePenaltyAction(String iface, int penalty) {
-        super(ActionType.QUEUE_PENALTY);
-        this.iface = iface;
-        this.penalty = penalty;
-    }
+  /**
+   * Creates a new QueuePenaltyAction object.
+   *
+   * @param iface DOCUMENT ME!
+   * @param penalty DOCUMENT ME!
+   */
+  public QueuePenaltyAction(String iface, int penalty) {
+    super(ActionType.QUEUE_PENALTY);
+    this.iface = iface;
+    this.penalty = penalty;
+  }
 
-    public String getInterface() {
-        return iface;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getInterface() {
+    return iface;
+  }
 
-    public void setInterface(String iface) {
-        this.iface = iface;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int getPenalty() {
+    return penalty;
+  }
 
-    public int getPenalty() {
-        return penalty;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getQueue() {
+    return queue;
+  }
 
-    public void setPenalty(int penalty) {
-        this.penalty = penalty;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param iface DOCUMENT ME!
+   */
+  public void setInterface(String iface) {
+    this.iface = iface;
+  }
 
-    public String getQueue() {
-        return queue;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param penalty DOCUMENT ME!
+   */
+  public void setPenalty(int penalty) {
+    this.penalty = penalty;
+  }
 
-    public void setQueue(String queue) {
-        this.queue = queue;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param queue DOCUMENT ME!
+   */
+  public void setQueue(String queue) {
+    this.queue = queue;
+  }
 }

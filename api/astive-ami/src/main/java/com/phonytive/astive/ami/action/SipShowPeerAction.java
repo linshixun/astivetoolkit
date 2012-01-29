@@ -1,46 +1,57 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.ami.action;
 
 
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 public class SipShowPeerAction extends ActionMessage {
-    private String peer;
+  private String peer;
 
-    public SipShowPeerAction(String peer) {
-        super(ActionType.SIP_SHOW_PEER);
-        this.peer = peer;
-    }
+  /**
+   * Creates a new SipShowPeerAction object.
+   *
+   * @param peer DOCUMENT ME!
+   */
+  public SipShowPeerAction(String peer) {
+    super(ActionType.SIP_SHOW_PEER);
+    this.peer = peer;
+  }
 
-    public String getPeer() {
-        return peer;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getPeer() {
+    return peer;
+  }
 
-    public void setPeer(String peer) {
-        this.peer = peer;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param peer DOCUMENT ME!
+   */
+  public void setPeer(String peer) {
+    this.peer = peer;
+  }
 }

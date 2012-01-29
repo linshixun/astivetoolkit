@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<astivletApp>
+    <astivlet>        
+        <name>HelloWorld</name>
+        <class>com.phonytive.astive.helloworld.App</class>
+        <urlPattern>/examples/*</urlPattern>
+        <description>A hello world app...</description>
+    </astivlet>
+    <astivlet id="handlingevents" >        
+        <name>HandlingEvents</name>
+        <class>com.phonytive.astive.handlingevents.App</class>
+        <urlPattern>/examples/*</urlPattern>
+    </astivlet>
+</astivletApp>

@@ -1,3 +1,22 @@
+/*
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.ami.action;
 
 import com.phonytive.astive.ami.Message;
@@ -9,10 +28,19 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 
+/**
+ *
+ * @since 1.0.0
+ */
 public abstract class ActionMessage extends Message {
     private ActionType action;
     private long actionId = -1;
 
+    /**
+     * Creates a new ActionMessage object.
+     *
+     * @param action DOCUMENT ME!
+     */
     public ActionMessage(ActionType action) {
         super(MessageType.ACTION, action);
         this.action = action;
@@ -20,18 +48,43 @@ public abstract class ActionMessage extends Message {
         this.actionId = (new Date()).getTime();
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public ActionType getAction() {
         return action;
     }
 
-    public void setAction(ActionType action) {
-        this.action = action;
-    }
-
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public long getActionId() {
         return actionId;
     }
 
+    // TODO: To be implemented
+    private boolean meetsBeanConvection(String methodName) {
+        return false;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param action DOCUMENT ME!
+     */
+    public void setAction(ActionType action) {
+        this.action = action;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
@@ -84,10 +137,5 @@ public abstract class ActionMessage extends Message {
         }
 
         return b.toString();
-    }
-
-    // TODO: To be implemented
-    private boolean meetsBeanConvection(String methodName) {
-        return false;
     }
 }

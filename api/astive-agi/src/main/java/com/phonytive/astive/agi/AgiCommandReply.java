@@ -1,24 +1,22 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.agi;
 
 import java.util.ArrayList;
@@ -32,9 +30,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 public class AgiCommandReply {
     public static int SC_TRYING = 100;
@@ -57,19 +53,13 @@ public class AgiCommandReply {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 3256727294671337012L;
-    private List<String> lines;
-    private String firstLine;
-
-    /**
-     * The result, that is the part directly following the "result=" string.
-     */
-    private String result;
+    private static final long serialVersionUID = 6279692160047296949L;
 
     /**
      * The status code.
      */
     private Integer status;
+    private List<String> lines;
 
     /**
      * Additional attributes contained in this reply, for example endpos.
@@ -80,6 +70,12 @@ public class AgiCommandReply {
      * The contents of the parenthesis.
      */
     private String extra;
+    private String firstLine;
+
+    /**
+     * The result, that is the part directly following the "result=" string.
+     */
+    private String result;
 
     /**
      * In case of status == 520 (invalid command syntax) this attribute contains
@@ -94,11 +90,19 @@ public class AgiCommandReply {
     private String usage;
     private boolean extraCreated;
 
+    /**
+     * Creates a new AgiCommandReply object.
+     */
     public AgiCommandReply() {
         super();
         this.status = null;
     }
 
+    /**
+     * Creates a new AgiCommandReply object.
+     *
+     * @param lines DOCUMENT ME!
+     */
     public AgiCommandReply(List<String> lines) {
         this();
 
@@ -111,74 +115,13 @@ public class AgiCommandReply {
         }
     }
 
-    public String getFirstLine() {
-        return firstLine;
-    }
-
-    public List<String> getLines() {
-        return lines;
-    }
-
-    public int getResultCode() {
-        String r;
-
-        r = getResult();
-
-        if (result == null) {
-            return -1;
-        }
-
-        try {
-            return Integer.parseInt(result);
-        } catch (NumberFormatException e) {
-            return -1;
-        }
-    }
-
-    public char getResultCodeAsChar() {
-        int resultCode;
-
-        resultCode = getResultCode();
-
-        if (resultCode < 0) {
-            return 0x0;
-        }
-
-        return (char) resultCode;
-    }
-
-    public String getResult() {
-        if (result != null) {
-            return result;
-        }
-
-        final Matcher matcher = RESULT_PATTERN.matcher(firstLine);
-
-        if (matcher.find()) {
-            result = matcher.group(1);
-        } else {
-            result = "";
-        }
-
-        return result;
-    }
-
-    public int getStatus() {
-        if (status != null) {
-            return status;
-        }
-
-        final Matcher matcher = STATUS_PATTERN.matcher(firstLine);
-
-        if (matcher.find()) {
-            status = Integer.parseInt(matcher.group(1));
-
-            return status;
-        }
-
-        return -1;
-    }
-
+    /**
+     * DOCUMENT ME!
+     *
+     * @param name DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public String getAttribute(String name) {
         if (getStatus() != SC_SUCCESS) {
             return null;
@@ -191,6 +134,11 @@ public class AgiCommandReply {
         return getAttributes().get(name.toLowerCase(Locale.ENGLISH));
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     protected Map<String, String> getAttributes() {
         if (attributes != null) {
             return attributes;
@@ -207,53 +155,11 @@ public class AgiCommandReply {
         return attributes;
     }
 
-    Map<String, String> parseAttributes(String s) {
-        StringBuilder keyBuilder = new StringBuilder();
-        StringBuilder valueBuilder = new StringBuilder();
-        Map<String, String> map = new HashMap<String, String>();
-
-        boolean inKey = true;
-        boolean inQuotes = false;
-        char previousChar = 0x0;
-
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-
-            if ((c == '=') && inKey) {
-                inKey = false;
-                inQuotes = false;
-            } else if (((c == ' ') && !inKey && !inQuotes)) {
-                map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
-                    valueBuilder.toString());
-                keyBuilder.delete(0, keyBuilder.length());
-                valueBuilder.delete(0, valueBuilder.length());
-                inKey = true;
-            } else if ((c == '"') && !inKey) {
-                if (previousChar == '\\') {
-                    valueBuilder.deleteCharAt(valueBuilder.length() - 1);
-                    valueBuilder.append(c);
-                } else {
-                    inQuotes = !inQuotes;
-                }
-            } else {
-                if (inKey) {
-                    keyBuilder.append(c);
-                } else {
-                    valueBuilder.append(c);
-                }
-            }
-
-            previousChar = c;
-        }
-
-        if (keyBuilder.length() > 0) {
-            map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
-                valueBuilder.toString());
-        }
-
-        return map;
-    }
-
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public String getExtra() {
         if (getStatus() != SC_SUCCESS) {
             return null;
@@ -274,6 +180,109 @@ public class AgiCommandReply {
         return extra;
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public String getFirstLine() {
+        return firstLine;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public List<String> getLines() {
+        return lines;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public String getResult() {
+        if (result != null) {
+            return result;
+        }
+
+        final Matcher matcher = RESULT_PATTERN.matcher(firstLine);
+
+        if (matcher.find()) {
+            result = matcher.group(1);
+        } else {
+            result = "";
+        }
+
+        return result;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public int getResultCode() {
+        String r;
+
+        r = getResult();
+
+        if (result == null) {
+            return -1;
+        }
+
+        try {
+            return Integer.parseInt(result);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public char getResultCodeAsChar() {
+        int resultCode;
+
+        resultCode = getResultCode();
+
+        if (resultCode < 0) {
+            return 0x0;
+        }
+
+        return (char) resultCode;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public int getStatus() {
+        if (status != null) {
+            return status;
+        }
+
+        final Matcher matcher = STATUS_PATTERN.matcher(firstLine);
+
+        if (matcher.find()) {
+            status = Integer.parseInt(matcher.group(1));
+
+            return status;
+        }
+
+        return -1;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     public String getSynopsis() {
         if (getStatus() != SC_INVALID_COMMAND_SYNTAX) {
             return null;
@@ -326,6 +335,65 @@ public class AgiCommandReply {
         return usage;
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @param s DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    Map<String, String> parseAttributes(String s) {
+        StringBuilder keyBuilder = new StringBuilder();
+        StringBuilder valueBuilder = new StringBuilder();
+        Map<String, String> map = new HashMap<String, String>();
+
+        boolean inKey = true;
+        boolean inQuotes = false;
+        char previousChar = 0x0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if ((c == '=') && inKey) {
+                inKey = false;
+                inQuotes = false;
+            } else if (((c == ' ') && !inKey && !inQuotes)) {
+                map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
+                    valueBuilder.toString());
+                keyBuilder.delete(0, keyBuilder.length());
+                valueBuilder.delete(0, valueBuilder.length());
+                inKey = true;
+            } else if ((c == '"') && !inKey) {
+                if (previousChar == '\\') {
+                    valueBuilder.deleteCharAt(valueBuilder.length() - 1);
+                    valueBuilder.append(c);
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else {
+                if (inKey) {
+                    keyBuilder.append(c);
+                } else {
+                    valueBuilder.append(c);
+                }
+            }
+
+            previousChar = c;
+        }
+
+        if (keyBuilder.length() > 0) {
+            map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
+                valueBuilder.toString());
+        }
+
+        return map;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
     @Override
     public String toString() {
         StringBuilder sb;

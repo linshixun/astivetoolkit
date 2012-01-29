@@ -28,7 +28,6 @@
         <appender-ref ref="fileAppender" />
         <appender-ref ref="consoleAppender" />
     </logger>
-
     <logger name="com.phonytive.astive.server.loader">
         <level value="debug"/>
         <appender-ref ref="fileAppender" />

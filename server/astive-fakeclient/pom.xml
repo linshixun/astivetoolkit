@@ -16,5 +16,11 @@
             <artifactId>astive-agi</artifactId>
             <version>1.0.0-alpha-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.phonytive.astive</groupId>
+            <artifactId>astive-server</artifactId>
+            <version>1.0.0-alpha-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

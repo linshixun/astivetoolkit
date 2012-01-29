@@ -1,60 +1,63 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.menu.action;
+
 
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.menu.Engine;
 import com.phonytive.astive.menu.Menu;
 import com.phonytive.astive.menu.exception.MenuException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version 0.1
+ * @since 1.0.0
  * @see GoExt
  */
-public class GoTo implements Action {    private AgiResponse agiResponse;
-    private Menu menu;
+public class GoTo implements Action {
+  private AgiResponse agiResponse;
+  private Menu menu;
 
-    /** <p>Creates a new instance of GoTo</p> */
-    public GoTo(AgiResponse agiResponse, Menu menu) {
-        this.agiResponse = agiResponse;
-        this.menu = menu;
-    }
+  /**
+   * Creates a new GoTo object.
+   * 
+   * @param agiResponse agi response.
+   * @param menu menu where to jump.
+   */
+  public GoTo(AgiResponse agiResponse, Menu menu) {
+    this.agiResponse = agiResponse;
+    this.menu = menu;
+  }
 
-    @Override
-    public void doAction() {
-        try {
-            Engine e = new Engine(agiResponse);            
-            e.run(menu);
-        } catch (AgiException ex) {
-            // Manage this exception
-        } catch (MenuException ex) {
-            // Manage this exception
-        }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void doAction() {
+    try {
+      Engine e = new Engine(agiResponse);
+      e.run(menu);
+    } catch (AgiException ex) {
+      // Manage this exception
+    } catch (MenuException ex) {
+      // Manage this exception
     }
+  }    
 }

@@ -1,61 +1,126 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.server.utils;
 
 import java.net.InetAddress;
 
-
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 public interface ServiceProperties {
-    String getServiceName();
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  int getBacklog();
 
-    void setServiceName(String serviceName);
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  InetAddress getBindAddr();
 
-    String getServer();
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  InetAddress getOnlyFrom();
 
-    void setServer(String server);
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  int getPort();
 
-    void setDisabled(boolean disabled);
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  String getServer();
 
-    boolean isDisabled();
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  String getServiceName();
 
-    int getBacklog();
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  boolean isDisabled();
 
-    void setBacklog(int backlog);
+  /**
+   * DOCUMENT ME!
+   *
+   * @param backlog DOCUMENT ME!
+   */
+  void setBacklog(int backlog);
 
-    int getPort();
+  /**
+   * DOCUMENT ME!
+   *
+   * @param bindAddr DOCUMENT ME!
+   */
+  void setBindAddr(InetAddress bindAddr);
 
-    void setPort(int port);
+  /**
+   * DOCUMENT ME!
+   *
+   * @param disabled DOCUMENT ME!
+   */
+  void setDisabled(boolean disabled);
 
-    InetAddress getBindAddr();
+  /**
+   * DOCUMENT ME!
+   *
+   * @param onlyFrom DOCUMENT ME!
+   */
+  void setOnlyFrom(InetAddress onlyFrom);
 
-    void setBindAddr(InetAddress bindAddr);
+  /**
+   * DOCUMENT ME!
+   *
+   * @param port DOCUMENT ME!
+   */
+  void setPort(int port);
 
-    InetAddress getOnlyFrom();
+  /**
+   * DOCUMENT ME!
+   *
+   * @param server DOCUMENT ME!
+   */
+  void setServer(String server);
 
-    void setOnlyFrom(InetAddress onlyFrom);
+  /**
+   * DOCUMENT ME!
+   *
+   * @param serviceName DOCUMENT ME!
+   */
+  void setServiceName(String serviceName);
 }

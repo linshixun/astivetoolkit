@@ -29,17 +29,22 @@
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi">
+   <logger name="com.phonytive.astive.agi">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi.command">
+   <logger name="com.phonytive.astive.ami">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi.fastagi">
+   <logger name="com.phonytive.astive.agi.command">
+        <level value="trace"/>
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="fileAppender" />
+    </logger>
+   <logger name="com.phonytive.astive.agi.fastagi">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />

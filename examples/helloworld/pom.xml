@@ -7,15 +7,21 @@
     <groupId>com.phonytive.astive</groupId>
     <version>1.0.0-alpha-SNAPSHOT</version>
   </parent>
-  <groupId>com.phonytive.astive</groupId>
+  <!--<groupId>com.phonytive.astive</groupId>-->
   <artifactId>helloworld</artifactId>
   <packaging>jar</packaging>
-  <name>Hello World</name>
+  <name>Astive :: Examples :: Hello World</name>
   <dependencies>
     <dependency>
       <groupId>com.phonytive.astive</groupId>
       <artifactId>astive-client</artifactId>
       <version>1.0.0-alpha-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.phonytive.astive</groupId>
+      <artifactId>astive-server</artifactId>
+      <version>1.0.0-alpha-SNAPSHOT</version>
+      <type>jar</type>
     </dependency>
   </dependencies>
 </project>

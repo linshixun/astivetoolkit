@@ -1,56 +1,102 @@
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.server.fakeclient;
 
-
+import com.phonytive.astive.agi.ChannelStatus;
 import com.phonytive.astive.agi.HangupCause;
-import com.phonytive.astive.agi.command.AgiCommand;
-
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+import java.io.IOException;
 
 /**
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 interface Client {
-    
-    void call();
-    
-    void hangup();
-    
-    void hangup(HangupCause cause);
-    
-    AgiCommand waitForCommand();
-    
-    void sendDtmf(char digit);
-    
-    void sendDtmf(char digit, int time);
-            
-    void sendDtmf(String digits);
-    
-    void sendDtmf(String digits, int time);
-    
-    void sendText(String text);
-    
-    void sendText(String text, int time);
+  /**
+   * DOCUMENT ME!
+   */
+  void call() throws IOException;
+
+  void sendChannelStatus(ChannelStatus status) throws IOException;
+  
+  /**
+   * DOCUMENT ME!
+   */
+  void hangup() throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param cause DOCUMENT ME!
+   */
+  void hangup(HangupCause cause) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param digit DOCUMENT ME!
+   */
+  void sendDtmf(char digit) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param digit DOCUMENT ME!
+   * @param time DOCUMENT ME!
+   */
+  void sendDtmf(char digit, int time) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param digits DOCUMENT ME!
+   */
+  void sendDtmf(String digits) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param digits DOCUMENT ME!
+   * @param time DOCUMENT ME!
+   */
+  void sendDtmf(String digits, int time) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param text DOCUMENT ME!
+   */
+  void sendText(String text) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param text DOCUMENT ME!
+   * @param time DOCUMENT ME!
+   */
+  void sendText(String text, int time) throws IOException;
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  // TODO: REMOVE !!!
+  //AgiCommand waitForCommand();
 }
