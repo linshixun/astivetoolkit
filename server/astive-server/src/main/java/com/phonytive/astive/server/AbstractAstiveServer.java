@@ -45,7 +45,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
     public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
     public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") +
         "/apps/";
-    public static final String ASTIVE_DEPLOYMENT_DESCRIPTOR = "astivlet.xml";
+    
 
     /**
      *

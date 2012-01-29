@@ -8,6 +8,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>astive-commons</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Astive :: Commons</name>
 </project>

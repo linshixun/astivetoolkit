@@ -1,24 +1,22 @@
-// Astive, is the core library of Astive Toolkit, the framework for
-// developers wishing to create concise and easy to maintain applications
-// for Asterisk® PBX, even for complex navigation.
-//
-// Copyright (C) 2010-2011 PhonyTive, S.L.
-// http://www.phonytive.com/astive
-//
-// This file is part of Astive
-//
-// Astive is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Astive is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://www.phonytive.com/astive
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.util;
 
 import java.text.Format;
@@ -29,18 +27,40 @@ import java.util.ResourceBundle;
 
 
 /**
+ * Help to localize messages.
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $id$
+ * @since 1.0.0
  */
 public class AppLocale {
-    // A usual resource bundle class
+    /**
+     * Define the bundle prefix.
+     */
     private static final ResourceBundle messages = ResourceBundle.getBundle(
             "Messages");
+
+    /**
+     * Define the message format.
+     */
     private static MessageFormat messageForm = new MessageFormat("");
+
+    /**
+     * Formats to be use in messages.
+     */
     private static Format[] formats = { null };
 
+    /**
+     * Constructor class. This class only has a static methods, therefore can't
+     * be instantiated.
+     */
+    private AppLocale() {
+    }
+
+    /**
+     * Get a localized message.
+     *
+     * @param key message key.
+     * @return localized message.
+     */
     public static String getI18n(String key) {
         try {
             return messages.getString(key);
@@ -49,6 +69,18 @@ public class AppLocale {
         }
     }
 
+    /**
+     * Get a localized message with arguments. The message must be defined like
+     * so:
+     *
+     * <p>myMessage=This is a message with arg <code>{0}</code>
+     *
+     * <p>Then <code>{0}</code> will be substitute by <code>args[0]</code>.
+     *
+     * @param key message key.
+     * @param args arguments to be passed to the message.
+     * @return localized message with arguments.
+     */
     public static String getI18n(String key, Object[] args) {
         try {
             String msgPatter = messages.getString(key);

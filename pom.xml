@@ -5,11 +5,58 @@
     <artifactId>astive</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-alpha-SNAPSHOT</version>
-    <name>Astive</name>
+    <name>Astive Toolkit</name>
     <url>http://astive.phonytive.com</url>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mc-release</id>
+            <name>Local Maven repository of releases</name>
+            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+        </pluginRepository>
+    </pluginRepositories>          
     <build>
-        <plugins>
+        <plugins>            
             <plugin>
+                <inherited>false</inherited>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>                    
+                    <header>${basedir}/src/main/resources/license-template.txt</header>                    
+                    <failIfMissing>true</failIfMissing>
+                    <aggregate>true</aggregate>
+                    <properties>
+                        <owner>PhonyTive LLC</owner>
+                        <year>2012</year>
+                        <email>psanders@kaffeineminds.com</email>
+                    </properties>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                   <excludes>
+                        <exclude>astive-archetype/**</exclude>
+                    </excludes>                    
+                    <headerDefinitions>
+                        <headerDefinition>${basedir}/src/main/resources/license-headerstyle.xml</headerDefinition>
+                    </headerDefinitions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-headers</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>            
+            <plugin>
+                <version>2.3.2</version>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -59,16 +106,17 @@
             <type>jar</type>
         </dependency>
     </dependencies>
-    <description>Astive is a toolkit and server for Java that provides an extensible
-architecture for developing, maintaining, and deploying IVR applications as well
-as access to the Asterisk Manager.
+    <description>Astive is a toolkit and server for Java that provides an 
+    extensible architecture for developing, maintaining, and deploying telecom 
+    applications.
     </description>
     <modules>
         <module>astive-commons</module>
         <module>api</module>
         <module>server</module>
         <module>astive-archetype</module>
+        <module>examples</module>
     <!--<module>astbeans</module>-->
     <!--<module>astive-ia</module>-->
-  </modules>
+    </modules>
 </project>
