@@ -22,15 +22,20 @@ package com.phonytive.astive.server;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import com.phonytive.astive.server.appmanager.DeployerManager;
 import com.phonytive.astive.util.AppLocale;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @since 1.0.0
  */
 public class AstivletProcessor {
+
+    private static final Logger logger = Logger.getLogger(AstivletProcessor.class);
+
     /**
      * DOCUMENT ME!
      *
@@ -40,20 +45,41 @@ public class AstivletProcessor {
      *
      * @throws AstiveException DOCUMENT ME!
      */
-    public static void invokeAstivlet(String appId, String astivletId ,
-            AstivletRequest request, AstivletResponse response) throws AstiveException {
+    public static void invokeAstivlet(final AstivletRequest request, final AstivletResponse response)
+            throws AstiveException {
         try {
-            DeployerManager appManager = DeployerManager.getInstance();
+            AstDB astDB = MyAstDB.getInstance();
+            String script = "/" + request.getScript();
+
+            if(script.split("\\?").length > 1) {
+                script = script.split("\\?")[0];
+            }
             
-            // Locate AstObj by path
-            AstObj app = appManager.getApp(appId);
-            Astivlet astivlet = app.getAstivlet(astivletId);
+            Astivlet astivlet = astDB.getAstivlet(script);
+
+            Class[] classParamTypes = new Class[2];
+            classParamTypes[0] = AstivletRequest.class;
+            classParamTypes[1] = AstivletResponse.class;
             
-            // TODO: Execute throught reflection
-            astivlet.service(request, response);
+            Class c = Astivlet.class;
+            Method m = null;
+            
+            m = c.getDeclaredMethod("service", classParamTypes);
+            m.setAccessible(true);
+            m.invoke(astivlet, new Object[]{request, response});            
+        } catch (NoSuchMethodException ex) {            
+            logger.warn(ex.getMessage());
+        } catch (SecurityException ex) {            
+            logger.warn(ex.getMessage());
+        } catch (IllegalAccessException ex) {            
+            logger.warn(ex.getMessage());
+        } catch (IllegalArgumentException ex) {            
+            logger.warn(ex.getMessage());
+        } catch (InvocationTargetException ex) {            
+            logger.warn(ex.getMessage());
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("resourceNotExist",
-                    new Object[] { astivletId }));
+                    new Object[]{"/" + request.getScript()}));
         }
     }
 
@@ -67,8 +93,29 @@ public class AstivletProcessor {
      * @throws AstiveException DOCUMENT ME!
      */
     public static void invokeAstivlet(Astivlet astivlet,
-        AstivletRequest request, AstivletResponse response)
-        throws AstiveException {
-        astivlet.service(request, response);
+            AstivletRequest request, AstivletResponse response)
+            throws AstiveException {
+        try {
+            Class[] classParamTypes = new Class[2];
+            classParamTypes[0] = AstivletRequest.class;
+            classParamTypes[1] = AstivletResponse.class;
+            
+            Class c = Astivlet.class;
+            Method m = null;
+
+            m = c.getDeclaredMethod("service", classParamTypes);
+            m.setAccessible(true);
+            m.invoke(astivlet, new Object[]{request, response});
+        } catch (NoSuchMethodException ex) {
+            logger.warn(AppLocale.getI18n(ex.getMessage()));
+        } catch (SecurityException ex) {
+            logger.warn(AppLocale.getI18n(ex.getMessage()));
+        } catch (IllegalAccessException ex) {
+            logger.warn(AppLocale.getI18n(ex.getMessage()));
+        } catch (IllegalArgumentException ex) {
+            logger.warn(AppLocale.getI18n(ex.getMessage()));
+        } catch (InvocationTargetException ex) {
+            logger.warn(AppLocale.getI18n(ex.getMessage()));
+        }
     }
 }

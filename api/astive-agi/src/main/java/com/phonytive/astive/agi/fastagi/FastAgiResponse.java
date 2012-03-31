@@ -75,8 +75,8 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public ChannelStatus getChannelStatus() throws AgiException {
-        GetChannelStatus command = new GetChannelStatus();
-        int code = cHandler.sendAgiCommand(command).getStatus();
+        GetChannelStatus command = new GetChannelStatus();        
+        int code = cHandler.sendAgiCommand(command).getResultCode();
         return ChannelStatus.get(code);
     }
 

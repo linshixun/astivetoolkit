@@ -44,307 +44,332 @@ import com.phonytive.astive.menu.exception.MenuException;
  * @since 1.0.0
  */
 public class Engine {
-  // A usual logging class
-  private static final Logger logger = Logger.getLogger(Engine.class);
-  private AgiResponse agiResponse;
-  private Menu currentMenu;
+    // A usual logging class
 
-  /** Creates a new instance of Engine */
-  public Engine(AgiResponse agiResponse) {
-    this.agiResponse = agiResponse;
-  }
+    private static final Logger logger = Logger.getLogger(Engine.class);
+    private AgiResponse agiResponse;
+    private Menu currentMenu;
+    private Boolean autoAnswer;
+    private Boolean answered;
 
-  private void authenticate(MenuItem item) {
-    if (item.getMustAuthenticate()) {
-      if (!item.getAuthenticator().isAuthenticated()) {
-        AuthenticationEvent evt = new AuthenticationEvent(item, item.getAuthenticator());
-        item.fireAuthenticationEvent_tryingToAuthenticate(evt);
-        item.getAuthenticator().signIn();
+    /** Creates a new instance of Engine */
+    public Engine(AgiResponse agiResponse) {
+        this.agiResponse = agiResponse;
+        autoAnswer = true;
+        answered = false;
+    }
 
-        if (item.getAuthenticator().isAuthenticated()) {
-          item.fireAuthenticationEvent_authenticationSuccess(null);
-        } else {
-          item.fireAuthenticationEvent_authenticationFail(evt);
+    public Engine(AgiResponse agiResponse, Boolean autoAnswer) {
+        this.agiResponse = agiResponse;
+        this.autoAnswer = autoAnswer;
+        answered = false;
+    }
+
+    private void authenticate(MenuItem item) {
+        if (item.getMustAuthenticate()) {
+            if (!item.getAuthenticator().isAuthenticated()) {
+                AuthenticationEvent evt = new AuthenticationEvent(item, item.getAuthenticator());
+                item.fireAuthenticationEvent_tryingToAuthenticate(evt);
+                item.getAuthenticator().signIn();
+
+                if (item.getAuthenticator().isAuthenticated()) {
+                    item.fireAuthenticationEvent_authenticationSuccess(null);
+                } else {
+                    item.fireAuthenticationEvent_authenticationFail(evt);
+                }
+            }
         }
-      }
-    }
-  }
-
-  private boolean checkMaxFailure(Menu menu, String opt) {
-    if (menu.getFailuresCount() >= menu.getMaxFailures()) {
-      MaxFailureEvent event = new MaxFailureEvent(menu, opt, menu.getMaxFailures());
-      menu.fireMaxFailureEvent_maxFailurePerform(event);
-
-      // do break the flow
-      return true;
     }
 
-    return false;
-  }
+    private boolean checkMaxFailure(Menu menu, String opt) {
+        if (menu.getFailuresCount() >= menu.getMaxFailures()) {
+            MaxFailureEvent event = new MaxFailureEvent(menu, opt, menu.getMaxFailures());
+            menu.fireMaxFailureEvent_maxFailurePerform(event);
 
-  private boolean checkMaxTimeout(Menu menu, String opt) {
-    if (menu.getTimeoutCount() >= menu.getMaxTimeouts()) {
-      MaxTimeoutEvent event = new MaxTimeoutEvent(menu, opt, menu.getMaxTimeouts());
-      menu.fireMaxTimeoutEvent_maxTimeoutPerform(event);
+            // do break the flow
+            return true;
+        }
 
-      // do break the flow
-      return true;
+        return false;
     }
 
-    return false;
-  }
+    private boolean checkMaxTimeout(Menu menu, String opt) {
+        if (menu.getTimeoutCount() >= menu.getMaxTimeouts()) {
+            MaxTimeoutEvent event = new MaxTimeoutEvent(menu, opt, menu.getMaxTimeouts());
+            menu.fireMaxTimeoutEvent_maxTimeoutPerform(event);
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Menu getCurrentMenu() {
-    return currentMenu;
-  }
+            // do break the flow
+            return true;
+        }
 
-  private String getData(String file, int milliSecondsWatting, int maxDigits,
-                         AgiResponse agiResponse, MenuItem item)
-                  throws MenuException, AgiException {
-    char c = agiResponse.streamFile(file, "0123456789*#");
-    Menu menu = ((Menu) item.getParent());
-
-    if (c == 0x0 /*&& milliSecondsWatting == 0*/) {
-      try {
-        Thread.sleep(milliSecondsWatting);
-      } catch (InterruptedException ex) {
-        logger.warn(ex.getMessage());
-      }
-
-      return "(timeout)";
+        return false;
     }
 
-    KeyEvent evt = new KeyEvent(item, Digit.getDigit("" + c));
-    item.fireKeyEvent_keyTyped(evt);
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public Menu getCurrentMenu() {
+        return currentMenu;
+    }
 
-    String result = "" + c;
+    private String getData(String file, int milliSecondsWatting, int maxDigits,
+            AgiResponse agiResponse, MenuItem item)
+            throws MenuException, AgiException {
+        char c = agiResponse.streamFile(file, "0123456789*#");
+        Menu menu = ((Menu) item.getParent());
 
-    while (true) {
-      if ((result.length() == maxDigits) || (c == '#')) {
-        return result;
-      }
+        if (c == 0x0 /*&& milliSecondsWatting == 0*/) {
+            try {
+                Thread.sleep(milliSecondsWatting);
+            } catch (InterruptedException ex) {
+                logger.warn(ex.getMessage());
+            }
 
-      c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
+            return "(timeout)";
+        }
 
-      if (c != 0x0) {
-        result += ("" + c);
-        
-        
-        evt = new KeyEvent(item, Digit.getDigit("" + c));
+        KeyEvent evt = new KeyEvent(item, Digit.getDigit("" + c));
         item.fireKeyEvent_keyTyped(evt);
-      } else {
-        InterDigitsTimeoutEvent event =
-          new InterDigitsTimeoutEvent(item, result, menu.getInterDigitsTimeout());
-        menu.fireInterDigitsTimeoutListener_timeoutPerform(event);
 
-        break;
-      }
-    }
+        String result = "" + c;
 
-    return result;
-  }
+        while (true) {
+            if ((result.length() == maxDigits) || (c == '#')) {
+                return result;
+            }
 
-  private MenuItem getMenuItem(Menu menu, String digits) {
-    for (MenuItem item : menu.getChilds()) {
-      if (item.getDigits().equals(digits)) {
-        return item;
-      }
-    }
+            c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
 
-    return null;
-  }
+            if (c != 0x0) {
+                result += ("" + c);
 
-  // XXX: Im not sure about this criteria
-  private ArrayList<String> getSortedChieldsKeys(ArrayList<MenuItem> menuChilds) {
-    ArrayList result = new ArrayList();
-    Comparator comparator =
-      new Comparator() {
-        @Override
-        public int compare(Object o1, Object o2) {
-          int c1 = ((MenuItem) o1).getPriority();
-          int c2 = ((MenuItem) o2).getPriority();
 
-          return (new Integer(c1)).compareTo(new Integer(c2));
+                evt = new KeyEvent(item, Digit.getDigit("" + c));
+                item.fireKeyEvent_keyTyped(evt);
+            } else {
+                InterDigitsTimeoutEvent event =
+                        new InterDigitsTimeoutEvent(item, result, menu.getInterDigitsTimeout());
+                menu.fireInterDigitsTimeoutListener_timeoutPerform(event);
+
+                break;
+            }
         }
-        ;
-      };
+
+        return result;
+    }
+
+    private MenuItem getMenuItem(Menu menu, String digits) {
+        for (MenuItem item : menu.getChilds()) {
+            if (item.getDigits().equals(digits)) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    // XXX: Im not sure about this criteria
+    private ArrayList<String> getSortedChieldsKeys(ArrayList<MenuItem> menuChilds) {
+        ArrayList result = new ArrayList();
+        Comparator comparator =
+                new Comparator() {
+
+                    @Override
+                    public int compare(Object o1, Object o2) {
+                        int c1 = ((MenuItem) o1).getPriority();
+                        int c2 = ((MenuItem) o2).getPriority();
+
+                        return (new Integer(c1)).compareTo(new Integer(c2));
+                    }
+                ;
+        };
 
     Object[] opts = new Object[menuChilds.size()];
-    int cnt = 0;
+        int cnt = 0;
 
-    for (MenuItem child : menuChilds) {
-      opts[cnt++] = child;
+        for (MenuItem child : menuChilds) {
+            opts[cnt++] = child;
+        }
+
+        // Sorting the items
+        Arrays.sort(opts, comparator);
+
+        for (int i = 0; i < opts.length; i++) {
+            String digits = ((MenuItem) opts[i]).getDigits();
+            result.add(digits);
+        }
+
+        return result;
     }
 
-    // Sorting the items
-    Arrays.sort(opts, comparator);
+    /**
+     * <p>Start the menu excecution.</p>
+     * @param menu and object containing all menu and menu items childs
+     */
+    public void run(Menu menu) throws MenuException, AgiException {
+        String digits = null;
+        setCurrentMenu(menu);
 
-    for (int i = 0; i < opts.length; i++) {
-      String digits = ((MenuItem) opts[i]).getDigits();
-      result.add(digits);
-    }
+        // For example if channel is closed by customer the player must be auto-halt.    
+        if (agiResponse.getChannelStatus().getCode() == -1) {
+            return;
+        }        
+        
+        if(answered == false && autoAnswer == true) {
+            agiResponse.answer();
+            answered = true;
+        }
+        
+        // Sort elements
+        ArrayList<String> childsKeys = getSortedChieldsKeys(menu.getChilds());
 
-    return result;
-  }
+        if (logger.isDebugEnabled()) {
+            logger.debug("Total menu options: " + menu.getChilds().size());
+        }
 
-  /**
-   * <p>Start the menu excecution.</p>
-   * @param menu and object containing all menu and menu items childs
-   */
-  public void run(Menu menu) throws MenuException, AgiException {
-    String digits = null;
-    setCurrentMenu(menu);
+        if (((menu.isGreetingsPlayed() == false) || menu.isPlayGreetingsAllways())
+                && (menu.getGreetingsFile() != null) && !menu.getGreetingsFile().equals("")) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Playing menu intro: " + menu.getGreetingsFile());
+            }
 
-    // For example if channel is closed by customer the player must be auto-halt.    
-    if (agiResponse.getChannelStatus().getCode() == -1) {
-      return;
-    }
-
-    // Sort elements
-    ArrayList<String> childsKeys = getSortedChieldsKeys(menu.getChilds());
-
-    if (logger.isDebugEnabled()) {
-      logger.debug("Total menu options: " + menu.getChilds().size());
-    }
-
-    if (((menu.isGreetingsPlayed() == false) || menu.isPlayGreetingsAllways())
-         && (menu.getGreetingsFile() != null) && !menu.getGreetingsFile().equals("")) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("Playing menu intro: " + menu.getGreetingsFile());
-      }
-
-      digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu);
-      menu.setGreetingsPlayed(true);
-    }
-
-    if ((digits == null) || digits.equals("(timeout)")) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("Playing menu options");
-      }
-
-      int pos = 0;
-
-      for (String opts : childsKeys) {
-        MenuItem option = getMenuItem(menu, opts);
-        int millisecondsWatting = menu.getInterDigitsTimeout();
-
-        if (((menu.getChilds().size() - 1) >= 0)
-             && menu.getChilds().get(menu.getChilds().size() - 1).equals(option)) {
-          millisecondsWatting = menu.getLastDigitsTimeout();
+            digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu);
+            menu.setGreetingsPlayed(true);
         }
 
         if ((digits == null) || digits.equals("(timeout)")) {
-          digits = getData(option.getFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
-                           menu);
+            if (logger.isDebugEnabled()) {
+                logger.debug("Playing menu options");
+            }
+
+            int pos = 0;
+
+            for (String opts : childsKeys) {
+                MenuItem option = getMenuItem(menu, opts);
+                int millisecondsWatting = menu.getInterDigitsTimeout();
+
+                if (((menu.getChilds().size() - 1) >= 0)
+                        && menu.getChilds().get(menu.getChilds().size() - 1).equals(option)) {
+                    millisecondsWatting = menu.getLastDigitsTimeout();
+                }
+
+                if ((digits == null) || digits.equals("(timeout)")) {
+                    digits = getData(option.getFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
+                            menu);
+                }
+
+                if ((digits != null) && !digits.equals("(timeout)")) {
+                    // Do break menu            
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Enter digits is: " + digits);
+                    }
+
+                    DigitsEvent evt = new DigitsEvent((Object) option, digits);
+                    option.fireDigitsEvent_digitsEnter(evt);
+                }
+
+                MenuItem oldOption = option;
+
+                if (pos > 0) {
+                    oldOption = getMenuItem(menu, childsKeys.get(pos - 1));
+                }
+
+                PositionChangeEvent evt = new PositionChangeEvent(oldOption, option, pos - 1);
+                menu.firePositionChangeEvent_positionChange(evt);
+                pos++;
+
+                if (logger.isDebugEnabled()) {
+                    logger.debug("pos = " + pos);
+                }
+            }
         }
 
-        if ((digits != null) && !digits.equals("(timeout)")) {
-          // Do break menu            
-          if (logger.isDebugEnabled()) {
-            logger.debug("Enter digits is: " + digits);
-          }
+        // Selected none option
+        if ((digits == null) || digits.equals("(timeout)")) {
+            // XXX: No necesariamente timeout, puede ser tambien que ingreso
+            // ???
+            // signo de número.
+            if (digits == null) {
+                FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
+                menu.fireFailListener_failurePerform(evt);
+            } else if (digits.equals("(timeout)")) {
+                // TODO
+                //menu.fireTimeoutListener_timeoutPerform(null);
+            }
 
-          DigitsEvent evt = new DigitsEvent((Object) option, digits);
-          option.fireDigitsEvent_digitsEnter(evt);
+            // Try again
+            if (logger.isDebugEnabled()) {
+                logger.debug("Unregistered option");
+            }
+
+            menu.incrementFailuresCount();
+
+            if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
+                run(menu);
+
+                return;
+            }
+
+            agiResponse.streamFile(menu.getExitFile());
+
+            return;
         }
-
-        MenuItem oldOption = option;
-
-        if (pos > 0) {
-          oldOption = getMenuItem(menu, childsKeys.get(pos - 1));
-        }
-
-        PositionChangeEvent evt = new PositionChangeEvent(oldOption, option, pos - 1);
-        menu.firePositionChangeEvent_positionChange(evt);
-        pos++;
 
         if (logger.isDebugEnabled()) {
-          logger.debug("pos = " + pos);
+            logger.debug("Getting Menu/MenuItem for digits: " + digits);
         }
-      }
+
+        MenuItem selectedOption = getMenuItem(menu, digits);
+
+        if (selectedOption != null) {
+            menu.resetFailuresCount();
+            menu.resetTimeoutCount();
+
+            Action action = selectedOption.getAction();
+
+            if (action != null) {
+                authenticate(selectedOption);
+                selectedOption.getAction().doAction();
+            }
+
+            ActionEvent evt = new ActionEvent(selectedOption, digits);
+            selectedOption.fireActionEvent_actionPerformed(evt);
+
+            if (selectedOption instanceof Menu) {
+                run((Menu) selectedOption);
+            } else {
+                run(menu);
+            }
+
+            return;
+        } else {
+            // Invalid option
+            agiResponse.streamFile(menu.getInvalidDigitFile());
+            menu.incrementFailuresCount();
+
+            if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
+                run(menu);
+
+                return;
+            }
+
+            agiResponse.streamFile(menu.getExitFile());
+
+            return;
+        }
     }
 
-    // Selected none option
-    if ((digits == null) || digits.equals("(timeout)")) {
-      // XXX: No necesariamente timeout, puede ser tambien que ingreso
-      // ???
-      // signo de número.
-      if (digits == null) {
-        FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
-        menu.fireFailListener_failurePerform(evt);
-      } else if (digits.equals("(timeout)")) {
-        // TODO
-        //menu.fireTimeoutListener_timeoutPerform(null);
-      }
-
-      // Try again
-      if (logger.isDebugEnabled()) {
-        logger.debug("Unregistered option");
-      }
-
-      menu.incrementFailuresCount();
-
-      if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
-        run(menu);
-
-        return;
-      }
-
-      agiResponse.streamFile(menu.getExitFile());
-
-      return;
+    private void setCurrentMenu(Menu currentMenu) {
+        this.currentMenu = currentMenu;
     }
-
-    if (logger.isDebugEnabled()) {
-      logger.debug("Getting Menu/MenuItem for digits: " + digits);
+    
+    public void setAutoAnswer(Boolean autoAnswer) {
+        this.autoAnswer = autoAnswer;
     }
-
-    MenuItem selectedOption = getMenuItem(menu, digits);
-
-    if (selectedOption != null) {
-      menu.resetFailuresCount();
-      menu.resetTimeoutCount();
-
-      Action action = selectedOption.getAction();
-
-      if (action != null) {
-        authenticate(selectedOption);
-        selectedOption.getAction().doAction();
-      }
-
-      ActionEvent evt = new ActionEvent(selectedOption, digits);
-      selectedOption.fireActionEvent_actionPerformed(evt);
-
-      if (selectedOption instanceof Menu) {
-        run((Menu) selectedOption);
-      } else {
-        run(menu);
-      }
-
-      return;
-    } else {
-      // Invalid option
-      agiResponse.streamFile(menu.getInvalidDigitFile());
-      menu.incrementFailuresCount();
-
-      if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
-        run(menu);
-
-        return;
-      }
-
-      agiResponse.streamFile(menu.getExitFile());
-
-      return;
+    
+    public Boolean isAutoAnswer() {
+        return autoAnswer;
     }
-  }
-
-  private void setCurrentMenu(Menu currentMenu) {
-    this.currentMenu = currentMenu;
-  }
 }

@@ -29,10 +29,10 @@ import com.phonytive.astive.astivlet.AstivletResponse;
  *
  * @since 1.0.0
  */
-public class App implements Astivlet {
+public class App extends Astivlet {
 
     @Override
-    public void onModuleLoad(AstivletRequest request, AstivletResponse response) {
+    public void service(AstivletRequest request, AstivletResponse response) {
         try {
             response.answer();
             response.streamFile("tt-monkeys");            
@@ -44,7 +44,7 @@ public class App implements Astivlet {
             digit = response.controlStreamFile("tt-monkeys", "#*", 1000);
             System.out.println("Digit pressed -> " + digit);
             
-            digit = response.controlStreamFile("tt-monkeys", "123456789", 1000, "*", "#", "0");
+            digit = response.controlStreamFile("tt-monkeys", "123456789", 1000, '*', '#', '0');
             System.out.println("Digit pressed -> " + digit);
             
             ChannelStatus status = response.getChannelStatus();

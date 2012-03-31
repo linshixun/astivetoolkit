@@ -35,16 +35,16 @@ import com.phonytive.astive.menu.event.PositionChangeEvent;
 import com.phonytive.astive.menu.event.PositionChangeListener;
 
 /**
- * Handling events sample
+ * Handling events sample.
  * 
  * @since 1.0.0
  */
-public class App implements Astivlet {
+public class App extends Astivlet {
 
     @Override
-    public void onModuleLoad(AstivletRequest request, AstivletResponse response) {
-
-        MenuItem menuItemA = new MenuItem("1", "menu-item-a-sound");
+    public void service(AstivletRequest request, AstivletResponse response) {
+                
+        MenuItem menuItemA = new MenuItem("1", "menu-item-b-sound");
         menuItemA.addActionListener(new ActionListener() {
 
             @Override
@@ -95,7 +95,10 @@ public class App implements Astivlet {
         root.addChild(menuItemB);
         root.addChild(menuItemC);
 
-        Engine e = new Engine(response);
+        System.out.println("response = " + response);
+        
+        Engine e = new Engine(response);        
+        
         try {
             e.run(root);
         } catch (MenuException ex) {

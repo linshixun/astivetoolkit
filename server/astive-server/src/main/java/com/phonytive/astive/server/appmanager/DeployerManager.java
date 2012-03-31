@@ -19,10 +19,15 @@
  */
 package com.phonytive.astive.server.appmanager;
 
+import com.phonytive.astive.astivlet.Astivlet;
+import com.phonytive.astive.server.AbstractAstiveServer;
+import com.phonytive.astive.server.AstDB;
 import com.phonytive.astive.server.AstObj;
 import com.phonytive.astive.server.AstiveException;
+import com.phonytive.astive.server.MyAstDB;
 import com.phonytive.astive.util.AppLocale;
 
+import java.util.List;
 import org.apache.log4j.Logger;
 
 import org.xeustechnologies.jcl.exception.JclException;
@@ -30,174 +35,154 @@ import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-
 
 
 /**
- *
+ * Final implementation of interface {@link Deployer}.
+ * 
  * @since 1.0.0
  * @see Deployer
  */
-public final class DeployerManager implements Deployer {
+public final class DeployerManager implements Deployer, AstDB {
+
     private static final Logger logger = Logger.getLogger(DeployerManager.class);
     private static final DeployerManager INSTANCE = new DeployerManager();
-    private final Map<String, AstObj> apps;
-
+    private static AstDB astDB;
+    
+    /**
+     * Create a new DeployerManager object.
+     */
     private DeployerManager() {
-        ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
-        apps = Collections.synchronizedMap(new HashMap<String, AstObj>());
-
+        ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());        
+        astDB = MyAstDB.getInstance();
         try {
             deployApps();
         } catch (AstiveException ex) {
             logger.error(AppLocale.getI18n("unexpectedError",
-                    new Object[] { ex.getMessage() }));
+                    new Object[]{ex.getMessage()}));
         }
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     public static DeployerManager getInstance() {
         return INSTANCE;
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param appPath DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void deploy(String appPath) throws AstiveException {
         try {
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("cli.deploy.deployingApp",
-                        new Object[] { appPath }));
+                        new Object[]{appPath}));
             }
 
             File srcFile = new File(appPath);
-            String dstFileStr = ASTIVE_APPS + srcFile.getName();
+            String dstFileStr = AbstractAstiveServer.ASTIVE_APPS + srcFile.getName();
 
             // The name of the file must be use also to undeploy the apps.
-            // 
-            AstObj app = new AstObj(srcFile.getName());
+            AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());                        
 
             if (!appExist(app.deploymentId())) {
-                apps.put(app.deploymentId(), app);
+                addApp(app);
 
                 if (!dstFileStr.equals(appPath)) {
                     CopyFile.copyfile(appPath, dstFileStr);
                 }
             } else {
                 logger.debug(AppLocale.getI18n("cli.deploy.appExist",
-                        new Object[] { appPath, ASTIVE_APPS }));
+                        new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
 
                 return;
             }
 
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("cli.deploy.appDeployed",
-                        new Object[] { app.deploymentId() }));
+                        new Object[]{app.deploymentId()}));
             }
 
             // Hand code
-            logger.debug(
-                " - @Astivlet(id= \"helloworld\" class=\"com.phonytive.astive.helloworld.App\")");
-            logger.debug(
-                " - @Astivlet(id= \"handlingevents\" class=\"com.phonytive.astive.handingevents.App\")");
+            //logger.debug(
+            //        " - @Astivlet(id= \"helloworld\" class=\"com.phonytive.astive.helloworld.App\")");
+            //logger.debug(
+            //        " - @Astivlet(id= \"handlingevents\" class=\"com.phonytive.astive.handingevents.App\")");
         } catch (FileNotFoundException ex) {
             logger.error(AppLocale.getI18n("cli.deploy.cantReadFile",
-                    new Object[] { appPath }));
+                    new Object[]{appPath}));
         } catch (IOException ex) {
             logger.error(AppLocale.getI18n("cli.deploy.cantCopy"));
         } catch (JclException ex) {
             logger.error(AppLocale.getI18n("cli.deploy.cantReadFile",
-                    new Object[] { appPath }));
+                    new Object[]{appPath}));
         } catch (AstiveException ex) {
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("unexpectedError",
-                        new Object[] { ex.getMessage() }));
+                        new Object[]{ex.getMessage()}));
             }
         }
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param app DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void undeploy(String app) throws AstiveException {
         if (logger.isDebugEnabled()) {
             logger.debug(AppLocale.getI18n("cli.undeploy.undeployingApp",
-                    new Object[] { app }));
+                    new Object[]{app}));
         }
 
         try {
-            File f = new File(ASTIVE_APPS + app);
-            String file = ASTIVE_APPS + app;
+            File f = new File(AbstractAstiveServer.ASTIVE_APPS + app);
+            String file = AbstractAstiveServer.ASTIVE_APPS + app;
 
-            AstObj a = new AstObj(file);
+            AstObj astObj = new AstObj(app, file);
 
-            if (appExist(a.deploymentId())) {
-                apps.remove(a.deploymentId());
+            if (appExist(astObj.deploymentId())) {
+                astDB.removeApp(astObj);
 
                 if (f.exists()) {
                     f.delete();
                     logger.debug(AppLocale.getI18n(
-                            "cli.undeploy.appUndeployed", new Object[] { app }));
+                            "cli.undeploy.appUndeployed", new Object[]{app}));
                 } else {
                     logger.debug(AppLocale.getI18n(
-                            "cli.deploy.appFileNotExist", new Object[] { app }));
+                            "cli.deploy.appFileNotExist", new Object[]{app}));
                 }
             } else {
                 logger.debug(AppLocale.getI18n("cli.deploy.appNotExist",
-                        new Object[] { app }));
+                        new Object[]{app}));
             }
         } catch (org.xeustechnologies.jcl.exception.JclException ex) {
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("cli.deploy.appNotExist",
-                        new Object[] { app }));
+                        new Object[]{app}));
             }
         } catch (AstiveException ex) {
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("unexpectedError",
-                        new Object[] { ex.getMessage() }));
+                        new Object[]{ex.getMessage()}));
             }
         }
-    }    
-    
+    }
+
     /**
-     * DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
+     * {@inheritDoc}
      */
     public void deployApps() throws AstiveException {
         if (logger.isDebugEnabled()) {
             logger.debug(AppLocale.getI18n("deployingApps",
-                    new Object[] { ASTIVE_APPS }));
+                    new Object[]{AbstractAstiveServer.ASTIVE_APPS}));
         }
 
         //String apps = ASTIVE_APPS;
-        File f = new File(ASTIVE_APPS);
+        File f = new File(AbstractAstiveServer.ASTIVE_APPS);
 
         if (f.isDirectory()) {
             File[] files = f.listFiles();
@@ -209,12 +194,68 @@ public final class DeployerManager implements Deployer {
                     deploy(file);
                 } else {
                     logger.debug(AppLocale.getI18n("isNotValidApp",
-                            new Object[] { file }));
+                            new Object[]{file}));
                 }
             }
         } else {
             logger.error(AppLocale.getI18n("unexpectedError",
-                    new Object[] { ASTIVE_APPS }));
+                    new Object[]{AbstractAstiveServer.ASTIVE_APPS}));
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean appExist(String deploymentId) {
+        return astDB.appExist(deploymentId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AstObj getApp(String deploymentId) throws AstiveException {
+        return astDB.getApp(deploymentId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    @Override
+    public void addApp(AstObj astObj) throws AstiveException {
+        astDB.addApp(astObj);
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    @Override
+    public void removeApp(AstObj astObj) throws AstiveException {
+        astDB.removeApp(astObj);
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    @Override
+    public List<AstObj> getApps() throws AstiveException {
+        return astDB.getApps();
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    @Override
+    public Astivlet getAstivlet(String urlStr) throws AstiveException {
+        return astDB.getAstivlet(urlStr);
+    }
+
+    /**
+     * {@inheritDoc}
+     */    
+    @Override
+    public String[] getAstivletsURLs() throws AstiveException {
+        return astDB.getAstivletsURLs();
     }
 }

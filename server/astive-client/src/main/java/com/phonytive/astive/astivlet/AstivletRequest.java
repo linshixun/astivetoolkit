@@ -46,7 +46,7 @@ public class AstivletRequest extends AgiRequest {
    * @param client DOCUMENT ME!
    */
   public AstivletRequest(ArrayList<String> lines, FastAgiConnection client) {
-    super(lines);
+    super(lines);    
     localAddress = client.getSocket().getLocalAddress();
     remoteAddress = client.getSocket().getLocalAddress();
     localPort = client.getSocket().getLocalPort();

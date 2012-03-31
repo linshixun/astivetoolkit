@@ -19,9 +19,7 @@
  */
 package com.phonytive.astive.server.appmanager;
 
-import java.util.ArrayList;
 
-import com.phonytive.astive.server.AstObj;
 import com.phonytive.astive.server.AstiveException;
 
 /**
@@ -31,20 +29,19 @@ import com.phonytive.astive.server.AstiveException;
 public interface Deployer {
 
   /**
-   * DOCUMENT ME!
+   * Adds app to the server index.
    *
-   * @param app DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * @param app DOCUMENT ME!   
+   * @throws AstiveException
    */
   void deploy(String file) throws AstiveException;
 
   /**
-   * DOCUMENT ME!
+   * Discharge app from the server.
    *
-   * @param app DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * @param deploymentId id for the app to undeploy.
+   * @throws AstiveException if app dont exist.
    */
   void undeploy(String deploymentId) throws AstiveException;
+
 }

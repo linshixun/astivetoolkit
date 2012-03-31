@@ -19,6 +19,10 @@
  */
 package com.phonytive.astive.server.test;
 
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.astivlet.Astivlet;
+import com.phonytive.astive.astivlet.AstivletRequest;
+import com.phonytive.astive.astivlet.AstivletResponse;
 import java.io.IOException;
 import com.phonytive.astive.server.SimpleAstiveServer;
 import com.phonytive.astive.server.SystemException;
@@ -72,7 +76,7 @@ public class SimpleAstiveServerTest extends TestCase {
    */
   public void testSimpleAstiveServer() throws SystemException, IOException {
       
-      /*
+      
         Thread t = new Thread(new Runnable() {
 
             @Override
@@ -81,22 +85,22 @@ public class SimpleAstiveServerTest extends TestCase {
                     SimpleAstiveServer server = new SimpleAstiveServer(new Astivlet() {
 
                         @Override
-                        public void onModuleLoad(AstivletRequest request, AstivletResponse response) {
-                            try {
-                                logger.debug("Aka !");
+                        public void service(AstivletRequest request, AstivletResponse response) {
+                            try {                                
                                 response.answer();
                                 response.streamFile("hello-world");
+                                response.hangup();
                             } catch (AgiException ex) {
                             }
                         }
                     });
                     server.start();
-                } catch (SystemException ex) {
+                } catch (SystemException ex) {                    
                 } catch (IOException ex) {
                 }
             }
         });
-        t.start();*/
+        t.start();
 
         ArrayList<String> request = new ArrayList();
         request.add("agi_network: yes");

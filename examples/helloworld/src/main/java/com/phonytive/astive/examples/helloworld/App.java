@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.helloworld;
+package com.phonytive.astive.examples.helloworld;
 
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;

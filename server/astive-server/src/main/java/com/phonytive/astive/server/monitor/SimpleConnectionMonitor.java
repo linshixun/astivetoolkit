@@ -79,7 +79,7 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
   // indicating how to mapp the apps for this server. Then create a SimpleMappingStrategy or some like that
   @Deprecated
   private static String getAppName(Astivlet astivlet) {
-    try {
+    /*try {
       InputStream is =
         astivlet.getClass().getResourceAsStream("/" + AbstractAstiveServer.ASTIVE_DEPLOYMENT_DESCRIPTOR);
       int c = -1;
@@ -93,7 +93,7 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
       //return Utils.getAppName(sBuilder.toString());
     } catch (FileNotFoundException ex) {
     } catch (IOException ex) {
-    }
+    }*/
 
     return null;
   }

@@ -38,15 +38,16 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
-
 /**
- *
+ * Provide remote access to the (@link DeployerManager) functionalities.
+ * 
  * @since 1.0.0
  * @see ConnectionMonitor
+ * @see DeployerManager
  */
 public final class AdminDaemon extends ServerSocket
-    implements Deployer, Runnable {
+        implements Deployer, Runnable {
+
     private static final Logger logger = Logger.getLogger(AdminDaemon.class);
     private AbstractAstiveServer server;
     private InetAddress bindAddr;
@@ -64,7 +65,7 @@ public final class AdminDaemon extends ServerSocket
      * @throws IOException DOCUMENT ME!
      */
     public AdminDaemon(int port, int backlog, InetAddress bindAddr,
-        AbstractAstiveServer server) throws IOException {
+            AbstractAstiveServer server) throws IOException {
         super();
         this.port = port;
         this.backlog = backlog;
@@ -73,11 +74,7 @@ public final class AdminDaemon extends ServerSocket
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param app DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void deploy(String app) throws AstiveException {
@@ -85,20 +82,13 @@ public final class AdminDaemon extends ServerSocket
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param app DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void undeploy(String app) throws AstiveException {
         DeployerManager.getInstance().undeploy(app);
-    }    
-    
-    /**
-     * DOCUMENT ME!
-     */
+    }
+
     @Override
     public void run() {
         try {
@@ -109,14 +99,14 @@ public final class AdminDaemon extends ServerSocket
                 Socket client = accept();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(
-                            client.getInputStream()));
+                        client.getInputStream()));
                 String commandStr = reader.readLine();
 
                 AdminCommand command = AdminCommand.valueOf(commandStr);
                 String arg = null;
 
-                if (command.equals(AdminCommand.DEPLOY) ||
-                        command.equals(AdminCommand.UNDEPLOY)) {
+                if (command.equals(AdminCommand.DEPLOY)
+                        || command.equals(AdminCommand.UNDEPLOY)) {
                     arg = reader.readLine();
                 }
 
@@ -146,10 +136,9 @@ public final class AdminDaemon extends ServerSocket
             }
         } catch (IOException ex) {
             logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
-                    new Object[] { ex.getMessage() }));
+                    new Object[]{ex.getMessage()}));
         } catch (AstiveException ex) {
             //
         }
     }
-
 }

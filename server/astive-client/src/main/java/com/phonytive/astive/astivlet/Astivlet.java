@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.astivlet;
 
-
 /**
  *
  * @since 1.0.0
@@ -27,6 +26,7 @@ package com.phonytive.astive.astivlet;
  * @see AstivletResponse
  */
 public abstract class Astivlet {
+
     /**
      *  Dispatches client requests.
      *
@@ -34,13 +34,13 @@ public abstract class Astivlet {
      * @param response provide astivlet functionality in sending a response.
      */
     // Check the best visibility for this method
-    public  void service(AstivletRequest request,
-        AstivletResponse response) {}
-    
+    protected void service(AstivletRequest request,
+            AstivletResponse response) {
+    }
+
     /**
      *  Does nothing, because this is an abstract class.
      */
     public Astivlet() {
-    
     }
 }

@@ -96,14 +96,8 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
       FastAgiResponse response = new FastAgiResponse(cHandler);
       AstivletRequest aRequest = new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
       AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
-      String astivletId = aRequest.getScript();
 
-      if (logger.isDebugEnabled())
-        logger.debug("exec astivlet -> " + astivletId);     
-
-      // TODO: Remove this hand code.
-      AstivletProcessor.invokeAstivlet("helloworld-1.0.0-alpha-SNAPSHOT.jar",
-              astivletId, aRequest, aResponse);
+      AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
       if (logger.isDebugEnabled())
         logger.debug("done.");
