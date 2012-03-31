@@ -102,7 +102,9 @@ public class App extends Astivlet {
         try {
             e.run(root);
         } catch (MenuException ex) {
+            // TODO: Do something intersting here !
         } catch (AgiException ex) {
+            // TODO: Do something intersting here !
         }
     }
 }

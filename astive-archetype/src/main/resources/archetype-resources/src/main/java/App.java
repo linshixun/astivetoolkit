@@ -5,12 +5,12 @@ import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 
-public class App implements Astivlet {
+public class App extends Astivlet {
 
-    public void onModuleLoad(AstivletRequest request, AstivletResponse response) {
+    public void service(AstivletRequest request, AstivletResponse response) {
         try {
             response.answer();
-            response.streamFile("hello-world");
+            response.streamFile("tt-monkeys");
             response.hangup();
         } catch (AgiException ex) {
             // TODO: Do something intersting here !

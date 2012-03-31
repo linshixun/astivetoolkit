@@ -57,7 +57,6 @@ import com.phonytive.astive.util.AppLocale;
  */
 public class AstiveServer extends AbstractAstiveServer {
     // A usual logging class
-
     private static final Logger logger = Logger.getLogger(AstiveServer.class);
     private static ServiceProperties adminDaemonSP;
     private static ServiceProperties astivedSP;

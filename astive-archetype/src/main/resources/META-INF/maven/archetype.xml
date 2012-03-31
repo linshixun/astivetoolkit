@@ -5,7 +5,7 @@
     <source>src/main/java/App.java</source>
   </sources>
   <resources>        
-    <resource>src/main/resources/astivlet-mapping.properties</resource>
+    <resource>src/main/resources/app.xml</resource>
     <resource filtered="false">src/main/resources/hello-world.gsm</resource>
   </resources>
   <!--<testSources>

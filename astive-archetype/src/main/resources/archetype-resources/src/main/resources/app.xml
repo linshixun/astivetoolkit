@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>    
+    <name>${packageName}</name>
+    <description>${packageName}</description>
+    <astivlet>
+        <astivletId>MyAstivlet</astivletId>
+        <class>${packageName}.App</class>
+    </astivlet>
+    <astivletMapping>
+        <astivletId>MyAstivlet</astivletId>
+        <urlPattern>/${packageName}/MyAstivlet</urlPattern>
+    </astivletMapping>   
+</app>
