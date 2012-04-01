@@ -19,20 +19,12 @@
  */
 package com.phonytive.astive.ami;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-
-import java.net.Socket;
-
-import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.ami.event.ManagerEvent;
 import com.phonytive.astive.util.AppLocale;
+import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *

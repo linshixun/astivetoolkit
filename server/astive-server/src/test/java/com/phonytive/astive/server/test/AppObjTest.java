@@ -17,15 +17,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.phonytive.astive.server.test;
 
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.AstObj;
 import com.phonytive.astive.server.AstiveException;
+import static java.lang.System.out;
 import junit.framework.TestCase;
 
 /**
@@ -55,6 +52,6 @@ public class AppObjTest extends TestCase {
                             + "/helloworld-1.0.0-alpha-SNAPSHOT.jar");
         Astivlet ast = astObj.getAstivletByURLPattern("/examp2les2/2/HelloWorld3");
         
-        System.out.println("ast = " + ast);
+        out.println("ast = " + ast);
     }
 }

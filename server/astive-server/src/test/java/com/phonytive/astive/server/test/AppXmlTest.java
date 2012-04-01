@@ -17,10 +17,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.phonytive.astive.server.test;
 
 import java.io.File;
@@ -32,8 +28,9 @@ import noNamespace.AppType;
 import org.apache.xmlbeans.XmlException;
 
 /**
- *
- * @author psanders
+ * Test AppXml.
+ * 
+ * @since 1.0.0
  */
 public class AppXmlTest extends TestCase {
 
@@ -50,8 +47,7 @@ public class AppXmlTest extends TestCase {
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-
-    // TODO add test methods here. The name must begin with 'test'. For example:
+    
     public void testHello() throws XmlException, IOException {
         URL url = this.getClass().getResource("app_test.xml");
 

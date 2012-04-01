@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi;
 
 import com.phonytive.astive.agi.annotation.RequestField;
-
 import java.lang.reflect.Field;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +33,6 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  */
 public class AgiRequest {
-    // TODO: Implement parameters as in http://www.voip-info.org/wiki/view/Asterisk+FastAGI
-
     /**
      * Serial version identifier.
      */
@@ -238,7 +234,7 @@ public class AgiRequest {
             throws IllegalArgumentException, IllegalAccessException {
         for (String af : fieldsMap.keySet()) {
             for (Field f : AgiRequest.class.getDeclaredFields()) {
-                RequestField rf = null;
+                RequestField rf;
 
                 if (f.isAnnotationPresent(RequestField.class)) {
                     rf = f.getAnnotation(RequestField.class);

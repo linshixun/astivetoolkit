@@ -19,8 +19,8 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.server.utils.URLValidator;
 import com.phonytive.astive.astivlet.Astivlet;
+import com.phonytive.astive.server.utils.URLValidator;
 import com.phonytive.astive.util.AppLocale;
 import java.util.ArrayList;
 import java.util.HashMap;

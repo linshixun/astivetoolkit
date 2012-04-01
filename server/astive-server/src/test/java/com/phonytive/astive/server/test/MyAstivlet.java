@@ -23,26 +23,29 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
+import static java.lang.System.out;
 
 /**
- *
+ * Final implementation for {@link Astivlet} class.
+ * 
  * @since 1.0.0
  */
 public class MyAstivlet extends Astivlet {
-  /**
-   * DOCUMENT ME!
-   *
-   * @param request DOCUMENT ME!
-   * @param response DOCUMENT ME!
-   */
-  @Override
-  public void service(AstivletRequest request, AstivletResponse response) {
-    try {
-      response.answer();
-      String data = response.getData("hello-world");
-      System.out.println("user input = " + data);
-      response.hangup();
-    } catch (AgiException ex) {
+
+    /**
+     * Entry point for {@link Astivlet}.
+     *
+     * @param request info sent from Asterisk server.
+     * @param response info to send to Asterisk.
+     */
+    @Override
+    public void service(AstivletRequest request, AstivletResponse response) {
+        try {
+            response.answer();
+            String data = response.getData("tt-monkeys");            
+            response.hangup();
+        } catch (AgiException ex) {
+            out.println(ex.getMessage());
+        }
     }
-  }
 }

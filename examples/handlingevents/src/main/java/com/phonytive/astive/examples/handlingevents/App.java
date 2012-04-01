@@ -25,14 +25,10 @@ import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 import com.phonytive.astive.menu.Engine;
 import com.phonytive.astive.menu.Menu;
-import com.phonytive.astive.menu.exception.MenuException;
 import com.phonytive.astive.menu.MenuItem;
-import com.phonytive.astive.menu.event.ActionEvent;
-import com.phonytive.astive.menu.event.ActionListener;
-import com.phonytive.astive.menu.event.KeyEvent;
-import com.phonytive.astive.menu.event.KeyListener;
-import com.phonytive.astive.menu.event.PositionChangeEvent;
-import com.phonytive.astive.menu.event.PositionChangeListener;
+import com.phonytive.astive.menu.event.*;
+import com.phonytive.astive.menu.exception.MenuException;
+import static java.lang.System.out;
 
 /**
  * Handling events sample.
@@ -95,16 +91,17 @@ public class App extends Astivlet {
         root.addChild(menuItemB);
         root.addChild(menuItemC);
 
-        System.out.println("response = " + response);
+        out.print("response = ");
+        out.println(response);
         
         Engine e = new Engine(response);        
         
         try {
             e.run(root);
         } catch (MenuException ex) {
-            // TODO: Do something intersting here !
+            out.println(ex.getMessage());
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            out.println(ex.getMessage());
         }
     }
 }

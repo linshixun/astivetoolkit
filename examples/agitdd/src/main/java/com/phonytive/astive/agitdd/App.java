@@ -24,9 +24,11 @@ import com.phonytive.astive.agi.ChannelStatus;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
+import static java.lang.System.out;
 
 /**
- *
+ * Agi QA test.
+ * 
  * @since 1.0.0
  */
 public class App extends Astivlet {
@@ -39,26 +41,26 @@ public class App extends Astivlet {
             response.controlStreamFile("tt-monkeys");                                    
             
             char digit = response.controlStreamFile("tt-monkeys", "1234567890#*");
-            System.out.println("Digit pressed -> " + digit);
+            out.println("Digit pressed -> " + digit);
             
             digit = response.controlStreamFile("tt-monkeys", "#*", 1000);
-            System.out.println("Digit pressed -> " + digit);
+            out.println("Digit pressed -> " + digit);
             
             digit = response.controlStreamFile("tt-monkeys", "123456789", 1000, '*', '#', '0');
-            System.out.println("Digit pressed -> " + digit);
+            out.println("Digit pressed -> " + digit);
             
             ChannelStatus status = response.getChannelStatus();
-            System.out.println("Channel status -> " + status);
+            out.println("Channel status -> " + status);
             
             String digits = response.getData("tt-monkeys");
-            System.out.println("Digits -> " + digits);
+            out.println("Digits -> " + digits);
             
             digits = response.getData("tt-monkeys", 5);
-            System.out.println("Digits -> " + digits);
+            out.println("Digits -> " + digits);
             
             response.hangup();
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            out.println(ex.getMessage());
         }
     }
 }

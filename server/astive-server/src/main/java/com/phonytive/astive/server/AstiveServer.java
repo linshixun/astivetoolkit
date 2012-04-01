@@ -19,26 +19,6 @@
  */
 package com.phonytive.astive.server;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import java.net.InetAddress;
-
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.OptionBuilder;
-import org.apache.commons.cli.Options;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.server.admin.AdminCommand;
 import com.phonytive.astive.server.admin.AdminDaemon;
 import com.phonytive.astive.server.admin.AdminDaemonClient;
@@ -49,6 +29,17 @@ import com.phonytive.astive.server.utils.InitOutput;
 import com.phonytive.astive.server.utils.ServiceProperties;
 import com.phonytive.astive.server.utils.ServicePropertiesImpl;
 import com.phonytive.astive.util.AppLocale;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import static java.lang.System.out;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import org.apache.commons.cli.*;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -285,24 +276,12 @@ public class AstiveServer extends AbstractAstiveServer {
             // TODO: This needs to be researched before a full implementation.
             // for now is only possible to do deployments into the local server.
             if (cmd.equals(AdminCommand.DEPLOY)) {
-                CommandLine commandLine = parser.parse(deploy, args);
-
-                //if (commandLine.hasOption('h')) {
-                //    printUsage(cmd, deploy);
-                //    System.exit(0);
-                //}                
                 AdminDaemonClient adClient =
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
                 adClient.deploy(args[1]);
             }
 
-            if (cmd.equals(AdminCommand.UNDEPLOY)) {
-                CommandLine commandLine = parser.parse(undeploy, args);
-
-                //if (commandLine.hasOption('h')) {
-                //    printUsage(cmd, undeploy);
-                //    System.exit(0);
-                //}                
+            if (cmd.equals(AdminCommand.UNDEPLOY)) {            
                 AdminDaemonClient adClient =
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
                 adClient.undeploy(args[1]);
@@ -316,15 +295,15 @@ public class AstiveServer extends AbstractAstiveServer {
 
     // <editor-fold defaultstate="collapsed" desc="Support methods">
     private static void printUnavailableCmd(String cmd) {
-        System.out.println(AppLocale.getI18n("cli.unavailableCommand", new Object[]{cmd}));
-        System.out.println(AppLocale.getI18n("cli.availableCommands"));
+        out.println(AppLocale.getI18n("cli.unavailableCommand", new Object[]{cmd}));
+        out.println(AppLocale.getI18n("cli.availableCommands"));
     }
     
     private static void printUsage() {
-        System.out.println(AppLocale.getI18n("cli.usage"));
-        System.out.println(AppLocale.getI18n("cli.availableCommands"));
-        System.out.println(AppLocale.getI18n("cli.help"));
-        System.out.println(AppLocale.getI18n("cli.footer"));
+        out.println(AppLocale.getI18n("cli.usage"));
+        out.println(AppLocale.getI18n("cli.availableCommands"));
+        out.println(AppLocale.getI18n("cli.help"));
+        out.println(AppLocale.getI18n("cli.footer"));
     }
 
     private static void printUsage(AdminCommand ac, Options options) {
@@ -353,18 +332,12 @@ public class AstiveServer extends AbstractAstiveServer {
         executorService = Executors.newFixedThreadPool(2);
         launchConnectionMonitor();
 
-        /*executorService.execute(new Runnable() {
-        @Override
-        public void run() {
-        launchConnectionMonitor();
-        }
-        });*/
         try {
             AdminDaemon admin;
             admin = new AdminDaemon(adminPort, backlog, adminBindAddr, this);
             executorService.execute(admin);
         } catch (IOException ex) {
-            // XXX:
+            logger.warn(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }
     }
 

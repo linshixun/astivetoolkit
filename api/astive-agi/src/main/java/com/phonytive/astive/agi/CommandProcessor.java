@@ -19,22 +19,11 @@
  */
 package com.phonytive.astive.agi;
 
-import com.phonytive.astive.agi.annotation.AgiCommand;
-import com.phonytive.astive.agi.annotation.BooleanChoose;
-import com.phonytive.astive.agi.annotation.ParamConverter;
-import com.phonytive.astive.agi.annotation.Parameter;
-import com.phonytive.astive.agi.annotation.Separator;
+import com.phonytive.astive.agi.annotation.*;
 import com.phonytive.astive.util.AppLocale;
-
-import org.apache.log4j.Logger;
-
 import java.lang.reflect.Field;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.TimeZone;
+import java.util.*;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -168,7 +157,7 @@ public class CommandProcessor {
 
                 ParamConverter pc = field.getAnnotation(ParamConverter.class);
                 Separator separator = field.getAnnotation(Separator.class);
-                StringConverter sc = null;
+                StringConverter sc;
 
                 try {
                     sc = (StringConverter) pc.converter().newInstance();
@@ -194,7 +183,7 @@ public class CommandProcessor {
                             new Object[] { Separator.class }));
                 }
 
-                // TODO: Move this to a conveter.
+                // XXX: Move this to a converter.
                 BooleanChoose bc = field.getAnnotation(BooleanChoose.class);
 
                 String t = bc.valueOnFalse();
@@ -213,7 +202,7 @@ public class CommandProcessor {
                             "cantFoundAnnotation"));
                 }
 
-                // TODO: Move this to a conveter.
+                // TODO: Move this to a converter.
                 Date date = (Date) param;
                 long seconds = date.getTime() / 1000;
                 cmd.append("\"");
@@ -225,7 +214,7 @@ public class CommandProcessor {
                             "cantFoundAnnotation"));
                 }
 
-                // TODO: Move this to a conveter.
+                // TODO: Move this to a converter.
                 TimeZone tz = (TimeZone) param;
                 String id = tz.getID();
                 cmd.append("\"");

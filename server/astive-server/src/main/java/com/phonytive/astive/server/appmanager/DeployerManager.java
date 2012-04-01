@@ -20,23 +20,17 @@
 package com.phonytive.astive.server.appmanager;
 
 import com.phonytive.astive.astivlet.Astivlet;
-import com.phonytive.astive.server.AbstractAstiveServer;
-import com.phonytive.astive.server.AstDB;
-import com.phonytive.astive.server.AstObj;
-import com.phonytive.astive.server.AstiveException;
-import com.phonytive.astive.server.MyAstDB;
+import com.phonytive.astive.server.*;
+import com.phonytive.astive.server.utils.CopyFile;
 import com.phonytive.astive.util.AppLocale;
-
-import java.util.List;
-import org.apache.log4j.Logger;
-
-import org.xeustechnologies.jcl.exception.JclException;
-import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
-import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import org.apache.log4j.Logger;
+import org.xeustechnologies.jcl.exception.JclException;
+import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
+import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 
 
 /**

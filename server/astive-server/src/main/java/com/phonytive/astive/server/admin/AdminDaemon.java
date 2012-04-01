@@ -40,7 +40,7 @@ import java.net.Socket;
 
 /**
  * Provide remote access to the (@link DeployerManager) functionalities.
- * 
+ *
  * @since 1.0.0
  * @see ConnectionMonitor
  * @see DeployerManager
@@ -126,7 +126,8 @@ public final class AdminDaemon extends ServerSocket
                     try {
                         server.stop();
                     } catch (SystemException ex) {
-                        // XXX:
+                        logger.error(AppLocale.getI18n("unexpectedError",
+                                new Object[]{ex.getMessage()}));
                     }
 
                     break;
@@ -138,7 +139,8 @@ public final class AdminDaemon extends ServerSocket
             logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
                     new Object[]{ex.getMessage()}));
         } catch (AstiveException ex) {
-            //
+            logger.error(AppLocale.getI18n("unexpectedError",
+                    new Object[]{ex.getMessage()}));
         }
     }
 }

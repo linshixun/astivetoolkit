@@ -23,7 +23,7 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-
+import static java.lang.System.out;
 
 /**
  * Hello world sample.
@@ -38,7 +38,7 @@ public class App extends Astivlet {
             response.streamFile("tt-monkeys");
             response.hangup();
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            out.print(ex.getMessage());
         }
     }
 }

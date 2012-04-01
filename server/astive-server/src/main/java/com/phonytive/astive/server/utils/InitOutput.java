@@ -19,37 +19,42 @@
  */
 package com.phonytive.astive.server.utils;
 
+import com.phonytive.astive.util.AppLocale;
+import static java.lang.System.out;
 import java.util.ArrayList;
 
-import com.phonytive.astive.util.AppLocale;
-
 /**
+ * Print the start info.
  *
  * @since 1.0.0
  */
 public class InitOutput {
-  /**
-   * DOCUMENT ME!
-   *
-   * @param properties DOCUMENT ME!
-   */
-  public static void printInit(ArrayList<ServiceProperties> properties) {
-    // TODO: Programmatically include the build and the version
-    String output = AppLocale.getI18n("init.header");
 
-    for (ServiceProperties param : properties) {
-      // TODO: This is not elegant but work !
-      if (param.getServiceName().length() > 7) {
-        output += (param.getServiceName() + "\t");
-      } else {
-        output += (param.getServiceName() + "\t\t");
-      }
+    /**
+     * Print the start info.
+     *
+     * @param properties info to be printed.
+     */
+    public static void printInit(ArrayList<ServiceProperties> properties) {
+        // TODO: Programmatically include the build and the version
+        StringBuilder sb = new StringBuilder(AppLocale.getI18n("init.header"));                        
 
-      output += (param.getBindAddr().getHostAddress() + "\t");
-      output += (param.getPort() + "\n");
+        for (ServiceProperties param : properties) {
+            // XXX: This is not elegant but work !
+            if (param.getServiceName().length() > 7) {
+                sb.append(param.getServiceName());
+                sb.append("\t");
+            } else {
+                sb.append(param.getServiceName());
+                sb.append("\t\t");
+            }
+            sb.append(param.getBindAddr().getHostAddress());
+            sb.append("\t");
+            sb.append(param.getPort());
+            sb.append("\n");            
+        }
+
+        sb.append(AppLocale.getI18n("init.footer"));
+        out.println(sb.toString());
     }
-
-    output += AppLocale.getI18n("init.footer");
-    System.out.println(output);
-  }
 }

@@ -20,12 +20,9 @@
 package com.phonytive.astive.agi;
 
 import com.phonytive.astive.util.AppLocale;
-
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Handle communication with Asterisk, in the lowest level.
@@ -33,12 +30,13 @@ import java.util.List;
  * @since 1.0.0
  */
 public class AgiCommandHandler {
+
     private AgiRequest agiRequest;
     private Connection conn;
 
     /**
-     * Construct a new handler to manage communication with Asterisk, in the lowest
-     * level.
+     * Construct a new handler to manage communication with Asterisk, in the
+     * lowest level.
      *
      * @param conn an object that implement {@link Connection} interface.
      */
@@ -59,7 +57,7 @@ public class AgiCommandHandler {
         }
 
         ArrayList<String> lines = new ArrayList();
-        String line = null;
+        String line;
 
         try {
             while (!(line = conn.readLine()).equals("")) {
@@ -68,7 +66,7 @@ public class AgiCommandHandler {
         } catch (IOException ex) {
             throw new AgiException(AppLocale.getI18n(
                     "unableToPerformIOWithAsterisk",
-                    new Object[] { ex.getMessage() }));
+                    new Object[]{ex.getMessage()}));
         }
 
         return (agiRequest = new AgiRequest(lines));
@@ -109,13 +107,13 @@ public class AgiCommandHandler {
         lines.add(line);
 
         if (line.startsWith(Integer.toString(
-                        AgiCommandReply.SC_INVALID_COMMAND_SYNTAX))) {
+                AgiCommandReply.SC_INVALID_COMMAND_SYNTAX))) {
             try {
                 while ((line = conn.readLine()) != null) {
                     lines.add(line);
 
                     if (line.startsWith(Integer.toString(
-                                    AgiCommandReply.SC_INVALID_COMMAND_SYNTAX))) {
+                            AgiCommandReply.SC_INVALID_COMMAND_SYNTAX))) {
                         break;
                     }
                 }
@@ -136,14 +134,15 @@ public class AgiCommandHandler {
     }
 
     /**
-     * Send a command to Asterisk <code>channel</code>.
+     * Send a command to Asterisk
+     * <code>channel</code>.
      *
      * @param command command to send.
      * @return the reply for the sent command.
      * @throws AgiException if is unable to perform I/O operations.
      */
     public AgiCommandReply sendAgiCommand(Object command)
-        throws AgiException {
+            throws AgiException {
         try {
             conn.write(CommandProcessor.buildCommand(command));
         } catch (IOException ex) {
