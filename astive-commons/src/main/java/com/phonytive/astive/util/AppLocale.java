@@ -21,10 +21,8 @@ package com.phonytive.astive.util;
 
 import java.text.Format;
 import java.text.MessageFormat;
-
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 
 /**
  * Help to localize messages.
@@ -32,21 +30,20 @@ import java.util.ResourceBundle;
  * @since 1.0.0
  */
 public class AppLocale {
+
     /**
      * Define the bundle prefix.
      */
     private static final ResourceBundle messages = ResourceBundle.getBundle(
             "Messages");
-
     /**
      * Define the message format.
      */
     private static MessageFormat messageForm = new MessageFormat("");
-
     /**
      * Formats to be use in messages.
      */
-    private static Format[] formats = { null };
+    private static Format[] formats = {null};
 
     /**
      * Constructor class. This class only has a static methods, therefore can't
@@ -73,9 +70,12 @@ public class AppLocale {
      * Get a localized message with arguments. The message must be defined like
      * so:
      *
-     * <p>myMessage=This is a message with arg <code>{0}</code>
+     * <p>myMessage=This is a message with arg
+     * <code>{0}</code>
      *
-     * <p>Then <code>{0}</code> will be substitute by <code>args[0]</code>.
+     * <p>Then
+     * <code>{0}</code> will be substitute by
+     * <code>args[0]</code>.
      *
      * @param key message key.
      * @param args arguments to be passed to the message.
