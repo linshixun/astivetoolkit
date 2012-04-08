@@ -17,38 +17,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.server.admin;
+package com.phonytive.astive.telnet;
 
 /**
  *
  * @since 1.0.0
  */
-public enum AdminCommand {
+public enum TelnetCommand {
 
-    /**
-     * Start server.
-     */
-    START("start"),
     /**
      * Stop server.
      */
     STOP("stop"),
     /**
-     * Deploy an application.
+     * List server configurations.
      */
-    DEPLOY("deploy"),
+    SYSTEM("system"),
     /**
-     * Undeploy an application.
+     * Look for applications.
      */
-    UNDEPLOY("undeploy"),
+    LOOKUP("lookup"),
     /**
      * Show help for commands
      */
     HELP("help"),    
     /**
-     * 
+     * Get server version.
      */
-    VERSION("version");
+    VERSION("version"),
+    /**
+     * Close client connection.
+     */
+    EXIT("exit");
     
     /**
      * String value for this enum.
@@ -59,7 +59,7 @@ public enum AdminCommand {
      * Create a new AdminCommand object with status code as parameter. This
      * class is an enum, therefore can't be instantiated directly.
      */
-    private AdminCommand(String command) {
+    private TelnetCommand(String command) {
         this.command = command;
     }
 
@@ -69,10 +69,10 @@ public enum AdminCommand {
      * @param command command as text.
      * @return command as enum
      */
-    static public AdminCommand get(String command) {
-        for (AdminCommand ac : AdminCommand.values()) {
-            if (ac.command.equals(command)) {
-                return ac;
+    static public TelnetCommand get(String command) {
+        for (TelnetCommand tc : TelnetCommand.values()) {
+            if (tc.command.equals(command)) {
+                return tc;
             }
         }
         return null;

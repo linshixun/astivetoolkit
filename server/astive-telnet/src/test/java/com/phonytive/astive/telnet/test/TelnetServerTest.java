@@ -17,21 +17,25 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.server.test;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.phonytive.astive.telnet.test;
 
-import com.phonytive.astive.astivlet.Astivlet;
-import com.phonytive.astive.server.AstObj;
-import com.phonytive.astive.server.AstiveException;
-import static java.lang.System.out;
+import com.phonytive.astive.telnet.TelnetServer;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import junit.framework.TestCase;
 
 /**
  *
  * @author psanders
  */
-public class AppObjTest extends TestCase {
+public class TelnetServerTest extends TestCase {
     
-    public AppObjTest(String testName) {
+    public TelnetServerTest(String testName) {
         super(testName);
     }
     
@@ -44,14 +48,9 @@ public class AppObjTest extends TestCase {
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-        
-    public void testAppObj() throws AstiveException {
-        AstObj astObj = 
-                new AstObj("helloworld-1.0.0-M1.jar","/home/psanders/Projects/PhonyTive"
-                        + "/astive/examples/helloworld/target"
-                            + "/helloworld-1.0.0-M1.jar");
-        Astivlet ast = astObj.getAstivletByURLPattern("/examp2les2/2/HelloWorld3");
-        
-        out.println("ast = " + ast);
+    
+    public void testTelnetServer() throws UnknownHostException, IOException {
+        //TelnetServer t = new TelnetServer(5000, 4000, InetAddress.getByName("localhost"));
+        //t.run();
     }
 }

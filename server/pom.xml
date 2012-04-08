@@ -4,19 +4,18 @@
     <parent>
         <artifactId>astive</artifactId>
         <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-alpha-SNAPSHOT</version>
-    </parent>
-    <version>1.0.0-alpha-SNAPSHOT</version>
+        <version>1.0.0-M1</version>
+    </parent>    
     <modelVersion>4.0.0</modelVersion>
     <artifactId>server</artifactId>
     <packaging>pom</packaging>
     <name>Astive :: Server</name>
     <modules>
         <module>astive-client</module>
-	<module>astive-server</module>
         <module>astive-telnet</module>
+	<module>astive-server</module>
         <module>astive-webadmin</module>
         <module>astive-loader</module>
         <module>astive-fakeclient</module>
-    </modules>    
+    </modules>
 </project>

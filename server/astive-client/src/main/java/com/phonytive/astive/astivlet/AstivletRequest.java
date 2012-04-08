@@ -19,12 +19,10 @@
  */
 package com.phonytive.astive.astivlet;
 
-import java.net.InetAddress;
-
-import java.util.ArrayList;
-
 import com.phonytive.astive.agi.AgiRequest;
 import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import java.net.InetAddress;
+import java.util.ArrayList;
 
 /**
  * Extends the {@link AgiRequest} object to provide request information 

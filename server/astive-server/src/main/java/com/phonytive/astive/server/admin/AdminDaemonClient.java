@@ -19,12 +19,7 @@
  */
 package com.phonytive.astive.server.admin;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -33,70 +28,71 @@ import java.net.Socket;
  * @since 1.0.0
  */
 public class AdminDaemonClient extends Socket {
-  private BufferedReader reader;
-  private PrintWriter writer;
 
-  /**
-   * Creates a new AdminDaemonClient object.
-   *
-   * @param addr DOCUMENT ME!
-   * @param port DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public AdminDaemonClient(InetAddress addr, int port)
-                    throws IOException {
-    super(addr, port);
-    reader = new BufferedReader(new InputStreamReader(getInputStream()));
-    writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
-  }
+    private BufferedReader reader;
+    private PrintWriter writer;
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public void deploy(String app) throws IOException {
-    send(AdminCommand.DEPLOY, app);
-  }
-
-  private BufferedReader getReader() throws IOException {
-    return reader;
-  }
-
-  private PrintWriter getWriter() throws IOException {
-    return writer;
-  }
-
-  private void send(AdminCommand cmd, String arg) throws IOException {
-    getWriter().println(cmd.toString());
-
-    if ((arg != null) && !arg.equals("")) {
-      getWriter().println(arg);
+    /**
+     * Creates a new AdminDaemonClient object.
+     *
+     * @param addr DOCUMENT ME!
+     * @param port DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public AdminDaemonClient(InetAddress addr, int port)
+            throws IOException {
+        super(addr, port);
+        reader = new BufferedReader(new InputStreamReader(getInputStream()));
+        writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
     }
 
-    getWriter().flush();
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param app DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public void deploy(String app) throws IOException {
+        send(AdminCommand.DEPLOY, app);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public void stop() throws IOException {
-    send(AdminCommand.STOP, null);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public void stop() throws IOException {
+        send(AdminCommand.STOP, null);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public void undeploy(String app) throws IOException {
-    send(AdminCommand.UNDEPLOY, app);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param app DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public void undeploy(String app) throws IOException {
+        send(AdminCommand.UNDEPLOY, app);
+    }
+
+    private void send(AdminCommand cmd, String arg) throws IOException {
+        getWriter().println(cmd.toString());
+
+        if ((arg != null) && !arg.equals("")) {
+            getWriter().println(arg);
+        }
+
+        getWriter().flush();
+    }    
+    
+    private BufferedReader getReader() throws IOException {
+        return reader;
+    }
+
+    private PrintWriter getWriter() throws IOException {
+        return writer;
+    }
 }

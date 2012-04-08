@@ -32,10 +32,9 @@ import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 
-
 /**
  * Final implementation of interface {@link Deployer}.
- * 
+ *
  * @since 1.0.0
  * @see Deployer
  */
@@ -44,12 +43,12 @@ public final class DeployerManager implements Deployer, AstDB {
     private static final Logger logger = Logger.getLogger(DeployerManager.class);
     private static final DeployerManager INSTANCE = new DeployerManager();
     private static AstDB astDB;
-    
+
     /**
      * Create a new DeployerManager object.
      */
     private DeployerManager() {
-        ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());        
+        ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
         astDB = MyAstDB.getInstance();
         try {
             deployApps();
@@ -81,9 +80,9 @@ public final class DeployerManager implements Deployer, AstDB {
             String dstFileStr = AbstractAstiveServer.ASTIVE_APPS + srcFile.getName();
 
             // The name of the file must be use also to undeploy the apps.
-            AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());                        
+            AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());
 
-            if (!appExist(app.deploymentId())) {
+            if (!appExist(app.getDeploymentId())) {
                 addApp(app);
 
                 if (!dstFileStr.equals(appPath)) {
@@ -98,14 +97,8 @@ public final class DeployerManager implements Deployer, AstDB {
 
             if (logger.isDebugEnabled()) {
                 logger.debug(AppLocale.getI18n("cli.deploy.appDeployed",
-                        new Object[]{app.deploymentId()}));
+                        new Object[]{app.getInfo().getName()}));
             }
-
-            // Hand code
-            //logger.debug(
-            //        " - @Astivlet(id= \"helloworld\" class=\"com.phonytive.astive.helloworld.App\")");
-            //logger.debug(
-            //        " - @Astivlet(id= \"handlingevents\" class=\"com.phonytive.astive.handingevents.App\")");
         } catch (FileNotFoundException ex) {
             logger.error(AppLocale.getI18n("cli.deploy.cantReadFile",
                     new Object[]{appPath}));
@@ -138,7 +131,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
             AstObj astObj = new AstObj(app, file);
 
-            if (appExist(astObj.deploymentId())) {
+            if (appExist(astObj.getDeploymentId())) {
                 astDB.removeApp(astObj);
 
                 if (f.exists()) {
@@ -215,7 +208,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
     /**
      * {@inheritDoc}
-     */    
+     */
     @Override
     public void addApp(AstObj astObj) throws AstiveException {
         astDB.addApp(astObj);
@@ -223,7 +216,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
     /**
      * {@inheritDoc}
-     */    
+     */
     @Override
     public void removeApp(AstObj astObj) throws AstiveException {
         astDB.removeApp(astObj);
@@ -231,7 +224,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
     /**
      * {@inheritDoc}
-     */    
+     */
     @Override
     public List<AstObj> getApps() throws AstiveException {
         return astDB.getApps();
@@ -239,7 +232,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
     /**
      * {@inheritDoc}
-     */    
+     */
     @Override
     public Astivlet getAstivlet(String urlStr) throws AstiveException {
         return astDB.getAstivlet(urlStr);
@@ -247,7 +240,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
     /**
      * {@inheritDoc}
-     */    
+     */
     @Override
     public String[] getAstivletsURLs() throws AstiveException {
         return astDB.getAstivletsURLs();

@@ -19,14 +19,11 @@
  */
 package com.phonytive.astive.server;
 
+import com.phonytive.astive.Version;
 import com.phonytive.astive.util.AppLocale;
-
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
-
 import java.net.InetAddress;
-
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -37,26 +34,23 @@ import java.net.InetAddress;
  * @see SimpleAstiveServer
  */
 public abstract class AbstractAstiveServer extends FastAgiServerSocket
-    implements Service {
+        implements Service {
+
     /**
      *
      */
     private static final Logger logger = Logger.getLogger(AbstractAstiveServer.class);
     public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
-    public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") +
-        "/apps/";
-    
-
+    public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME")
+            + "/apps/";
     /**
      *
      */
     private InetAddress bindAddr;
-
     /**
      *
      */
     private int backlog;
-
     /**
      *
      */
@@ -71,7 +65,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
     public AbstractAstiveServer() throws SystemException, IOException {
         // Using the default agi asterisk port
         super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
-            InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
+                InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
         this.port = DEFAULT_AGI_SERVER_PORT;
         this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
     }
@@ -86,7 +80,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
      */
     public AbstractAstiveServer(int port) throws SystemException, IOException {
         super(port, DEFAULT_AGI_SERVER_BACKLOG,
-            InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
+                InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
     }
 
     /**
@@ -99,7 +93,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
      * @throws IOException DOCUMENT ME!
      */
     public AbstractAstiveServer(int port, int backlog)
-        throws SystemException, IOException {
+            throws SystemException, IOException {
         super(port, backlog, InetAddress.getLocalHost());
     }
 
@@ -114,7 +108,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
      * @throws IOException DOCUMENT ME!
      */
     public AbstractAstiveServer(int port, int backlog, InetAddress bindAddr)
-        throws SystemException, IOException {
+            throws SystemException, IOException {
         super(port, backlog, bindAddr);
         this.bindAddr = bindAddr;
         this.port = port;
@@ -151,8 +145,18 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
             System.exit(0);
         } catch (Exception ex) {
             logger.error(AppLocale.getI18n("unexpectedError",
-                    new Object[] { ex.getLocalizedMessage() }));
+                    new Object[]{ex.getMessage()}));
             System.exit(1);
         }
+    }
+    
+    /**
+     * 
+     * @return App version.
+     */
+    public String getVersion() {
+        StringBuilder sb = new StringBuilder(
+                AppLocale.getI18n("appVersion", new String[]{Version.VERSION, Version.BUILD_TIME}));
+        return  sb.toString();
     }
 }

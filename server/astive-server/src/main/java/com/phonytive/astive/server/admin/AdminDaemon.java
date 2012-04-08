@@ -26,17 +26,14 @@ import com.phonytive.astive.server.appmanager.Deployer;
 import com.phonytive.astive.server.appmanager.DeployerManager;
 import com.phonytive.astive.server.monitor.ConnectionMonitor;
 import com.phonytive.astive.util.AppLocale;
-
-import org.apache.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.apache.log4j.Logger;
 
 /**
  * Provide remote access to the (@link DeployerManager) functionalities.
@@ -130,6 +127,16 @@ public final class AdminDaemon extends ServerSocket
                                 new Object[]{ex.getMessage()}));
                     }
 
+                    break;
+                }
+
+                if (command.equals(AdminCommand.HELP)) {
+                    // XXX: no-yet-implemented
+                    break;
+                }
+
+                if (command.equals(AdminCommand.VERSION)) {
+                    // XXX: no-yet-implemented
                     break;
                 }
 

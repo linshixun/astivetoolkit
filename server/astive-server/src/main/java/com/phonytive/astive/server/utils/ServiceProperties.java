@@ -123,4 +123,9 @@ public interface ServiceProperties {
    * @param serviceName DOCUMENT ME!
    */
   void setServiceName(String serviceName);
+  
+  /**
+   * 
+   */
+  String getPameter(String parameter);
 }

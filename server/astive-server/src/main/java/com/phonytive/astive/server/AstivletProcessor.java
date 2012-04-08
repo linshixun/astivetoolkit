@@ -62,8 +62,8 @@ public class AstivletProcessor {
             classParamTypes[1] = AstivletResponse.class;
             
             Class c = Astivlet.class;
-            Method m = null;
             
+            Method m;
             m = c.getDeclaredMethod("service", classParamTypes);
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});            

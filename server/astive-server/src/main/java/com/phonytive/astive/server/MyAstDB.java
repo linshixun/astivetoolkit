@@ -81,7 +81,7 @@ public class MyAstDB implements AstDB {
         }
 
         // everithing is good then add the app.
-        apps.put(astObj.deploymentId(), astObj);
+        apps.put(astObj.getDeploymentId(), astObj);
 
         // add astivlets to the db index.
         for (String url : astObj.getURLPatterns()) {
@@ -101,7 +101,7 @@ public class MyAstDB implements AstDB {
             astivletIndex.remove(url);
         }
 
-        apps.remove(astObj.deploymentId());
+        apps.remove(astObj.getDeploymentId());
     }
 
     /**

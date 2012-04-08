@@ -56,7 +56,7 @@ public final class AstObj {
     /**
      * Creates a new AstObj object.
      *
-     * @param deploymentId application identifier.
+     * @param getDeploymentId application identifier.
      */
     public AstObj(String deploymentId, String jarFile) throws AstiveException {
         this.deploymentId = deploymentId;
@@ -115,7 +115,7 @@ public final class AstObj {
      *
      * @return application identifier.
      */
-    public String deploymentId() {
+    public String getDeploymentId() {
         return deploymentId;
     }
 
@@ -188,4 +188,14 @@ public final class AstObj {
         
         return urlList;
     }
+    
+    /**
+     * Return meta data related to de app.
+     * 
+     * @return app meta-data.
+     */
+    public AppType getInfo() {
+        return app;
+    }
+    
 }

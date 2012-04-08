@@ -19,6 +19,7 @@
  */
 package com.phonytive.astive.server.utils;
 
+import com.phonytive.astive.Version;
 import com.phonytive.astive.util.AppLocale;
 import static java.lang.System.out;
 import java.util.ArrayList;
@@ -37,10 +38,14 @@ public class InitOutput {
      */
     public static void printInit(ArrayList<ServiceProperties> properties) {
         // TODO: Programmatically include the build and the version
-        StringBuilder sb = new StringBuilder(AppLocale.getI18n("init.header"));                        
-
-        for (ServiceProperties param : properties) {
-            // XXX: This is not elegant but work !
+        
+        StringBuilder sb = new StringBuilder(AppLocale.getI18n("init.header", new String[]{Version.VERSION, Version.BUILD_TIME}));
+        
+        for (ServiceProperties param : properties) {            
+            if (param.isDisabled()) {
+                continue;
+            }
+            // This is not elegant but work !
             if (param.getServiceName().length() > 7) {
                 sb.append(param.getServiceName());
                 sb.append("\t");
@@ -51,7 +56,7 @@ public class InitOutput {
             sb.append(param.getBindAddr().getHostAddress());
             sb.append("\t");
             sb.append(param.getPort());
-            sb.append("\n");            
+            sb.append("\n");
         }
 
         sb.append(AppLocale.getI18n("init.footer"));

@@ -19,15 +19,12 @@
  */
 package com.phonytive.astive.server;
 
-import java.io.IOException;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.monitor.SimpleConnectionMonitor;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import org.apache.log4j.Logger;
 
 /**
  *
