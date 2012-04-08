@@ -3,43 +3,33 @@
     <parent>
         <artifactId>examples</artifactId>
         <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-alpha-SNAPSHOT</version>
+        <version>1.0.0-M1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>    
     <artifactId>handlingevents</artifactId>    
     <packaging>jar</packaging>
     <name>Astive :: Examples :: Handling Events</name>
     <url>http://www.phonytive.com</url>
-
     <dependencies>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-client</artifactId>
-            <version>1.0.0-alpha-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-agi</artifactId>
-            <version>1.0.0-alpha-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-menu</artifactId>
-            <version>1.0.0-alpha-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>com.phonytive.astive</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>astive-server</artifactId>
-            <version>1.0.0-alpha-SNAPSHOT</version>
-            <type>jar</type>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>astive-agi</artifactId>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>astive-client</artifactId>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>astive-menu</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

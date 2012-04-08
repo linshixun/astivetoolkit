@@ -4,7 +4,7 @@
     <groupId>com.phonytive.astive</groupId>
     <artifactId>astive</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-alpha-SNAPSHOT</version>
+    <version>1.0.0-M1</version>
     <name>Astive Toolkit</name>
     <url>http://astive.phonytive.com</url>
     <pluginRepositories>
@@ -15,7 +15,7 @@
         </pluginRepository>
     </pluginRepositories>          
     <build>
-        <plugins>            
+        <plugins>
             <plugin>
                 <inherited>false</inherited>
                 <groupId>com.google.code.maven-license-plugin</groupId>
@@ -33,7 +33,7 @@
                     <includes>
                         <include>**/*.java</include>
                     </includes>
-                   <excludes>
+                    <excludes>
                         <exclude>astive-archetype/**</exclude>
                     </excludes>                    
                     <headerDefinitions>
@@ -107,14 +107,14 @@
         </dependency>
     </dependencies>
     <description>Astive is a toolkit and server for Java that provides an 
-    extensible architecture for developing, maintaining, and deploying telecom 
-    applications.
+        extensible architecture for developing, maintaining, and deploying telecom 
+        applications.
     </description>
     <modules>
         <module>astive-commons</module>
         <module>api</module>
         <module>server</module>
-        <module>astive-archetype</module>    
+        <module>astive-archetype</module>
     <!--<module>astbeans</module>-->
     <!--<module>astive-ia</module>-->
     </modules>
