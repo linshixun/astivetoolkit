@@ -1,5 +1,5 @@
 Copyright (C) 2010-${year} PhonyTive LLC
-http://www.phonytive.com/astive
+http://astive.phonytive.com
 
 This file is part of Astive Toolkit
 

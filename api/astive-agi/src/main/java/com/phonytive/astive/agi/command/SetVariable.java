@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 

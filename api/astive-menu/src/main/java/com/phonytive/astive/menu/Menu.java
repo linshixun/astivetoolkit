@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -19,21 +19,9 @@
  */
 package com.phonytive.astive.menu;
 
-import java.util.ArrayList;
-
 import com.phonytive.astive.menu.action.Action;
-import com.phonytive.astive.menu.event.FailEvent;
-import com.phonytive.astive.menu.event.FailListener;
-import com.phonytive.astive.menu.event.InterDigitsTimeoutEvent;
-import com.phonytive.astive.menu.event.InterDigitsTimeoutListener;
-import com.phonytive.astive.menu.event.MaxFailureEvent;
-import com.phonytive.astive.menu.event.MaxFailureListener;
-import com.phonytive.astive.menu.event.MaxTimeoutEvent;
-import com.phonytive.astive.menu.event.MaxTimeoutListener;
-import com.phonytive.astive.menu.event.PositionChangeEvent;
-import com.phonytive.astive.menu.event.PositionChangeListener;
-import com.phonytive.astive.menu.event.TimeoutEvent;
-import com.phonytive.astive.menu.event.TimeoutListener;
+import com.phonytive.astive.menu.event.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -463,7 +451,7 @@ public class Menu extends MenuItem {
   /**
    * @param greetingsPlayed the greetingsPlayed to set
    */
-  public void setGreetingsPlayed(boolean greetingsPlayed) {
+  protected void setGreetingsPlayed(boolean greetingsPlayed) {
     this.greetingsPlayed = greetingsPlayed;
   }
 

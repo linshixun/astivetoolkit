@@ -1,6 +1,6 @@
-/*
+/* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -21,16 +21,9 @@ package com.phonytive.astive.server;
 
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.util.AppLocale;
-
-import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
+import org.apache.log4j.Logger;
 
 
 /**

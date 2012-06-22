@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -19,17 +19,9 @@
  */
 package com.phonytive.astive.menu;
 
-import java.util.ArrayList;
-
 import com.phonytive.astive.menu.action.Action;
-import com.phonytive.astive.menu.event.ActionEvent;
-import com.phonytive.astive.menu.event.ActionListener;
-import com.phonytive.astive.menu.event.AuthenticationEvent;
-import com.phonytive.astive.menu.event.AuthenticationListener;
-import com.phonytive.astive.menu.event.DigitsEvent;
-import com.phonytive.astive.menu.event.DigitsListener;
-import com.phonytive.astive.menu.event.KeyEvent;
-import com.phonytive.astive.menu.event.KeyListener;
+import com.phonytive.astive.menu.event.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -37,340 +29,348 @@ import com.phonytive.astive.menu.event.KeyListener;
  * @see Menu
  */
 public class MenuItem {
-  private Action action;
-  private ArrayList<ActionListener> actionListenerList = new ArrayList();
-  private ArrayList<AuthenticationListener> authenticationListenerList = new ArrayList();
-  private ArrayList<DigitsListener> digitsListenerList = new ArrayList();
-  private ArrayList<KeyListener> keyListenerList = new ArrayList();
-  private Authenticator authenticator;
 
-  /**
-   * DOCUMENT ME!
-   */
-  protected MenuItem parent;
-  private String digits;
-  private String digitsFile;
-  private String file;
-  private boolean forgetAuthOnLeave = false;
-  private boolean mustAuthenticate;
-  private int priority;
+    private Action action;
+    private ArrayList<ActionListener> actionListenerList = new ArrayList();
+    private ArrayList<AuthenticationListener> authenticationListenerList = new ArrayList();
+    private ArrayList<DigitsListener> digitsListenerList = new ArrayList();
+    private ArrayList<KeyListener> keyListenerList = new ArrayList();
+    private Authenticator authenticator;
+    /**
+     * DOCUMENT ME!
+     */
+    protected MenuItem parent;
+    private String digits;
+    private String digitsFile;
+    private String file;
+    private boolean forgetAuthOnLeave = false;
+    private boolean mustAuthenticate;
+    private int priority;
 
-  /** <p>Creates a new instance of MenuItem</p> */
-  public MenuItem() {
-  }
-
-  /** <p>Creates a new instance of MenuItem</p> */
-  public MenuItem(String digits, String file) {
-    //this.parent = parent;
-    this.digits = digits;
-    this.file = file;
-  }
-
-  /** <p>Creates a new instance of MenuItem</p> */
-  public MenuItem(String digits, String file, Action action) {
-    //this.parent = parent;
-    this.digits = digits;
-    this.file = file;
-    this.action = action;
-  }
-
-  /** <p>Creates a new instance of MenuItem</p> */
-  public MenuItem(String digits, String file, Action action, int priority) {
-    //this.parent = parent;
-    this.digits = digits;
-    this.file = file;
-    this.action = action;
-    this.priority = priority;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void addActionListener(ActionListener listener) {
-    actionListenerList.add(listener);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void addAuthenticationListener(AuthenticationListener listener) {
-    authenticationListenerList.add(listener);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void addDigitsListener(DigitsListener listener) {
-    digitsListenerList.add(listener);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void addKeyListener(KeyListener listener) {
-    keyListenerList.add(listener);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireActionEvent_actionPerformed(ActionEvent evt) {
-    for (ActionListener listener : actionListenerList) {
-      listener.processAction(evt);
+    /**
+     * <p>Creates a new instance of MenuItem</p>
+     */
+    public MenuItem() {
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireAuthenticationEvent_authenticationFail(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.authenticationFail(evt);
+    /**
+     * <p>Creates a new instance of MenuItem</p>
+     */
+    public MenuItem(String digits, String file) {
+        //this.parent = parent;
+        this.digits = digits;
+        this.file = file;
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireAuthenticationEvent_authenticationSuccess(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.authenticationSuccess(evt);
+    /**
+     * <p>Creates a new instance of MenuItem</p>
+     */
+    public MenuItem(String digits, String file, Action action) {
+        //this.parent = parent;
+        this.digits = digits;
+        this.file = file;
+        this.action = action;
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireAuthenticationEvent_tryingToAuthenticate(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.tryingToAuthenticate(evt);
+    /**
+     * <p>Creates a new instance of MenuItem</p>
+     */
+    public MenuItem(String digits, String file, Action action, int priority) {
+        //this.parent = parent;
+        this.digits = digits;
+        this.file = file;
+        this.action = action;
+        this.priority = priority;
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
-    for (DigitsListener listener : digitsListenerList) {
-      listener.digitsEnter(evt);
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void addActionListener(ActionListener listener) {
+        actionListenerList.add(listener);
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
-  protected void fireKeyEvent_keyTyped(KeyEvent evt) {
-    for (KeyListener listener : keyListenerList) {
-      listener.keyTyped(evt);
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void addAuthenticationListener(AuthenticationListener listener) {
+        authenticationListenerList.add(listener);
     }
-  }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Action getAction() {
-    return action;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void addDigitsListener(DigitsListener listener) {
+        digitsListenerList.add(listener);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Authenticator getAuthenticator() {
-    return authenticator;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void addKeyListener(KeyListener listener) {
+        keyListenerList.add(listener);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public String getDigits() {
-    return digits;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireActionEvent_actionPerformed(ActionEvent evt) {
+        for (ActionListener listener : actionListenerList) {
+            listener.processAction(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public String getDigitsFile() {
-    return digitsFile;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireAuthenticationEvent_authenticationFail(AuthenticationEvent evt) {
+        for (AuthenticationListener listener : authenticationListenerList) {
+            listener.authenticationFail(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public String getFile() {
-    return file;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireAuthenticationEvent_authenticationSuccess(AuthenticationEvent evt) {
+        for (AuthenticationListener listener : authenticationListenerList) {
+            listener.authenticationSuccess(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public boolean getForgetAuthOnLeave() {
-    return forgetAuthOnLeave;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireAuthenticationEvent_tryingToAuthenticate(AuthenticationEvent evt) {
+        for (AuthenticationListener listener : authenticationListenerList) {
+            listener.tryingToAuthenticate(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public boolean getMustAuthenticate() {
-    return mustAuthenticate;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
+        for (DigitsListener listener : digitsListenerList) {
+            listener.digitsEnter(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public MenuItem getParent() {
-    return parent;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param evt DOCUMENT ME!
+     */
+    protected void fireKeyEvent_keyTyped(KeyEvent evt) {
+        for (KeyListener listener : keyListenerList) {
+            listener.keyTyped(evt);
+        }
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public int getPriority() {
-    return priority;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public Action getAction() {
+        return action;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void removeActionListener(ActionListener listener) {
-    actionListenerList.remove(listener);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public Authenticator getAuthenticator() {
+        return authenticator;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void removeAuthenticationListener(AuthenticationListener listener) {
-    authenticationListenerList.remove(listener);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public String getDigits() {
+        return digits;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void removeDigitListener(DigitsListener listener) {
-    digitsListenerList.remove(listener);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public String getDigitsFile() {
+        return digitsFile;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param listener DOCUMENT ME!
-   */
-  public void removeKeyListener(KeyListener listener) {
-    keyListenerList.remove(listener);
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public String getFile() {
+        return file;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param action DOCUMENT ME!
-   */
-  public void setAction(Action action) {
-    this.action = action;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public boolean getForgetAuthOnLeave() {
+        return forgetAuthOnLeave;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param authenticator DOCUMENT ME!
-   */
-  public void setAuthenticator(Authenticator authenticator) {
-    this.authenticator = authenticator;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public boolean getMustAuthenticate() {
+        return mustAuthenticate;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param digits DOCUMENT ME!
-   */
-  public void setDigits(String digits) {
-    this.digits = digits;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public MenuItem getParent() {
+        return parent;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param digitsFile DOCUMENT ME!
-   */
-  public void setDigitsFile(String digitsFile) {
-    this.digitsFile = digitsFile;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    public int getPriority() {
+        return priority;
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param file DOCUMENT ME!
-   */
-  public void setFile(String file) {
-    this.file = file;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void removeActionListener(ActionListener listener) {
+        actionListenerList.remove(listener);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param forgetAuthOnLeave DOCUMENT ME!
-   */
-  public void setForgetAuthOnLeave(boolean forgetAuthOnLeave) {
-    this.forgetAuthOnLeave = forgetAuthOnLeave;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void removeAuthenticationListener(AuthenticationListener listener) {
+        authenticationListenerList.remove(listener);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param mustAuthenticate DOCUMENT ME!
-   */
-  public void setMustAuthenticate(boolean mustAuthenticate) {
-    this.mustAuthenticate = mustAuthenticate;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void removeDigitListener(DigitsListener listener) {
+        digitsListenerList.remove(listener);
+    }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param priority DOCUMENT ME!
-   */
-  public void setPriority(int priority) {
-    this.priority = priority;
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param listener DOCUMENT ME!
+     */
+    public void removeKeyListener(KeyListener listener) {
+        keyListenerList.remove(listener);
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param action DOCUMENT ME!
+     */
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param authenticator DOCUMENT ME!
+     */
+    public void setAuthenticator(Authenticator authenticator) {
+        this.authenticator = authenticator;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param digits DOCUMENT ME!
+     */
+    public void setDigits(String digits) {
+        this.digits = digits;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param digitsFile DOCUMENT ME!
+     */
+    public void setDigitsFile(String digitsFile) {
+        this.digitsFile = digitsFile;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param file DOCUMENT ME!
+     */
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param forgetAuthOnLeave DOCUMENT ME!
+     */
+    public void setForgetAuthOnLeave(boolean forgetAuthOnLeave) {
+        this.forgetAuthOnLeave = forgetAuthOnLeave;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param mustAuthenticate DOCUMENT ME!
+     */
+    public void setMustAuthenticate(boolean mustAuthenticate) {
+        this.mustAuthenticate = mustAuthenticate;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param priority DOCUMENT ME!
+     */
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 }

@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -19,12 +19,11 @@
  */
 package com.phonytive.astive.ami.event;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.phonytive.astive.ami.Message;
 import com.phonytive.astive.ami.MessageType;
 import com.phonytive.astive.ami.Privilege;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -75,8 +75,9 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public ChannelStatus getChannelStatus() throws AgiException {
-        GetChannelStatus command = new GetChannelStatus();        
+        GetChannelStatus command = new GetChannelStatus();
         int code = cHandler.sendAgiCommand(command).getResultCode();
+
         return ChannelStatus.get(code);
     }
 

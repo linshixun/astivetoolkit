@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -19,11 +19,10 @@
  */
 package com.phonytive.astive.ami;
 
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.ami.event.EventType;
 import com.phonytive.astive.ami.event.ManagerEvent;
 import com.phonytive.astive.util.AppLocale;
+import org.apache.log4j.Logger;
 
 /**
  *

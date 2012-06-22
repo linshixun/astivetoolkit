@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -32,20 +32,21 @@ import static java.lang.System.out;
 
 /**
  * Handling events sample.
- * 
+ *
  * @since 1.0.0
  */
 public class App extends Astivlet {
 
     @Override
     public void service(AstivletRequest request, AstivletResponse response) {
-                
+        
+        @Say(function=SayFunction.DATE, gender=Gender.FEMALE)
         MenuItem menuItemA = new MenuItem("1", "menu-item-b-sound");
         menuItemA.addActionListener(new ActionListener() {
 
             @Override
             public void processAction(ActionEvent ae) {
-                System.out.println("menuItem A selected");
+                out.println("menuItem A selected");
             }
         });
 
@@ -54,7 +55,7 @@ public class App extends Astivlet {
 
             @Override
             public void processAction(ActionEvent ae) {
-                System.out.println("menuItem B selected");
+                out.println("menuItem B selected");
             }
         });
 
@@ -63,7 +64,7 @@ public class App extends Astivlet {
 
             @Override
             public void processAction(ActionEvent ae) {
-                System.out.println("menuItem C selected");
+                out.println("menuItem C selected");
             }
         });
 
@@ -73,18 +74,18 @@ public class App extends Astivlet {
 
             @Override
             public void positionChange(PositionChangeEvent pce) {
-                System.out.println("old obj digits = "
+                out.println("old obj digits = "
                         + ((MenuItem) pce.getSource()).getDigits());
-                System.out.println("cur obj digits = "
+                out.println("cur obj digits = "
                         + ((MenuItem) pce.getNewObject()).getDigits());
-                System.out.println("cur pos = " + pce.getPosition());
+                out.println("cur pos = " + pce.getPosition());
             }
         });
         root.addKeyListener(new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent evt) {
-                System.out.println("keyTyped = " + evt.getKey().name());
+                out.println("keyTyped = " + evt.getKey().name());
             }
         });
         root.addChild(menuItemA);
@@ -93,9 +94,9 @@ public class App extends Astivlet {
 
         out.print("response = ");
         out.println(response);
-        
-        Engine e = new Engine(response);        
-        
+
+        Engine e = new Engine(response);
+
         try {
             e.run(root);
         } catch (MenuException ex) {

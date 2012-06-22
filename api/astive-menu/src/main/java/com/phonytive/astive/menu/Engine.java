@@ -1,6 +1,6 @@
 /* 
  * Copyright (C) 2010-2012 PhonyTive LLC
- * http://www.phonytive.com/astive
+ * http://astive.phonytive.com
  *
  * This file is part of Astive Toolkit
  *
@@ -19,25 +19,15 @@
  */
 package com.phonytive.astive.menu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.menu.action.Action;
-import com.phonytive.astive.menu.event.ActionEvent;
-import com.phonytive.astive.menu.event.AuthenticationEvent;
-import com.phonytive.astive.menu.event.DigitsEvent;
-import com.phonytive.astive.menu.event.FailEvent;
-import com.phonytive.astive.menu.event.InterDigitsTimeoutEvent;
-import com.phonytive.astive.menu.event.KeyEvent;
-import com.phonytive.astive.menu.event.MaxFailureEvent;
-import com.phonytive.astive.menu.event.MaxTimeoutEvent;
-import com.phonytive.astive.menu.event.PositionChangeEvent;
+import com.phonytive.astive.menu.event.*;
 import com.phonytive.astive.menu.exception.MenuException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -49,8 +39,8 @@ public class Engine {
     private static final Logger logger = Logger.getLogger(Engine.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;
-    private Boolean autoAnswer;
-    private Boolean answered;
+    private boolean autoAnswer;
+    private boolean answered;
 
     /** Creates a new instance of Engine */
     public Engine(AgiResponse agiResponse) {
@@ -59,7 +49,7 @@ public class Engine {
         answered = false;
     }
 
-    public Engine(AgiResponse agiResponse, Boolean autoAnswer) {
+    public Engine(AgiResponse agiResponse, boolean autoAnswer) {
         this.agiResponse = agiResponse;
         this.autoAnswer = autoAnswer;
         answered = false;
@@ -110,13 +100,15 @@ public class Engine {
      *
      * @return DOCUMENT ME!
      */
-    public Menu getCurrentMenu() {
+    private Menu getCurrentMenu() {
         return currentMenu;
     }
 
     private String getData(String file, int milliSecondsWatting, int maxDigits,
             AgiResponse agiResponse, MenuItem item)
             throws MenuException, AgiException {
+        
+        // TODO: 
         char c = agiResponse.streamFile(file, "0123456789*#");
         Menu menu = ((Menu) item.getParent());
 
@@ -256,8 +248,22 @@ public class Engine {
                 }
 
                 if ((digits == null) || digits.equals("(timeout)")) {
-                    digits = getData(option.getFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
+                    // Waiting time in between the item file and digits item file.
+                    int msw;
+                    
+                    if(option.getDigitsFile() != null) {
+                        msw = 0;
+                    } else {
+                        msw = millisecondsWatting;
+                    }
+                    
+                    digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
                             menu);
+
+                    if ((digits == null) || digits.equals("(timeout)") && option.getDigitsFile() != null) {
+                        digits = getData(option.getDigitsFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
+                            menu);                        
+                    }
                 }
 
                 if ((digits != null) && !digits.equals("(timeout)")) {
@@ -365,11 +371,11 @@ public class Engine {
         this.currentMenu = currentMenu;
     }
     
-    public void setAutoAnswer(Boolean autoAnswer) {
+    public void setAutoAnswer(boolean autoAnswer) {
         this.autoAnswer = autoAnswer;
     }
     
-    public Boolean isAutoAnswer() {
+    private Boolean isAutoAnswer() {
         return autoAnswer;
     }
 }
