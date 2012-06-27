@@ -23,7 +23,6 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.menu.action.Action;
 import com.phonytive.astive.menu.event.*;
-import com.phonytive.astive.menu.exception.MenuException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,23 +32,27 @@ import org.apache.log4j.Logger;
  *
  * @since 1.0.0
  */
-public class Engine {
+public class MenuNavigator {
     // A usual logging class
 
-    private static final Logger logger = Logger.getLogger(Engine.class);
+    private static final Logger logger = Logger.getLogger(MenuNavigator.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;
     private boolean autoAnswer;
     private boolean answered;
+    private String TTSEngine;
+    private String TTSVoice;
 
-    /** Creates a new instance of Engine */
-    public Engine(AgiResponse agiResponse) {
+    /**
+     * Creates a new instance of MenuNavigator
+     */
+    public MenuNavigator(AgiResponse agiResponse) {
         this.agiResponse = agiResponse;
         autoAnswer = true;
         answered = false;
     }
 
-    public Engine(AgiResponse agiResponse, boolean autoAnswer) {
+    public MenuNavigator(AgiResponse agiResponse, boolean autoAnswer) {
         this.agiResponse = agiResponse;
         this.autoAnswer = autoAnswer;
         answered = false;
@@ -107,12 +110,14 @@ public class Engine {
     private String getData(String file, int milliSecondsWatting, int maxDigits,
             AgiResponse agiResponse, MenuItem item)
             throws MenuException, AgiException {
-        
+
         // TODO: 
         char c = agiResponse.streamFile(file, "0123456789*#");
         Menu menu = ((Menu) item.getParent());
 
-        if (c == 0x0 /*&& milliSecondsWatting == 0*/) {
+        if (c == 0x0 /*
+                 * && milliSecondsWatting == 0
+                 */) {
             try {
                 Thread.sleep(milliSecondsWatting);
             } catch (InterruptedException ex) {
@@ -178,7 +183,7 @@ public class Engine {
                 ;
         };
 
-    Object[] opts = new Object[menuChilds.size()];
+        Object[] opts = new Object[menuChilds.size()];
         int cnt = 0;
 
         for (MenuItem child : menuChilds) {
@@ -198,6 +203,7 @@ public class Engine {
 
     /**
      * <p>Start the menu excecution.</p>
+     *
      * @param menu and object containing all menu and menu items childs
      */
     public void run(Menu menu) throws MenuException, AgiException {
@@ -207,13 +213,13 @@ public class Engine {
         // For example if channel is closed by customer the player must be auto-halt.    
         if (agiResponse.getChannelStatus().getCode() == -1) {
             return;
-        }        
-        
-        if(answered == false && autoAnswer == true) {
+        }
+
+        if (answered == false && isAutoAnswer() == true) {
             agiResponse.answer();
             answered = true;
         }
-        
+
         // Sort elements
         ArrayList<String> childsKeys = getSortedChieldsKeys(menu.getChilds());
 
@@ -250,19 +256,19 @@ public class Engine {
                 if ((digits == null) || digits.equals("(timeout)")) {
                     // Waiting time in between the item file and digits item file.
                     int msw;
-                    
-                    if(option.getDigitsFile() != null) {
+
+                    if (option.getDigitsFile() != null) {
                         msw = 0;
                     } else {
                         msw = millisecondsWatting;
                     }
-                    
+
                     digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
                             menu);
 
                     if ((digits == null) || digits.equals("(timeout)") && option.getDigitsFile() != null) {
                         digits = getData(option.getDigitsFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
-                            menu);                        
+                                menu);
                     }
                 }
 
@@ -370,12 +376,28 @@ public class Engine {
     private void setCurrentMenu(Menu currentMenu) {
         this.currentMenu = currentMenu;
     }
-    
+
     public void setAutoAnswer(boolean autoAnswer) {
         this.autoAnswer = autoAnswer;
     }
-    
+
     private Boolean isAutoAnswer() {
         return autoAnswer;
+    }
+
+    public String getTTSEngine() {
+        return TTSEngine;
+    }
+
+    public void setTTSEngine(String TTSEngine) {
+        this.TTSEngine = TTSEngine;
+    }
+
+    public String getTTSVoice() {
+        return TTSVoice;
+    }
+
+    public void setTTSVoice(String TTSVoice) {
+        this.TTSVoice = TTSVoice;
     }
 }

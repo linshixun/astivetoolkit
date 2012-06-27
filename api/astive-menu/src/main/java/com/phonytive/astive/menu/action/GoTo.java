@@ -22,9 +22,9 @@ package com.phonytive.astive.menu.action;
 
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
-import com.phonytive.astive.menu.Engine;
+import com.phonytive.astive.menu.MenuNavigator;
 import com.phonytive.astive.menu.Menu;
-import com.phonytive.astive.menu.exception.MenuException;
+import com.phonytive.astive.menu.MenuException;
 
 /**
  *
@@ -52,7 +52,7 @@ public class GoTo implements Action {
   @Override
   public void doAction() {
     try {
-      Engine e = new Engine(agiResponse);
+      MenuNavigator e = new MenuNavigator(agiResponse);
       e.run(menu);
     } catch (AgiException ex) {
       // Manage this exception
