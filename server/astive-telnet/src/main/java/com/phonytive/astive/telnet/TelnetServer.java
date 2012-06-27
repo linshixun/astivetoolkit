@@ -20,6 +20,7 @@
 package com.phonytive.astive.telnet;
 
 import com.phonytive.astive.util.AppLocale;
+import com.phonytive.astive.util.NetUtil;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -56,6 +57,11 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
     @Override
     public void run() {
         try {
+
+            if (!NetUtil.available(port)) {
+                throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[]{port}));
+            }            
+            
             InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
             bind(inet, backlog);
 

@@ -86,9 +86,7 @@ public class AppLocale {
             String msgPatter = messages.getString(key);
             messageForm.setFormats(formats);
             messageForm.applyPattern(msgPatter);
-
             String result = messageForm.format(args);
-
             return result;
         } catch (MissingResourceException ex) {
             return key;

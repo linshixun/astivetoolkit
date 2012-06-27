@@ -76,6 +76,17 @@ public interface ServiceProperties {
   boolean isDisabled();
 
   /**
+   * 
+   * @return 
+   */
+  boolean isUnableToOpen();
+  
+  /**
+   * 
+   */
+  void setUnableToOpen(boolean unableToOpen);
+  
+  /**
    * DOCUMENT ME!
    *
    * @param backlog DOCUMENT ME!

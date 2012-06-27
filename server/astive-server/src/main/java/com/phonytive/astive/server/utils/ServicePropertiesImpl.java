@@ -37,8 +37,9 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     private String server;
     private String serviceName;
     private boolean disabled;
+    private boolean unableToOpen;
     private int backlog;
-    private int port;
+    private int port;    
 
     /**
      * Creates a new ServicePropertiesImpl object.
@@ -226,4 +227,14 @@ public final class ServicePropertiesImpl implements ServiceProperties {
             return null;
         }
     }
+
+    @Override
+    public boolean isUnableToOpen() {
+        return unableToOpen;
+    }
+
+    @Override
+    public void setUnableToOpen(boolean unableToOpen) {
+        this.unableToOpen = unableToOpen;
+    }        
 }

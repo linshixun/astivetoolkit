@@ -26,6 +26,7 @@ import com.phonytive.astive.server.appmanager.Deployer;
 import com.phonytive.astive.server.appmanager.DeployerManager;
 import com.phonytive.astive.server.monitor.ConnectionMonitor;
 import com.phonytive.astive.util.AppLocale;
+import com.phonytive.astive.util.NetUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -89,6 +90,11 @@ public final class AdminDaemon extends ServerSocket
     @Override
     public void run() {
         try {
+            
+            if (!NetUtil.available(port)) {
+                throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[]{port}));
+            }
+            
             InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
             bind(inet, backlog);
 

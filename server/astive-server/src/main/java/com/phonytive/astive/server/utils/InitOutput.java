@@ -55,7 +55,11 @@ public class InitOutput {
             }
             sb.append(param.getBindAddr().getHostAddress());
             sb.append("\t");
-            sb.append(param.getPort());
+            if(param.isUnableToOpen()) {
+                sb.append(AppLocale.getI18n("unableToOpen"));
+            } else {
+                sb.append(param.getPort());
+            }
             sb.append("\n");
         }
 

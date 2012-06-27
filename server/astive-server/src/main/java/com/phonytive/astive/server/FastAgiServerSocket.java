@@ -19,17 +19,14 @@
  */
 package com.phonytive.astive.server;
 
-import java.io.IOException;
-
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.agi.DefaultAgiServerSettings;
 import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import com.phonytive.astive.util.AppLocale;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
 /**

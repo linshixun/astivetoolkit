@@ -30,6 +30,7 @@ import com.phonytive.astive.server.utils.ServiceProperties;
 import com.phonytive.astive.server.utils.ServicePropertiesImpl;
 import com.phonytive.astive.telnet.TelnetServer;
 import com.phonytive.astive.util.AppLocale;
+import com.phonytive.astive.util.NetUtil;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -51,6 +52,7 @@ import org.apache.log4j.xml.DOMConfigurator;
  */
 public class AstiveServer extends AbstractAstiveServer {
     // A usual logging class
+
     private static final Logger logger = Logger.getLogger(AstiveServer.class);
     private static ServiceProperties adminDaemonSP;
     private static ServiceProperties astivedSP;
@@ -62,7 +64,8 @@ public class AstiveServer extends AbstractAstiveServer {
     private static String TELNED_PROPERTIES =
             AbstractAstiveServer.ASTIVE_HOME + "/conf/telned.properties";
     private ExecutorService executorService;
-
+    {DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");}
+    
     /**
      * Creates a new AstiveServer object.
      *
@@ -76,23 +79,22 @@ public class AstiveServer extends AbstractAstiveServer {
     public AstiveServer(int port, int backlog, InetAddress bindAddr)
             throws SystemException, IOException {
         super(port, backlog, bindAddr);
-        DOMConfigurator.configure("conf/log4j.xml");
     }
-
+    
     private static ServiceProperties getServiceProperties(String propPath, String serviceName)
             throws SystemException, IOException {
         Properties prop = new Properties();
-
+        
         try {
             prop.load(new FileInputStream(propPath));
-
+            
             return new ServicePropertiesImpl(prop, serviceName);
         } catch (FileNotFoundException ex) {
             throw new SystemException(AppLocale.getI18n("unableToReadFile",
                     new Object[]{propPath, ex.getMessage()}));
         }
     }
-
+    
     private static boolean isCommand(String cmd) {
         AdminCommand ac = AdminCommand.get(cmd);
         if (ac == null) {
@@ -100,12 +102,12 @@ public class AstiveServer extends AbstractAstiveServer {
         }
         return true;
     }
-
+    
     private static boolean isFileJar(String file) {
         if (file.endsWith(".jar")) {
             return true;
         }
-
+        
         return false;
     }
 
@@ -117,7 +119,7 @@ public class AstiveServer extends AbstractAstiveServer {
         ConnectionMonitor monitor = new FastAgiConnectionMonitor(this, astivedSP.getBacklog());
         executorService.execute(monitor);
     }
-
+    
     public static void main(String[] args) throws Exception {
         astivedSP = getServiceProperties(ASTIVED_PROPERTIES, "astived");
         adminDaemonSP = getServiceProperties(ADMIN_DAEMON_PROPERTIES, "admin thread");
@@ -133,7 +135,7 @@ public class AstiveServer extends AbstractAstiveServer {
         if (!telnedSP.isDisabled()) {
             serviceProperties.add(telnedSP);
         }
-
+        
         if ((args.length == 0) || args[0].equals("-h") || args[0].equals("--help")) {
             printUsage();
             System.exit(1);
@@ -141,7 +143,7 @@ public class AstiveServer extends AbstractAstiveServer {
 
         // Create a Parser
         CommandLineParser parser = new BasicParser();
-
+        
         Options start = new Options();
         start.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
         start.addOption("v", "version", false, "Prints the Astive Server version and exits.");
@@ -156,35 +158,35 @@ public class AstiveServer extends AbstractAstiveServer {
         start.addOption(OptionBuilder.hasArg(true).withArgName("port").withLongOpt("astived-port").withDescription(""
                 + AppLocale.getI18n("cli.option.port",
                 new Object[]{"astived"})).create());
-
+        
         start.addOption(OptionBuilder.hasArg(true).withArgName("host").withLongOpt("astived-host").withDescription(""
                 + AppLocale.getI18n("cli.option.bind",
                 new Object[]{"astived"})).create());
         start.addOption(OptionBuilder.hasArg(true).withArgName("port").withLongOpt("telned-port").withDescription(""
                 + AppLocale.getI18n("cli.option.port",
                 new Object[]{"telned"})).create());
-
+        
         start.addOption(OptionBuilder.hasArg(true).withArgName("host").withLongOpt("telned-host").withDescription(""
                 + AppLocale.getI18n("cli.option.host",
                 new Object[]{"telned"})).create());
-
+        
         Options stop = new Options();
         stop.addOption(OptionBuilder.withLongOpt("--help").withDescription("" + AppLocale.getI18n("cli.option.printUsage")).create());
-
+        
         stop.addOption("h", "host", false,
                 AppLocale.getI18n("cli.option.stop.host",
                 new Object[]{DEFAULT_AGI_SERVER_BIND_ADDR}));
-
+        
         stop.addOption("p", "port", false,
                 AppLocale.getI18n("cli.option.stop.port",
                 new Object[]{DEFAULT_AGI_SERVER_PORT}));
-
+        
         Options deploy = new Options();
         deploy.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
-
+        
         Options undeploy = new Options();
         undeploy.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
-
+        
         if (args.length == 0) {
             printUsage();
             System.exit(1);
@@ -192,15 +194,15 @@ public class AstiveServer extends AbstractAstiveServer {
             printUnavailableCmd(args[0]);
             System.exit(1);
         }
-
+        
         AdminCommand cmd = AdminCommand.get(args[0]);
-
+        
         if (cmd.equals(AdminCommand.DEPLOY) && ((args.length < 2) || !isFileJar(args[1]))) {
             logger.error(AppLocale.getI18n("cli.invalid.app"));
             printUsage(AdminCommand.DEPLOY, deploy);
             System.exit(1);
         }
-
+        
         if (cmd.equals(AdminCommand.UNDEPLOY) && ((args.length < 2) || !isFileJar(args[1]))) {
             printUsage(AdminCommand.UNDEPLOY, undeploy);
             System.exit(1);
@@ -210,77 +212,90 @@ public class AstiveServer extends AbstractAstiveServer {
         try {
             if (cmd.equals(AdminCommand.START)) {
                 CommandLine commandLine = parser.parse(start, args);
-
+                
                 if (commandLine.hasOption('h')) {
                     printUsage(cmd, start);
                     System.exit(0);
                 }
-
+                
                 if (commandLine.hasOption('v')) {
                     // Them start the server without noise
                 }
-
+                
                 if (commandLine.hasOption("astived-bind")) {
                     astivedSP.setBindAddr(InetAddress.getByName(commandLine.getOptionValue("astived-port")));
                 }
-
+                
                 if (commandLine.hasOption("astived-port")) {
                     astivedSP.setPort(Integer.parseInt(commandLine.getOptionValue("astived-port")));
                 }
-
+                
                 if (commandLine.hasOption("admin-bind")) {
                     adminDaemonSP.setBindAddr(InetAddress.getByName(commandLine.getOptionValue("admin-bind")));
                 }
-
+                
                 if (commandLine.hasOption("admin-port")) {
                     adminDaemonSP.setPort(Integer.parseInt(commandLine.getOptionValue("admin-port")));
                 }
-
+                
                 if (commandLine.hasOption("telned-bind")) {
                     telnedSP.setBindAddr(InetAddress.getByName(commandLine.getOptionValue("telned-bind")));
                 }
-
+                
                 if (commandLine.hasOption("telned-port")) {
                     adminDaemonSP.setPort(Integer.parseInt(commandLine.getOptionValue("telned-port")));
                 }
-
+                
+                if (!NetUtil.available(astivedSP.getPort())) {                    
+                    out.println(AppLocale.getI18n("cantStartFastAgiServerSocket", new Object[]{astivedSP.getBindAddr().getHostAddress(), astivedSP.getPort()}));                    
+                    System.exit(-1);
+                }
+        
+                if (!NetUtil.available(adminDaemonSP.getPort())) {
+                    adminDaemonSP.setUnableToOpen(true);
+                }
+                       
+                if (!NetUtil.available(telnedSP.getPort())) {
+                    telnedSP.setUnableToOpen(true);
+                }
+                
                 InitOutput.printInit(serviceProperties);
-
+                   
                 AstiveServer server =
                         new AstiveServer(astivedSP.getPort(), astivedSP.getBacklog(), astivedSP.getBindAddr());
                 server.start();
             }
-
+            
             if (!cmd.equals(AdminCommand.START) && adminDaemonSP.isDisabled()) {
                 logger.info("unableToAccessAdminDaemon");
             }
             
             if (cmd.equals(AdminCommand.STOP)) {
                 CommandLine commandLine = parser.parse(stop, args);
-
+                
                 if (commandLine.hasOption("--help")) {
                     printUsage(cmd, stop);
                     System.exit(0);
                 }
-
+                
                 if (commandLine.hasOption('h')) {
                     if (commandLine.getOptionValue('h') == null) {
                         printUsage(cmd, stop);
                         System.exit(0);
                     }
-
+                    
                     astivedSP.setBindAddr(InetAddress.getByName(commandLine.getOptionValue('h')));
                 }
-
+                
                 if (commandLine.hasOption('p')) {
                     if (commandLine.getOptionValue('p') == null) {
                         printUsage(cmd, stop);
                         System.exit(0);
                     }
-
+                    
                     astivedSP.setPort(Integer.parseInt(commandLine.getOptionValue('p')));
                 }
-
+                
                 AdminDaemonClient adClient =
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
                 adClient.stop();
@@ -293,7 +308,7 @@ public class AstiveServer extends AbstractAstiveServer {
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
                 adClient.deploy(args[1]);
             }
-
+            
             if (cmd.equals(AdminCommand.UNDEPLOY)) {
                 AdminDaemonClient adClient =
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
@@ -311,14 +326,14 @@ public class AstiveServer extends AbstractAstiveServer {
         out.println(AppLocale.getI18n("cli.unavailableCommand", new Object[]{cmd}));
         out.println(AppLocale.getI18n("cli.availableCommands"));
     }
-
+    
     private static void printUsage() {
         out.println(AppLocale.getI18n("cli.usage"));
         out.println(AppLocale.getI18n("cli.availableCommands"));
         out.println(AppLocale.getI18n("cli.help"));
         out.println(AppLocale.getI18n("cli.footer"));
     }
-
+    
     private static void printUsage(AdminCommand ac, Options options) {
         String command = ac.getCommand();
         HelpFormatter helpFormatter = new HelpFormatter();
@@ -346,39 +361,39 @@ public class AstiveServer extends AbstractAstiveServer {
 
         // Load apps already in "apps"
         DeployerManager.getInstance();
-
+        
         executorService = Executors.newFixedThreadPool(3);
         launchConnectionMonitor();
-
+        
         try {
             if (!adminDaemonSP.isDisabled()) {
                 AdminDaemon admin = new AdminDaemon(adminPort, adminBacklog, adminBindAddr, this);
                 executorService.execute(admin);
             }
-
+            
             if (!telnedSP.isDisabled()) {
                 
                 final AstiveServer server = this;
                 
                 TelnetServer ts = new TelnetServer(telnedPort, telnedBacklog, telnedBindAddr) {
-
+                    
                     @Override
                     public void stop() {
                         try {
                             server.stop();
                         } catch (SystemException ex) {
-                            logger.error(AppLocale.getI18n("unexpectedError", 
+                            logger.error(AppLocale.getI18n("unexpectedError",
                                     new String[]{ex.getMessage()}));
                         }
                     }
-
+                    
                     @Override
                     public List<String> lookup() {
                         List<String> apps = new ArrayList();
                         AstDB astDB = MyAstDB.getInstance();
                         
                         try {
-                            for(AstObj astObj: astDB.getApps()){
+                            for (AstObj astObj : astDB.getApps()) {
                                 StringBuilder sb = new StringBuilder("@App(name=");
                                 sb.append(astObj.getInfo().getName());
                                 sb.append(" ");
@@ -387,18 +402,18 @@ public class AstiveServer extends AbstractAstiveServer {
                                 apps.add(sb.toString());
                             }
                         } catch (AstiveException ex) {                            
-                            logger.error(AppLocale.getI18n("unexpectedError", 
-                                    new String[]{ex.getMessage()}));    
+                            logger.error(AppLocale.getI18n("unexpectedError",
+                                    new String[]{ex.getMessage()}));                            
                         }
                         
                         return apps;
                     }
-
+                    
                     @Override
                     public String version() {
                         return server.getVersion();
                     }
-
+                    
                     @Override
                     public String system() {
                         throw new UnsupportedOperationException("Not supported yet.");
