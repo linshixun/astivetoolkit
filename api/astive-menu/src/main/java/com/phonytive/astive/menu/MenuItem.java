@@ -41,11 +41,11 @@ public class MenuItem {
      */
     protected MenuItem parent;
     private String digits;
-    private String digitsFile;
     private String file;
     private boolean forgetAuthOnLeave = false;
     private boolean mustAuthenticate;
     private int priority;
+    private VoiceComposer voiceComposer;
 
     /**
      * <p>Creates a new instance of MenuItem</p>
@@ -217,15 +217,6 @@ public class MenuItem {
      *
      * @return DOCUMENT ME!
      */
-    public String getDigitsFile() {
-        return digitsFile;
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
     public String getFile() {
         return file;
     }
@@ -327,15 +318,6 @@ public class MenuItem {
      */
     public void setDigits(String digits) {
         this.digits = digits;
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param digitsFile DOCUMENT ME!
-     */
-    public void setDigitsFile(String digitsFile) {
-        this.digitsFile = digitsFile;
     }
 
     /**

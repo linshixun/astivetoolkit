@@ -40,8 +40,6 @@ public class MenuNavigator {
     private Menu currentMenu;
     private boolean autoAnswer;
     private boolean answered;
-    private String TTSEngine;
-    private String TTSVoice;
 
     /**
      * Creates a new instance of MenuNavigator
@@ -168,7 +166,7 @@ public class MenuNavigator {
     }
 
     // XXX: Im not sure about this criteria
-    private ArrayList<String> getSortedChieldsKeys(ArrayList<MenuItem> menuChilds) {
+    private ArrayList<String> getSortedChildsKeys(ArrayList<MenuItem> menuChilds) {
         ArrayList result = new ArrayList();
         Comparator comparator =
                 new Comparator() {
@@ -201,6 +199,15 @@ public class MenuNavigator {
         return result;
     }
 
+    private ArrayList<String> getChildsKeys(ArrayList<MenuItem> menuChilds) {
+        ArrayList result = new ArrayList();
+        for (MenuItem child : menuChilds) {
+            String digits = ((MenuItem) child).getDigits();
+            result.add(digits);
+        }                        
+        return result;
+    }
+    
     /**
      * <p>Start the menu excecution.</p>
      *
@@ -209,7 +216,7 @@ public class MenuNavigator {
     public void run(Menu menu) throws MenuException, AgiException {
         String digits = null;
         setCurrentMenu(menu);
-
+        
         // For example if channel is closed by customer the player must be auto-halt.    
         if (agiResponse.getChannelStatus().getCode() == -1) {
             return;
@@ -219,9 +226,15 @@ public class MenuNavigator {
             agiResponse.answer();
             answered = true;
         }
-
+        
+        ArrayList<String> childsKeys;
+                
         // Sort elements
-        ArrayList<String> childsKeys = getSortedChieldsKeys(menu.getChilds());
+        if(!menu.isSortChildsByDigits()) {
+            childsKeys = getChildsKeys(menu.getChilds());
+        } else {
+            childsKeys = getSortedChildsKeys(menu.getChilds());
+        }
 
         if (logger.isDebugEnabled()) {
             logger.debug("Total menu options: " + menu.getChilds().size());
@@ -257,19 +270,10 @@ public class MenuNavigator {
                     // Waiting time in between the item file and digits item file.
                     int msw;
 
-                    if (option.getDigitsFile() != null) {
-                        msw = 0;
-                    } else {
-                        msw = millisecondsWatting;
-                    }
+                    msw = millisecondsWatting;
 
                     digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
-                            menu);
-
-                    if ((digits == null) || digits.equals("(timeout)") && option.getDigitsFile() != null) {
-                        digits = getData(option.getDigitsFile(), millisecondsWatting, menu.getMaxDigits(), agiResponse,
-                                menu);
-                    }
+                            menu);                    
                 }
 
                 if ((digits != null) && !digits.equals("(timeout)")) {
@@ -383,21 +387,5 @@ public class MenuNavigator {
 
     private Boolean isAutoAnswer() {
         return autoAnswer;
-    }
-
-    public String getTTSEngine() {
-        return TTSEngine;
-    }
-
-    public void setTTSEngine(String TTSEngine) {
-        this.TTSEngine = TTSEngine;
-    }
-
-    public String getTTSVoice() {
-        return TTSVoice;
-    }
-
-    public void setTTSVoice(String TTSVoice) {
-        this.TTSVoice = TTSVoice;
     }
 }
