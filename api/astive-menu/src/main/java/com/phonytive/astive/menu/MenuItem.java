@@ -44,8 +44,7 @@ public class MenuItem {
     private String file;
     private boolean forgetAuthOnLeave = false;
     private boolean mustAuthenticate;
-    private int priority;
-    private VoiceComposer voiceComposer;
+    private int priority;    
 
     /**
      * <p>Creates a new instance of MenuItem</p>

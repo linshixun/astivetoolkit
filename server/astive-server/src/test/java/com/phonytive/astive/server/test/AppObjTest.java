@@ -47,9 +47,9 @@ public class AppObjTest extends TestCase {
         
     public void testAppObj() throws AstiveException {
         AstObj astObj = 
-                new AstObj("helloworld-1.0.0-M1.jar","/home/psanders/Projects/PhonyTive"
+                new AstObj("helloworld-1.0.0-M2.jar","/home/psanders/Projects/PhonyTive"
                         + "/astive/examples/helloworld/target"
-                            + "/helloworld-1.0.0-M1.jar");
+                            + "/helloworld-1.0.0-M2.jar");
         Astivlet ast = astObj.getAstivletByURLPattern("/examp2les2/2/HelloWorld3");
         
         out.println("ast = " + ast);
