@@ -4,7 +4,7 @@
     <groupId>com.phonytive.astive</groupId>
     <artifactId>astive</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-M2</version>
+    <version>1.0.0-M1</version>
     <name>Astive Toolkit</name>
     <url>http://astive.phonytive.com</url>
     <pluginRepositories>
