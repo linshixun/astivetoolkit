@@ -23,6 +23,6 @@ fi
 
 mvn archetype:create -DarchetypeGroupId=com.phonytive.astive \
                     -DarchetypeArtifactId=astive-archetype \
-                    -DarchetypeVersion=1.0.0-M1 \
+                    -DarchetypeVersion=1.0.0-M2 \
                     -DgroupId=$1 \
                     -DartifactId=$2

@@ -4,7 +4,7 @@
     <parent>
         <artifactId>server</artifactId>
         <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-M1</version>
+        <version>1.0.0-M2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>astive-telnet</artifactId>
@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.phonytive.astive</groupId>
             <artifactId>astive-commons</artifactId>
-            <version>1.0.0-M1</version>
+            <version>1.0.0-M2</version>
             <type>jar</type>
         </dependency>
     </dependencies>
