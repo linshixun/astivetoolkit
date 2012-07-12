@@ -22,6 +22,7 @@ package com.phonytive.astive.menu;
 import com.phonytive.astive.menu.action.Action;
 import com.phonytive.astive.menu.event.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -44,12 +45,14 @@ public class MenuItem {
     private String file;
     private boolean forgetAuthOnLeave = false;
     private boolean mustAuthenticate;
-    private int priority;    
+    private int priority;
+    private List<VoiceComposition> voiceCompositionList;
 
     /**
      * <p>Creates a new instance of MenuItem</p>
      */
     public MenuItem() {
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -59,6 +62,7 @@ public class MenuItem {
         //this.parent = parent;
         this.digits = digits;
         this.file = file;
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -69,6 +73,7 @@ public class MenuItem {
         this.digits = digits;
         this.file = file;
         this.action = action;
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -80,6 +85,7 @@ public class MenuItem {
         this.file = file;
         this.action = action;
         this.priority = priority;
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -109,6 +115,18 @@ public class MenuItem {
         digitsListenerList.add(listener);
     }
 
+    /**
+     * 
+     * @param voiceComposition 
+     */
+    public void addVoiceComposition(VoiceComposition voiceComposition) {
+        voiceCompositionList.add(voiceComposition);
+    }
+    
+    public List<VoiceComposition> getVoiceCompositions() {
+        return voiceCompositionList;
+    }
+    
     /**
      * DOCUMENT ME!
      *

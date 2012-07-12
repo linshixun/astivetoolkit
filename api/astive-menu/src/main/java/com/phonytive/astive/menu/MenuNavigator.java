@@ -23,9 +23,7 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.menu.action.Action;
 import com.phonytive.astive.menu.event.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -139,8 +137,6 @@ public class MenuNavigator {
 
             if (c != 0x0) {
                 result += ("" + c);
-
-
                 evt = new KeyEvent(item, Digit.getDigit("" + c));
                 item.fireKeyEvent_keyTyped(evt);
             } else {
@@ -272,8 +268,25 @@ public class MenuNavigator {
 
                     msw = millisecondsWatting;
 
-                    digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
-                            menu);                    
+                    
+                    if(!option.getFile().isEmpty()) {
+                        digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
+                            menu);
+                    }
+                    
+                    if ((digits != null) && !digits.equals("(timeout)")) {
+                        List<VoiceComposition> voiceCompositions = menu.getVoiceCompositions();
+                        Iterator<VoiceComposition> vcIterator = voiceCompositions.iterator();
+                        while(vcIterator.hasNext()) {
+                            VoiceComposition cVc = vcIterator.next();
+                            Iterator<Object> commands = cVc.getCommands().iterator();
+                            
+                            while(commands.hasNext()) {
+                                Object o = commands.next();
+                                
+                            }
+                        }
+                    }                    
                 }
 
                 if ((digits != null) && !digits.equals("(timeout)")) {
