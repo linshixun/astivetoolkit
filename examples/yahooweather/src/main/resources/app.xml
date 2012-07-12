@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>    
+    <name>com.phonytive.astive.webservices</name>
+    <description>Yahoo Weather API</description>
+    <astivlet>
+        <astivletId>WeatherAstivlet</astivletId>
+        <class>com.phonytive.astive.examples.ws.App</class>
+    </astivlet>
+    <astivletMapping>
+        <astivletId>WeatherAstivlet</astivletId>
+        <urlPattern>/examples/WeatherAstivlet</urlPattern>
+    </astivletMapping>   
+</app>
