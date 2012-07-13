@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
-import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
 
@@ -17,33 +16,26 @@ public class YahooParser {
         Weather weather = new Weather();
 
         log.info("Creating XML Reader");
-        log.info("Parsing XML Response");
-        
+                
         SAXReader xmlReader = createXmlReader();
         Document doc = xmlReader.read(inputStream);
         
-        System.out.println(doc.asXML());
-                 
-        Node location = doc.selectSingleNode("//rss/channel/yweather:location/");
-        /*Node condition = doc.selectSingleNode("/rss/channel/item/yweather:condition/");
-        Node wind = doc.selectSingleNode("/rss/channel/yweather:wind");
-        Node atmosphere = doc.selectSingleNode("/rss/channel/yweather:atmosphere");
+        log.info("Parsing XML Response");
 
-        weather.setCity(location.valueOf("@city"));
-        weather.setRegion(location.valueOf("@region"));
-        weather.setCountry(location.valueOf("@country"));                
-        weather.setCondition(condition.valueOf("@text"));
-        weather.setTemp(condition.valueOf("@temp"));        
-        weather.setChill(wind.valueOf("@chill"));
-        weather.setHumidity(atmosphere.valueOf("@humidity"));*/
-        System.out.println(doc.valueOf("//rss/channel/yweather:location[@city]"));
+        weather.setCity(doc.valueOf("/rss/channel/yweather:location/@city"));
+        weather.setRegion(doc.valueOf("/rss/channel/yweather:location/@region"));
+        weather.setCountry(doc.valueOf("/rss/channel/yweather:location/@country"));                
+        weather.setCondition(doc.valueOf("/rss/channel/item/yweather:condition/@text"));
+        weather.setTemp(doc.valueOf("/rss/channel/item/yweather:condition/@temp"));
+        weather.setChill(doc.valueOf("/rss/channel/yweather:wind/@chill"));
+        weather.setHumidity(doc.valueOf("/rss/channel/yweather:atmosphere/@humidity"));
 
         return weather;
     }
 
     private SAXReader createXmlReader() {
         Map<String, String> uris = new HashMap<String, String>();
-        uris.put("p", "http://weather.yahooapis.com/forecastrss");
+        uris.put("yweather", "http://xml.weather.yahoo.com/ns/rss/1.0");
 
         DocumentFactory factory = new DocumentFactory();
         factory.setXPathNamespaceURIs(uris);

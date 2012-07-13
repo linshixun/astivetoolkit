@@ -1,15 +1,9 @@
 package com.phonytive.astive.examples.ws;
 
-import org.apache.log4j.Logger;
-
-/**
- *
- * @since 1.0.0
- */
 import java.io.InputStream;
-
 import java.net.URL;
 import java.net.URLConnection;
+import org.apache.log4j.Logger;
 
 
 public class YahooRetriever {
