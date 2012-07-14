@@ -13,5 +13,6 @@
         <module>helloworld</module>
         <module>handlingevents</module>
         <module>agitdd</module>
-    </modules>
+        <module>yahooweather</module>
+  </modules>
 </project>
