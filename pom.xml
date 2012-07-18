@@ -118,4 +118,28 @@
     <!--<module>astbeans</module>-->
     <!--<module>astive-ia</module>-->
     </modules>
+    
+    <scm>
+	<connection>scm:git://github.com/psanders/astive.git</connection>
+	<url>scm:git://github.com/psanders/astive.git</url>
+	<developerConnection>scm:git://github.com/psanders/astive.git</developerConnection>
+  </scm>
+
+
+
+	<distributionManagement>
+		<!--site> <id>website</id> <url>scp://www.mycompany.com/www/docs/project/</url> 
+			</site -->
+		<repository>
+			<id>releases</id>
+			<name>Astive Release Repository</name>
+			<url>https://repository-astiveteam.forge.cloudbees.com/release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Astive Snapshots Repository</name>
+			<url>https://repository-astiveteam.forge.cloudbees.com/snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
