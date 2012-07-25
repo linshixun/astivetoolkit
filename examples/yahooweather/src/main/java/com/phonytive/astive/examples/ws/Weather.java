@@ -1,3 +1,22 @@
+/* 
+ * Copyright (C) 2010-2012 PhonyTive LLC
+ * http://astive.phonytive.com
+ *
+ * This file is part of Astive Toolkit
+ *
+ * Astive is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Astive is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.phonytive.astive.examples.ws;
 
 
@@ -71,5 +90,32 @@ public class Weather {
 
     public void setHumidity(String humidity) {
         this.humidity = humidity;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("weather info:");
+        sb.append("country: ");
+        sb.append(getCountry());
+        sb.append("\n");
+        sb.append("city: ");
+        sb.append(getCity());
+        sb.append("\n");        
+        sb.append("region: ");
+        sb.append(getRegion());
+        sb.append("\n");
+        sb.append("condition: ");
+        sb.append(getCondition());
+        sb.append("\n");        
+        sb.append("chill: ");
+        sb.append(getChill());
+        sb.append("\n");        
+        sb.append("temp: ");
+        sb.append(getTemp());
+        sb.append("\n");    
+        sb.append("humidity: ");
+        sb.append(getHumidity());
+        sb.append("\n");    
+        return sb.toString();
     }
 }

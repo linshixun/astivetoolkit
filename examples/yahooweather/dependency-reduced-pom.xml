@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>examples</artifactId>
+    <groupId>com.phonytive.astive</groupId>
+    <version>1.0.0-M2</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.phonytive.astive</groupId>
+  <artifactId>yahooweather</artifactId>
+  <name>Astive :: Examples :: Yahoo Weather</name>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.7.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifactSet>
+            <excludes>
+              <exclude>com.phonytive.astive:astive-client:*</exclude>
+            </excludes>
+          </artifactSet>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>com.phonytive.astive</groupId>
+      <artifactId>astive-client</artifactId>
+      <version>1.0.0-M2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+

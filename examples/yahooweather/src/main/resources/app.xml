@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <app>    
-    <name>com.phonytive.astive.webservices</name>
+    <name>YahooWeather</name>
     <description>Yahoo Weather API</description>
     <astivlet>
-        <astivletId>WeatherAstivlet</astivletId>
+        <astivletId>YahooWeather</astivletId>
         <class>com.phonytive.astive.examples.ws.App</class>
     </astivlet>
     <astivletMapping>
-        <astivletId>WeatherAstivlet</astivletId>
-        <urlPattern>/examples/WeatherAstivlet</urlPattern>
+        <astivletId>YahooWeather</astivletId>
+        <urlPattern>/examples/YahooWeather</urlPattern>
     </astivletMapping>   
 </app>
