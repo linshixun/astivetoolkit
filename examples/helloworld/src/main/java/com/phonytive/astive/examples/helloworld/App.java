@@ -26,7 +26,7 @@ import com.phonytive.astive.astivlet.AstivletResponse;
 import static java.lang.System.out;
 
 /**
- * Hello world example.
+ * Hello World example.
  *
  * @since 1.0.0
  */
