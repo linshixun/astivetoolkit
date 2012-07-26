@@ -1,20 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>examples</artifactId>
         <groupId>com.phonytive.astive</groupId>
         <version>1.0.0-M2</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>    
+    </parent>    
     <artifactId>handlingevents</artifactId>    
-    <packaging>jar</packaging>
     <name>Astive :: Examples :: Handling Events</name>
-    <url>http://www.phonytive.com</url>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-server</artifactId>
-            <version>${project.version}</version>            
+            <artifactId>astive-client</artifactId>
+            <version>[1.0.0-M2,)</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -23,13 +22,17 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
-            <version>${project.version}</version>            
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>astive-menu</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>astive-server</artifactId>
+            <version>[1.0.0-M2,)</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>   
 </project>

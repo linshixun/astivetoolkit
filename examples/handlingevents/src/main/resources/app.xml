@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <app>    
     <name>Handling Events</name>
-    <description>Ready to hear the monkeys?</description>
+    <description>Events Driven Example</description>
     <astivlet>
         <astivletId>HandlingEvents</astivletId>
         <class>com.phonytive.astive.examples.handlingevents.App</class>

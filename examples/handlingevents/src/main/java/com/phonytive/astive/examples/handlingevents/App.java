@@ -23,11 +23,11 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import com.phonytive.astive.menu.Engine;
 import com.phonytive.astive.menu.Menu;
+import com.phonytive.astive.menu.MenuException;
 import com.phonytive.astive.menu.MenuItem;
+import com.phonytive.astive.menu.MenuNavigator;
 import com.phonytive.astive.menu.event.*;
-import com.phonytive.astive.menu.exception.MenuException;
 import static java.lang.System.out;
 
 /**
@@ -40,7 +40,6 @@ public class App extends Astivlet {
     @Override
     public void service(AstivletRequest request, AstivletResponse response) {
         
-        @Say(function=SayFunction.DATE, gender=Gender.FEMALE)
         MenuItem menuItemA = new MenuItem("1", "menu-item-b-sound");
         menuItemA.addActionListener(new ActionListener() {
 
@@ -95,7 +94,7 @@ public class App extends Astivlet {
         out.print("response = ");
         out.println(response);
 
-        Engine e = new Engine(response);
+        MenuNavigator e = new MenuNavigator(response);
 
         try {
             e.run(root);
