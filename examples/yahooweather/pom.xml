@@ -15,7 +15,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>astive-client</artifactId>
-            <version>${project.version}</version>
+            <version>[1.0.0-alpha,)</version>
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>
@@ -34,6 +34,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
