@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -28,27 +28,36 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentFactory;
 import org.dom4j.io.SAXReader;
 
-
+/**
+ * Yahoo Weather example.
+ *
+ * @since 1.0.0
+ */
 public class YahooParser {
+
     private static Logger log = Logger.getLogger(YahooParser.class);
 
-    public Weather parse(InputStream inputStream) throws DocumentException  {
+    public Weather parse(InputStream inputStream) throws DocumentException {
         Weather weather = new Weather();
 
         log.info("Creating XML Reader");
-                
+
         SAXReader xmlReader = createXmlReader();
         Document doc = xmlReader.read(inputStream);
-        
+
         log.info("Parsing XML Response");
 
         weather.setCity(doc.valueOf("/rss/channel/yweather:location/@city"));
         weather.setRegion(doc.valueOf("/rss/channel/yweather:location/@region"));
-        weather.setCountry(doc.valueOf("/rss/channel/yweather:location/@country"));                
-        weather.setCondition(doc.valueOf("/rss/channel/item/yweather:condition/@text"));
-        weather.setTemp(doc.valueOf("/rss/channel/item/yweather:condition/@temp"));
+        weather.setCountry(doc.valueOf(
+                "/rss/channel/yweather:location/@country"));
+        weather.setCondition(doc.valueOf(
+                "/rss/channel/item/yweather:condition/@text"));
+        weather.setTemp(doc.valueOf(
+                "/rss/channel/item/yweather:condition/@temp"));
         weather.setChill(doc.valueOf("/rss/channel/yweather:wind/@chill"));
-        weather.setHumidity(doc.valueOf("/rss/channel/yweather:atmosphere/@humidity"));
+        weather.setHumidity(doc.valueOf(
+                "/rss/channel/yweather:atmosphere/@humidity"));
 
         return weather;
     }

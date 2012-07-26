@@ -23,6 +23,11 @@ import com.phonytive.astive.examples.ws.Weather;
 import com.phonytive.astive.examples.ws.WeatherAPI;
 import junit.framework.TestCase;
 
+/**
+ * Yahoo Weather example.
+ *
+ * @since 1.0.0
+ */
 public class WeatherAPITest extends TestCase {
 
     private String zip;
@@ -34,13 +39,13 @@ public class WeatherAPITest extends TestCase {
     }
 
     public void testWeatherAPI() throws Exception {
-        Weather w  = WeatherAPI.getWeather(zip);
+        Weather w = WeatherAPI.getWeather(zip);
         String country = w.getCountry();
         String region = w.getRegion();
-        String city = w.getCity();        
-        
-        assert(country.equals("US"));
-        assert(region.equals("NY"));
-        assert(city.equals("Spring Valley"));
+        String city = w.getCity();
+
+        assert (country.equals("US"));
+        assert (region.equals("NY"));
+        assert (city.equals("Spring Valley"));
     }
 }

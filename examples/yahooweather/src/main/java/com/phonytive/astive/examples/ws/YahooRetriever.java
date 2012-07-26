@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,11 +26,17 @@ import java.net.URL;
 import java.net.URLConnection;
 import org.apache.log4j.Logger;
 
+/**
+ * Yahoo Weather example.
+ *
+ * @since 1.0.0
+ */
 public class YahooRetriever {
 
     private static Logger log = Logger.getLogger(YahooRetriever.class);
 
-    public InputStream retrieve(String zipcode) throws MalformedURLException, IOException {
+    public InputStream retrieve(String zipcode)
+            throws MalformedURLException, IOException {
         log.info("Retrieving Weather Data");
 
         String url = "http://weather.yahooapis.com/forecastrss?p=" + zipcode;

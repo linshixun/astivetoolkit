@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -22,16 +22,16 @@ package com.phonytive.astive.examples.ws;
 import java.io.InputStream;
 
 /**
+ * Yahoo Weather example.
  *
- * @author Pedro Sanders <psanders@kaffeineminds.com>
- * @since 0.1
- * @version $Id$
+ * @since 1.0.0
  */
 public class WeatherAPI {
 
-    static public Weather getWeather(String zip) throws Exception {
+    public static Weather getWeather(String zip) throws Exception {
         // Retrieve Data
         InputStream dataIn = new YahooRetriever().retrieve(zip);
+
         // Parse Data
         Weather weather = new YahooParser().parse(dataIn);
 

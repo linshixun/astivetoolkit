@@ -10,6 +10,7 @@
   <artifactId>yahooweather</artifactId>
   <name>Astive :: Examples :: Yahoo Weather</name>
   <build>
+    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
@@ -36,7 +37,7 @@
     <dependency>
       <groupId>com.phonytive.astive</groupId>
       <artifactId>astive-client</artifactId>
-      <version>1.0.0-M2</version>
+      <version>[1.0.0-alpha,)</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

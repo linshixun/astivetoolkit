@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -21,6 +21,7 @@ package com.phonytive.astive.examples.ws;
 
 
 /**
+ * Yahoo Weather example.
  *
  * @since 1.0.0
  */
@@ -91,7 +92,7 @@ public class Weather {
     public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("weather info:");
@@ -100,22 +101,23 @@ public class Weather {
         sb.append("\n");
         sb.append("city: ");
         sb.append(getCity());
-        sb.append("\n");        
+        sb.append("\n");
         sb.append("region: ");
         sb.append(getRegion());
         sb.append("\n");
         sb.append("condition: ");
         sb.append(getCondition());
-        sb.append("\n");        
+        sb.append("\n");
         sb.append("chill: ");
         sb.append(getChill());
-        sb.append("\n");        
+        sb.append("\n");
         sb.append("temp: ");
         sb.append(getTemp());
-        sb.append("\n");    
+        sb.append("\n");
         sb.append("humidity: ");
         sb.append(getHumidity());
-        sb.append("\n");    
+        sb.append("\n");
+
         return sb.toString();
     }
 }

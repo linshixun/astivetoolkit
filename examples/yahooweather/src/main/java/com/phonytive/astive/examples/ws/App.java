@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -25,15 +25,14 @@ import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 
 /**
- * 
- * YahooWeather example.
- * 
+ * Yahoo Weather example.
+ *
  * @since 1.0.0
  */
 public class App extends Astivlet {
 
-    private String zip;
     private int maxFail = 3;
+    private String zip;
     private String enterZip = "enter-zip";
     private String invalidZipCode = "invalid-zip-code";
     private String pleaseWait = "please-wait";
@@ -46,6 +45,7 @@ public class App extends Astivlet {
     public void service(AstivletRequest request, AstivletResponse response) {
         try {
             response.answer();
+
             int failCount = 0;
 
             while (true) {
@@ -54,19 +54,20 @@ public class App extends Astivlet {
                 // Wait ws response.
                 response.streamFile(pleaseWait);
 
-                if (zip != null && zip.length() == 5) {
+                if ((zip != null) && (zip.length() == 5)) {
+                    // Invoking Yahoo Weather api.
                     Weather weather = WeatherAPI.getWeather(zip);
 
                     // For the zip code: ...
                     response.streamFile(forZipcode);
                     response.sayDigits(zip);
                     response.streamFile("silence/2");
-                    
+
                     // The temp is
                     response.streamFile(theTemperature);
                     response.sayDigits(weather.getTemp());
                     response.streamFile("silence/2");
-                    
+
                     // The humidity is                    
                     response.streamFile(theHumidity);
                     response.sayDigits(weather.getHumidity());
@@ -74,9 +75,11 @@ public class App extends Astivlet {
                 } else {
                     response.streamFile(invalidZipCode);
                     failCount++;
+
                     if (failCount == maxFail) {
                         break;
                     }
+
                     continue;
                 }
 
@@ -85,11 +88,13 @@ public class App extends Astivlet {
 
                 if (answer == '1') {
                     failCount = 0;
+
                     continue;
                 } else {
                     break;
                 }
             }
+
             // Ends the call
             response.hangup();
         } catch (AgiException ex) {
