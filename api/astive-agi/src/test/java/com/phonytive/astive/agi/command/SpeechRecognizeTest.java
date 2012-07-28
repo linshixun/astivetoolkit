@@ -20,13 +20,11 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.SpeechRecognize;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
-
 public class SpeechRecognizeTest extends TestCase {
+
     public SpeechRecognizeTest(String testName) {
         super(testName);
     }

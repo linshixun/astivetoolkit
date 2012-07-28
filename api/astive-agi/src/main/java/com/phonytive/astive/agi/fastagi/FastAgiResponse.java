@@ -19,15 +19,11 @@
  */
 package com.phonytive.astive.agi.fastagi;
 
-import com.phonytive.astive.agi.AgiCommandHandler;
-import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.AgiResponse;
-import com.phonytive.astive.agi.ChannelStatus;
+import com.phonytive.astive.agi.*;
 import com.phonytive.astive.agi.command.*;
-
+import com.phonytive.astive.util.AppLocale;
 import java.util.Date;
 import java.util.TimeZone;
-
 
 /**
  * Final implementation of {@link AgiResponse} use for Fastagi servers.
@@ -37,6 +33,7 @@ import java.util.TimeZone;
  * @see AstivletResponse
  */
 public class FastAgiResponse implements AgiResponse {
+
     /**
      * Handle communication with Asterisk, in the lowest level. Full info in
      * {@link AgiCommandHandler}.
@@ -44,7 +41,8 @@ public class FastAgiResponse implements AgiResponse {
     private AgiCommandHandler cHandler;
 
     /**
-     * Create a new FastAgiResponse with a {@link AgiCommandHandler} as a parameter.
+     * Create a new FastAgiResponse with a {@link AgiCommandHandler} as a
+     * parameter.
      *
      * @param cHandler command handler.
      */
@@ -86,7 +84,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public ChannelStatus getChannelStatus(String channel)
-        throws AgiException {
+            throws AgiException {
         GetChannelStatus command = new GetChannelStatus(channel);
         int code = cHandler.sendAgiCommand(command).getStatus();
 
@@ -107,7 +105,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char controlStreamFile(String file, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         ControlStreamFile command = new ControlStreamFile(file);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -118,7 +116,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char controlStreamFile(String file, String escapeDigits, int offset)
-        throws AgiException {
+            throws AgiException {
         ControlStreamFile command = new ControlStreamFile(file, escapeDigits,
                 offset);
 
@@ -130,8 +128,8 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char controlStreamFile(String file, String escapeDigits, int offset,
-        char forwardDigit, char rewindDigit, char pauseDigit)
-        throws AgiException {
+            char forwardDigit, char rewindDigit, char pauseDigit)
+            throws AgiException {
         ControlStreamFile command = new ControlStreamFile(file, escapeDigits,
                 offset, forwardDigit, rewindDigit, pauseDigit);
 
@@ -143,7 +141,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void databaseDel(String family, String key)
-        throws AgiException {
+            throws AgiException {
         DatabaseDel command = new DatabaseDel(family, key);
         cHandler.sendAgiCommand(command);
     }
@@ -162,7 +160,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void databaseDelTree(String family, String keyTree)
-        throws AgiException {
+            throws AgiException {
         DatabaseDelTree command = new DatabaseDelTree(family, keyTree);
         cHandler.sendAgiCommand(command);
     }
@@ -172,7 +170,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public String databaseGet(String family, String key)
-        throws AgiException {
+            throws AgiException {
         DatabaseGet command = new DatabaseGet(family, key);
 
         return cHandler.sendAgiCommand(command).getResult();
@@ -183,7 +181,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void databasePut(String family, String key, String value)
-        throws AgiException {
+            throws AgiException {
         DatabasePut command = new DatabasePut(family, key, value);
         cHandler.sendAgiCommand(command);
     }
@@ -202,7 +200,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void exec(String application, String... args)
-        throws AgiException {
+            throws AgiException {
         Exec command = new Exec(application, args);
         cHandler.sendAgiCommand(command);
     }
@@ -232,7 +230,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public String getData(String file, int timeout, int maxDigits)
-        throws AgiException {
+            throws AgiException {
         GetData command = new GetData(file, timeout, maxDigits);
 
         return cHandler.sendAgiCommand(command).getResult();
@@ -253,7 +251,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public String getFullVariable(String variable, String channel)
-        throws AgiException {
+            throws AgiException {
         GetFullVariable command = new GetFullVariable(variable, channel);
 
         return cHandler.sendAgiCommand(command).getResult();
@@ -264,7 +262,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char getOption(String file, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         GetOption command = new GetOption(file, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -275,7 +273,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char getOption(String file, String escapeDigits, int timeout)
-        throws AgiException {
+            throws AgiException {
         GetOption command = new GetOption(file, escapeDigits, timeout);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -296,7 +294,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void gosub(String context, String extension, String priority)
-        throws AgiException {
+            throws AgiException {
         GoSub command = new GoSub(context, extension, priority);
         cHandler.sendAgiCommand(command);
     }
@@ -306,7 +304,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void gosub(String context, String extension, String priority,
-        String... arguments) throws AgiException {
+            String... arguments) throws AgiException {
         GoSub command = new GoSub(context, extension, priority, arguments);
         cHandler.sendAgiCommand(command);
     }
@@ -374,7 +372,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void recordFile(String file, String format)
-        throws AgiException {
+            throws AgiException {
         RecordFile command = new RecordFile(file, format);
         cHandler.sendAgiCommand(command);
     }
@@ -384,7 +382,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char recordFile(String file, String format, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         RecordFile command = new RecordFile(file, format, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -395,7 +393,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char recordFile(String file, String format, String escapeDigits,
-        int timeout) throws AgiException {
+            int timeout) throws AgiException {
         RecordFile command = new RecordFile(file, format, escapeDigits, timeout);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -406,8 +404,8 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char recordFile(String file, String format, String escapeDigits,
-        int timeout, int offset, boolean beep, int maxSilence)
-        throws AgiException {
+            int timeout, int offset, boolean beep, int maxSilence)
+            throws AgiException {
         RecordFile command = new RecordFile(file, format, escapeDigits,
                 timeout, offset, beep, maxSilence);
 
@@ -428,7 +426,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayAlpha(String text, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayAlpha command = new SayAlpha(text);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -448,7 +446,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayDate(Date date, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayDate command = new SayDate(date, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -468,7 +466,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayDatetime(Date datetime, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayDatetime command = new SayDatetime(datetime, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -479,7 +477,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayDatetime(Date datetime, String escapeDigits, String format)
-        throws AgiException {
+            throws AgiException {
         SayDatetime command = new SayDatetime(datetime, escapeDigits, format);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -490,7 +488,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayDatetime(Date datetime, String escapeDigits, String format,
-        TimeZone timeZone) throws AgiException {
+            TimeZone timeZone) throws AgiException {
         SayDatetime command = new SayDatetime(datetime, escapeDigits, format,
                 timeZone);
 
@@ -511,7 +509,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayDigits(String digits, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayDigits command = new SayDigits(digits, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -531,7 +529,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayNumber(int number, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayNumber command = new SayNumber(number, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -551,7 +549,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayPhonetic(String text, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayPhonetic command = new SayPhonetic(text, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -571,7 +569,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char sayTime(Date time, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         SayTime command = new SayTime(time, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -645,7 +643,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void musicOnHold(Boolean on, String musicClass)
-        throws AgiException {
+            throws AgiException {
         SetMusic command = new SetMusic(on, musicClass);
         cHandler.sendAgiCommand(command);
     }
@@ -672,9 +670,24 @@ public class FastAgiResponse implements AgiResponse {
      * {@inheritDoc}
      */
     @Override
+    public void speechCreate() throws AgiException {
+        speechCreate("");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void speechCreate(String engine) throws AgiException {
         SpeechCreate command = new SpeechCreate(engine);
-        cHandler.sendAgiCommand(command);
+        AgiCommandReply acr = cHandler.sendAgiCommand(command);
+        if (acr.getResultCode() != 1) {
+            if (engine == null || "".equals(engine)) {
+                throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObjectForDefaultEngine"));
+            } else {
+                throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObject", new Object[]{engine}));
+            }
+        }
     }
 
     /**
@@ -700,9 +713,23 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public void speechLoadGrammar(String name, String path)
-        throws AgiException {
+            throws AgiException {
         SpeechLoadGrammar command = new SpeechLoadGrammar(name, path);
         cHandler.sendAgiCommand(command);
+    }
+
+    /**
+     *
+     * @param prompt
+     * @param timeout
+     * @return
+     * @throws AgiException
+     */
+    public SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException {
+        SpeechRecognize command = new SpeechRecognize(prompt, timeout);
+        AgiCommandReply reply = cHandler.sendAgiCommand(command);
+        SpeechRecognitionResult result = new SpeechRecognitionResult(reply);
+        return result;
     }
 
     /**
@@ -737,7 +764,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char streamFile(String file, String escapeDigits)
-        throws AgiException {
+            throws AgiException {
         StreamFile command = new StreamFile(file, escapeDigits);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
@@ -748,7 +775,7 @@ public class FastAgiResponse implements AgiResponse {
      */
     @Override
     public char streamFile(String file, String escapeDigits, int offset)
-        throws AgiException {
+            throws AgiException {
         StreamFile command = new StreamFile(file, escapeDigits, offset);
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();

@@ -501,6 +501,8 @@ public interface AgiResponse {
 
     void speechActivateGrammar(String name) throws AgiException;
 
+    void speechCreate() throws AgiException;
+    
     void speechCreate(String engine) throws AgiException;
 
     void speechDeactivateGrammar(String name) throws AgiException;
@@ -508,9 +510,9 @@ public interface AgiResponse {
     void speechDestroy() throws AgiException;
 
     void speechLoadGrammar(String name, String path) throws AgiException;
+    
+    SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException;
 
-    // TODO: Fix this !!!
-    //SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException;
     void speechSet(String name, String value) throws AgiException;
 
     void speechUnloadGrammar(String name) throws AgiException;

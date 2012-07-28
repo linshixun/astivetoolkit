@@ -22,7 +22,7 @@ package com.phonytive.astive.astivlet;
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.agi.ChannelStatus;
-
+import com.phonytive.astive.agi.SpeechRecognitionResult;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -555,6 +555,9 @@ public class AstivletResponse implements AgiResponse {
         response.setPriority(priority);
     }
 
+    
+    
+    
     /**
      * {@inheritDoc}
      */
@@ -563,6 +566,14 @@ public class AstivletResponse implements AgiResponse {
         response.speechActivateGrammar(name);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void speechCreate() throws AgiException {
+        response.speechCreate("");
+    }    
+    
     /**
      * {@inheritDoc}
      */
@@ -596,6 +607,18 @@ public class AstivletResponse implements AgiResponse {
         response.speechLoadGrammar(name, path);
     }
 
+    /**
+     * 
+     * @param prompt
+     * @param timeout
+     * @return
+     * @throws AgiException 
+     */
+    @Override
+    public SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException {                        
+        return response.speechRecognize(prompt, timeout);
+    }    
+    
     /**
      * {@inheritDoc}
      */
