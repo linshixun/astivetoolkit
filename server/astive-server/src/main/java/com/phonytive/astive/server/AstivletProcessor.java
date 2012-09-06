@@ -23,7 +23,6 @@ import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 import com.phonytive.astive.util.AppLocale;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
@@ -51,31 +50,36 @@ public class AstivletProcessor {
             AstDB astDB = MyAstDB.getInstance();
             String script = "/" + request.getScript();
 
-            if(script.split("\\?").length > 1) {
+            if (script.split("\\?").length > 1) {
                 script = script.split("\\?")[0];
             }
-            
+
             Astivlet astivlet = astDB.getAstivlet(script);
 
             Class[] classParamTypes = new Class[2];
             classParamTypes[0] = AstivletRequest.class;
             classParamTypes[1] = AstivletResponse.class;
-            
+
             Class c = Astivlet.class;
-            
+
             Method m;
             m = c.getDeclaredMethod("service", classParamTypes);
             m.setAccessible(true);
-            m.invoke(astivlet, new Object[]{request, response});            
-        } catch (NoSuchMethodException ex) {            
+            m.invoke(astivlet, new Object[]{request, response});
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
             logger.warn(ex.getMessage());
-        } catch (SecurityException ex) {            
+        } catch (SecurityException ex) {
+            ex.printStackTrace();
             logger.warn(ex.getMessage());
-        } catch (IllegalAccessException ex) {            
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
             logger.warn(ex.getMessage());
-        } catch (IllegalArgumentException ex) {            
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
             logger.warn(ex.getMessage());
         } catch (InvocationTargetException ex) {            
+            ex.printStackTrace();
             logger.warn(ex.getMessage());
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("resourceNotExist",
@@ -99,7 +103,7 @@ public class AstivletProcessor {
             Class[] classParamTypes = new Class[2];
             classParamTypes[0] = AstivletRequest.class;
             classParamTypes[1] = AstivletResponse.class;
-            
+
             Class c = Astivlet.class;
             Method m = null;
 

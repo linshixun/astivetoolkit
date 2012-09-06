@@ -17,27 +17,20 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.agi.command;
-
-import com.phonytive.astive.agi.annotation.AgiCommand;
-import java.io.Serializable;
-
+package com.phonytive.astive.menu.command;
 
 /**
- * Answers channel if not already in answer state.
+ * Abstract class.
  *
  * @since 1.0.0
  */
-@AgiCommand(command = "ANSWER")
-public class Answer implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = -4939433835861816194L;
+public class Say {
+    private String message;
+    private String escapeDigits;
+    private String gender;
 
-    /**
-     * Create a new Answer object.
-     */
-    public Answer() {
-    }
+    public Say(String message, String escapeDigits) {
+        this.message = message;
+        this.escapeDigits = escapeDigits;
+    }    
 }

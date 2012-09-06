@@ -34,17 +34,8 @@ public class AppObjTest extends TestCase {
     public AppObjTest(String testName) {
         super(testName);
     }
-    
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-    
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
         
+    // TODO: find a better way to test this !!!
     public void testAppObj() throws AstiveException {
         AstObj astObj = 
                 new AstObj("helloworld-1.0.0-M2.jar","/home/psanders/Projects/PhonyTive"

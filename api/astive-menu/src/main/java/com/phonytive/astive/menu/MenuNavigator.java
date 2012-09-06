@@ -21,6 +21,7 @@ package com.phonytive.astive.menu;
 
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
+import com.phonytive.astive.agi.CommandProcessor;
 import com.phonytive.astive.menu.action.Action;
 import com.phonytive.astive.menu.event.*;
 import java.util.*;
@@ -32,7 +33,6 @@ import org.apache.log4j.Logger;
  */
 public class MenuNavigator {
     // A usual logging class
-
     private static final Logger logger = Logger.getLogger(MenuNavigator.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;
@@ -104,42 +104,67 @@ public class MenuNavigator {
     }
 
     private String getData(String file, int milliSecondsWatting, int maxDigits,
-            AgiResponse agiResponse, MenuItem item)
+            AgiResponse agiResponse, MenuItem item, char c)
             throws MenuException, AgiException {
-
-        // TODO: 
-        char c = agiResponse.streamFile(file, "0123456789*#");
-        Menu menu = ((Menu) item.getParent());
-
-        if (c == 0x0 /*
-                 * && milliSecondsWatting == 0
-                 */) {
-            try {
-                Thread.sleep(milliSecondsWatting);
-            } catch (InterruptedException ex) {
-                logger.warn(ex.getMessage());
-            }
-
-            return "(timeout)";
+        
+        Menu menu;
+        
+        System.out.println("DBG 1");
+        
+        if(item.getParent() != null) {
+            System.out.println("DBG 2");
+            menu = ((Menu) item.getParent());
+        } else {
+            System.out.println("DBG 3");
+            menu = getCurrentMenu();
         }
 
-        KeyEvent evt = new KeyEvent(item, Digit.getDigit("" + c));
+        // Has not press any key
+        if(c == 0x0) {
+            System.out.println("DBG 4");
+            c = agiResponse.streamFile(file, "0123456789*#");
+
+            if (c == 0x0 /*
+                    * && milliSecondsWatting == 0
+                    */) {
+                System.out.println("DBG 6");
+                try {
+                    Thread.sleep(milliSecondsWatting);
+                } catch (InterruptedException ex) {
+                    logger.warn(ex.getMessage());
+                }
+                return "(timeout)";
+            }
+        
+        } else {
+            System.out.println("DBG 5");
+            System.out.println("menu.getInterDigitsTimeout() = " 
+                    + menu.getInterDigitsTimeout());
+            c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
+        }
+        
+        KeyEvent evt = new KeyEvent(item, Digit.getDigit(c));
         item.fireKeyEvent_keyTyped(evt);
 
+        System.out.println("DBG 7");
+        
         String result = "" + c;
 
         while (true) {
             if ((result.length() == maxDigits) || (c == '#')) {
+                System.out.println("DBG 8");
                 return result;
             }
 
             c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
 
             if (c != 0x0) {
+                System.out.println("DBG 9");
                 result += ("" + c);
-                evt = new KeyEvent(item, Digit.getDigit("" + c));
+                evt = new KeyEvent(item, Digit.getDigit(c));
                 item.fireKeyEvent_keyTyped(evt);
             } else {
+                System.out.println("DBG 10");
                 InterDigitsTimeoutEvent event =
                         new InterDigitsTimeoutEvent(item, result, menu.getInterDigitsTimeout());
                 menu.fireInterDigitsTimeoutListener_timeoutPerform(event);
@@ -147,6 +172,7 @@ public class MenuNavigator {
                 break;
             }
         }
+        System.out.println("DBG 11");
 
         return result;
     }
@@ -157,7 +183,6 @@ public class MenuNavigator {
                 return item;
             }
         }
-
         return null;
     }
 
@@ -205,9 +230,9 @@ public class MenuNavigator {
     }
     
     /**
-     * <p>Start the menu excecution.</p>
+     * <p>Start the menu execution.</p>
      *
-     * @param menu and object containing all menu and menu items childs
+     * @param menu and object containing all menu and menu items.
      */
     public void run(Menu menu) throws MenuException, AgiException {
         String digits = null;
@@ -237,13 +262,39 @@ public class MenuNavigator {
         }
 
         if (((menu.isGreetingsPlayed() == false) || menu.isPlayGreetingsAllways())
-                && (menu.getGreetingsFile() != null) && !menu.getGreetingsFile().equals("")) {
+                && (menu.getGreetingsFile() != null) && !menu.getGreetingsFile().isEmpty()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Playing menu intro: " + menu.getGreetingsFile());
             }
-
-            digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu);
+            char c = 0x0;
+            digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu, c);
             menu.setGreetingsPlayed(true);
+        }
+
+        if ((digits == null) || digits.equals("(timeout)")) {
+            List<VoiceComposition> voiceCompositions = menu.getVoiceCompositions();
+            Iterator<VoiceComposition> vcIterator = voiceCompositions.iterator();
+            char c = 0;
+            while(vcIterator.hasNext()) {
+                VoiceComposition cVc = vcIterator.next();
+                Iterator<Object> commands = cVc.getCommands().iterator();                
+                while(commands.hasNext()) {
+                    Object o = commands.next();                                        
+                    String cmd = CommandProcessor.buildCommand(o);
+                    c = agiResponse.sendAgiCommand(cmd).getResultCodeAsChar();
+                    if(c != 0x0) {
+                        KeyEvent evt = new KeyEvent(menu, Digit.getDigit(c));
+                        menu.fireKeyEvent_keyTyped(evt);
+                        
+                        digits = getData(menu.getFile(), 0, 
+                                menu.getMaxDigits(), agiResponse, menu, c);
+                        break;
+                    }
+                }                
+                if (c != 0x0) {
+                    break;
+                }
+            }
         }
 
         if ((digits == null) || digits.equals("(timeout)")) {
@@ -251,8 +302,8 @@ public class MenuNavigator {
                 logger.debug("Playing menu options");
             }
 
-            int pos = 0;
-
+            int pos = 0;            
+            
             for (String opts : childsKeys) {
                 MenuItem option = getMenuItem(menu, opts);
                 int millisecondsWatting = menu.getInterDigitsTimeout();
@@ -267,26 +318,12 @@ public class MenuNavigator {
                     int msw;
 
                     msw = millisecondsWatting;
-
                     
                     if(!option.getFile().isEmpty()) {
+                        char c = 0x0;
                         digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
-                            menu);
-                    }
-                    
-                    if ((digits != null) && !digits.equals("(timeout)")) {
-                        List<VoiceComposition> voiceCompositions = menu.getVoiceCompositions();
-                        Iterator<VoiceComposition> vcIterator = voiceCompositions.iterator();
-                        while(vcIterator.hasNext()) {
-                            VoiceComposition cVc = vcIterator.next();
-                            Iterator<Object> commands = cVc.getCommands().iterator();
-                            
-                            while(commands.hasNext()) {
-                                Object o = commands.next();
-                                
-                            }
-                        }
-                    }                    
+                            menu, c);
+                    }                                    
                 }
 
                 if ((digits != null) && !digits.equals("(timeout)")) {
@@ -319,12 +356,12 @@ public class MenuNavigator {
         if ((digits == null) || digits.equals("(timeout)")) {
             // XXX: No necesariamente timeout, puede ser tambien que ingreso
             // ???
-            // signo de número.
+            // signo de número.            
             if (digits == null) {
                 FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
                 menu.fireFailListener_failurePerform(evt);
             } else if (digits.equals("(timeout)")) {
-                // TODO
+                // WARNNING:
                 //menu.fireTimeoutListener_timeoutPerform(null);
             }
 
@@ -336,12 +373,13 @@ public class MenuNavigator {
             menu.incrementFailuresCount();
 
             if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
-                run(menu);
-
+                run(menu);                
                 return;
             }
 
-            agiResponse.streamFile(menu.getExitFile());
+            if(menu.getExitFile() != null && !menu.getExitFile().isEmpty()) {
+                agiResponse.streamFile(menu.getExitFile());
+            }
 
             return;
         }
@@ -373,21 +411,19 @@ public class MenuNavigator {
             }
 
             return;
-        } else {
+        } else {            
             // Invalid option
             agiResponse.streamFile(menu.getInvalidDigitFile());
             menu.incrementFailuresCount();
 
             if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
                 run(menu);
-
                 return;
             }
 
             agiResponse.streamFile(menu.getExitFile());
-
             return;
-        }
+        }        
     }
 
     private void setCurrentMenu(Menu currentMenu) {
@@ -400,5 +436,5 @@ public class MenuNavigator {
 
     private Boolean isAutoAnswer() {
         return autoAnswer;
-    }
+    }    
 }

@@ -19,10 +19,7 @@
  */
 package com.phonytive.astive.astivlet;
 
-import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.AgiResponse;
-import com.phonytive.astive.agi.ChannelStatus;
-import com.phonytive.astive.agi.SpeechRecognitionResult;
+import com.phonytive.astive.agi.*;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -683,5 +680,10 @@ public class AstivletResponse implements AgiResponse {
     @Override
     public char waitForDigit(int interDigitsTimeout) throws AgiException {
         return response.waitForDigit(interDigitsTimeout);
+    }
+
+    @Override
+    public AgiCommandReply sendAgiCommand(String cmd) throws AgiException {
+        return response.sendAgiCommand(cmd);
     }
 }

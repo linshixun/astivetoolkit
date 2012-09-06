@@ -40,7 +40,7 @@ public class AgiCommandHandler {
      *
      * @param conn an object that implement {@link Connection} interface.
      */
-    public AgiCommandHandler(Connection conn) {
+    public AgiCommandHandler(Connection conn) {        
         this.conn = conn;
     }
 
@@ -144,7 +144,11 @@ public class AgiCommandHandler {
     public AgiCommandReply sendAgiCommand(Object command)
             throws AgiException {
         try {
-            conn.write(CommandProcessor.buildCommand(command));
+            if(command instanceof String) {
+                conn.write((String)command);                
+            } else {
+                conn.write(CommandProcessor.buildCommand(command));
+            }
         } catch (IOException ex) {
             throw new AgiException();
         }

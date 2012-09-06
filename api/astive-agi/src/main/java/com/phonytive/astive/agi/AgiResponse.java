@@ -529,4 +529,6 @@ public interface AgiResponse {
     void verbose(String message, int level) throws AgiException;
 
     char waitForDigit(int interDigitsTimeout) throws AgiException;
+    
+    AgiCommandReply sendAgiCommand(String cmd) throws AgiException;
 }

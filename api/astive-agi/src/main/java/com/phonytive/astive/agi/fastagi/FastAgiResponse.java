@@ -808,4 +808,9 @@ public class FastAgiResponse implements AgiResponse {
 
         return cHandler.sendAgiCommand(command).getResultCodeAsChar();
     }
+
+    @Override
+    public AgiCommandReply sendAgiCommand(String cmd) throws AgiException {
+        return cHandler.sendAgiCommand(cmd);
+    }
 }

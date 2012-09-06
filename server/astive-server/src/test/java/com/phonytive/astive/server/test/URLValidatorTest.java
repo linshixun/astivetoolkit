@@ -17,10 +17,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.phonytive.astive.server.test;
 
 import com.phonytive.astive.server.utils.URLValidator;
@@ -36,18 +32,7 @@ public class URLValidatorTest extends TestCase {
         super(testName);
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     public void testValidateURLs() {
-
         assert (URLValidator.isValidURL("/") == true);
         assert (URLValidator.isValidURL("/*") == false);
         assert (URLValidator.isValidURL("/2") == false);
@@ -60,6 +45,5 @@ public class URLValidatorTest extends TestCase {
         assert (URLValidator.isValidURL("*.ast2") == true);
         assert (URLValidator.isValidURL("*.ast?%$") == true);
         assert (URLValidator.isValidURL("abc.ast?%$") == false);
-
     }
 }

@@ -20,6 +20,7 @@
 package com.phonytive.astive.menu;
 
 import com.phonytive.astive.agi.command.*;
+import com.phonytive.astive.menu.annontation.Action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
@@ -35,16 +36,18 @@ public class VoiceComposer {
     private static String format;
     private static TimeZone timeZone;
     private static VoiceComposer instance = new VoiceComposer();
-
+    private static int offset;
+        
     private static void reset() {
         VoiceComposer.escapeDigits = "";
         VoiceComposer.commands = new ArrayList();
         VoiceComposer.format = "";
         VoiceComposer.timeZone = null;
+        VoiceComposer.offset = 0;
     }
 
+    // hide the constructor
     private VoiceComposer() {
-        // hide the constructor
         commands = new ArrayList();
     }
 
@@ -60,6 +63,11 @@ public class VoiceComposer {
 
     public static VoiceComposer withTimeZone(TimeZone timeZone) {
         VoiceComposer.timeZone = timeZone;
+        return instance;
+    }
+    
+    public static VoiceComposer withOffset(int offset) {
+        VoiceComposer.offset = offset;
         return instance;
     }
 
@@ -165,6 +173,13 @@ public class VoiceComposer {
         return false;
     }
 
+    private static boolean hasOffset() {
+        if (VoiceComposer.offset == 0 ) {
+            return true;
+        }
+        return false;
+    }
+    
     public static VoiceComposition create() {
         VoiceComposition vc = new VoiceComposition(VoiceComposer.commands);
         VoiceComposer.reset();

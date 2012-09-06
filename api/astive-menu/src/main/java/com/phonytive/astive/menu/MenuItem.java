@@ -58,8 +58,7 @@ public class MenuItem {
     /**
      * <p>Creates a new instance of MenuItem</p>
      */
-    public MenuItem(String digits, String file) {
-        //this.parent = parent;
+    public MenuItem(String digits, String file) {        
         this.digits = digits;
         this.file = file;
         voiceCompositionList = new ArrayList<VoiceComposition>();
@@ -69,7 +68,6 @@ public class MenuItem {
      * <p>Creates a new instance of MenuItem</p>
      */
     public MenuItem(String digits, String file, Action action) {
-        //this.parent = parent;
         this.digits = digits;
         this.file = file;
         this.action = action;
@@ -120,11 +118,15 @@ public class MenuItem {
      * @param voiceComposition 
      */
     public void addVoiceComposition(VoiceComposition voiceComposition) {
-        voiceCompositionList.add(voiceComposition);
+        voiceCompositionList.add(voiceComposition);        
     }
     
     public List<VoiceComposition> getVoiceCompositions() {
         return voiceCompositionList;
+    }
+    
+    public void removeVoiceComposition(VoiceComposition voiceComposition) {
+        voiceCompositionList.remove(voiceComposition);
     }
     
     /**
@@ -265,6 +267,10 @@ public class MenuItem {
         return parent;
     }
 
+    public void setParent(MenuItem parent) {
+        this.parent = parent; 
+    }
+    
     /**
      * DOCUMENT ME!
      *

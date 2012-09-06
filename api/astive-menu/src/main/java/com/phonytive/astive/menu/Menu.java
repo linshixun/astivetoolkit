@@ -154,7 +154,7 @@ public class Menu extends MenuItem {
      *
      * @param digits DOCUMENT ME!
      */
-    public void checkDigits(String digits) {
+    protected void checkDigits(String digits) {
         for (MenuItem m : getChilds()) {
             if (m.getDigits().equals(digits)) {
                 throw new DuplicatedDigitsException();
@@ -245,7 +245,7 @@ public class Menu extends MenuItem {
     /**
      * @return the failuresCount
      */
-    public int getFailuresCount() {
+    protected int getFailuresCount() {
         return failuresCount;
     }
 
@@ -298,34 +298,28 @@ public class Menu extends MenuItem {
     /**
      * @return the maxTimeouts
      */
-    public int getMaxTimeouts() {
+    protected int getMaxTimeouts() {
         return maxTimeouts;
     }
 
     /**
-     * @return the timeout
-     */
-    //public int getTimeout() {
-    //  return timeout;
-    //}
-    /**
      * @return the timeoutCount
      */
-    public int getTimeoutCount() {
+    protected int getTimeoutCount() {
         return timeoutCount;
     }
 
     /**
      * DOCUMENT ME!
      */
-    public void incremenTimeoutCount() {
+    protected void incremenTimeoutCount() {
         setTimeoutCount(getTimeoutCount() + 1);
     }
 
     /**
      * DOCUMENT ME!
      */
-    public void incrementFailuresCount() {
+    protected void incrementFailuresCount() {
         setFailuresCount(getFailuresCount() + 1);
     }
 
@@ -513,13 +507,7 @@ public class Menu extends MenuItem {
         this.playGreetingsAllways = playGreetingsAllways;
     }
 
-    /**
-     * @param timeout the timeout to set
-     */
-    //public void setTimeout(int timeout) {
-    //  this.timeout = timeout;
-    //}
-    public void setTimeoutCount(int timeoutCount) {
+    protected void setTimeoutCount(int timeoutCount) {
         this.timeoutCount = timeoutCount;
     }
 

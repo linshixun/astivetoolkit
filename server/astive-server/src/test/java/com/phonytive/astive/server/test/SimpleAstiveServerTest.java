@@ -51,32 +51,11 @@ public class SimpleAstiveServerTest extends TestCase {
   /**
    * DOCUMENT ME!
    *
-   * @throws Exception DOCUMENT ME!
-   */
-  @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws Exception DOCUMENT ME!
-   */
-  @Override
-  protected void tearDown() throws Exception {
-    super.tearDown();
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
    * @throws SystemException DOCUMENT ME!
    * @throws IOException DOCUMENT ME!
    */
   public void testSimpleAstiveServer() throws SystemException, IOException {
-      
-      
+
         Thread t = new Thread(new Runnable() {
 
             @Override

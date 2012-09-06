@@ -17,36 +17,30 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.server.test;
+package com.phonytive.astive.examples.speechrecognition;
 
 import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.SpeechRecognitionResult;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import static java.lang.System.out;
 
-/**
- * Final implementation for {@link Astivlet} class.
- * 
- * @since 1.0.0
- */
-@Deprecated
-public class MyAstivlet extends Astivlet {
+public class App extends Astivlet {
 
-    /**
-     * Entry point for {@link Astivlet}.
-     *
-     * @param request info sent from Asterisk server.
-     * @param response info to send to Asterisk.
-     */
     @Override
     public void service(AstivletRequest request, AstivletResponse response) {
         try {
             response.answer();
-            String data = response.getData("tt-monkeys");            
+            
+            response.speechCreate();
+            response.speechLoadGrammar("digits", "");
+            response.speechActivateGrammar("digits");
+            SpeechRecognitionResult srr  = response.speechRecognize("hello-world", 12);            
+            response.speechDeactivateGrammar("digits");
+            
             response.hangup();
         } catch (AgiException ex) {
-            out.println(ex.getMessage());
+            // TODO: Do something intersting here !
         }
     }
 }

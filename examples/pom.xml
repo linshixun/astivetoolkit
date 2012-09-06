@@ -11,8 +11,10 @@
     <name>Astive :: Examples</name>
     <modules>
         <module>helloworld</module>
-        <module>handlingevents</module>
-        <module>agitdd</module>
-        <module>yahooweather</module>
-  </modules>
+        <module>handling-events</module>
+        <module>agi-tdd</module>
+        <module>yahoo-weather</module>
+        <module>speechrecognition</module>
+        <module>voicecomposer</module>
+    </modules>
 </project>

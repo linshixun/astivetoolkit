@@ -30,6 +30,15 @@ public class AstiveException extends Exception {
 
   /**
    * Creates a new AstiveException object.
+   * 
+   * @param e 
+   */
+  public AstiveException(Exception e) {
+      super(e);
+  }
+  
+  /**
+   * Creates a new AstiveException object.
    *
    * @param msg DOCUMENT ME!
    */

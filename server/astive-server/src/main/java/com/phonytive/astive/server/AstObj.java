@@ -91,22 +91,21 @@ public final class AstObj {
                     continue;
                 }
 
-                for(String url: urls) {                
+                for (String url : urls) {
                     if (!URLValidator.isValidURL(url)) {
                         throw new AstiveException(AppLocale.getI18n("invalidURL"));
                     }
 
-                    Astivlet ast= getAstivletByURLPattern(url);
-                    if(ast != null) { // URL Pattern already exist
+                    Astivlet ast = getAstivletByURLPattern(url);
+                    if (ast != null) { // URL Pattern already exist
                         throw new AstiveException(AppLocale.getI18n("patternAlreadyDefine"));
                     }
 
                     astivlets.put(url, getAstivletByClass(at.getClass1()));
                 }
             }
-        } catch (Exception ex) {
-            throw new AstiveException(AppLocale.getI18n(
-                    "invalidAppOrDescriptor", new Object[]{jarFile}));
+        }  catch (Exception ex) {            
+            throw new AstiveException(ex);
         }
     }
 
@@ -141,7 +140,7 @@ public final class AstObj {
      * @param urlPattern find the Astivlet matching with this pattern.
      * @return an instance of the class loaded class.
      */
-    public Astivlet getAstivletByURLPattern(String urlPattern) {                
+    public Astivlet getAstivletByURLPattern(String urlPattern) {
         return astivlets.get(urlPattern);
     }
 
@@ -157,7 +156,7 @@ public final class AstObj {
 
     /**
      * Get all URL for this app.
-     * 
+     *
      * @return a list with all URL's patterns in this object instance.
      */
     public List<String> getURLPatterns() {
@@ -172,30 +171,29 @@ public final class AstObj {
 
     /**
      * Get URL.
-     * 
+     *
      * @param astivletId astivlet identifier.
      * @return an url.
      */
     private List getURLs(String astivletId) {
-        List<String> urlList = new ArrayList();        
-        AstivletMappingType[] amts = app.getAstivletMappingArray();        
-        
+        List<String> urlList = new ArrayList();
+        AstivletMappingType[] amts = app.getAstivletMappingArray();
+
         for (AstivletMappingType amt : amts) {
             if (amt.getAstivletId().equals(astivletId)) {
                 urlList.add(amt.getUrlPattern());
             }
         }
-        
+
         return urlList;
     }
-    
+
     /**
      * Return meta data related to de app.
-     * 
+     *
      * @return app meta-data.
      */
     public AppType getInfo() {
         return app;
     }
-    
 }

@@ -3,21 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>examples</artifactId>
         <groupId>com.phonytive.astive</groupId>
+        <artifactId>examples</artifactId>
         <version>1.0.0-M2</version>
     </parent>
-    <artifactId>helloworld</artifactId>
-    <name>Astive :: Examples :: Hello World</name>
-    <packaging>jar</packaging>    
+    <groupId>com.phonytive.astive</groupId>
+    <artifactId>speechrecognition</artifactId>  
+    <name>Astive :: Examples :: Speech Recognition</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>astive-client</artifactId>
-            <version>[1.0.0-M2,)</version>
+            <version>[1.0.0-M1,)</version>
         </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
-    </build>    
+    </build>   
 </project>
