@@ -69,4 +69,13 @@ public enum Digit {ONE_KEY("1"),
         }
         return null;
     }
+
+    static public Digit getDigit(char digit) {
+        String dgt = "" + digit;
+        
+        for(Digit d: Digit.values()) {
+            if(d.digit.equals(dgt)) return d;
+        }
+        return null;
+    }
 }
