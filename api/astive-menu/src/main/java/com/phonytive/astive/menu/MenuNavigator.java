@@ -108,63 +108,54 @@ public class MenuNavigator {
             throws MenuException, AgiException {
         
         Menu menu;
-        
-        System.out.println("DBG 1");
+        String result = new String();
         
         if(item.getParent() != null) {
-            System.out.println("DBG 2");
             menu = ((Menu) item.getParent());
         } else {
-            System.out.println("DBG 3");
             menu = getCurrentMenu();
         }
 
         // Has not press any key
-        if(c == 0x0) {
-            System.out.println("DBG 4");
+        if(c == 0x0) {            
+            // WARNING: Not sure about using all keys...
             c = agiResponse.streamFile(file, "0123456789*#");
 
             if (c == 0x0 /*
                     * && milliSecondsWatting == 0
-                    */) {
-                System.out.println("DBG 6");
+                    */) {                
                 try {
                     Thread.sleep(milliSecondsWatting);
                 } catch (InterruptedException ex) {
                     logger.warn(ex.getMessage());
-                }
+                }                
                 return "(timeout)";
-            }
-        
+            }        
         } else {
-            System.out.println("DBG 5");
-            System.out.println("menu.getInterDigitsTimeout() = " 
-                    + menu.getInterDigitsTimeout());
+            result = "" + c;
             c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
         }
         
-        KeyEvent evt = new KeyEvent(item, Digit.getDigit(c));
-        item.fireKeyEvent_keyTyped(evt);
+        KeyEvent evt;        
 
-        System.out.println("DBG 7");
+        if(c != 0x0) {
+            evt = new KeyEvent(item, Digit.getDigit(c));
+            item.fireKeyEvent_keyTyped(evt);            
+            result += "" + c;
+        }
         
-        String result = "" + c;
-
-        while (true) {
-            if ((result.length() == maxDigits) || (c == '#')) {
-                System.out.println("DBG 8");
+        while (true) {            
+            if ((result.length() == maxDigits) || (c == '#')) {                
                 return result;
             }
 
             c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
 
-            if (c != 0x0) {
-                System.out.println("DBG 9");
+            if (c != 0x0) {                
                 result += ("" + c);
                 evt = new KeyEvent(item, Digit.getDigit(c));
                 item.fireKeyEvent_keyTyped(evt);
             } else {
-                System.out.println("DBG 10");
                 InterDigitsTimeoutEvent event =
                         new InterDigitsTimeoutEvent(item, result, menu.getInterDigitsTimeout());
                 menu.fireInterDigitsTimeoutListener_timeoutPerform(event);
@@ -172,8 +163,6 @@ public class MenuNavigator {
                 break;
             }
         }
-        System.out.println("DBG 11");
-
         return result;
     }
 
@@ -291,9 +280,9 @@ public class MenuNavigator {
                         break;
                     }
                 }                
-                if (c != 0x0) {
+                if (c != 0x0) {                    
                     break;
-                }
+                }                
             }
         }
 
@@ -389,8 +378,8 @@ public class MenuNavigator {
         }
 
         MenuItem selectedOption = getMenuItem(menu, digits);
-
-        if (selectedOption != null) {
+                
+        if (selectedOption != null) {            
             menu.resetFailuresCount();
             menu.resetTimeoutCount();
 
@@ -413,17 +402,21 @@ public class MenuNavigator {
             return;
         } else {            
             // Invalid option
-            agiResponse.streamFile(menu.getInvalidDigitFile());
-            menu.incrementFailuresCount();
-
-            if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {
-                run(menu);
-                return;
+            if(menu.getInvalidDigitFile() != null && !menu.getInvalidDigitFile().isEmpty()) {
+                agiResponse.streamFile(menu.getInvalidDigitFile());
             }
 
-            agiResponse.streamFile(menu.getExitFile());
+            menu.incrementFailuresCount();
+            if (!checkMaxFailure(menu, digits) && !checkMaxTimeout(menu, digits)) {                
+                run(menu);                
+                return;
+            }
+            
+            if(menu.getExitFile() != null && !menu.getExitFile().isEmpty()) {
+                agiResponse.streamFile(menu.getExitFile());
+            }
             return;
-        }        
+        }
     }
 
     private void setCurrentMenu(Menu currentMenu) {
