@@ -58,6 +58,7 @@ public class App extends Astivlet {
         Menu m = new Menu();
         m.setGreetingsFile("welcome");
         m.setMaxDigits(3);
+        m.setInterDigitsTimeout(1000);
         m.addVoiceComposition(vc);
         m.addKeyListener(new KeyListener() {
 
@@ -65,6 +66,15 @@ public class App extends Astivlet {
             public void keyTyped(KeyEvent evt) {
                 out.print("Key: ");
                 out.println(evt.getKey());
+            }
+        });
+        
+        m.addDigitsListener(new DigitsListener() {
+
+            @Override
+            public void digitsEnter(DigitsEvent evt) {
+                out.print("Digits: ");
+                out.println(evt.getDigits());                
             }
         });
                 
