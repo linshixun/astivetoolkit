@@ -308,21 +308,11 @@ public class MenuNavigator {
 
                     msw = millisecondsWatting;
                     
-                    if(!option.getFile().isEmpty()) {
+                    if(option.getFile() != null && !option.getFile().isEmpty()) {
                         char c = 0x0;
                         digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse,
                             menu, c);
                     }                                    
-                }
-
-                if ((digits != null) && !digits.equals("(timeout)")) {
-                    // Do break menu            
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("Enter digits is: " + digits);
-                    }
-
-                    DigitsEvent evt = new DigitsEvent((Object) option, digits);
-                    option.fireDigitsEvent_digitsEnter(evt);
                 }
 
                 MenuItem oldOption = option;
@@ -341,6 +331,17 @@ public class MenuNavigator {
             }
         }
 
+        if ((digits != null) && !digits.equals("(timeout)")) {
+            // Do break menu            
+            if (logger.isDebugEnabled()) {
+                logger.debug("Enter digits is: " + digits);
+            }
+
+            // WARNING: This event should be only at Menu level?
+            DigitsEvent evt = new DigitsEvent((Object) menu, digits);
+            menu.fireDigitsEvent_digitsEnter(evt);
+        }        
+        
         // Selected none option
         if ((digits == null) || digits.equals("(timeout)")) {
             // XXX: No necesariamente timeout, puede ser tambien que ingreso
