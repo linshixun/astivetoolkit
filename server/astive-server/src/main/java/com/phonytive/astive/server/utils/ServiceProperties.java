@@ -20,6 +20,7 @@
 package com.phonytive.astive.server.utils;
 
 import java.net.InetAddress;
+import java.util.List;
 
 /**
  *
@@ -45,7 +46,7 @@ public interface ServiceProperties {
    *
    * @return DOCUMENT ME!
    */
-  InetAddress getOnlyFrom();
+  List<InetAddress> getOnlyFrom();
 
   /**
    * DOCUMENT ME!
@@ -112,7 +113,7 @@ public interface ServiceProperties {
    *
    * @param onlyFrom DOCUMENT ME!
    */
-  void setOnlyFrom(InetAddress onlyFrom);
+  void setOnlyFrom(List<InetAddress> onlyFrom);
 
   /**
    * DOCUMENT ME!

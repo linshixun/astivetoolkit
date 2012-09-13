@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.net.InetAddress;
+import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -127,6 +128,14 @@ public class AstiveServer extends AbstractAstiveServer {
         
         ArrayList<ServiceProperties> serviceProperties = new ArrayList();        
         serviceProperties.add(astivedSP);
+        
+        // Adding security measure !
+        AstPolicy ap = new AstPolicy();
+        ap.addPermissions(astivedSP);
+        ap.addPermissions(adminDaemonSP);
+        ap.addPermissions(telnedSP);
+        
+        Policy.setPolicy(ap);
         
         if (!adminDaemonSP.isDisabled()) {
             serviceProperties.add(adminDaemonSP);

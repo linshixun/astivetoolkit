@@ -23,6 +23,8 @@ import com.phonytive.astive.server.SystemException;
 import com.phonytive.astive.util.AppLocale;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -33,7 +35,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
 
     private Properties properties;
     private InetAddress bindAddr;
-    private InetAddress onlyFrom;
+    private List<InetAddress> onlyFrom;
     private String server;
     private String serviceName;
     private boolean disabled;
@@ -66,7 +68,15 @@ public final class ServicePropertiesImpl implements ServiceProperties {
         }
 
         try {
-            setOnlyFrom(InetAddress.getByName(properties.get("onlyFrom").toString().trim()));
+            List<InetAddress> onlyFromList = new ArrayList<InetAddress>();                        
+            String l[] = properties.get("onlyFrom").toString().split(",");
+            
+            for(int i = 0; l.length > i; i++) {
+                InetAddress id = InetAddress.getByName(l[i].trim());
+                onlyFromList.add(id);
+            }
+            
+            setOnlyFrom(onlyFromList);
         } catch (UnknownHostException ex) {
             throw new SystemException(AppLocale.getI18n("unknownHost",
                     new Object[]{
@@ -105,7 +115,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
      * @return DOCUMENT ME!
      */
     @Override
-    public InetAddress getOnlyFrom() {
+    public List<InetAddress> getOnlyFrom() {
         return onlyFrom;
     }
 
@@ -185,7 +195,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
      * @param onlyFrom DOCUMENT ME!
      */
     @Override
-    public void setOnlyFrom(InetAddress onlyFrom) {
+    public void setOnlyFrom(List<InetAddress> onlyFrom) {
         this.onlyFrom = onlyFrom;
     }
 
