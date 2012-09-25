@@ -25,15 +25,14 @@ import com.phonytive.astive.server.SystemException;
 import com.phonytive.astive.server.appmanager.Deployer;
 import com.phonytive.astive.server.appmanager.DeployerManager;
 import com.phonytive.astive.server.monitor.ConnectionMonitor;
+import com.phonytive.astive.server.security.AstPolicy;
+import com.phonytive.astive.server.security.AstPolicyUtil;
 import com.phonytive.astive.util.AppLocale;
 import com.phonytive.astive.util.NetUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -101,6 +100,19 @@ public final class AdminDaemon extends ServerSocket
             while (true) {
                 Socket client = accept();
 
+                StringBuilder sbr = new StringBuilder();
+                sbr.append(client.getInetAddress().getHostAddress());
+                sbr.append(":");
+                sbr.append(port);
+                
+                SocketPermission sp = new SocketPermission(sbr.toString(), 
+                        AstPolicy.DEFAULT_ACTION);
+                
+                if(!AstPolicyUtil.hasPermission(sp)) {
+                    client.close();
+                    continue;
+                }                
+                
                 BufferedReader reader = new BufferedReader(new InputStreamReader(
                         client.getInputStream()));
                 String commandStr = reader.readLine();

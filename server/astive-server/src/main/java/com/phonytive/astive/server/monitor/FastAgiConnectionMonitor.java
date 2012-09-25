@@ -28,11 +28,15 @@ import com.phonytive.astive.agi.fastagi.FastAgiResponse;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
 import com.phonytive.astive.server.*;
+import com.phonytive.astive.server.security.AstPolicy;
+import com.phonytive.astive.server.security.AstPolicyUtil;
 import com.phonytive.astive.util.AppLocale;
 import java.io.IOException;
+import java.net.SocketPermission;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -88,17 +92,33 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
             }
 
             FastAgiConnection fastConn = (FastAgiConnection) conn;
-            AgiCommandHandler cHandler = new AgiCommandHandler(conn);
-            FastAgiResponse response = new FastAgiResponse(cHandler);
-            AstivletRequest aRequest = new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
-            AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
 
-            AstivletProcessor.invokeAstivlet(aRequest, aResponse);
+            StringBuilder sbr = new StringBuilder();
+            sbr.append(fastConn.getSocket().getInetAddress().getHostAddress());
+            sbr.append(":");
+            sbr.append(fastConn.getSocket().getPort());
 
-            if (logger.isDebugEnabled()) {
-                logger.debug("done.");
+            SocketPermission sp = new SocketPermission(sbr.toString(), 
+                    AstPolicy.DEFAULT_ACTION);
+
+            if(AstPolicyUtil.hasPermission(sp)) {                                                    
+                AgiCommandHandler cHandler = new AgiCommandHandler(conn);
+                FastAgiResponse response = new FastAgiResponse(cHandler);
+                AstivletRequest aRequest = new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
+                AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
+
+                AstivletProcessor.invokeAstivlet(aRequest, aResponse);
+
+                if (logger.isDebugEnabled()) {
+                    logger.debug("done.");
+                }
+            } else {
+                try {
+                    fastConn.getSocket().close();
+                } catch (IOException ex) {
+                    // Drop connection
+                }
             }
-
         } catch (AgiException ex) {
             logger.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }

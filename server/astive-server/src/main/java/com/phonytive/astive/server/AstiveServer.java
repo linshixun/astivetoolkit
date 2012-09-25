@@ -25,9 +25,8 @@ import com.phonytive.astive.server.admin.AdminDaemonClient;
 import com.phonytive.astive.server.appmanager.DeployerManager;
 import com.phonytive.astive.server.monitor.ConnectionMonitor;
 import com.phonytive.astive.server.monitor.FastAgiConnectionMonitor;
+import com.phonytive.astive.server.security.AstPolicy;
 import com.phonytive.astive.server.utils.InitOutput;
-import com.phonytive.astive.server.utils.ServiceProperties;
-import com.phonytive.astive.server.utils.ServicePropertiesImpl;
 import com.phonytive.astive.telnet.TelnetServer;
 import com.phonytive.astive.util.AppLocale;
 import com.phonytive.astive.util.NetUtil;
@@ -36,7 +35,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.net.InetAddress;
-import java.security.Policy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -130,12 +128,10 @@ public class AstiveServer extends AbstractAstiveServer {
         serviceProperties.add(astivedSP);
         
         // Adding security measure !
-        AstPolicy ap = new AstPolicy();
+        AstPolicy ap = AstPolicy.getInstance();
         ap.addPermissions(astivedSP);
         ap.addPermissions(adminDaemonSP);
         ap.addPermissions(telnedSP);
-        
-        Policy.setPolicy(ap);
         
         if (!adminDaemonSP.isDisabled()) {
             serviceProperties.add(adminDaemonSP);

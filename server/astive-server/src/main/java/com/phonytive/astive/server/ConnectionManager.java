@@ -19,11 +19,9 @@
  */
 package com.phonytive.astive.server;
 
-import java.io.IOException;
-
-import java.util.ArrayList;
-
 import com.phonytive.astive.agi.Connection;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *

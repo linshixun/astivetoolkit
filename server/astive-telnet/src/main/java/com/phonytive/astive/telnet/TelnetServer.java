@@ -19,13 +19,12 @@
  */
 package com.phonytive.astive.telnet;
 
+import com.phonytive.astive.server.security.AstPolicy;
+import com.phonytive.astive.server.security.AstPolicyUtil;
 import com.phonytive.astive.util.AppLocale;
 import com.phonytive.astive.util.NetUtil;
 import java.io.*;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -68,6 +67,19 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
             while (true) {
                 Socket client = accept();
 
+                StringBuilder sbr = new StringBuilder();
+                sbr.append(client.getInetAddress().getHostAddress());
+                sbr.append(":");
+                sbr.append(port);
+                
+                SocketPermission sp = new SocketPermission(sbr.toString(), 
+                        AstPolicy.DEFAULT_ACTION);
+                
+                if(!AstPolicyUtil.hasPermission(sp)) {
+                    client.close();
+                    continue;
+                }
+                
                 BufferedReader reader = new BufferedReader(new InputStreamReader(
                         client.getInputStream()));
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
