@@ -19,8 +19,8 @@
  */
 package com.phonytive.astive.server.utils;
 
-import com.phonytive.astive.server.ServiceProperties;
 import com.phonytive.astive.Version;
+import com.phonytive.astive.server.ServiceProperties;
 import com.phonytive.astive.util.AppLocale;
 import static java.lang.System.out;
 import java.util.ArrayList;

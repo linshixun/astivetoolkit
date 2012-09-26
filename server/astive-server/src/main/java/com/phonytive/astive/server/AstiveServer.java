@@ -251,16 +251,16 @@ public class AstiveServer extends AbstractAstiveServer {
                     adminDaemonSP.setPort(Integer.parseInt(commandLine.getOptionValue("telned-port")));
                 }
                 
-                if (!NetUtil.available(astivedSP.getPort())) {                    
+                if (!NetUtil.isPortAvailable(astivedSP.getPort())) {                    
                     out.println(AppLocale.getI18n("cantStartFastAgiServerSocket", new Object[]{astivedSP.getBindAddr().getHostAddress(), astivedSP.getPort()}));                    
                     System.exit(-1);
                 }
         
-                if (!NetUtil.available(adminDaemonSP.getPort())) {
+                if (!NetUtil.isPortAvailable(adminDaemonSP.getPort())) {
                     adminDaemonSP.setUnableToOpen(true);
                 }
                        
-                if (!NetUtil.available(telnedSP.getPort())) {
+                if (!NetUtil.isPortAvailable(telnedSP.getPort())) {
                     telnedSP.setUnableToOpen(true);
                 }
                 

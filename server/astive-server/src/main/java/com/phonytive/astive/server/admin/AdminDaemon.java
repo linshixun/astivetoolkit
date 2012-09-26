@@ -90,7 +90,7 @@ public final class AdminDaemon extends ServerSocket
     public void run() {
         try {
             
-            if (!NetUtil.available(port)) {
+            if (!NetUtil.isPortAvailable(port)) {
                 throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[]{port}));
             }
             
