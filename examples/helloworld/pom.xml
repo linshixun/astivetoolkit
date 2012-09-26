@@ -5,7 +5,7 @@
     <parent>
         <artifactId>examples</artifactId>
         <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-M2</version>
+        <version>1.0.0-M3</version>
     </parent>
     <artifactId>helloworld</artifactId>
     <name>Astive :: Examples :: Hello World</name>
