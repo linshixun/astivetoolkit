@@ -19,22 +19,29 @@
  */
 package com.phonytive.astive.server.test;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import com.phonytive.astive.server.security.AstPolicy;
+import com.phonytive.astive.server.security.AstPolicyUtil;
+import java.net.SocketPermission;
 import junit.framework.TestCase;
 
 /**
  *
- * @author psanders
+ * @since 1.0.0
  */
 public class AstPolicyTest extends TestCase {
     
     public AstPolicyTest(String testName) {
         super(testName);
+    }    
+    
+    public void testAstPolicy() {
+        AstPolicy ast = AstPolicy.getInstance();
+        ast.addPermission(new SocketPermission("127.0.0.1:4444", AstPolicy.DEFAULT_ACTION));
+        
+        SocketPermission sp1 = new SocketPermission("127.0.0.1:4444", AstPolicy.DEFAULT_ACTION);
+        SocketPermission sp2 = new SocketPermission("127.0.0.2:4444", AstPolicy.DEFAULT_ACTION);
+        
+        assert(AstPolicyUtil.hasPermission(sp1) == true);
+        assert(AstPolicyUtil.hasPermission(sp2) == false);
     }
-    // TODO add test methods here. The name must begin with 'test'. For example:
-    // public void testHello() {}
 }
