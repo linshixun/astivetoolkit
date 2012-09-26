@@ -15,6 +15,7 @@
                 <exclude>astived</exclude>
                 <exclude>version.sh</exclude>
             </excludes>
+            <filtered>true</filtered>
         </fileSet>
         <fileSet>
             <directory>src/main/resources/basedir</directory>
