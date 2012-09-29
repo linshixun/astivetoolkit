@@ -30,7 +30,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
- *
+ * Default implementation of Astive Server - Telnet service.
+ * 
  * @since 1.0.0
  */
 public abstract class TelnetServer extends ServerSocket implements Runnable {
@@ -41,6 +42,21 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
     private int port;
     private static String promptSymbol = ColorsANSI.BRIGHT + "[astive]$ " + ColorsANSI.SANE;
 
+    /**
+     * Create a new TelnetServer with bindAddr, backlog and port not initialized.
+     * @throws IOException when unable to perform IO operations.
+     */
+    public TelnetServer() throws IOException {}
+    
+    /**
+     * Create a new TelnetServer with port, backlog and bindAddr.
+     * 
+     * @param port port to where the service should bound.
+     * @param backlog maximun connections in queue. After that all connections
+     * will be dropped.
+     * @param bindAddr address to where the service should be bound.
+     * @throws IOException when unable to perform IO operations.
+     */
     public TelnetServer(int port, int backlog, InetAddress bindAddr) throws IOException {
         super();
         this.port = port;
@@ -48,16 +64,35 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
         this.bindAddr = bindAddr;
     }
     
+    /**
+     * Stop the TelnetServer
+     */
     public abstract void stop();
+    
+    /**
+     * Return a list with all applications deployed into the server.
+     * 
+     * @return a list of string with the applications running into the server.
+     */
     public abstract List<String> lookup();
+    
+    /**
+     * Return the version of the running server.
+     * 
+     * @return server instance version.
+     */
     public abstract String version();
+    
+   /**
+    * List all <code>server</code> configurations.
+    */     
     public abstract String system();    
 
     @Override
     public void run() {
         try {
 
-            if (!NetUtil.available(port)) {
+            if (!NetUtil.isPortAvailable(port)) {
                 throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[]{port}));
             }            
             

@@ -20,7 +20,8 @@
 package com.phonytive.astive.telnet;
 
 /**
- *
+ * Enum that contains all possible commands to be executed by the TelnetServer.
+ * 
  * @since 1.0.0
  */
 public enum TelnetCommand {
@@ -30,15 +31,15 @@ public enum TelnetCommand {
      */
     STOP("stop"),
     /**
-     * List server configurations.
+     * List <code>server</code> configurations.
      */
     SYSTEM("system"),
     /**
-     * Look for applications.
+     * Show all applications deployed into the <code>server</code>.
      */
     LOOKUP("lookup"),
     /**
-     * Show help for commands
+     * Show help for commands.
      */
     HELP("help"),    
     /**
@@ -56,8 +57,8 @@ public enum TelnetCommand {
     private String command;
 
     /**
-     * Create a new AdminCommand object with status code as parameter. This
-     * class is an enum, therefore can't be instantiated directly.
+     * Create a new TelnetCommand object with <code>command</code> as parameter. 
+     * This class is an enum, therefore can't be instantiated directly.
      */
     private TelnetCommand(String command) {
         this.command = command;
@@ -67,7 +68,8 @@ public enum TelnetCommand {
      * Get command enum.
      *
      * @param command command as text.
-     * @return command as enum
+     * @return command as enum or <code>null</code> if command not present in 
+     * enum.
      */
     static public TelnetCommand get(String command) {
         for (TelnetCommand tc : TelnetCommand.values()) {
