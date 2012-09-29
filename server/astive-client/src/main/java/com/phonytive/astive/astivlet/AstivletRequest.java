@@ -27,9 +27,9 @@ import java.util.ArrayList;
 /**
  * Extends the {@link AgiRequest} object to provide request information 
  * for network(FastAgi) request.
- *
- * @since 1.0.0
+ * 
  * @see AstivletResponse
+ * @since 1.0.0
  */
 public class AstivletRequest extends AgiRequest {
   private InetAddress localAddress;
@@ -40,8 +40,8 @@ public class AstivletRequest extends AgiRequest {
   /**
    * Creates a new AstivletRequest object.
    *
-   * @param lines DOCUMENT ME!
-   * @param client DOCUMENT ME!
+   * @param lines use to construct client request.
+   * @param client object representing client connection.
    */
   public AstivletRequest(ArrayList<String> lines, FastAgiConnection client) {
     super(lines);    
@@ -52,36 +52,42 @@ public class AstivletRequest extends AgiRequest {
   }
 
   /**
-   * DOCUMENT ME!
+   * Returns the Internet Protocol (IP) address of the interface on which the 
+   * request was received.
    *
-   * @return DOCUMENT ME!
+   * @return a <code>InetAddress</code> containing the IP address on which the 
+   * request was received.
    */
   public InetAddress getLocalAddress() {
     return localAddress;
   }
 
   /**
-   * DOCUMENT ME!
+   * Returns the Internet Protocol (IP) port number of the interface on which 
+   * the request was received.
    *
-   * @return DOCUMENT ME!
+   * @return an integer specifying the port number.
    */
   public int getLocalPort() {
     return localPort;
   }
 
   /**
-   * DOCUMENT ME!
+   * Returns the Internet Protocol (IP) address of the client or last proxy 
+   * that sent the request.
    *
-   * @return DOCUMENT ME!
+   * @return a <code>InetAddress</code> containing the IP address of the client 
+   * that sent the request
    */
   public InetAddress getRemoteAddress() {
     return remoteAddress;
   }
 
   /**
-   * DOCUMENT ME!
+   * Returns the Internet Protocol (IP) source port of the client or last proxy 
+   * that sent the request.
    *
-   * @return DOCUMENT ME!
+   * @return an integer specifying the port number
    */
   public int getRemotePort() {
     return remotePort;

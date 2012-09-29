@@ -23,9 +23,8 @@ import com.phonytive.astive.agi.*;
 import java.util.Date;
 import java.util.TimeZone;
 
-
 /**
- * Extends the {@link AgiResponse} interface to provide astivlet functionality 
+ * Extends the {@link AgiResponse} interface to provide astivlets functionality 
  * in sending a response.
  * 
  * @since 1.0.0
@@ -34,7 +33,16 @@ import java.util.TimeZone;
 public class AstivletResponse implements AgiResponse {
     private AgiResponse response;
 
-    // By doing this we have an AgiResponse independent of the actual
+   /**
+    * Creates a new AstivletRequest object with <code>null</code> response.    
+    */    
+    public AstivletResponse() {}    
+    
+   /**
+    * Creates a new AstivletRequest object with response as parameter.
+    * 
+    * @param response an object that implements the interface {@AgiResponse}     
+    */    
     public AstivletResponse(AgiResponse response) {
         this.response = response;
     }
@@ -552,9 +560,6 @@ public class AstivletResponse implements AgiResponse {
         response.setPriority(priority);
     }
 
-    
-    
-    
     /**
      * {@inheritDoc}
      */
@@ -605,11 +610,7 @@ public class AstivletResponse implements AgiResponse {
     }
 
     /**
-     * 
-     * @param prompt
-     * @param timeout
-     * @return
-     * @throws AgiException 
+     * {@inheritDoc}
      */
     @Override
     public SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException {                        
@@ -682,6 +683,9 @@ public class AstivletResponse implements AgiResponse {
         return response.waitForDigit(interDigitsTimeout);
     }
 
+    /**
+     * {@inheritDoc}
+     */    
     @Override
     public AgiCommandReply sendAgiCommand(String cmd) throws AgiException {
         return response.sendAgiCommand(cmd);
