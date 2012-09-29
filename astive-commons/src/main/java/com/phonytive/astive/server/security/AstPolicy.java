@@ -22,21 +22,27 @@ package com.phonytive.astive.server.security;
 import com.phonytive.astive.server.ServiceProperties;
 import java.net.InetAddress;
 import java.net.SocketPermission;
-import java.security.Permission;
 import java.security.PermissionCollection;
 import java.security.Policy;
 import java.util.Iterator;
 import java.util.List;
 
 /**
+ * AstPolicy provide a security mechanism to protect {@link AstiveServer}. This
+ * is class is mean to be use in combination with {@link AstPolicyUtil}.
  * 
- * @since 1.0.0
+ * @see AstPolicyUtil
+ * @since 1.0.0 
  */
 public class AstPolicy extends Policy {
     private static PermissionCollection perms; 
-    private static final AstPolicy INSTANCE = new AstPolicy();    
+    private static final AstPolicy INSTANCE = new AstPolicy();
+    /**
+     * Default action for SocketPermissions.
+     */
     public final static String DEFAULT_ACTION = "accept";
-    
+        
+    // Private constructor prevents instantiation from other classes     
     private AstPolicy() {
         super();
         if (perms == null) {            
@@ -45,33 +51,59 @@ public class AstPolicy extends Policy {
         } 
     }
     
+    /**
+     * Return the only instance of AstPolicy.
+     * 
+     * @return the only instance of AstPolicy.
+     */
     public static AstPolicy getInstance() {
         return INSTANCE;
     }
     
+    /**
+     * Return the collection of permissions to be applied by the 
+     * Security Manager.
+     * 
+     * @return all permissions previously added.
+     */
     public PermissionCollection getPermissions() {        
         return perms;
     }    
-
-    public void addPermission(Permission s) {        
-        perms.add(s);
+    
+    /**
+     * Add a new entry to the permission collection.
+     * 
+     * @param permission to be added. WARNING.: this implementation provides 
+     * support only for SocketPermission.
+     */    
+    public void addPermission(SocketPermission permission) {        
+        perms.add(permission);
     }
     
-    public void addPermissions(ServiceProperties sp) {
-        List<InetAddress> onlyFromList = sp.getOnlyFrom();
+    /**
+     * Use to add permission for a particular <code>service</code>(ex.:Telnet).
+     * 
+     * @param servicesProperties the service to be protected.
+     */      
+    public void addPermissions(ServiceProperties servicesProperties) {
+        List<InetAddress> onlyFromList = servicesProperties.getOnlyFrom();
         Iterator<InetAddress> onlyFromIterator = onlyFromList.iterator();
         while(onlyFromIterator.hasNext()) {            
             InetAddress currentInetAddress = onlyFromIterator.next();
             StringBuilder sb = new StringBuilder();            
             sb.append(currentInetAddress.getHostAddress());
             sb.append(":");
-            sb.append(sp.getPort());
+            sb.append(servicesProperties.getPort());
             perms.add(new SocketPermission(sb.toString(), DEFAULT_ACTION));                                  
         }
     }    
     
-    public void clear() {
+    /**
+     * Empties the permission collection.
+     */
+    public void clear() {        
         perms = null;
+        this.refresh();
     }
 }
 

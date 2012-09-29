@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.server.SystemException;
 import com.phonytive.astive.util.AppLocale;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -28,7 +27,9 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- *
+ * Final implementation of {@link ServiceProperties} use by {@link Service}.
+ * 
+ * @see ServiceProperties, Service
  * @since 1.0.0
  */
 public final class ServicePropertiesImpl implements ServiceProperties {
@@ -44,12 +45,18 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     private int port;    
 
     /**
-     * Creates a new ServicePropertiesImpl object.
+     * Creates a new ServicePropertiesImpl object.          
+     */
+    public ServicePropertiesImpl() {}
+    
+    /**
+     * Creates a new ServicePropertiesImpl object with the parameters indicated
+     * in properties and the name of service.
      *
-     * @param properties DOCUMENT ME!
-     * @param serviceName DOCUMENT ME!
+     * @param properties represent the properties file for a particular service.
+     * @param serviceName the name to be displayed by the server.
      *
-     * @throws SystemException DOCUMENT ME!
+     * @throws SystemException if the service cannot be binded to the bind address.
      */
     public ServicePropertiesImpl(Properties properties, String serviceName)
             throws SystemException {
@@ -75,7 +82,6 @@ public final class ServicePropertiesImpl implements ServiceProperties {
                 InetAddress id = InetAddress.getByName(l[i].trim());
                 onlyFromList.add(id);
             }
-            
             setOnlyFrom(onlyFromList);
         } catch (UnknownHostException ex) {
             throw new SystemException(AppLocale.getI18n("unknownHost",
@@ -90,9 +96,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public int getBacklog() {
@@ -100,9 +104,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public InetAddress getBindAddr() {
@@ -110,9 +112,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public List<InetAddress> getOnlyFrom() {
@@ -120,9 +120,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public int getPort() {
@@ -130,9 +128,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public String getServer() {
@@ -140,9 +136,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public String getServiceName() {
@@ -150,9 +144,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public boolean isDisabled() {
@@ -160,9 +152,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param backlog DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setBacklog(int backlog) {
@@ -170,9 +160,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param bindAddr DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setBindAddr(InetAddress bindAddr) {
@@ -180,9 +168,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param disabled DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setDisabled(boolean disabled) {
@@ -190,9 +176,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param onlyFrom DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setOnlyFrom(List<InetAddress> onlyFrom) {
@@ -200,9 +184,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param port DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setPort(int port) {
@@ -210,9 +192,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param server DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setServer(String server) {
@@ -220,16 +200,18 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     }
 
     /**
-     * DOCUMENT ME!
-     *
-     * @param serviceName DOCUMENT ME!
+     * {@inheritDoc}
      */
     @Override
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
 
-    @Override
+    /**
+    * Use to return arbitrary parameters.
+    * 
+    * @return a parameter present in the properties file, or null if none.
+    */  
     public String getPameter(String parameter) {
         try {
             return properties.get(parameter).toString().trim();
@@ -238,11 +220,17 @@ public final class ServicePropertiesImpl implements ServiceProperties {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */    
     @Override
     public boolean isUnableToOpen() {
         return unableToOpen;
     }
 
+    /**
+     * {@inheritDoc}
+     */    
     @Override
     public void setUnableToOpen(boolean unableToOpen) {
         this.unableToOpen = unableToOpen;

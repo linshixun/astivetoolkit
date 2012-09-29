@@ -24,12 +24,19 @@ import java.net.DatagramSocket;
 import java.net.ServerSocket;
 
 /**
- * Checks to see if a specific port is isPortAvailable.
- *
- * @param port the port to check for availability
+ * Contains a collection of methods helpful for network operations.
+ * 
+ * @since 1.0.0
  */
 public class NetUtil {
 
+   /**
+    * Check if a port is available. This method will attempt to open the <code>port</code> 
+    * to check if is been used by another process.
+    *
+    * @param port a valid port (if is in the range in between 0 and 65535, inclusive).
+    * @return whether or not the port is available.
+    */    
     public static boolean isPortAvailable(int port) {
 
         ServerSocket ss = null;

@@ -23,121 +23,128 @@ import java.net.InetAddress;
 import java.util.List;
 
 /**
- *
+ * Contains all parameters needed by a final implementation of
+ * {@link Service}.
+ * 
+ * @see Service
  * @since 1.0.0
  */
 public interface ServiceProperties {
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Return the maximum queue length for incoming connection indications. 
+   * 
+   * @return maximum number of pending connections on the socket.
    */
   int getBacklog();
 
   /**
-   * DOCUMENT ME!
+   * Return the address to where the <code>service</code> is bound, if any.
    *
-   * @return DOCUMENT ME!
+   * @return the local address the <code>service</code> is bound to, or <code>null</code> for the 
+   * <code>anyLocal</code> address.
    */
   InetAddress getBindAddr();
 
   /**
-   * DOCUMENT ME!
+   * Return the address list from where connections are accept.
    *
-   * @return DOCUMENT ME!
+   * @return by default <code>service</code> accept connections only from the <code>local</code>
+   * machine.
    */
   List<InetAddress> getOnlyFrom();
 
   /**
-   * DOCUMENT ME!
+   * Return the <code>service</code> port. 
    *
-   * @return DOCUMENT ME!
+   * @return port to where <code>service</code> is bound.
    */
   int getPort();
 
   /**
-   * DOCUMENT ME!
+   * Return fully qualified class name for the final implementation of 
+   * {@link Service}.
    *
-   * @return DOCUMENT ME!
+   * @return the final implementation of a particular <code>service</code>.
    */
   String getServer();
 
   /**
-   * DOCUMENT ME!
+   * Return the name of <code>service</code>.
    *
-   * @return DOCUMENT ME!
+   * @return a descriptive name for a <code>service</code> (ex.: Telnet, Admin)...
    */
   String getServiceName();
 
   /**
-   * DOCUMENT ME!
+   * Indicates whether or not the <code>service</code> is disabled.
    *
-   * @return DOCUMENT ME!
+   * @return true if <code>service</code> is disabled or true otherwise.
    */
   boolean isDisabled();
 
   /**
+   * Indicates whether or not the <code>service</code> was bound to a IP/Port.
    * 
-   * @return 
+   * @return true if <code>service</code> can't be bound to a port(ex.: port occupied by another
+   * process).
    */
   boolean isUnableToOpen();
   
   /**
+   * Set to true if can't bound <code>service</code> to a particular IP/Port.
    * 
+   * @param unableToOpen is set to false if bound process ends normally.
    */
   void setUnableToOpen(boolean unableToOpen);
   
   /**
-   * DOCUMENT ME!
+   * Define the maximum queue length for incoming connection indications. 
    *
-   * @param backlog DOCUMENT ME!
+   * @param backlog provided should be greater than 0.
+   * @see ServerSocket
    */
   void setBacklog(int backlog);
 
   /**
-   * DOCUMENT ME!
+   * Address to where the <code>service</code> should be bound.
    *
-   * @param bindAddr DOCUMENT ME!
+   * @param bindAddr should be a valid address where the code>service</code> is running.
    */
   void setBindAddr(InetAddress bindAddr);
 
   /**
-   * DOCUMENT ME!
+   * Set this parameter to <code>true</code> to indicate
    *
-   * @param disabled DOCUMENT ME!
+   * @param disabled useful for services no mandatory(ex.:Telnet)
    */
   void setDisabled(boolean disabled);
 
   /**
-   * DOCUMENT ME!
+   * Used to indicate the list of address from where the service can be accessed.
    *
-   * @param onlyFrom DOCUMENT ME!
+   * @param onlyFrom by default a service can only be accessed from the 
+   * local machine.
    */
   void setOnlyFrom(List<InetAddress> onlyFrom);
 
   /**
-   * DOCUMENT ME!
+   * A valid port to where the service is bound.
    *
-   * @param port DOCUMENT ME!
+   * @param port is valid if is in the range in between 0 and 65535, inclusive.
    */
   void setPort(int port);
 
   /**
-   * DOCUMENT ME!
+   * Use to define the final implementation of the service.
    *
-   * @param server DOCUMENT ME!
+   * @param server has to be a fully qualified name class.
    */
   void setServer(String server);
 
   /**
-   * DOCUMENT ME!
+   * Define the name for a particular service, for display purposes.
    *
-   * @param serviceName DOCUMENT ME!
+   * @param serviceName useful to describe the function of the service.
    */
-  void setServiceName(String serviceName);
-  
-  /**
-   * 
-   */
-  String getPameter(String parameter);
+  void setServiceName(String serviceName);  
 }

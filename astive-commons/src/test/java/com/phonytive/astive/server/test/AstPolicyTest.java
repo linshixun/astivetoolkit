@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -25,15 +25,28 @@ import java.net.SocketPermission;
 import junit.framework.TestCase;
 
 /**
- *
+ * This test attempts to validate the security manager implemented by {@link Service}
+ * and the objects {@link AstPolicy} and {@link AstPolicyUtil}.
+ * 
+ * @see AstPolicy
+ * @see AstPolicyUtil
  * @since 1.0.0
  */
 public class AstPolicyTest extends TestCase {
-    
+       
+    /**
+     * Create a new AstPolicyTest object with the name of the test.
+     * 
+     * @param testName name of the test.
+     */
     public AstPolicyTest(String testName) {
         super(testName);
     }    
     
+    /**
+     * This test add a permission to the collection in {@link AstPolicy}, an then
+     * check if that permission is avaliable using {@link AstPolicyUtil.hasPermission()}.
+     */
     public void testAstPolicy() {
         AstPolicy ast = AstPolicy.getInstance();
         ast.addPermission(new SocketPermission("127.0.0.1:4444", AstPolicy.DEFAULT_ACTION));

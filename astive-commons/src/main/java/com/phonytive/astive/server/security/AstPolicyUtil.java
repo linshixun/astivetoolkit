@@ -19,44 +19,27 @@
  */
 package com.phonytive.astive.server.security;
 
-import com.phonytive.astive.server.ServiceProperties;
-import java.net.InetAddress;
-import java.net.SocketPermission;
 import java.security.Permission;
 import java.security.PermissionCollection;
-import java.util.Iterator;
-import java.util.List;
 
 /**
+ * Utility use to verified whether or not a permission is part of the collection
+ * of permissions store in {@link AstPolicy}.
  * 
- * @since 1.0.0 
+ * @see AstPolicy 
+ * @since 1.0.0  
  */
 public class AstPolicyUtil {
     static private PermissionCollection p = 
             AstPolicy.getInstance().getPermissions();
     
-    static public boolean hasPermission(Permission s) {
-        return p.implies(s);
+    /**
+     * Verified if a particular permission is granted in {@link AstPolicy}
+     * 
+     * @param permission to be checked.
+     * @return true if permission is store in {@link AstPolicy}, false otherwise.
+     */
+    static public boolean hasPermission(Permission permission) {
+        return p.implies(permission);
     }
-
-    static public boolean hasPermission(ServiceProperties sp) {
-        List<InetAddress> onlyFromList = sp.getOnlyFrom();
-        Iterator<InetAddress> onlyFromIterator = onlyFromList.iterator();
-        while(onlyFromIterator.hasNext()) {            
-            InetAddress currentInetAddress = onlyFromIterator.next();
-            StringBuilder sb = new StringBuilder();            
-            sb.append(currentInetAddress.getHostAddress());
-            sb.append(":");
-            sb.append(sp.getPort());
-
-            boolean i = 
-                    p.implies(new SocketPermission(sb.toString(), 
-                        AstPolicy.DEFAULT_ACTION));
-            if(i == true) {
-                return true;
-            }
-        }
-        return false;
-    }    
-
 }
