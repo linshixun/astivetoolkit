@@ -234,4 +234,7 @@ public class CommandProcessor {
 
         return cmd.toString().trim();
     }
+
+    private CommandProcessor() {
+    }
 }
