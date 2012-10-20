@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -42,7 +41,7 @@ public class WaitForDigit implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 1274177415080200306L;
+    private static final long serialVersionUID = 0x11aec99baeae4872L;
     
     /**
      * Timeout in milliseconds. 

@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.StreamFile;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -34,7 +32,7 @@ public class StreamFileTest extends TestCase {
     public void testCommand() throws AgiException {
         String filename = "file";
         String escapeDigits = "";
-        Integer offset = 0;
+        Integer offset = 0x0;
 
         // Testing first constructor 
         StringBuilder b = new StringBuilder("STREAM FILE");

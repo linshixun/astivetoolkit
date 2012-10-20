@@ -29,7 +29,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author psanders
+ * @since 1.0.0
  */
 public class AstivletRequestTest extends TestCase {
     
@@ -63,7 +63,7 @@ public class AstivletRequestTest extends TestCase {
     
         AstivletRequest ar = new AstivletRequest(request, null);
         
-        assert(ar.getAccountCode().equals(""));
+        assert(ar.getAccountCode().isEmpty());
         assert(ar.isNetwork() == true);
         assert(ar.isEnhanced() == false);
         assert(ar.getRequestURL().equals("agi://127.0.0.1/com.phonytive.astive.helloworld? name = Pedro Sanders & age =28"));

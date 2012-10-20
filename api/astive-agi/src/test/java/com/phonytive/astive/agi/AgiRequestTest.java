@@ -67,10 +67,10 @@ public class AgiRequestTest extends TestCase {
         assert(ar.getCallId().equals("1325988028.2"));
         assert(ar.getCallerId().equals("john"));
         assert(ar.getCallerIdName().equals("John Doe"));
-        assert(ar.getCallingPres().intValue() == 0);
-        assert(ar.getCallingAni2().intValue() == 0);
-        assert(ar.getCallingTon().intValue() == 0);
-        assert(ar.getCallingTns().intValue() == 0);
+        assert(ar.getCallingPres().intValue() == 0x0);
+        assert(ar.getCallingAni2().intValue() == 0x0);
+        assert(ar.getCallingTon().intValue() == 0x0);
+        assert(ar.getCallingTns().intValue() == 0x0);
         assert(ar.getDnId().equals("101"));
         assert(ar.getRdNis().equals("unknown"));
         assert(ar.getContext().equals("my-context"));

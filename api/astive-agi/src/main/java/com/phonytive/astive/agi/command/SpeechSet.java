@@ -34,7 +34,7 @@ public class SpeechSet implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -1479993108651095058L;
+    private static final long serialVersionUID = 0xeb76021be8d34beeL;
     
     /**
      * Property name(key).
@@ -45,7 +45,7 @@ public class SpeechSet implements Serializable {
     /**
      * Property value.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String value;
 
     /**

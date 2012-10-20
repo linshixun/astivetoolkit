@@ -19,15 +19,13 @@
  */
 package com.phonytive.astive.ami;
 
-import java.io.IOException;
-
-import java.net.Socket;
-
 import com.phonytive.astive.ami.action.ActionMessage;
 import com.phonytive.astive.ami.action.LoginAction;
 import com.phonytive.astive.ami.action.LogoffAction;
 import com.phonytive.astive.ami.action.ResponseMessage;
 import com.phonytive.astive.util.AppLocale;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  *

@@ -29,12 +29,12 @@ public interface DefaultAgiServerSettings {
     /**
      * Default port for an FASTAGI server.
      */
-    public static int DEFAULT_AGI_SERVER_PORT = 4573;
+    public static int DEFAULT_AGI_SERVER_PORT = 0x11dd;
 
     /**
      * Default backlog for AstiveServerImpl
      */
-    public static int DEFAULT_AGI_SERVER_BACKLOG = 50;
+    public static int DEFAULT_AGI_SERVER_BACKLOG = 0x32;
 
     /**
      * The default server bind address is localhost address.

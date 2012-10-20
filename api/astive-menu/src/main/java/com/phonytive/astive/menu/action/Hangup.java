@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.menu.action;
 
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
+import org.apache.log4j.Logger;
 
 /**
  *

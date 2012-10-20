@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -36,7 +35,7 @@ public class SpeechLoadGrammar implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 8635683833403820211L;
+    private static final long serialVersionUID = 0x77d81cb1529e48b3L;
     /**
      * Grammar name.
      */
@@ -46,7 +45,7 @@ public class SpeechLoadGrammar implements Serializable {
     /**
      * Path to grammar.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String path;
 
     /**

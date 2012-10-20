@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -36,7 +35,7 @@ public class SpeechCreate implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -8343359487319664122L;
+    private static final long serialVersionUID = 0x8c366ec054ed1a06L;
     
     /**
      * The name of the speech engine to use for subsequent Speech AGI commands.

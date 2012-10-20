@@ -22,6 +22,7 @@ package com.phonytive.astive.menu;
 import com.phonytive.astive.menu.action.Action;
 import com.phonytive.astive.menu.event.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -122,7 +123,7 @@ public class MenuItem {
     }
     
     public List<VoiceComposition> getVoiceCompositions() {
-        return voiceCompositionList;
+        return Collections.unmodifiableList(voiceCompositionList);
     }
     
     public void removeVoiceComposition(VoiceComposition voiceComposition) {

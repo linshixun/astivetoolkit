@@ -38,7 +38,6 @@ public abstract class Astivlet {
      * @param request object that contains the client's request
      * @param response object that contains the astivle's response
      */
-    protected void service(AstivletRequest request,
-            AstivletResponse response) {
-    }
+    abstract protected void service(AstivletRequest request,
+            AstivletResponse response);
 }

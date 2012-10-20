@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.ReceiveChar;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -32,7 +30,7 @@ public class ReceiveCharTest extends TestCase {
     }
 
     public void testCommand() throws AgiException {
-        Integer timeout = 1000;
+        Integer timeout = 0x3e8;
 
         StringBuilder b = new StringBuilder("RECEIVE CHAR");
         b.append(" ");

@@ -42,7 +42,7 @@ import org.apache.log4j.Logger;
  * @see ConnectionMonitor
  * @see DeployerManager
  */
-public final class AdminDaemon extends ServerSocket
+public class AdminDaemon extends ServerSocket
         implements Deployer, Runnable {
 
     private static final Logger logger = Logger.getLogger(AdminDaemon.class);

@@ -36,7 +36,6 @@ import java.net.SocketPermission;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -44,10 +43,10 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  * @see ConnectionMonitor
  */
-public final class FastAgiConnectionMonitor implements ConnectionMonitor {
+public class FastAgiConnectionMonitor implements ConnectionMonitor {
     // A usual logging class
 
-    private static final Logger logger = Logger.getLogger(FastAgiConnectionMonitor.class);
+    private static final Logger LOG = Logger.getLogger(FastAgiConnectionMonitor.class);
     private ConnectionManager manager;
     private FastAgiServerSocket server;
     private ThreadPoolExecutor threadPoolExecutor;
@@ -59,8 +58,8 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
      * @param threads DOCUMENT ME!
      */
     public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
-        if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("startingConnectionMonitor"));
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
         }
 
         this.server = server;
@@ -69,7 +68,7 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
         // TODO: This should be a parameter
         int corePoolSize = threads;
         int maxPoolSize = threads;        
-        long keepAliveTime = 5000;
+        long keepAliveTime = 0x1388;
 
         threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
                 TimeUnit.MILLISECONDS,
@@ -87,10 +86,10 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
     public void processConnection(final Connection conn)
             throws AstiveException {
         try {
-            if (logger.isDebugEnabled()) {
-                logger.debug(AppLocale.getI18n("processingCall"));
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(AppLocale.getI18n("processingCall"));
             }
-
+            
             FastAgiConnection fastConn = (FastAgiConnection) conn;
 
             StringBuilder sbr = new StringBuilder();
@@ -99,8 +98,8 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
             sbr.append(fastConn.getSocket().getPort());
 
             SocketPermission sp = new SocketPermission(sbr.toString(), 
-                    AstPolicy.DEFAULT_ACTION);
-
+                    AstPolicy.DEFAULT_ACTION);            
+            
             if(AstPolicyUtil.hasPermission(sp)) {                                                    
                 AgiCommandHandler cHandler = new AgiCommandHandler(conn);
                 FastAgiResponse response = new FastAgiResponse(cHandler);
@@ -109,10 +108,11 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
 
                 AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
-                if (logger.isDebugEnabled()) {
-                    logger.debug("done.");
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("done.");
                 }
             } else {
+                LOG.warn(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
                 try {
                     fastConn.getSocket().close();
                 } catch (IOException ex) {
@@ -120,7 +120,7 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
                 }
             }
         } catch (AgiException ex) {
-            logger.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
+            LOG.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }
     }
 
@@ -150,19 +150,19 @@ public final class FastAgiConnectionMonitor implements ConnectionMonitor {
                         try {
                             processConnection(conn);
                         } catch (AstiveException ex) {
-                            logger.warn(ex.getMessage());
+                            LOG.warn(ex.getMessage());
                         }
 
                         try {
                             manager.remove(conn);
                         } catch (IOException ex) {
-                            logger.error(AppLocale.getI18n("unableToPerformIOOperations",
+                            LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
                                     new Object[]{ex.getMessage()}));
                         }
                     }
                 });
             } catch (IOException ex) {
-                logger.error(AppLocale.getI18n("unableToPerformIOOperations",
+                LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
                         new Object[]{ex.getMessage()}));
             }
         }

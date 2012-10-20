@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -36,7 +35,7 @@ public class SetPriority implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -7927872930023068529L;
+    private static final long serialVersionUID = 0x91fa8992e58a2c8fL;
     
     /**
      * The priority or label for continuation upon exiting the application.

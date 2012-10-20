@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -39,7 +38,7 @@ public class SendText implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -323324435661044014L;
+    private static final long serialVersionUID = 0xfb835223893846d2L;
     
     /**
      * Text to send to channel.

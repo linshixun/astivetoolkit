@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class SetCallerId implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -920453570097230648L;
+    private static final long serialVersionUID = 0xf339e45ad21d4cc8L;
     
     /**
      * Caller Id.

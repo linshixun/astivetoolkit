@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -36,7 +35,7 @@ public class Verbose implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 5179054735596539116L;
+    private static final long serialVersionUID = 0x47dfb2d79b894cecL;
     
     /**
      * Message to send.
@@ -47,7 +46,7 @@ public class Verbose implements Serializable {
     /**
      * Verbosity level(1-4).
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private Integer level;
 
     /**

@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.ami.action;
 
-import java.util.ArrayList;
-
 import com.phonytive.astive.ami.AmiException;
 import com.phonytive.astive.ami.Message;
+import java.util.ArrayList;
 
 /**
  *

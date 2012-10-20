@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.SetAutoHangup;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -32,7 +30,7 @@ public class SetAutoHangupTest extends TestCase {
     }
 
     public void testCommand() throws AgiException {
-        Integer time = 6400;
+        Integer time = 0x1900;
         StringBuilder b = new StringBuilder("SET AUTOHANGUP");
         b.append(" ");
         b.append(time);

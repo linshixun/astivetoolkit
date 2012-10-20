@@ -23,7 +23,6 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import static java.lang.System.out;
 
 /**
  * Final implementation for {@link Astivlet} class.
@@ -46,7 +45,6 @@ public class MyAstivlet extends Astivlet {
             String data = response.getData("tt-monkeys");            
             response.hangup();
         } catch (AgiException ex) {
-            out.println(ex.getMessage());
         }
     }
 }

@@ -19,6 +19,7 @@
  */
 package com.phonytive.astive.menu;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class VoiceComposition {
     }
     
     public List<Object> getCommands() {
-        return commands;
+        return Collections.unmodifiableList(commands);
     }
 
     public void setCommands(List<Object> commands) {

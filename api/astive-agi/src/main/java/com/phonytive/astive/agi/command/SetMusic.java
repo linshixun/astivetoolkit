@@ -23,7 +23,6 @@ import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.BooleanChoose;
 import com.phonytive.astive.agi.annotation.ParamConverter;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -39,7 +38,7 @@ public class SetMusic implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -5450998646107584670L;
+    private static final long serialVersionUID = 0xb45a299cab9f4762L;
 
     /**
      * Set musiconhold on or off.
@@ -52,7 +51,7 @@ public class SetMusic implements Serializable {
     /**
      * MusicOnHold class, or null for default.
      */
-    @Parameter(position = 1)
+    @Parameter(position = 0x1)
     private String classStr;
 
     /**

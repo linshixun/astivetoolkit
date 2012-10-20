@@ -25,19 +25,21 @@ import java.security.PermissionCollection;
 /**
  * Utility use to verified whether or not a permission is part of the collection
  * of permissions store in {@link AstPolicy}.
- * 
- * @see AstPolicy 
- * @since 1.0.0  
+ *
+ * @see AstPolicy
+ * @since 1.0.0
  */
 public class AstPolicyUtil {
-    static private PermissionCollection p = 
+
+    private static PermissionCollection p =
             AstPolicy.getInstance().getPermissions();
-    
+
     /**
      * Verified if a particular permission is granted in {@link AstPolicy}
-     * 
+     *
      * @param permission to be checked.
-     * @return true if permission is store in {@link AstPolicy}, false otherwise.
+     * @return true if permission is store in {@link AstPolicy}, false
+     * otherwise.
      */
     static public boolean hasPermission(Permission permission) {
         return p.implies(permission);

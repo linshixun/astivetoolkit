@@ -19,11 +19,9 @@
  */
 package com.phonytive.astive.ami;
 
-import java.util.HashMap;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.util.AppLocale;
+import java.util.HashMap;
+import org.apache.log4j.Logger;
 
 /**
  * 

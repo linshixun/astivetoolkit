@@ -25,7 +25,7 @@ package com.phonytive.astive.agi;
  *
  * @since 1.0.0
  */
-public class StringConverter extends Converter {
+public class StringConverter implements Converter {
     /**
      * Get a comma separated value from an array of strings.
      *
@@ -36,10 +36,10 @@ public class StringConverter extends Converter {
     public String fromArrayString(String[] a, String separator) {
         StringBuilder b = new StringBuilder();
 
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0x0; i < a.length; i++) {
             b.append(a[i]);
 
-            if (i < (a.length - 1)) {
+            if (i < (a.length - 0x1)) {
                 b.append(separator);
             }
         }

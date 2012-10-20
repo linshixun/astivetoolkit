@@ -19,14 +19,11 @@
  */
 package com.phonytive.astive.server;
 
-import java.io.IOException;
-
-import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.agi.Connection;
 import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import java.io.IOException;
+import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -35,7 +32,7 @@ import com.phonytive.astive.agi.fastagi.FastAgiConnection;
  */
 public class FastAgiConnectionManager implements ConnectionManager {
   // A usual logging class
-  private static final Logger logger = Logger.getLogger(FastAgiConnectionManager.class);
+  private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
   private ArrayList<Connection> conns;
 
   /**

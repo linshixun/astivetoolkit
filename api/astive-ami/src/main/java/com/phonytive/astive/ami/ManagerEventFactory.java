@@ -45,7 +45,7 @@ public class ManagerEventFactory {
    */
   public ManagerEvent getEvent(Object source, Message msg) {
     logger.warn(AppLocale.getI18n("unknownEvent",
-                                  new Object[] { msg.getMessageLines().get(0), msg.toString() }));
+                                  new Object[] { msg.getMessageLines().get(0x0), msg.toString() }));
 
     return new ManagerEvent(source, EventType.UNKNOWN, msg.getParams());
   }

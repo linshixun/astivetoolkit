@@ -34,7 +34,7 @@ public class SpeechRecognize implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 6871133010336237807L;
+    private static final long serialVersionUID = 0x5f5b2b116d8d48efL;
 
     /**
      * Prompt to play.
@@ -45,13 +45,13 @@ public class SpeechRecognize implements Serializable {
     /**
      *  Maximum recognition time(in milliseconds).
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private Integer timeout;
     
     /**
      * Offset samples to skip when playing the prompt.
      */
-    @Parameter(position = 2)
+    @Parameter(position = 0x2)
     private Integer offset;
 
     /**

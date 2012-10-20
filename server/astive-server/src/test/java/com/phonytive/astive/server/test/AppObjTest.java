@@ -22,12 +22,11 @@ package com.phonytive.astive.server.test;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.AstObj;
 import com.phonytive.astive.server.AstiveException;
-import static java.lang.System.out;
 import junit.framework.TestCase;
 
 /**
  *
- * @author psanders
+ * @since 1.0.0
  */
 public class AppObjTest extends TestCase {
     
@@ -42,7 +41,5 @@ public class AppObjTest extends TestCase {
                         + "/astive/examples/helloworld/target"
                             + "/helloworld-1.0.0-M3.jar");
         Astivlet ast = astObj.getAstivletByURLPattern("/examp2les2/2/HelloWorld3");
-        
-        out.println("ast = " + ast);
     }
 }

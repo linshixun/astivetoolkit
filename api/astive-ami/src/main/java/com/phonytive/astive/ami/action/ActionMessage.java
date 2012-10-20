@@ -21,10 +21,8 @@ package com.phonytive.astive.ami.action;
 
 import com.phonytive.astive.ami.Message;
 import com.phonytive.astive.ami.MessageType;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import java.util.Date;
 
 
@@ -34,7 +32,7 @@ import java.util.Date;
  */
 public abstract class ActionMessage extends Message {
     private ActionType action;
-    private long actionId = -1;
+    private long actionId = 0xffffffff;
 
     /**
      * Creates a new ActionMessage object.
@@ -91,7 +89,7 @@ public abstract class ActionMessage extends Message {
         // Adding super class info
         b.append(super.toString());
 
-        if (getActionId() != -1) {
+        if (getActionId() != 0xffffffff) {
             b.append("ActionID");
             b.append(SEPARATOR);
             b.append(getActionId());
@@ -100,7 +98,7 @@ public abstract class ActionMessage extends Message {
 
         Method[] ms = this.getClass().getDeclaredMethods();
 
-        for (int i = 0; i < ms.length; i++) {
+        for (int i = 0x0; i < ms.length; i++) {
             Method m = ms[i];
 
             // Ignore method getActionId in case is overwrited in a subclass
@@ -127,7 +125,7 @@ public abstract class ActionMessage extends Message {
                 } catch (InvocationTargetException ex) {
                 }
 
-                if ((k != null) && !k.equals("")) {
+                if ((k != null) && !k.isEmpty()) {
                     b.append(k);
                     b.append(SEPARATOR);
                     b.append(v);

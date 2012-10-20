@@ -21,7 +21,6 @@
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class SetExtension implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -7607143769226787251L;
+    private static final long serialVersionUID = 0x966dff0bd7e9464dL;
     
     /**
      * New extension.

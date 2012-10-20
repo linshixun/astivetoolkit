@@ -142,11 +142,11 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
 
         try {
             super.stop();
-            System.exit(0);
+            System.exit(0x0);
         } catch (Exception ex) {
             logger.error(AppLocale.getI18n("unexpectedError",
                     new Object[]{ex.getMessage()}));
-            System.exit(1);
+            System.exit(0x1);
         }
     }
     

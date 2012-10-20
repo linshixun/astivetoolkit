@@ -25,5 +25,5 @@ package com.phonytive.astive.agi;
  *
  * @since 1.0.0
  */
-public abstract class Converter {
+public interface Converter {
 }

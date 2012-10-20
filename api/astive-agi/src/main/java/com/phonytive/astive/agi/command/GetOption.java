@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class GetOption implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -5788144017301928558L;
+    private static final long serialVersionUID = 0xafac61aee3ea8592L;
 
     /**
      * Audio to send to channel.
@@ -46,14 +45,14 @@ public class GetOption implements Serializable {
     /**
      * Can be use to the interrupt the audio on a channel.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String escapeDigits;
 
     /**
      * Time in milliseconds to wait for DTMF.
      * <p>With timeout set to -1 this command wait forever.
      */
-    @Parameter(position = 2)
+    @Parameter(position = 0x2)
     private Integer timeout;
 
     /**
@@ -66,7 +65,7 @@ public class GetOption implements Serializable {
     public GetOption(String file, String escapeDigits) {
         this.file = file;
         this.escapeDigits = escapeDigits;
-        this.timeout = -1;
+        this.timeout = 0xffffffff;
     }
 
     /**

@@ -25,8 +25,7 @@ package com.phonytive.astive.server;
  * @since 1.0.0
  */
 public class SystemException extends Exception {
-  private String message;
-
+    
   /**
    * Creates a new SystemException object with null as its detail message.
    */
@@ -40,7 +39,6 @@ public class SystemException extends Exception {
    * <code>Throwable.getMessage()</code> method).
    */
   public SystemException(String message) {
-    super(message);
-    this.message = message;
+    super(message);    
   }
 }

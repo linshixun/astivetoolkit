@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -40,7 +39,7 @@ public class GetFullVariable implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -8554768673812519898L;
+    private static final long serialVersionUID = 0x89475b375dc3e426L;
 
     /**
      * Channel variable.
@@ -51,7 +50,7 @@ public class GetFullVariable implements Serializable {
     /**
      * Channel name.
      */
-    @Parameter(position = 1)
+    @Parameter(position = 0x1)
     private String channel;
 
     /**

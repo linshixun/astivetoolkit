@@ -23,6 +23,7 @@ import com.phonytive.astive.util.AppLocale;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -78,7 +79,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
             List<InetAddress> onlyFromList = new ArrayList<InetAddress>();                        
             String l[] = properties.get("onlyFrom").toString().split(",");
             
-            for(int i = 0; l.length > i; i++) {
+            for(int i = 0x0; l.length > i; i++) {
                 InetAddress id = InetAddress.getByName(l[i].trim());
                 onlyFromList.add(id);
             }
@@ -116,7 +117,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
      */
     @Override
     public List<InetAddress> getOnlyFrom() {
-        return onlyFrom;
+        return Collections.unmodifiableList(onlyFrom);
     }
 
     /**

@@ -29,11 +29,11 @@ import java.util.regex.Pattern;
  * @since 1.0.0
  */
 public class AgiCommandReply {
-    public static int SC_TRYING = 100;
-    public static int SC_SUCCESS = 200;
-    public static int SC_INVALID_OR_UNKNOWN_COMMAND = 510;
-    public static int SC_DEAD_CHANNEL = 511;
-    public static int SC_INVALID_COMMAND_SYNTAX = 520;
+    public static int SC_TRYING = 0x64;
+    public static int SC_SUCCESS = 0xc8;
+    public static int SC_INVALID_OR_UNKNOWN_COMMAND = 0x1fe;
+    public static int SC_DEAD_CHANNEL = 0x1ff;
+    public static int SC_INVALID_COMMAND_SYNTAX = 0x208;
     private static final Pattern STATUS_PATTERN = Pattern.compile(
             "^(\\d{3})[ -]");
     private static final Pattern RESULT_PATTERN = Pattern.compile(
@@ -49,7 +49,7 @@ public class AgiCommandReply {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 6279692160047296949L;
+    private static final long serialVersionUID = 0x5725f2bf926cb1b5L;
 
     /**
      * The status code.
@@ -106,7 +106,7 @@ public class AgiCommandReply {
             this.lines = new ArrayList<String>(lines);
 
             if (!lines.isEmpty()) {
-                firstLine = lines.get(0);
+                firstLine = lines.get(0x0);
             }
         }
     }
@@ -137,7 +137,7 @@ public class AgiCommandReply {
      */
     protected Map<String, String> getAttributes() {
         if (attributes != null) {
-            return attributes;
+            return Collections.unmodifiableMap(attributes);
         }
 
         attributes = new HashMap<String, String>();
@@ -145,10 +145,10 @@ public class AgiCommandReply {
         final Matcher matcher = ADDITIONAL_ATTRIBUTES_PATTERN.matcher(firstLine);
 
         if (matcher.find()) {
-            attributes.putAll(parseAttributes(matcher.group(2)));
+            attributes.putAll(parseAttributes(matcher.group(0x2)));
         }
 
-        return attributes;
+        return Collections.unmodifiableMap(attributes);
     }
 
     /**
@@ -168,7 +168,7 @@ public class AgiCommandReply {
         final Matcher matcher = PARENTHESIS_PATTERN.matcher(firstLine);
 
         if (matcher.find()) {
-            extra = matcher.group(1);
+            extra = matcher.group(0x1);
         }
 
         extraCreated = true;
@@ -191,7 +191,7 @@ public class AgiCommandReply {
      * @return DOCUMENT ME!
      */
     public List<String> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     /**
@@ -207,7 +207,7 @@ public class AgiCommandReply {
         final Matcher matcher = RESULT_PATTERN.matcher(firstLine);
 
         if (matcher.find()) {
-            result = matcher.group(1);
+            result = matcher.group(0x1);
         } else {
             result = "";
         }
@@ -226,13 +226,13 @@ public class AgiCommandReply {
         r = getResult();
 
         if (result == null) {
-            return -1;
+            return 0xffffffff;
         }
 
         try {
             return Integer.parseInt(result);
         } catch (NumberFormatException e) {
-            return -1;
+            return 0xffffffff;
         }
     }
 
@@ -246,8 +246,8 @@ public class AgiCommandReply {
 
         resultCode = getResultCode();
 
-        if (resultCode < 0) {
-            return 0x0;
+        if (resultCode < 0x0) {
+            return 0;
         }
 
         return (char) resultCode;
@@ -266,12 +266,12 @@ public class AgiCommandReply {
         final Matcher matcher = STATUS_PATTERN.matcher(firstLine);
 
         if (matcher.find()) {
-            status = Integer.parseInt(matcher.group(1));
+            status = Integer.parseInt(matcher.group(0x1));
 
             return status;
         }
 
-        return -1;
+        return 0xffffffff;
     }
 
     /**
@@ -284,15 +284,15 @@ public class AgiCommandReply {
             return null;
         }
 
-        if ((synopsis == null) && (lines.size() > 1)) {
+        if ((synopsis == null) && (lines.size() > 0x1)) {
             final String secondLine;
             final Matcher synopsisMatcher;
 
-            secondLine = lines.get(1);
+            secondLine = lines.get(0x1);
             synopsisMatcher = SYNOPSIS_PATTERN.matcher(secondLine);
 
             if (synopsisMatcher.find()) {
-                synopsis = synopsisMatcher.group(1);
+                synopsis = synopsisMatcher.group(0x1);
             }
         }
 
@@ -312,7 +312,7 @@ public class AgiCommandReply {
 
             usageSB = new StringBuilder();
 
-            for (int i = 2; i < lines.size(); i++) {
+            for (int i = 0x2; i < lines.size(); i++) {
                 String line;
 
                 line = lines.get(i);
@@ -345,9 +345,9 @@ public class AgiCommandReply {
 
         boolean inKey = true;
         boolean inQuotes = false;
-        char previousChar = 0x0;
+        char previousChar = 0;
 
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0x0; i < s.length(); i++) {
             char c = s.charAt(i);
 
             if ((c == '=') && inKey) {
@@ -356,12 +356,12 @@ public class AgiCommandReply {
             } else if (((c == ' ') && !inKey && !inQuotes)) {
                 map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
                     valueBuilder.toString());
-                keyBuilder.delete(0, keyBuilder.length());
-                valueBuilder.delete(0, valueBuilder.length());
+                keyBuilder.delete(0x0, keyBuilder.length());
+                valueBuilder.delete(0x0, valueBuilder.length());
                 inKey = true;
             } else if ((c == '"') && !inKey) {
                 if (previousChar == '\\') {
-                    valueBuilder.deleteCharAt(valueBuilder.length() - 1);
+                    valueBuilder.deleteCharAt(valueBuilder.length() - 0x1);
                     valueBuilder.append(c);
                 } else {
                     inQuotes = !inQuotes;
@@ -377,7 +377,7 @@ public class AgiCommandReply {
             previousChar = c;
         }
 
-        if (keyBuilder.length() > 0) {
+        if (keyBuilder.length() > 0x0) {
             map.put(keyBuilder.toString().toLowerCase(Locale.ENGLISH),
                 valueBuilder.toString());
         }

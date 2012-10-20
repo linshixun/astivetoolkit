@@ -19,15 +19,14 @@
  */
 package com.phonytive.astive.ami;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.regex.Pattern;
-
 import com.phonytive.astive.ami.action.ActionType;
 import com.phonytive.astive.ami.event.EventType;
 import com.phonytive.astive.ami.util.Utils;
 import com.phonytive.astive.util.AppLocale;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -73,8 +72,8 @@ public class Message {
    * @throws AmiException DOCUMENT ME!
    */
   public Message(ArrayList<String> lines) throws AmiException {
-    String messageType = lines.get(0).split(SEPARATOR)[0];
-    String messageSubType = lines.get(0).split(SEPARATOR)[1];
+    String messageType = lines.get(0x0).split(SEPARATOR)[0x0];
+    String messageSubType = lines.get(0x0).split(SEPARATOR)[0x1];
     type = Utils.getMessageType(messageType);
 
     if (type.equals(MessageType.ACTION)) {
@@ -92,9 +91,9 @@ public class Message {
 
     params = new HashMap();
 
-    for (int i = 1; i < lines.size(); i++) {
-      String k = lines.get(i).split(SEPARATOR)[0];
-      String v = lines.get(i).split(SEPARATOR)[1];
+    for (int i = 0x1; i < lines.size(); i++) {
+      String k = lines.get(i).split(SEPARATOR)[0x0];
+      String v = lines.get(i).split(SEPARATOR)[0x1];
       params.put(k, v);
     }
   }

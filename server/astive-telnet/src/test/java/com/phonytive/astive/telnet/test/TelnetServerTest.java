@@ -17,21 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.phonytive.astive.telnet.test;
 
-import com.phonytive.astive.telnet.TelnetServer;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import junit.framework.TestCase;
 
 /**
  *
- * @author psanders
+ * @since 1.0.0
  */
 public class TelnetServerTest extends TestCase {
     

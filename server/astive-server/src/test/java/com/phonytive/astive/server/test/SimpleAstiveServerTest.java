@@ -105,7 +105,7 @@ public class SimpleAstiveServerTest extends TestCase {
         request.add("");
         
         try {
-            Thread.sleep(12000);
+            Thread.sleep(0x2ee0);
         } catch (InterruptedException ex) {
         }
   }

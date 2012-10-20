@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.GetData;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -33,8 +31,8 @@ public class GetDataTest extends TestCase {
 
     public void testCommand() throws AgiException {
         String file = "tt-monkeys";
-        Integer timeout = 0;
-        Integer maxDigits = 1024;
+        Integer timeout = 0x0;
+        Integer maxDigits = 0x400;
 
         // Test first constructor
         StringBuilder b = new StringBuilder("GET DATA");

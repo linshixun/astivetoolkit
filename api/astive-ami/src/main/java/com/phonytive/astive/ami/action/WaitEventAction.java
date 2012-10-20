@@ -25,7 +25,7 @@ package com.phonytive.astive.ami.action;
  * @since 1.0.0
  */
 public class WaitEventAction extends ActionMessage {
-  private int timeout = -1;
+  private int timeout = 0xffffffff;
 
   /**
    * Creates a new WaitEventAction object.

@@ -31,7 +31,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author psanders
+ * @since 1.0.0
  */
 public class AppTest extends TestCase {
     

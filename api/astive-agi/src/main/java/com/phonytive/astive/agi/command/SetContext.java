@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class SetContext implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -518908570483537151L;
+    private static final long serialVersionUID = 0xf8cc7767896c4b01L;
     
     /**
      * Desired context for channel.

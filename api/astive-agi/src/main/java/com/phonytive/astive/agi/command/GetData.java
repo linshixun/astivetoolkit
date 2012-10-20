@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -37,17 +36,17 @@ public class GetData implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -6316397364689291658L;
+    private static final long serialVersionUID = 0xa857a610017b3676L;
 
     /**
      * Default max digits.
      */
-    private static final int DEFAULT_MAX_DIGITS = 1024;
+    private static final int DEFAULT_MAX_DIGITS = 0x400;
 
     /**
      * Default max timeout.
      */
-    private static final int DEFAULT_TIMEOUT = 0;
+    private static final int DEFAULT_TIMEOUT = 0x0;
 
     /**
      * Audio to send to channel.
@@ -59,13 +58,13 @@ public class GetData implements Serializable {
      * Time in milliseconds to wait for DTMF. If a digit is pressed the wait
      * time is reset. <p>With timeout set to -1 this command wait forever.
      */
-    @Parameter(position = 1)
+    @Parameter(position = 0x1)
     private Integer timeout;
 
     /**
      * Max digits to enter.
      */
-    @Parameter(position = 2)
+    @Parameter(position = 0x2)
     private Integer maxDigits;
 
     /**

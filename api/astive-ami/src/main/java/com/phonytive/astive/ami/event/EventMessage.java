@@ -73,7 +73,7 @@ public class EventMessage extends Message {
     String[] parray = p.split(",");
     privilege = new ArrayList();
 
-    for (int i = 0; i < parray.length; i++) {
+    for (int i = 0x0; i < parray.length; i++) {
       privilege.add(Privilege.valueOf(parray[i].toUpperCase()));
     }
 

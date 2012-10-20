@@ -134,7 +134,7 @@ public class CommandProcessor {
             if (param instanceof String || param instanceof Character) {
                 if(param instanceof Character) {
                     Character c = (Character) param;
-                    if(!c.toString().trim().equals("")) {
+                    if(!c.toString().trim().isEmpty()) {
                         cmd.append("\"");                                
                         cmd.append(c);
                         cmd.append("\"");
@@ -221,7 +221,7 @@ public class CommandProcessor {
                 cmd.append(id);
                 cmd.append("\"");
             } else {
-                if (!p.prefix().equals("")) {
+                if (!p.prefix().isEmpty()) {
                     cmd.append("\"");
                     cmd.append(p.prefix());
                     cmd.append(param);

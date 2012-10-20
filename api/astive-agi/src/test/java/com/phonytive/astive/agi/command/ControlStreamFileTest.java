@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.ControlStreamFile;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -34,7 +32,7 @@ public class ControlStreamFileTest extends TestCase {
     public void testCommand() throws AgiException {
         String file = "tt-monkeys";
         String escapeDigits = "";
-        Integer offset = 0;
+        Integer offset = 0x0;
         char forwardDigit = '*';
         char rewindDigit = '#';
         char pauseDigit = '9';

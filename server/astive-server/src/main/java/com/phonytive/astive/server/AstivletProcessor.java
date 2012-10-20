@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  */
 public class AstivletProcessor {
 
-    private static final Logger logger = Logger.getLogger(AstivletProcessor.class);
+    private static final Logger LOG = Logger.getLogger(AstivletProcessor.class);
 
     /**
      * DOCUMENT ME!
@@ -50,15 +50,15 @@ public class AstivletProcessor {
             AstDB astDB = MyAstDB.getInstance();
             String script = "/" + request.getScript();
 
-            if (script.split("\\?").length > 1) {
-                script = script.split("\\?")[0];
+            if (script.split("\\?").length > 0x1) {
+                script = script.split("\\?")[0x0];
             }
 
             Astivlet astivlet = astDB.getAstivlet(script);
 
-            Class[] classParamTypes = new Class[2];
-            classParamTypes[0] = AstivletRequest.class;
-            classParamTypes[1] = AstivletResponse.class;
+            Class[] classParamTypes = new Class[0x2];
+            classParamTypes[0x0] = AstivletRequest.class;
+            classParamTypes[0x1] = AstivletResponse.class;
 
             Class c = Astivlet.class;
 
@@ -67,20 +67,15 @@ public class AstivletProcessor {
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});
         } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
         } catch (SecurityException ex) {
-            ex.printStackTrace();
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
         } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-            logger.warn(ex.getMessage());
-        } catch (InvocationTargetException ex) {            
-            ex.printStackTrace();
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
+        } catch (InvocationTargetException ex) {
+            LOG.warn(ex.getMessage());
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("resourceNotExist",
                     new Object[]{"/" + request.getScript()}));
@@ -100,26 +95,26 @@ public class AstivletProcessor {
             AstivletRequest request, AstivletResponse response)
             throws AstiveException {
         try {
-            Class[] classParamTypes = new Class[2];
-            classParamTypes[0] = AstivletRequest.class;
-            classParamTypes[1] = AstivletResponse.class;
+            Class[] classParamTypes = new Class[0x2];
+            classParamTypes[0x0] = AstivletRequest.class;
+            classParamTypes[0x1] = AstivletResponse.class;
 
             Class c = Astivlet.class;
-            Method m = null;
+            Method m;
 
             m = c.getDeclaredMethod("service", classParamTypes);
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});
         } catch (NoSuchMethodException ex) {
-            logger.warn(AppLocale.getI18n(ex.getMessage()));
+            LOG.warn(AppLocale.getI18n(ex.getMessage()));
         } catch (SecurityException ex) {
-            logger.warn(AppLocale.getI18n(ex.getMessage()));
+            LOG.warn(AppLocale.getI18n(ex.getMessage()));
         } catch (IllegalAccessException ex) {
-            logger.warn(AppLocale.getI18n(ex.getMessage()));
+            LOG.warn(AppLocale.getI18n(ex.getMessage()));
         } catch (IllegalArgumentException ex) {
-            logger.warn(AppLocale.getI18n(ex.getMessage()));
+            LOG.warn(AppLocale.getI18n(ex.getMessage()));
         } catch (InvocationTargetException ex) {
-            logger.warn(AppLocale.getI18n(ex.getMessage()));
+            LOG.warn(AppLocale.getI18n(ex.getMessage()));
         }
     }
 

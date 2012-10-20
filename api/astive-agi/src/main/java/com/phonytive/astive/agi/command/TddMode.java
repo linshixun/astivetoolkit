@@ -23,7 +23,6 @@ import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.BooleanChoose;
 import com.phonytive.astive.agi.annotation.ParamConverter;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -39,7 +38,7 @@ public class TddMode implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 5179054735596539116L;
+    private static final long serialVersionUID = 0x47dfb2d79b894cecL;
     
     /**
      * Enable/Disable TDD transmission/reception on a channel.

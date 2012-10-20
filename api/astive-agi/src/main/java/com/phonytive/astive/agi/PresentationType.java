@@ -25,15 +25,15 @@ package com.phonytive.astive.agi;
  *
  * @since 1.0.0
  */
-public enum PresentationType {ALLOWED(0, "allowed", "allowed"),
-    ALLOWED_NOT_SCREENED(1, "allowed_not_screened", "allowed not screened"),
-    ALLOWED_PASSED_SCREEN(2, "allowed_passed_screen", "allowed passed screen"),
-    ALLOWED_FAILED_SCREEN(3, "allowed_failed_screen", "allowed failed screen"),
-    PROHIB_NOT_SCREENED(4, "prohib_not_screened", "prohib not screened"),
-    PROHIB_PASSED_SCREEN(5, "prohib_passed_screen", "prohib passed screen"),
-    PROHIB_FAILED_SCREEN(6, "prohib_failed_screen", "prohib failed screen"),
-    PROHIB(7, "prohib", "prohib"),
-    UNAVAILABLE(8, "unavailable", "unavailable");
+public enum PresentationType {ALLOWED(0x0, "allowed", "allowed"),
+    ALLOWED_NOT_SCREENED(0x1, "allowed_not_screened", "allowed not screened"),
+    ALLOWED_PASSED_SCREEN(0x2, "allowed_passed_screen", "allowed passed screen"),
+    ALLOWED_FAILED_SCREEN(0x3, "allowed_failed_screen", "allowed failed screen"),
+    PROHIB_NOT_SCREENED(0x4, "prohib_not_screened", "prohib not screened"),
+    PROHIB_PASSED_SCREEN(0x5, "prohib_passed_screen", "prohib passed screen"),
+    PROHIB_FAILED_SCREEN(0x6, "prohib_failed_screen", "prohib failed screen"),
+    PROHIB(0x7, "prohib", "prohib"),
+    UNAVAILABLE(0x8, "unavailable", "unavailable");
 
     /**
      * PresentationType value.

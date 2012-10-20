@@ -58,10 +58,10 @@ public class AppXmlTest extends TestCase {
 
         AppType app = doc.getApp();
 
-        assert (!app.getName().equals(""));
-        assert (!app.getName().equals(""));
-        assert (!app.getDescription().equals(""));
-        assert (app.getAstivletArray().length == 2);
-        assert (app.getAstivletMappingArray().length == 2);
+        assert (!app.getName().isEmpty());
+        assert (!app.getName().isEmpty());
+        assert (!app.getDescription().isEmpty());
+        assert (app.getAstivletArray().length == 0x2);
+        assert (app.getAstivletMappingArray().length == 0x2);
     }
 }

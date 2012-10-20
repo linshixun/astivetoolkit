@@ -22,9 +22,7 @@ package com.phonytive.astive.agi.command;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.ParamConverter;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
-
 import java.util.Date;
 
 
@@ -42,7 +40,7 @@ public class SayTime implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -7294406055734477784L;
+    private static final long serialVersionUID = 0x9ac51056f87cfc28L;
     
     /**
      * Time to say.
@@ -54,7 +52,7 @@ public class SayTime implements Serializable {
     /**
      * Can be use to the interrupt the audio on a channel.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String escapeDigits;
 
     /**

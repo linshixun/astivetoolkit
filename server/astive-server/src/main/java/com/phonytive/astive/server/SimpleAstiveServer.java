@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
  */
 public class SimpleAstiveServer extends AbstractAstiveServer {
   // A usual logging class
-  private static final Logger logger = Logger.getLogger(SimpleAstiveServer.class);
+  private static final Logger LOG = Logger.getLogger(SimpleAstiveServer.class);
   private Astivlet astivlet;
   private ExecutorService executorService;
   private int port;

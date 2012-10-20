@@ -26,7 +26,7 @@ package com.phonytive.astive.menu;
  */
 public abstract class Authenticator {
   private boolean authenticated = false;
-  private int maxAuth = 3;
+  private int maxAuth = 0x3;
 
   /** 
    * Creates a new Authenticator object.

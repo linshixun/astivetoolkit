@@ -19,9 +19,8 @@
  */
 package com.phonytive.astive.menu;
 
-import org.apache.log4j.Logger;
-
 import com.phonytive.astive.util.AppLocale;
+import org.apache.log4j.Logger;
 
 /**
  *

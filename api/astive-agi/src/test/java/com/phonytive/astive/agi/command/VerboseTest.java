@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.Verbose;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -33,7 +31,7 @@ public class VerboseTest extends TestCase {
 
     public void testCommand() throws AgiException {
         String message = "This is a message";
-        Integer level = 2;
+        Integer level = 0x2;
 
         StringBuilder b = new StringBuilder("VERBOSE");
         b.append(" ");

@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -41,7 +40,7 @@ public class StreamFile implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -2252108911003941739L;
+    private static final long serialVersionUID = 0xe0bee6e0ac1e4495L;
 
     /**
      * Audio to send to channel.
@@ -52,14 +51,14 @@ public class StreamFile implements Serializable {
     /**
      * Can be use to the interrupt the audio on a channel.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String escapeDigits;
 
     /**
      * Silence time in milliseconds after audio finished. The default value
      * is '0' (no silence).
      */
-    @Parameter(position = 2, optional = false)
+    @Parameter(position = 0x2, optional = false)
     private Integer offset;
 
     /**
@@ -71,7 +70,7 @@ public class StreamFile implements Serializable {
     public StreamFile(String file) {
         this.file = file;
         this.escapeDigits = "";
-        this.offset = 0;
+        this.offset = 0x0;
     }
 
     /**
@@ -84,7 +83,7 @@ public class StreamFile implements Serializable {
     public StreamFile(String file, String escapeDigits) {
         this.file = file;
         this.escapeDigits = escapeDigits;
-        this.offset = 0;
+        this.offset = 0x0;
     }
 
     /**

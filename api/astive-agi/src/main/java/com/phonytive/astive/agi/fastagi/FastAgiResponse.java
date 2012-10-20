@@ -681,7 +681,7 @@ public class FastAgiResponse implements AgiResponse {
     public void speechCreate(String engine) throws AgiException {
         SpeechCreate command = new SpeechCreate(engine);
         AgiCommandReply acr = cHandler.sendAgiCommand(command);
-        if (acr.getResultCode() != 1) {
+        if (acr.getResultCode() != 0x1) {
             if (engine == null || "".equals(engine)) {
                 throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObjectForDefaultEngine"));
             } else {
@@ -725,6 +725,7 @@ public class FastAgiResponse implements AgiResponse {
      * @return
      * @throws AgiException
      */
+    @Override
     public SpeechRecognitionResult speechRecognize(String prompt, int timeout) throws AgiException {
         SpeechRecognize command = new SpeechRecognize(prompt, timeout);
         AgiCommandReply reply = cHandler.sendAgiCommand(command);

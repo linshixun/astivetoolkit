@@ -33,7 +33,7 @@ public class Answer implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -4939433835861816194L;
+    private static final long serialVersionUID = 0xbb739b18b5e94c7eL;
 
     /**
      * Create a new Answer object.

@@ -14,8 +14,5 @@
         <module>astive-client</module>
         <module>astive-telnet</module>
 	<module>astive-server</module>
-        <module>astive-webadmin</module>
-        <module>astive-loader</module>
-        <module>astive-fakeclient</module>
     </modules>
 </project>

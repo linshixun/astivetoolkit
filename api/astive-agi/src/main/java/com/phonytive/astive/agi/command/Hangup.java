@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -36,7 +35,7 @@ public class Hangup implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -7294601691881839635L;
+    private static final long serialVersionUID = 0x9ac45e68e16b63edL;
 
     /**
      * Channel name.

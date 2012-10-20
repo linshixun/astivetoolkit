@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -41,7 +40,7 @@ public class ControlStreamFile implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 3190091457969146433L;
+    private static final long serialVersionUID = 0x2c457b4779424a41L;
 
     /**
      * Audio to send to channel.
@@ -52,32 +51,32 @@ public class ControlStreamFile implements Serializable {
     /**
      * Can be use to the interrupt the audio on a channel.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String escapeDigits;
 
     /**
      * Silence time in milliseconds after audio finished. The default value
      * is '0' (no silence).
      */
-    @Parameter(position = 2, optional = false)
+    @Parameter(position = 0x2, optional = false)
     private Integer offset;
 
     /**
      * Digit used to move audio forward.
      */
-    @Parameter(position = 3)
+    @Parameter(position = 0x3)
     private char forwardDigit;
 
     /**
      * Digit used to rewind audio.
      */
-    @Parameter(position = 4)
+    @Parameter(position = 0x4)
     private char rewindDigit;
 
     /**
      * Digit used to pause audio.
      */
-    @Parameter(position = 5)
+    @Parameter(position = 0x5)
     private char pauseDigit;
 
     /**
@@ -89,7 +88,7 @@ public class ControlStreamFile implements Serializable {
     public ControlStreamFile(String file) {
         this.file = file;
         escapeDigits = "";
-        offset = 0;
+        offset = 0x0;
     }
 
     /**
@@ -102,7 +101,7 @@ public class ControlStreamFile implements Serializable {
     public ControlStreamFile(String file, String escapeDigits) {
         this.file = file;
         this.escapeDigits = escapeDigits;
-        offset = 0;
+        offset = 0x0;
     }
 
     /**

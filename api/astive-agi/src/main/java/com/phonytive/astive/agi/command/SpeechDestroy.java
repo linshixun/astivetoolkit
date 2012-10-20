@@ -34,7 +34,7 @@ public class SpeechDestroy implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -4115626736069817017L;
+    private static final long serialVersionUID = 0xc6e25b4a00754d47L;
 
     /**
      * Create a new SpeechDestroy object.

@@ -20,7 +20,6 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
-
 import java.io.Serializable;
 
 
@@ -34,7 +33,7 @@ public class Noop implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -8349982286619204963L;
+    private static final long serialVersionUID = 0x8c1ee759b542229dL;
 
     /**
      * Create a new Noop object.

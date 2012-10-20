@@ -23,7 +23,6 @@ import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.ParamConverter;
 import com.phonytive.astive.agi.annotation.Parameter;
 import com.phonytive.astive.agi.annotation.Separator;
-
 import java.io.Serializable;
 
 
@@ -40,7 +39,7 @@ public class Exec implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -6489004022425967088L;
+    private static final long serialVersionUID = 0xa5f26d38c9382610L;
 
     /**
      * Application to execute.
@@ -51,7 +50,7 @@ public class Exec implements Serializable {
     /**
      * Application options.
      */
-    @Parameter(position = 1)
+    @Parameter(position = 0x1)
     @ParamConverter
     @Separator
     private String[] options;

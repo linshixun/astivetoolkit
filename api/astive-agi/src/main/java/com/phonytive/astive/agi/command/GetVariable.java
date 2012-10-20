@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -40,7 +39,7 @@ public class GetVariable implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -3524554548766620910L;
+    private static final long serialVersionUID = 0xcf16444fd1474312L;
 
     /**
      * Variable name.

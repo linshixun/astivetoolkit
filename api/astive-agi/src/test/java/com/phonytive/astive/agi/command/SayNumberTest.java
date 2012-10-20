@@ -20,10 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.SayAlpha;
-import com.phonytive.astive.agi.command.SayNumber;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -33,7 +30,7 @@ public class SayNumberTest extends TestCase {
     }
 
     public void testCommand() throws AgiException {
-        Integer number = 123;
+        Integer number = 0x7b;
         String escapeDigits = "";
 
         // Testing first constructor

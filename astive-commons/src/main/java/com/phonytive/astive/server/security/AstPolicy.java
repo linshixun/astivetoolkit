@@ -79,25 +79,30 @@ public class AstPolicy extends Policy {
     public void addPermission(SocketPermission permission) {        
         perms.add(permission);
     }
-    
+
     /**
      * Use to add permission for a particular <code>service</code>(ex.:Telnet).
      * 
      * @param servicesProperties the service to be protected.
-     */      
+     */
     public void addPermissions(ServiceProperties servicesProperties) {
         List<InetAddress> onlyFromList = servicesProperties.getOnlyFrom();
         Iterator<InetAddress> onlyFromIterator = onlyFromList.iterator();
-        while(onlyFromIterator.hasNext()) {            
+        while(onlyFromIterator.hasNext()) {
             InetAddress currentInetAddress = onlyFromIterator.next();
-            StringBuilder sb = new StringBuilder();            
+            StringBuilder sb = new StringBuilder();
             sb.append(currentInetAddress.getHostAddress());
             sb.append(":");
-            sb.append(servicesProperties.getPort());
+            // WARN: Hardcode !
+            if(servicesProperties.getServiceName().equals("astived")) {
+                sb.append("*");
+            } else {
+                sb.append(servicesProperties.getPort());
+            }       
             perms.add(new SocketPermission(sb.toString(), DEFAULT_ACTION));                                  
         }
-    }    
-    
+    }
+
     /**
      * Empties the permission collection.
      */

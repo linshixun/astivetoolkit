@@ -54,11 +54,11 @@ public class SpeechRecognitionResult {
     public char getDigit() {
         final String digit = AgiCommandReply.getAttribute("digit");
 
-        if ((digit == null) || (digit.length() == 0)) {
-            return 0x0;
+        if ((digit == null) || (digit.length() == 0x0)) {
+            return 0;
         }
 
-        return digit.charAt(0);
+        return digit.charAt(0x0);
     }
     
     public int getEndpos() {
@@ -68,7 +68,7 @@ public class SpeechRecognitionResult {
     public int getScore() {
         final String score0 = AgiCommandReply.getAttribute("score0");
 
-        return (score0 == null) ? 0 : Integer.valueOf(score0);
+        return (score0 == null) ? 0x0 : Integer.valueOf(score0);
     }
 
     public String getText() {
@@ -82,14 +82,14 @@ public class SpeechRecognitionResult {
     public int getNumberOfResults() {
         final String numberOfResults = AgiCommandReply.getAttribute("results");
 
-        return (numberOfResults == null) ? 0 : Integer.valueOf(numberOfResults);
+        return (numberOfResults == null) ? 0x0 : Integer.valueOf(numberOfResults);
     }
 
     public List<SpeechResult> getAllResults() {
         final int numberOfResults = getNumberOfResults();
         final List<SpeechResult> results = new ArrayList<SpeechResult>(numberOfResults);
 
-        for (int i = 0; i < numberOfResults; i++) {
+        for (int i = 0x0; i < numberOfResults; i++) {
             SpeechResult result = new SpeechResult(Integer.valueOf(
                         AgiCommandReply.getAttribute("score" + i)),
                     AgiCommandReply.getAttribute("text" + i),
@@ -120,7 +120,7 @@ public class SpeechRecognitionResult {
             sb.append("timeout=true,");
         }
 
-        if (getNumberOfResults() > 1) {
+        if (getNumberOfResults() > 0x1) {
             sb.append("numberOfResults=").append(getNumberOfResults())
               .append(",");
             sb.append("allResults=").append(getAllResults()).append(",");
@@ -132,7 +132,7 @@ public class SpeechRecognitionResult {
     }
 
     public static class SpeechResult implements Serializable {
-        private static final long serialVersionUID = 0L;
+        private static final long serialVersionUID = 0x0L;
         private final int score;
         private final String text;
         private final String grammar;
@@ -171,6 +171,7 @@ public class SpeechRecognitionResult {
             return grammar;
         }
 
+        @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder("[");
             sb.append("score=").append(score).append(",");

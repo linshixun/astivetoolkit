@@ -31,8 +31,8 @@ public class SpeechRecognizeTest extends TestCase {
 
     public void testCommand() throws AgiException {
         String prompt = "Something to speech";
-        Integer timeout = 1000;
-        Integer offset = 600;
+        Integer timeout = 0x3e8;
+        Integer offset = 0x258;
 
         // Testing first constructor
         StringBuilder b = new StringBuilder("SPEECH RECOGNIZE");

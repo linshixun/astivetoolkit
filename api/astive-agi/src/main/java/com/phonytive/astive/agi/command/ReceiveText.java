@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -38,7 +37,7 @@ public class ReceiveText implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 3207689243657325448L;
+    private static final long serialVersionUID = 0x2c84005f3e094b88L;
     /**
      * Time in milliseconds to wait for text.
      */
@@ -49,7 +48,7 @@ public class ReceiveText implements Serializable {
      * Create a new ReceiveText object.
      */    
     public ReceiveText() {
-        timeout = 0;
+        timeout = 0x0;
     }
 
     /**

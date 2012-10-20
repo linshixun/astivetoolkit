@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.GetOption;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -34,7 +32,7 @@ public class GetOptionTest extends TestCase {
     public void testCommand() throws AgiException {
         String file = "tt-monkeys";
         String escapeDigits = "12";
-        Integer timeout = -1;
+        Integer timeout = 0xffffffff;
 
         // Test first constructor
         StringBuilder b = new StringBuilder("GET OPTION");

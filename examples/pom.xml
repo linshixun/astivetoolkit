@@ -14,7 +14,7 @@
         <module>handling-events</module>
         <module>agi-tdd</module>
         <module>yahoo-weather</module>
-        <module>speechrecognition</module>
+        <module>speech-recognition</module>
         <module>voicecomposer</module>
     </modules>
 </project>

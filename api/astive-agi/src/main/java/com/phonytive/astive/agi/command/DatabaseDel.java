@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -45,7 +44,7 @@ public class DatabaseDel implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -6727659547412740265L;
+    private static final long serialVersionUID = 0xa2a28d494ab2c757L;
 
     /**
      * Arbitrary name use to group a collection of values defined by a key.
@@ -56,7 +55,7 @@ public class DatabaseDel implements Serializable {
     /**
      * Element of database.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String key;
 
     /**

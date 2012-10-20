@@ -40,15 +40,15 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  * @see ConnectionMonitor
  */
-public final class SimpleConnectionMonitor implements ConnectionMonitor {
+public class SimpleConnectionMonitor implements ConnectionMonitor {
     // A usual logging class
 
-    private static final Logger logger = Logger.getLogger(SimpleConnectionMonitor.class);
+    private static final Logger LOG = Logger.getLogger(SimpleConnectionMonitor.class);
     private Astivlet astivlet;
     private ConnectionManager manager;
     private ExecutorService executorService;
     private FastAgiServerSocket server;
-    private int maxThreads = 10;
+    private int maxThreads = 0xa;
 
     /**
      * Creates a new SimpleConnectionMonitor object.
@@ -57,8 +57,8 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
      * @param astivlet DOCUMENT ME!
      */
     public SimpleConnectionMonitor(FastAgiServerSocket server, Astivlet astivlet) {
-        if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("startingConnectionMonitor"));
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
         }
 
         this.server = server;
@@ -67,7 +67,7 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
         executorService = Executors.newFixedThreadPool(maxThreads);
     }
 
-    // TODO: This should generalized. For example, I can create an interface ConectionMonitorMappStrategy
+    // TODO: This should be generalized. For example, I can create an interface ConectionMonitorMappStrategy
     // indicating how to mapp the apps for this server. Then create a SimpleMappingStrategy or some like that
     @Deprecated
     private static String getAppName(Astivlet astivlet) {
@@ -105,8 +105,8 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
     @Override
     public void processConnection(final Connection conn)
             throws AstiveException {
-        if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("processingCall"));
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("processingCall"));
         }
 
         try {
@@ -117,17 +117,17 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
             AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
             String requestAppName = aRequest.getRequestURL();
 
-            if (logger.isDebugEnabled()) {
-                logger.debug("exec app = " + requestAppName);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("exec app = " + requestAppName);
             }
 
             AstivletProcessor.invokeAstivlet(getAstivlet(), aRequest, aResponse);
 
-            if (logger.isDebugEnabled()) {
-                logger.debug("done.");
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("done.");
             }
         } catch (AgiException ex) {
-            logger.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
+            LOG.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }
     }
 
@@ -148,19 +148,19 @@ public final class SimpleConnectionMonitor implements ConnectionMonitor {
                         try {
                             processConnection(conn);
                         } catch (AstiveException ex) {
-                            logger.warn(ex.getMessage());
+                            LOG.warn(ex.getMessage());
                         }
 
                         try {
                             manager.remove(conn);
                         } catch (IOException ex) {
-                            logger.error(AppLocale.getI18n("unableToPerformIOOperations",
+                            LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
                                     new Object[]{ex.getMessage()}));
                         }
                     }
                 });
             } catch (IOException ex) {
-                logger.error(AppLocale.getI18n("unableToPerformIOOperations",
+                LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
                         new Object[]{ex.getMessage()}));
             }
         }

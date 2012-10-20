@@ -47,7 +47,7 @@ class MessageHandler implements Runnable {
    *
    * @throws AmiException DOCUMENT ME!
    */
-  public MessageHandler(Manager manager, Socket client)
+  MessageHandler(Manager manager, Socket client)
                  throws AmiException {
     try {
       this.manager = manager;
@@ -71,7 +71,7 @@ class MessageHandler implements Runnable {
     try {
       String s;
 
-      while (!(s = getReader().readLine()).equals("")) {
+      while (!(s = getReader().readLine()).isEmpty()) {
         lines.add(s);
       }
     } catch (IOException ex) {
@@ -86,8 +86,6 @@ class MessageHandler implements Runnable {
       Message msg = new Message(lines);
 
       if (msg.getType().equals(MessageType.RESPONSE)) {
-        // Pushing message into the response inbox
-        System.out.println(msg);
 
         String actionId = msg.getParameter("ActionID");
 

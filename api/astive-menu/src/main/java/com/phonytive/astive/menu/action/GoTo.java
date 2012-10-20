@@ -22,9 +22,9 @@ package com.phonytive.astive.menu.action;
 
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
-import com.phonytive.astive.menu.MenuNavigator;
 import com.phonytive.astive.menu.Menu;
 import com.phonytive.astive.menu.MenuException;
+import com.phonytive.astive.menu.MenuNavigator;
 
 /**
  *

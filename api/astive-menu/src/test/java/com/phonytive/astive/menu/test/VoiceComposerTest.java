@@ -41,22 +41,15 @@ public class VoiceComposerTest extends TestCase {
         VoiceComposition vc = VoiceComposer.withEscapeDigits("12345")
                                            .withFormat("")
                                            .withTimeZone(TimeZone.getDefault())
-                                           .streamFile("file1").addSilence(1)
+                                           .streamFile("file1").addSilence(0x1)
                                            .withEscapeDigits("").sayAlpha("abcd")
                                            .create();
         
         assert ("STREAM FILE \"file1\" \"12345\" 0".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(0))));
+                vc.getCommands().get(0x0))));
         assert ("STREAM FILE \"silence/1\" \"12345\" 0".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(1))));
+                vc.getCommands().get(0x1))));
         assert ("SAY ALPHA \"abcd\" \"\"".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(2))));
-
-        for (Object o : vc.getCommands()) {            
-            String cp = CommandProcessor.buildCommand(o);            
-            System.out.print("class = ");
-            System.out.println(o.getClass());
-            System.out.println(cp);
-        }
+                vc.getCommands().get(0x2))));
     }
 }

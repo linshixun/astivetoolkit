@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -40,7 +39,7 @@ public class SendImage implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -3133245749356443450L;
+    private static final long serialVersionUID = 0xd4847997739b48c6L;
     
     /**
      * Image to sent to channel.

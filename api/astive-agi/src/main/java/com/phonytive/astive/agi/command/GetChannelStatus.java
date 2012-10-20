@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -48,7 +47,7 @@ public class GetChannelStatus implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -820579790841625915L;
+    private static final long serialVersionUID = 0xf49cb707210542c5L;
 
     /**
      * Channel name, or null for current channel.

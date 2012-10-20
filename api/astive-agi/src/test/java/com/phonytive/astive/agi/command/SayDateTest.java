@@ -20,12 +20,9 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.SayDate;
 import com.phonytive.astive.agi.CommandProcessor;
-
-import junit.framework.TestCase;
-
 import java.util.Date;
+import junit.framework.TestCase;
 
 
 public class SayDateTest extends TestCase {
@@ -35,7 +32,7 @@ public class SayDateTest extends TestCase {
 
     public void testCommand() throws AgiException {
         Date date = new Date();
-        long seconds = (date).getTime() / 1000;
+        long seconds = (date).getTime() / 0x3e8;
         String escapeDigits = "";
 
         // Testing first constructor

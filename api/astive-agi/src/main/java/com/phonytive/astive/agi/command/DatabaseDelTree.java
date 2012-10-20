@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -39,7 +38,7 @@ public class DatabaseDelTree implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -6776258350511425471L;
+    private static final long serialVersionUID = 0xa1f5e4eeaf7df841L;
 
     /**
      * Database family.
@@ -50,7 +49,7 @@ public class DatabaseDelTree implements Serializable {
     /**
      * Keytree within family.
      */
-    @Parameter(position = 1)
+    @Parameter(position = 0x1)
     private String keyTree;
 
     /**

@@ -20,9 +20,7 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.command.WaitForDigit;
 import com.phonytive.astive.agi.CommandProcessor;
-
 import junit.framework.TestCase;
 
 
@@ -32,7 +30,7 @@ public class WaitForDigitTest extends TestCase {
     }
 
     public void testCommand() throws AgiException {
-        Integer timeout = 4000;
+        Integer timeout = 0xfa0;
         StringBuilder b = new StringBuilder("WAIT FOR DIGIT");
         b.append(" ");
         b.append(timeout);

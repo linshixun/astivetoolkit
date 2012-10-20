@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -37,7 +36,7 @@ public class SetAutoHangup implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -5343593827052978984L;
+    private static final long serialVersionUID = 0xb5d7bdb9d2897cd8L;
 
     /**
      * Time in seconds to automatically hangup channel.

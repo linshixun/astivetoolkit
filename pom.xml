@@ -115,8 +115,6 @@
         <module>api</module>
         <module>server</module>
         <module>astive-archetype</module>
-    <!--<module>astbeans</module>-->
-    <!--<module>astive-ia</module>-->
     </modules>
     
     <scm>

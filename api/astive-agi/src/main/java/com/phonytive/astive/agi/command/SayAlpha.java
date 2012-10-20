@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -39,7 +38,7 @@ public class SayAlpha implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -2496223335807892306L;
+    private static final long serialVersionUID = 0xdd5ba21a052144aeL;
 
     /**
      * Text to say.
@@ -50,7 +49,7 @@ public class SayAlpha implements Serializable {
     /**
      * Can be use to the interrupt the audio on a channel.
      */
-    @Parameter(position = 1, optional = false)
+    @Parameter(position = 0x1, optional = false)
     private String escapeDigits;
 
     /**

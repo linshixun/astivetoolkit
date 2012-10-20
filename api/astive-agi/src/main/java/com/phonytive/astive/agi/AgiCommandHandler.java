@@ -60,7 +60,7 @@ public class AgiCommandHandler {
         String line;
 
         try {
-            while (!(line = conn.readLine()).equals("")) {
+            while (!(line = conn.readLine()).isEmpty()) {
                 lines.add(line);
             }
         } catch (IOException ex) {

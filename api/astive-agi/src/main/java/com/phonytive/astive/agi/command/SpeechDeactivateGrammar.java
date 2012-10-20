@@ -21,7 +21,6 @@ package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class SpeechDeactivateGrammar implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = 6890496911801730598L;
+    private static final long serialVersionUID = 0x5f9ff66f11de4626L;
     
     /**
      * Grammar name.

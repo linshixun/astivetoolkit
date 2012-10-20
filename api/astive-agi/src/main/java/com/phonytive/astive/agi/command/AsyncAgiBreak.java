@@ -20,7 +20,6 @@
 package com.phonytive.astive.agi.command;
 
 import com.phonytive.astive.agi.annotation.AgiCommand;
-
 import java.io.Serializable;
 
 
@@ -35,7 +34,7 @@ public class AsyncAgiBreak implements Serializable {
     /**
      * Serial version identifier.
      */
-    private static final long serialVersionUID = -6279692160047296949L;
+    private static final long serialVersionUID = 0xa8da0d406d934e4bL;
 
     /**
      * Create a new AsyncAgiBreak object.

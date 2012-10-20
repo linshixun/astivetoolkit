@@ -81,7 +81,7 @@ public class AdminDaemonClient extends Socket {
     private void send(AdminCommand cmd, String arg) throws IOException {
         getWriter().println(cmd.toString());
 
-        if ((arg != null) && !arg.equals("")) {
+        if ((arg != null) && !arg.isEmpty()) {
             getWriter().println(arg);
         }
 
