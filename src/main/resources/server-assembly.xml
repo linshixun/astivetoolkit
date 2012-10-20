@@ -54,9 +54,8 @@
                 </dependencySets>
             </binaries>
             <excludes>
-                <exclude>com.phonytive.astive:astive-fakeclient</exclude>
-                <exclude>com.phonytive.astive:astbeans</exclude>
-                <exclude>com.phonytive.astive:astive-ia</exclude>
+                <exclude>com.phonytive.astive:astive-archetype</exclude>
+                <exclude>com.phonytive.astive:astive-ami</exclude>
             </excludes>
         </moduleSet>
     </moduleSets>
