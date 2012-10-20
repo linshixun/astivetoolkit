@@ -77,4 +77,7 @@ public class URLValidator {
 
         return false;
     }
+
+    private URLValidator() {
+    }
 }

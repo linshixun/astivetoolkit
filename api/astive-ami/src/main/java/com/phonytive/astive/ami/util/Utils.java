@@ -206,4 +206,7 @@ public class Utils {
 
     return array.toArray(new String[0]);
   }
+
+    private Utils() {
+    }
 }

@@ -61,4 +61,7 @@ public class CopyFile {
             throw new IOException();
         }
     }
+
+    private CopyFile() {
+    }
 }

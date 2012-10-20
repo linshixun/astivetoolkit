@@ -42,4 +42,7 @@ public class AstPolicyUtil {
     static public boolean hasPermission(Permission permission) {
         return p.implies(permission);
     }
+
+    private AstPolicyUtil() {
+    }
 }

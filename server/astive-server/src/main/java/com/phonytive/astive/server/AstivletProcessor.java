@@ -122,4 +122,7 @@ public class AstivletProcessor {
             logger.warn(AppLocale.getI18n(ex.getMessage()));
         }
     }
+
+    private AstivletProcessor() {
+    }
 }

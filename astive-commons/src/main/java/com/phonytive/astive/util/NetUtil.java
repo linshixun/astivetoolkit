@@ -68,4 +68,7 @@ public class NetUtil {
 
         return false;
     }
+
+    private NetUtil() {
+    }
 }

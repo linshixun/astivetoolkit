@@ -90,4 +90,7 @@ public class Test {
         // HANGUP
         fc.waitForCommand();*/
     }
+
+    private Test() {
+    }
 }

@@ -63,8 +63,9 @@ public class ResponseQuee {
    * @throws AmiException DOCUMENT ME!
    */
   public Message pullMessage(String key) throws AmiException {
-    if (logger.isDebugEnabled())
-      logger.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
+    if (logger.isDebugEnabled()) {
+            logger.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
+        }
 
     Message msg = responseQuee.get(key);
     responseQuee.remove(key);
@@ -79,8 +80,9 @@ public class ResponseQuee {
    * @param message DOCUMENT ME!
    */
   public void pushMessage(String key, Message message) {
-    if (logger.isDebugEnabled())
-      logger.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
+    if (logger.isDebugEnabled()) {
+            logger.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
+        }
 
     responseQuee.put(key, message);
   }

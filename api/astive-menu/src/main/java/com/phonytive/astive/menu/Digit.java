@@ -65,7 +65,9 @@ public enum Digit {ONE_KEY("1"),
     
     static public Digit getDigit(String digit) {
         for(Digit d: Digit.values()) {
-            if(d.digit.equals(digit)) return d;
+            if(d.digit.equals(digit)) {
+                return d;
+            }
         }
         return null;
     }
@@ -74,7 +76,9 @@ public enum Digit {ONE_KEY("1"),
         String dgt = "" + digit;
         
         for(Digit d: Digit.values()) {
-            if(d.digit.equals(dgt)) return d;
+            if(d.digit.equals(dgt)) {
+                return d;
+            }
         }
         return null;
     }

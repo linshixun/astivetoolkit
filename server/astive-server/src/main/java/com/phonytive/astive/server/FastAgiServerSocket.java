@@ -98,8 +98,9 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
    */
   @Override
   public void start() throws SystemException {
-    if (logger.isDebugEnabled())
-      logger.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+    if (logger.isDebugEnabled()) {
+            logger.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+        }
 
     try {
       InetSocketAddress inet = new InetSocketAddress(bindAddr, port);

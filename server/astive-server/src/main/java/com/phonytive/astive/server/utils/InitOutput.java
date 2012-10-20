@@ -67,4 +67,7 @@ public class InitOutput {
         sb.append(AppLocale.getI18n("init.footer"));
         out.println(sb.toString());
     }
+
+    private InitOutput() {
+    }
 }

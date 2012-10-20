@@ -28,5 +28,8 @@ public class ReplyUtil {
     static public String getSuccessMessage() {
         return null;
     }
+
+    private ReplyUtil() {
+    }
     
 }
