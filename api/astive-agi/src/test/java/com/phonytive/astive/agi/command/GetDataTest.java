@@ -43,8 +43,8 @@ public class GetDataTest extends TestCase {
    */
   public void testCommand() throws AgiException {
     String file = "tt-monkeys";
-    Integer timeout = 0x0;
-    Integer maxDigits = 0x400;
+    int timeout = 0x0;
+    int maxDigits = 0x400;
 
     // Test first constructor
     StringBuilder b = new StringBuilder("GET DATA");

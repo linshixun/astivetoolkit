@@ -84,7 +84,7 @@ public class SpeechRecognize implements Serializable {
    *
    * @return the offset samples to skip when playing the prompt.
    */
-  public int getOffset() {
+  public Integer getOffset() {
     return offset;
   }
 
@@ -111,7 +111,7 @@ public class SpeechRecognize implements Serializable {
    *
    * @param offset the offset samples to skip when playing the prompt.
    */
-  public void setOffset(int offset) {
+  public void setOffset(Integer offset) {
     this.offset = offset;
   }
 

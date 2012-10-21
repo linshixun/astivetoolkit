@@ -78,17 +78,17 @@ public class AgiRequestTest extends TestCase {
     assertEquals(ar.getCallId(), "1325988028.2");
     assertEquals(ar.getCallerId(), "john");
     assertEquals(ar.getCallerIdName(), "John Doe");
-    assertEquals(ar.getCallingPres().intValue(), 0x0);
-    assertEquals(ar.getCallingAni2().intValue(), 0x0);
-    assertEquals(ar.getCallingTon().intValue(), 0x0);
-    assertEquals(ar.getCallingTns().intValue(), 0x0);
+    assertEquals(ar.getCallingPres(), 0x0);
+    assertEquals(ar.getCallingAni2(), 0x0);
+    assertEquals(ar.getCallingTon(), 0x0);
+    assertEquals(ar.getCallingTns(), 0x0);
     assertEquals(ar.getDnId(), "101");
     assertEquals(ar.getRdNis(), "unknown");
     assertEquals(ar.getContext(), "my-context");
     assertEquals(ar.getExtension(), "101");
     assertEquals(ar.getPriority(), "1");
     assertFalse(ar.isEnhanced());
-    assertEquals(ar.getAccountCode(), null);
+    assertNull(ar.getAccountCode());
 
     // TODO: Check parameters/arguments
   }

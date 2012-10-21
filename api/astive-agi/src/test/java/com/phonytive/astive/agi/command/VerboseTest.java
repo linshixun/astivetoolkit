@@ -43,7 +43,7 @@ public class VerboseTest extends TestCase {
    */
   public void testCommand() throws AgiException {
     String message = "This is a message";
-    Integer level = 0x2;
+    int level = 0x2;
 
     StringBuilder b = new StringBuilder("VERBOSE");
     b.append(" ");

@@ -346,8 +346,8 @@ public class AgiRequest {
    *
    * @return DOCUMENT ME!
    */
-  public Integer getCallingAni2() {
-    return callingAni2;
+  public int getCallingAni2() {
+    return callingAni2.intValue();
   }
 
   /**
@@ -355,8 +355,8 @@ public class AgiRequest {
    *
    * @return DOCUMENT ME!
    */
-  public Integer getCallingPres() {
-    return callingPres;
+  public int getCallingPres() {
+    return callingPres.intValue();
   }
 
   /**
@@ -364,8 +364,8 @@ public class AgiRequest {
    *
    * @return DOCUMENT ME!
    */
-  public Integer getCallingTns() {
-    return callingTns;
+  public int getCallingTns() {
+    return callingTns.intValue();
   }
 
   /**
@@ -373,8 +373,8 @@ public class AgiRequest {
    *
    * @return DOCUMENT ME!
    */
-  public Integer getCallingTon() {
-    return callingTon;
+  public int getCallingTon() {
+    return callingTon.intValue();
   }
 
   /**

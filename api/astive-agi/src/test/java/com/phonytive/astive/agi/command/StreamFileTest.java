@@ -44,7 +44,7 @@ public class StreamFileTest extends TestCase {
   public void testCommand() throws AgiException {
     String filename = "file";
     String escapeDigits = "";
-    Integer offset = 0x0;
+    int offset = 0x0;
 
     // Testing first constructor 
     StringBuilder b = new StringBuilder("STREAM FILE");

@@ -45,10 +45,10 @@ public class RecordFileTest extends TestCase {
     String filename = "abc";
     String format = "mp3";
     String escapeDigits = "";
-    Integer timeout = 0xffffffff;
-    Integer offset = 0x0;
+    int timeout = 0xffffffff;
+    int offset = 0x0;
     String beep = "BEEP";
-    Integer silence = 0x0;
+    int silence = 0x0;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("RECORD FILE");

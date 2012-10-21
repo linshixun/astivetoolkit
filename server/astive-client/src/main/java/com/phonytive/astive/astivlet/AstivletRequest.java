@@ -19,8 +19,6 @@
  */
 package com.phonytive.astive.astivlet;
 
-import com.phonytive.astive.AstiveException;
-import com.phonytive.astive.agi.AgiException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import com.phonytive.astive.agi.AgiRequest;
@@ -70,7 +68,7 @@ public class AstivletRequest extends AgiRequest {
      * Returns the Internet Protocol (IP) port number of the interface on which
      * the request was received.
      *
-     * @return an integer specifying the port number.
+     * @return an int specifying the port number.
      */
     public int getLocalPort() {
         return localPort;

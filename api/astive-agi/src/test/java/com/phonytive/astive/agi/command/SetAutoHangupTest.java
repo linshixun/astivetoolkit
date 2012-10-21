@@ -42,7 +42,7 @@ public class SetAutoHangupTest extends TestCase {
    * @throws AgiException DOCUMENT ME!
    */
   public void testCommand() throws AgiException {
-    Integer time = 0x1900;
+    int time = 0x1900;
     StringBuilder b = new StringBuilder("SET AUTOHANGUP");
     b.append(" ");
     b.append(time);

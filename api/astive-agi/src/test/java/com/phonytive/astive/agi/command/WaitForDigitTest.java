@@ -42,7 +42,7 @@ public class WaitForDigitTest extends TestCase {
    * @throws AgiException DOCUMENT ME!
    */
   public void testCommand() throws AgiException {
-    Integer timeout = 0xfa0;
+    int timeout = 0xfa0;
     StringBuilder b = new StringBuilder("WAIT FOR DIGIT");
     b.append(" ");
     b.append(timeout);

@@ -42,7 +42,7 @@ public class ReceiveCharTest extends TestCase {
    * @throws AgiException DOCUMENT ME!
    */
   public void testCommand() throws AgiException {
-    Integer timeout = 0x3e8;
+    int timeout = 0x3e8;
 
     StringBuilder b = new StringBuilder("RECEIVE CHAR");
     b.append(" ");

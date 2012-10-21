@@ -43,8 +43,8 @@ public class SpeechRecognizeTest extends TestCase {
    */
   public void testCommand() throws AgiException {
     String prompt = "Something to speech";
-    Integer timeout = 0x3e8;
-    Integer offset = 0x258;
+    int timeout = 0x3e8;
+    int offset = 0x258;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("SPEECH RECOGNIZE");
@@ -54,8 +54,12 @@ public class SpeechRecognizeTest extends TestCase {
     b.append("\"");
     b.append(" ");
     b.append(timeout);
-
+        
     SpeechRecognize command = new SpeechRecognize(prompt, timeout);
+
+    System.out.println(b.toString());
+    System.out.println(CommandProcessor.buildCommand(command));    
+    
     assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
     // Testing second constructor

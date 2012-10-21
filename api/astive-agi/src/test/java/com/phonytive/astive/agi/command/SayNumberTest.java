@@ -42,7 +42,7 @@ public class SayNumberTest extends TestCase {
    * @throws AgiException DOCUMENT ME!
    */
   public void testCommand() throws AgiException {
-    Integer number = 0x7b;
+    int number = 0x7b;
     String escapeDigits = "";
 
     // Testing first constructor
