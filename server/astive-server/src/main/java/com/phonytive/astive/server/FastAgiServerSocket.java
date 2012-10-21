@@ -35,7 +35,7 @@ import org.apache.log4j.xml.DOMConfigurator;
  * @see Service
  */
 public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
-  private static final Logger logger = Logger.getLogger(FastAgiServerSocket.class);
+  private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
   {DOMConfigurator.configure("conf/log4j.xml");}
   private InetAddress bindAddr;
   private int backlog;
@@ -53,16 +53,16 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   public FastAgiServerSocket(int port, int backlog, InetAddress bindAddr)
                       throws IOException {
     super();
-    if (logger.isDebugEnabled()) {
-      logger.debug("port = " + port);
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("port = " + port);
     }
 
-    if (logger.isDebugEnabled()) {
-      logger.debug("backlog = " + backlog);
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("backlog = " + backlog);
     }
 
-    if (logger.isDebugEnabled()){
-      logger.debug("bindAddr = " + bindAddr);
+    if (LOG.isDebugEnabled()){
+      LOG.debug("bindAddr = " + bindAddr);
     }
 
     this.port = port;
@@ -98,8 +98,8 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
    */
   @Override
   public void start() throws SystemException {
-    if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+    if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
         }
 
     try {

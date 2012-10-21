@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class GoExt implements Action {
   // A usual logging class
-  private static final Logger logger = Logger.getLogger(GoExt.class);
+  private static final Logger LOG = Logger.getLogger(GoExt.class);
   private AgiResponse agiResponse;
   private String context;
   private String extension;
@@ -54,7 +54,7 @@ public class GoExt implements Action {
       agiResponse.setExtension(extension);
       agiResponse.setPriority(priority);
     } catch (AgiException ex) {
-      logger.warn(ex.getMessage());
+      LOG.warn(ex.getMessage());
     }
   }
 }

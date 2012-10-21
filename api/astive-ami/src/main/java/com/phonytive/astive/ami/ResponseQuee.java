@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  * @since 1.0.0 
  */
 public class ResponseQuee {
-  private static final Logger logger = Logger.getLogger(ResponseQuee.class);
+  private static final Logger LOG = Logger.getLogger(ResponseQuee.class);
   private static HashMap<String, Message> responseQuee = new HashMap();
 
   /**
@@ -61,8 +61,8 @@ public class ResponseQuee {
    * @throws AmiException DOCUMENT ME!
    */
   public Message pullMessage(String key) throws AmiException {
-    if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
+    if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
         }
 
     Message msg = responseQuee.get(key);
@@ -78,8 +78,8 @@ public class ResponseQuee {
    * @param message DOCUMENT ME!
    */
   public void pushMessage(String key, Message message) {
-    if (logger.isDebugEnabled()) {
-            logger.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
+    if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
         }
 
     responseQuee.put(key, message);

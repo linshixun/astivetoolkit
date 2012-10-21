@@ -28,12 +28,12 @@ import org.apache.log4j.Logger;
  */
 public class DuplicatedDigitsException extends RuntimeException {
   // A usual logging class
-  private static final Logger logger = Logger.getLogger(DuplicatedDigitsException.class);
+  private static final Logger LOG = Logger.getLogger(DuplicatedDigitsException.class);
   private static final String msg = AppLocale.getI18n("exeption.DuplicatedKeyInMenuException");
 
   /** <p>Creates a new instance of DuplicatedDigitsException</p> */
   public DuplicatedDigitsException() {
     super(msg);
-    logger.error(msg);
+    LOG.error(msg);
   }
 }

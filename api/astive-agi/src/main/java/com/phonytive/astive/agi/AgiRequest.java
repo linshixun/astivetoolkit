@@ -38,7 +38,7 @@ public class AgiRequest {
      */
     private static final long serialVersionUID = -6279678160047296949L;
     // A usual logging class
-    private static final Logger logger = Logger.getLogger(AgiRequest.class);    
+    private static final Logger LOG = Logger.getLogger(AgiRequest.class);    
     
     private static Map<String, String> parameters;
             
@@ -197,9 +197,9 @@ public class AgiRequest {
         try {
             fillFields();                                    
         } catch (IllegalArgumentException ex) {
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
         } catch (IllegalAccessException ex) {
-            logger.warn(ex.getMessage());
+            LOG.warn(ex.getMessage());
         }
         
         // Get parameters.

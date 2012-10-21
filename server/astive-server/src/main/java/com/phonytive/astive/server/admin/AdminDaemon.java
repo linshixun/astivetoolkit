@@ -45,7 +45,7 @@ import org.apache.log4j.Logger;
 public class AdminDaemon extends ServerSocket
         implements Deployer, Runnable {
 
-    private static final Logger logger = Logger.getLogger(AdminDaemon.class);
+    private static final Logger LOG = Logger.getLogger(AdminDaemon.class);
     private AbstractAstiveServer server;
     private InetAddress bindAddr;
     private int backlog;
@@ -141,7 +141,7 @@ public class AdminDaemon extends ServerSocket
                     try {
                         server.stop();
                     } catch (SystemException ex) {
-                        logger.error(AppLocale.getI18n("unexpectedError",
+                        LOG.error(AppLocale.getI18n("unexpectedError",
                                 new Object[]{ex.getMessage()}));
                     }
 
@@ -161,10 +161,10 @@ public class AdminDaemon extends ServerSocket
                 client.close();
             }
         } catch (IOException ex) {
-            logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
+            LOG.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
                     new Object[]{ex.getMessage()}));
         } catch (AstiveException ex) {
-            logger.error(AppLocale.getI18n("unexpectedError",
+            LOG.error(AppLocale.getI18n("unexpectedError",
                     new Object[]{ex.getMessage()}));
         }
     }

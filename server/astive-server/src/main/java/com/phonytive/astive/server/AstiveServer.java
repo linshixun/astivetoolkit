@@ -52,7 +52,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 public class AstiveServer extends AbstractAstiveServer {
     // A usual logging class
 
-    private static final Logger logger = Logger.getLogger(AstiveServer.class);
+    private static final Logger LOG = Logger.getLogger(AstiveServer.class);
     private static ServiceProperties adminDaemonSP;
     private static ServiceProperties astivedSP;
     private static ServiceProperties telnedSP;
@@ -203,7 +203,7 @@ public class AstiveServer extends AbstractAstiveServer {
         AdminCommand cmd = AdminCommand.get(args[0]);
         
         if (cmd.equals(AdminCommand.DEPLOY) && ((args.length < 2) || !isFileJar(args[1]))) {
-            logger.error(AppLocale.getI18n("cli.invalid.app"));
+            LOG.error(AppLocale.getI18n("cli.invalid.app"));
             printUsage(AdminCommand.DEPLOY, deploy);
             System.exit(1);
         }
@@ -271,8 +271,8 @@ public class AstiveServer extends AbstractAstiveServer {
                 server.start();
             }
             
-            if (!cmd.equals(AdminCommand.START) && adminDaemonSP.isDisabled()) {
-                logger.info("unableToAccessAdminDaemon");
+            if (!cmd.equals(AdminCommand.START) && adminDaemonSP.isDisabled()) {                
+                LOG.warn("unableToAccessAdminDaemon");                
             }
             
             if (cmd.equals(AdminCommand.STOP)) {
@@ -319,10 +319,10 @@ public class AstiveServer extends AbstractAstiveServer {
                         new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
                 adClient.undeploy(args[1]);
             }
-        } catch (java.net.ConnectException ex) {
-            logger.info("serverNotRunning");
+        } catch (java.net.ConnectException ex) {            
+            LOG.warn("serverNotRunning");            
         } catch (Exception ex) {
-            logger.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
+            LOG.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }
     }
 
@@ -387,7 +387,7 @@ public class AstiveServer extends AbstractAstiveServer {
                         try {
                             server.stop();
                         } catch (SystemException ex) {
-                            logger.error(AppLocale.getI18n("unexpectedError",
+                            LOG.error(AppLocale.getI18n("unexpectedError",
                                     new String[]{ex.getMessage()}));
                         }
                     }
@@ -407,7 +407,7 @@ public class AstiveServer extends AbstractAstiveServer {
                                 apps.add(sb.toString());
                             }
                         } catch (AstiveException ex) {                            
-                            logger.error(AppLocale.getI18n("unexpectedError",
+                            LOG.error(AppLocale.getI18n("unexpectedError",
                                     new String[]{ex.getMessage()}));                            
                         }
                         
@@ -427,7 +427,7 @@ public class AstiveServer extends AbstractAstiveServer {
                 executorService.execute(ts);
             }
         } catch (IOException ex) {
-            logger.warn(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
+            LOG.warn(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
         }
     }
 

@@ -12,7 +12,6 @@
     <modules>
         <module>helloworld</module>
         <module>handling-events</module>
-        <module>agi-tdd</module>
         <module>yahoo-weather</module>
         <module>speech-recognition</module>
         <module>voicecomposer</module>

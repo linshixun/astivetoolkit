@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class Hangup implements Action {
   // A usual logging class
-  private static final Logger logger = Logger.getLogger(Hangup.class);
+  private static final Logger LOG = Logger.getLogger(Hangup.class);
   private AgiResponse agiResponse;
   private String context;
   private String extension;
@@ -54,7 +54,7 @@ public class Hangup implements Action {
       agiResponse.setExtension(extension);
       agiResponse.setPriority(priority);
     } catch (AgiException ex) {
-      logger.warn(ex.getMessage());
+      LOG.warn(ex.getMessage());
     }
   }
 }

@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  */
 public class MenuNavigator {
     // A usual logging class
-    private static final Logger logger = Logger.getLogger(MenuNavigator.class);
+    private static final Logger LOG = Logger.getLogger(MenuNavigator.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;
     private boolean autoAnswer;
@@ -127,7 +127,7 @@ public class MenuNavigator {
                 try {
                     Thread.sleep(milliSecondsWatting);
                 } catch (InterruptedException ex) {
-                    logger.warn(ex.getMessage());
+                    LOG.warn(ex.getMessage());
                 }                
                 return "(timeout)";
             }        
@@ -246,14 +246,14 @@ public class MenuNavigator {
             childsKeys = getSortedChildsKeys(menu.getChilds());
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("Total menu options: " + menu.getChilds().size());
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Total menu options: " + menu.getChilds().size());
         }
 
         if (((menu.isGreetingsPlayed() == false) || menu.isPlayGreetingsAllways())
                 && (menu.getGreetingsFile() != null) && !menu.getGreetingsFile().isEmpty()) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Playing menu intro: " + menu.getGreetingsFile());
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Playing menu intro: " + menu.getGreetingsFile());
             }
             char c = 0x0;
             digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu, c);
@@ -287,8 +287,8 @@ public class MenuNavigator {
         }
 
         if ((digits == null) || digits.equals("(timeout)")) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Playing menu options");
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Playing menu options");
             }
 
             int pos = 0;            
@@ -325,16 +325,16 @@ public class MenuNavigator {
                 menu.firePositionChangeEvent_positionChange(evt);
                 pos++;
 
-                if (logger.isDebugEnabled()) {
-                    logger.debug("pos = " + pos);
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("pos = " + pos);
                 }
             }
         }
 
         if ((digits != null) && !digits.equals("(timeout)")) {
             // Do break menu            
-            if (logger.isDebugEnabled()) {
-                logger.debug("Enter digits is: " + digits);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Enter digits is: " + digits);
             }
 
             // WARNING: This event should be only at Menu level?
@@ -356,8 +356,8 @@ public class MenuNavigator {
             }
 
             // Try again
-            if (logger.isDebugEnabled()) {
-                logger.debug("Unregistered option");
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Unregistered option");
             }
 
             menu.incrementFailuresCount();
@@ -374,8 +374,8 @@ public class MenuNavigator {
             return;
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("Getting Menu/MenuItem for digits: " + digits);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Getting Menu/MenuItem for digits: " + digits);
         }
 
         MenuItem selectedOption = getMenuItem(menu, digits);

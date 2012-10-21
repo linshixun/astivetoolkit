@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  */
 public class MyAstDB implements AstDB {
     // A usual logging class
-    private static final Logger logger = Logger.getLogger(MyAstDB.class);
+    private static final Logger LOG = Logger.getLogger(MyAstDB.class);
     private static final MyAstDB INSTANCE = new MyAstDB();
     private static Map<String, AstObj> apps;
     private static Map<String, Astivlet> astivletIndex;
@@ -78,8 +78,10 @@ public class MyAstDB implements AstDB {
 
         // add astivlets to the db index.
         for (String url : astObj.getURLPatterns()) {
-            logger.debug("Adding url = " + url + " class = " +
-                astObj.getAstivletByURLPattern(url));
+            if(LOG.isDebugEnabled()) {
+                LOG.debug("Adding url = " + url + " class = " +
+                    astObj.getAstivletByURLPattern(url));
+            }
             astivletIndex.put(url, astObj.getAstivletByURLPattern(url));
         }
     }
@@ -117,7 +119,7 @@ public class MyAstDB implements AstDB {
     @Override
     public Astivlet getAstivlet(String urlStr) {
         // Check for specific url
-        Astivlet ast = null;
+        Astivlet ast;
 
         if ((ast = astivletIndex.get(urlStr)) != null) {
             return ast;

@@ -29,14 +29,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
 
 /**
  *
  * @since 1.0.0
  */
-public class SimpleAstiveServerTest extends TestCase {  
-  private static final Logger logger = Logger.getLogger(SimpleAstiveServer.class);
+public class SimpleAstiveServerTest extends TestCase {    
   {BasicConfigurator.configure();}  
   
   /**

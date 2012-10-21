@@ -92,20 +92,6 @@
             </plugin>            
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
     <description>Astive is a toolkit and server for Java that provides an 
         extensible architecture for developing, maintaining, and deploying
         telephony applications.
@@ -115,29 +101,24 @@
         <module>api</module>
         <module>server</module>
         <module>astive-archetype</module>
-    </modules>
-    
+    </modules>    
     <scm>
-	<connection>scm:git://github.com/psanders/astive.git</connection>
-	<url>scm:git://github.com/psanders/astive.git</url>
-	<developerConnection>scm:git://github.com/psanders/astive.git</developerConnection>
-  </scm>
-
-
-
-	<distributionManagement>
+        <connection>scm:git://github.com/psanders/astive.git</connection>
+        <url>scm:git://github.com/psanders/astive.git</url>
+        <developerConnection>scm:git://github.com/psanders/astive.git</developerConnection>
+    </scm>
+    <distributionManagement>
 		<!--site> <id>website</id> <url>scp://www.mycompany.com/www/docs/project/</url> 
 			</site -->
-		<repository>
-			<id>releases</id>
-			<name>Astive Release Repository</name>
-			<url>https://repository-astiveteam.forge.cloudbees.com/release/</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Astive Snapshots Repository</name>
-			<url>https://repository-astiveteam.forge.cloudbees.com/snapshot/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
+        <repository>
+            <id>releases</id>
+            <name>Astive Release Repository</name>
+            <url>https://repository-astiveteam.forge.cloudbees.com/release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Astive Snapshots Repository</name>
+            <url>https://repository-astiveteam.forge.cloudbees.com/snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

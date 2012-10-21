@@ -24,14 +24,12 @@ import com.phonytive.astive.util.AppLocale;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import org.apache.log4j.Logger;
 
 /**
  *
  * @since 1.0.0
  */
-class MessageHandler implements Runnable {
-  private static final Logger logger = Logger.getLogger(MessageHandler.class);
+class MessageHandler implements Runnable {  
   private final BufferedReader reader;
   private final Manager manager;
   private final PrintWriter writer;

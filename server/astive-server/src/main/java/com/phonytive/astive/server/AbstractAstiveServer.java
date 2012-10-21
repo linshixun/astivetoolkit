@@ -39,7 +39,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
     /**
      *
      */
-    private static final Logger logger = Logger.getLogger(AbstractAstiveServer.class);
+    private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);
     public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
     public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME")
             + "/apps/";
@@ -127,7 +127,9 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
      */
     @Override
     public void start() throws SystemException {
-        logger.info(AppLocale.getI18n("starting"));
+        if(LOG.isInfoEnabled()) {
+            LOG.info(AppLocale.getI18n("starting"));
+        }
         super.start();
     }
 
@@ -138,25 +140,48 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket
      */
     @Override
     public void stop() throws SystemException {
-        logger.info(AppLocale.getI18n("stopping"));
+        if(LOG.isInfoEnabled()) {
+            LOG.info(AppLocale.getI18n("stopping"));
+        }
 
         try {
             super.stop();
             System.exit(0x0);
         } catch (Exception ex) {
-            logger.error(AppLocale.getI18n("unexpectedError",
+            LOG.error(AppLocale.getI18n("unexpectedError",
                     new Object[]{ex.getMessage()}));
             System.exit(0x1);
         }
     }
-    
+
     /**
-     * 
+     *
      * @return App version.
      */
     public String getVersion() {
         StringBuilder sb = new StringBuilder(
                 AppLocale.getI18n("appVersion", new String[]{Version.VERSION, Version.BUILD_TIME}));
-        return  sb.toString();
+        return sb.toString();
+    }
+
+    /**
+     * @return the bindAddr
+     */
+    public InetAddress getBindAddr() {
+        return bindAddr;
+    }
+
+    /**
+     * @return the backlog
+     */
+    public int getBacklog() {
+        return backlog;
+    }
+
+    /**
+     * @return the port
+     */
+    public int getPort() {
+        return port;
     }
 }

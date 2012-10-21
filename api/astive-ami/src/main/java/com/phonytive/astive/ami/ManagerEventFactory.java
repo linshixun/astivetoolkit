@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  */
 public class ManagerEventFactory {
-  private static final Logger logger = Logger.getLogger(MessageHandler.class);
+  private static final Logger LOG = Logger.getLogger(MessageHandler.class);
   private static ManagerEventFactory INSTANCE = new ManagerEventFactory();
 
   private ManagerEventFactory() {
@@ -44,7 +44,7 @@ public class ManagerEventFactory {
    * @return DOCUMENT ME!
    */
   public ManagerEvent getEvent(Object source, Message msg) {
-    logger.warn(AppLocale.getI18n("unknownEvent",
+    LOG.warn(AppLocale.getI18n("unknownEvent",
                                   new Object[] { msg.getMessageLines().get(0x0), msg.toString() }));
 
     return new ManagerEvent(source, EventType.UNKNOWN, msg.getParams());

@@ -29,18 +29,19 @@ public class AstiveException extends Exception {
   private String msg;
 
   /**
-   * Creates a new AstiveException object.
+   * Creates a new AstiveException object with the original exception as 
+   * parameter to be nested as part of this exception.
    * 
-   * @param e 
+   * @param exception used to provide further info about the original exception.
    */
-  public AstiveException(Exception e) {
-      super(e);
+  public AstiveException(Exception exception) {
+      super(exception);
   }
   
   /**
    * Creates a new AstiveException object.
    *
-   * @param msg DOCUMENT ME!
+   * @param msg further info about the exception.
    */
   public AstiveException(String msg) {
     super(msg);

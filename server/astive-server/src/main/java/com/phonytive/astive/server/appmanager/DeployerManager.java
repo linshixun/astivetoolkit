@@ -71,8 +71,8 @@ public final class DeployerManager implements Deployer, AstDB {
     @Override
     public void deploy(String appPath) throws AstiveException {
         try {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("cli.deploy.deployingApp",
+            if (LOG.isInfoEnabled()) {
+                LOG.info(AppLocale.getI18n("cli.deploy.deployingApp",
                         new Object[]{appPath}));
             }
 
@@ -89,29 +89,28 @@ public final class DeployerManager implements Deployer, AstDB {
                     CopyFile.copyfile(appPath, dstFileStr);
                 }
             } else {
-                LOG.debug(AppLocale.getI18n("cli.deploy.appExist",
-                        new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
-
+                if (LOG.isInfoEnabled()) {
+                    LOG.info(AppLocale.getI18n("cli.deploy.appExist",
+                            new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
+                }
                 return;
             }
 
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("cli.deploy.appDeployed",
+            if (LOG.isInfoEnabled()) {
+                LOG.info(AppLocale.getI18n("cli.deploy.appDeployed",
                         new Object[]{app.getInfo().getName()}));
             }
         } catch (FileNotFoundException ex) {
-            LOG.error(AppLocale.getI18n("cli.deploy.cantReadFile",
+            LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile",
                     new Object[]{appPath}));
         } catch (IOException ex) {
-            LOG.error(AppLocale.getI18n("cli.deploy.cantCopy"));
+            LOG.warn(AppLocale.getI18n("cli.deploy.cantCopy"));
         } catch (JclException ex) {
-            LOG.error(AppLocale.getI18n("cli.deploy.cantReadFile",
+            LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile",
                     new Object[]{appPath}));
         } catch (AstiveException ex) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("unexpectedError",
-                        new Object[]{ex.getMessage()}));
-            }
+            LOG.warn(AppLocale.getI18n("unexpectedError",
+                    new Object[]{ex.getMessage()}));
         }
     }
 
@@ -120,8 +119,8 @@ public final class DeployerManager implements Deployer, AstDB {
      */
     @Override
     public void undeploy(String app) throws AstiveException {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("cli.undeploy.undeployingApp",
+        if (LOG.isInfoEnabled()) {
+            LOG.info(AppLocale.getI18n("cli.undeploy.undeployingApp",
                     new Object[]{app}));
         }
 
@@ -136,26 +135,24 @@ public final class DeployerManager implements Deployer, AstDB {
 
                 if (f.exists()) {
                     f.delete();
-                    LOG.debug(AppLocale.getI18n(
-                            "cli.undeploy.appUndeployed", new Object[]{app}));
+                    if (LOG.isInfoEnabled()) {
+                        LOG.info(AppLocale.getI18n(
+                                "cli.undeploy.appUndeployed", new Object[]{app}));
+                    }
                 } else {
-                    LOG.debug(AppLocale.getI18n(
+                    LOG.warn(AppLocale.getI18n(
                             "cli.deploy.appFileNotExist", new Object[]{app}));
                 }
             } else {
-                LOG.debug(AppLocale.getI18n("cli.deploy.appNotExist",
+                LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist",
                         new Object[]{app}));
             }
         } catch (org.xeustechnologies.jcl.exception.JclException ex) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("cli.deploy.appNotExist",
-                        new Object[]{app}));
-            }
+            LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist",
+                    new Object[]{app}));
         } catch (AstiveException ex) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("unexpectedError",
-                        new Object[]{ex.getMessage()}));
-            }
+            LOG.warn(AppLocale.getI18n("unexpectedError",
+                    new Object[]{ex.getMessage()}));
         }
     }
 
@@ -180,7 +177,7 @@ public final class DeployerManager implements Deployer, AstDB {
                 if (file.toLowerCase().endsWith(".jar")) {
                     deploy(file);
                 } else {
-                    LOG.debug(AppLocale.getI18n("isNotValidApp",
+                    LOG.warn(AppLocale.getI18n("isNotValidApp",
                             new Object[]{file}));
                 }
             }

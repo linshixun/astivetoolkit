@@ -36,7 +36,7 @@ public class CommandProcessor {
     /**
      * Usual logger.
      */
-    private static final Logger logger = Logger.getLogger(CommandProcessor.class);
+    private static final Logger LOG = Logger.getLogger(CommandProcessor.class);
 
     /**
      * Get all fields marked with annotation @Parameter in a class marked with
@@ -46,7 +46,7 @@ public class CommandProcessor {
      * @return list of parameters
      * @throws AgiException
      */
-    private static ArrayList getParameters(Object o) throws AgiException {
+    private static ArrayList getParameters(Object o) throws AgiException {        
         ArrayList parameters = new ArrayList();
         HashMap hmParameters = new HashMap();
 
@@ -69,7 +69,7 @@ public class CommandProcessor {
                         // Ignore any other parameter, since it break the
                         // secuense. Also write a Warning to alert the
                         // developers about that issue.
-                        logger.warn(AppLocale.getI18n(
+                        LOG.warn(AppLocale.getI18n(
                                 "ignoringSubsequentParameters"));
 
                         break;
