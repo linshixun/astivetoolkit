@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -21,7 +21,7 @@ package com.phonytive.astive.menu;
 
 
 /**
- * 
+ *
  * @since 1.0.0
  * @see Application
  */

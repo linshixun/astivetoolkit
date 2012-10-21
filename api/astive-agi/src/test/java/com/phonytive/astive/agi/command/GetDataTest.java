@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,37 +23,49 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class GetDataTest extends TestCase {
-    public GetDataTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new GetDataTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public GetDataTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String file = "tt-monkeys";
-        Integer timeout = 0x0;
-        Integer maxDigits = 0x400;
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String file = "tt-monkeys";
+    Integer timeout = 0x0;
+    Integer maxDigits = 0x400;
 
-        // Test first constructor
-        StringBuilder b = new StringBuilder("GET DATA");
-        b.append(" ");
-        b.append("\"");
-        b.append(file);
-        b.append("\"");
-        b.append(" ");
-        b.append(timeout);
-        b.append(" ");
-        b.append(maxDigits);
+    // Test first constructor
+    StringBuilder b = new StringBuilder("GET DATA");
+    b.append(" ");
+    b.append("\"");
+    b.append(file);
+    b.append("\"");
+    b.append(" ");
+    b.append(timeout);
+    b.append(" ");
+    b.append(maxDigits);
 
-        GetData command = new GetData(file);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    GetData command = new GetData(file);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing the second constructor
-        command = new GetData(file, timeout);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    // Testing the second constructor
+    command = new GetData(file, timeout);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing the third and last constructor
-        command = new GetData(file, timeout, maxDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing the third and last constructor
+    command = new GetData(file, timeout, maxDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

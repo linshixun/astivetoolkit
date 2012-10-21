@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -33,23 +33,23 @@ import java.lang.annotation.Target;
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
 public @interface Parameter {
-    /**
-     * Get the position of this parameter in a command. The position should be
-     * repeated or an AgiException will be thrown.
-     *
-     * @return position of this parameter in a command. Default position is 0.
-     */
-    public int position() default 0x0;
-    /**
-     * Get the prefix of the parameter or and empty string is none is defined.
-     *
-     * @return prefix of the parameter.
-     */
-    public String prefix() default "";
-    /**
-     * Return whether or not a parameter is optional.
-     *
-     * @return true if parameter is option or false otherwise.
-     */
-    public boolean optional() default true;
+  /**
+   * Get the position of this parameter in a command. The position should be
+   * repeated or an AgiException will be thrown.
+   *
+   * @return position of this parameter in a command. Default position is 0.
+   */
+  public int position() default 0x0;
+  /**
+   * Get the prefix of the parameter or and empty string is none is defined.
+   *
+   * @return prefix of the parameter.
+   */
+  public String prefix() default "";
+  /**
+   * Return whether or not a parameter is optional.
+   *
+   * @return true if parameter is option or false otherwise.
+   */
+  public boolean optional() default true;
 }

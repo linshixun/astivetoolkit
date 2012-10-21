@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Adds or updates an entry in the Asterisk database for a given <code>family></code>,
@@ -35,93 +34,93 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "DATABASE PUT")
 public class DatabasePut implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x89873e11c73d4155L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x89873e11c73d4155L;
 
-    /**
-     * Database family.
-     */
-    @Parameter(optional = false)
-    private String family;
+  /**
+   * Database family.
+   */
+  @Parameter(optional = false)
+  private String family;
 
-    /**
-     * Family element.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String key;
+  /**
+   * Family element.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String key;
 
-    /**
-     * Family element value.
-     */
-    @Parameter(position = 0x2, optional = false)
-    private String value;
+  /**
+   * Family element value.
+   */
+  @Parameter(position = 0x2, optional = false)
+  private String value;
 
-    /**
-     * Create a new DatabasePut object with family, key and value as parameters.
-     *
-     * @param family database family.
-     * @param key family element.
-     * @param value family element value.
-     */
-    public DatabasePut(String family, String key, String value) {
-        this.family = family;
-        this.key = key;
-        this.value = value;
-    }
+  /**
+   * Create a new DatabasePut object with family, key and value as parameters.
+   *
+   * @param family database family.
+   * @param key family element.
+   * @param value family element value.
+   */
+  public DatabasePut(String family, String key, String value) {
+    this.family = family;
+    this.key = key;
+    this.value = value;
+  }
 
-    /**
-     * Database family.
-     *
-     * @return database family.
-     */
-    public String getFamily() {
-        return family;
-    }
+  /**
+   * Database family.
+   *
+   * @return database family.
+   */
+  public String getFamily() {
+    return family;
+  }
 
-    /**
-     * Set database family.
-     *
-     * @param family database family.
-     */
-    public void setFamily(String family) {
-        this.family = family;
-    }
+  /**
+   * Get family element.
+   *
+   * @return family element.
+   */
+  public String getKey() {
+    return key;
+  }
 
-    /**
-     * Get family element.
-     *
-     * @return family element.
-     */
-    public String getKey() {
-        return key;
-    }
+  /**
+   * Get family element value.
+   *
+   * @return family element value.
+   */
+  public String getValue() {
+    return value;
+  }
 
-    /**
-     * Set family element.
-     *
-     * @param key
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
+  /**
+   * Set database family.
+   *
+   * @param family database family.
+   */
+  public void setFamily(String family) {
+    this.family = family;
+  }
 
-    /**
-     * Get family element value.
-     *
-     * @return family element value.
-     */
-    public String getValue() {
-        return value;
-    }
+  /**
+   * Set family element.
+   *
+   * @param key
+   */
+  public void setKey(String key) {
+    this.key = key;
+  }
 
-    /**
-     * Set family element value.
-     *
-     * @param value family element value.
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+  /**
+   * Set family element value.
+   *
+   * @param value family element value.
+   */
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

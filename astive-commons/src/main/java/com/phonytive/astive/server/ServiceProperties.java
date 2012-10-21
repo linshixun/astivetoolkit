@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -25,14 +25,14 @@ import java.util.List;
 /**
  * Contains all parameters needed by a final implementation of
  * {@link Service}.
- * 
+ *
  * @see Service
  * @since 1.0.0
  */
 public interface ServiceProperties {
   /**
-   * Return the maximum queue length for incoming connection indications. 
-   * 
+   * Return the maximum queue length for incoming connection indications.
+   *
    * @return maximum number of pending connections on the socket.
    */
   int getBacklog();
@@ -40,10 +40,39 @@ public interface ServiceProperties {
   /**
    * Return the address to where the <code>service</code> is bound, if any.
    *
-   * @return the local address the <code>service</code> is bound to, or <code>null</code> for the 
+   * @return the local address the <code>service</code> is bound to, or <code>null</code> for the
    * <code>anyLocal</code> address.
    */
   InetAddress getBindAddr();
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
 
   /**
    * Return the address list from where connections are accept.
@@ -54,14 +83,14 @@ public interface ServiceProperties {
   List<InetAddress> getOnlyFrom();
 
   /**
-   * Return the <code>service</code> port. 
+   * Return the <code>service</code> port.
    *
    * @return port to where <code>service</code> is bound.
    */
   int getPort();
 
   /**
-   * Return fully qualified class name for the final implementation of 
+   * Return fully qualified class name for the final implementation of
    * {@link Service}.
    *
    * @return the final implementation of a particular <code>service</code>.
@@ -84,21 +113,14 @@ public interface ServiceProperties {
 
   /**
    * Indicates whether or not the <code>service</code> was bound to a IP/Port.
-   * 
+   *
    * @return true if <code>service</code> can't be bound to a port(ex.: port occupied by another
    * process).
    */
   boolean isUnableToOpen();
-  
+
   /**
-   * Set to true if can't bound <code>service</code> to a particular IP/Port.
-   * 
-   * @param unableToOpen is set to false if bound process ends normally.
-   */
-  void setUnableToOpen(boolean unableToOpen);
-  
-  /**
-   * Define the maximum queue length for incoming connection indications. 
+   * Define the maximum queue length for incoming connection indications.
    *
    * @param backlog provided should be greater than 0.
    * @see ServerSocket
@@ -122,7 +144,7 @@ public interface ServiceProperties {
   /**
    * Used to indicate the list of address from where the service can be accessed.
    *
-   * @param onlyFrom by default a service can only be accessed from the 
+   * @param onlyFrom by default a service can only be accessed from the
    * local machine.
    */
   void setOnlyFrom(List<InetAddress> onlyFrom);
@@ -146,5 +168,12 @@ public interface ServiceProperties {
    *
    * @param serviceName useful to describe the function of the service.
    */
-  void setServiceName(String serviceName);  
+  void setServiceName(String serviceName);
+
+  /**
+   * Set to true if can't bound <code>service</code> to a particular IP/Port.
+   *
+   * @param unableToOpen is set to false if bound process ends normally.
+   */
+  void setUnableToOpen(boolean unableToOpen);
 }

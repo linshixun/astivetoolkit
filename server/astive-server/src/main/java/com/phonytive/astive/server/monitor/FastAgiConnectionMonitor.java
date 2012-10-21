@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,6 +19,13 @@
  */
 package com.phonytive.astive.server.monitor;
 
+import com.phonytive.astive.AstiveException;
+import java.io.IOException;
+import java.net.SocketPermission;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.apache.log4j.Logger;
 import com.phonytive.astive.agi.AgiCommandHandler;
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
@@ -27,16 +34,13 @@ import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import com.phonytive.astive.agi.fastagi.FastAgiResponse;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
-import com.phonytive.astive.server.*;
+import com.phonytive.astive.server.AstivletProcessor;
+import com.phonytive.astive.server.ConnectionManager;
+import com.phonytive.astive.server.FastAgiConnectionManager;
+import com.phonytive.astive.server.FastAgiServerSocket;
 import com.phonytive.astive.server.security.AstPolicy;
 import com.phonytive.astive.server.security.AstPolicyUtil;
 import com.phonytive.astive.util.AppLocale;
-import java.io.IOException;
-import java.net.SocketPermission;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -44,127 +48,126 @@ import org.apache.log4j.Logger;
  * @see ConnectionMonitor
  */
 public class FastAgiConnectionMonitor implements ConnectionMonitor {
-    // A usual logging class
+  // A usual logging class
+  private static final Logger LOG = Logger.getLogger(FastAgiConnectionMonitor.class);
+  private ConnectionManager manager;
+  private FastAgiServerSocket server;
+  private ThreadPoolExecutor threadPoolExecutor;
 
-    private static final Logger LOG = Logger.getLogger(FastAgiConnectionMonitor.class);
-    private ConnectionManager manager;
-    private FastAgiServerSocket server;
-    private ThreadPoolExecutor threadPoolExecutor;
+  /**
+   * Creates a new FastAgiConnectionMonitor object.
+   *
+   * @param server DOCUMENT ME!
+   * @param threads DOCUMENT ME!
+   */
+  public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
+    }
 
-    /**
-     * Creates a new FastAgiConnectionMonitor object.
-     *
-     * @param server DOCUMENT ME!
-     * @param threads DOCUMENT ME!
-     */
-    public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
+    this.server = server;
+    manager = new FastAgiConnectionManager();
+
+    // TODO: This should be a parameter
+    int corePoolSize = threads;
+    int maxPoolSize = threads;
+    long keepAliveTime = 0x1388;
+
+    threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
+                                                TimeUnit.MILLISECONDS,
+                                                new LinkedBlockingQueue<Runnable>());
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param conn DOCUMENT ME!
+   *
+   * @throws AstiveException DOCUMENT ME!
+   */
+  @Override
+  public void processConnection(final Connection conn)
+                         throws AstiveException {
+    try {
+      if (LOG.isDebugEnabled()) {
+        LOG.debug(AppLocale.getI18n("processingCall"));
+      }
+
+      FastAgiConnection fastConn = (FastAgiConnection) conn;
+
+      StringBuilder sbr = new StringBuilder();
+      sbr.append(fastConn.getSocket().getInetAddress().getHostAddress());
+      sbr.append(":");
+      sbr.append(fastConn.getSocket().getPort());
+
+      SocketPermission sp = new SocketPermission(sbr.toString(), AstPolicy.DEFAULT_ACTION);
+
+      if (AstPolicyUtil.hasPermission(sp)) {
+        AgiCommandHandler cHandler = new AgiCommandHandler(conn);
+        FastAgiResponse response = new FastAgiResponse(cHandler);
+        AstivletRequest aRequest =
+          new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
+        AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
+
+        AstivletProcessor.invokeAstivlet(aRequest, aResponse);
+
         if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
+          LOG.debug("done.");
         }
+      } else {
+        LOG.warn(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
 
-        this.server = server;
-        manager = new FastAgiConnectionManager();
-
-        // TODO: This should be a parameter
-        int corePoolSize = threads;
-        int maxPoolSize = threads;        
-        long keepAliveTime = 0x1388;
-
-        threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
-                TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>());
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param conn DOCUMENT ME!
-     *
-     * @throws AstiveException DOCUMENT ME!
-     */
-    @Override
-    public void processConnection(final Connection conn)
-            throws AstiveException {
         try {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug(AppLocale.getI18n("processingCall"));
-            }
-            
-            FastAgiConnection fastConn = (FastAgiConnection) conn;
-
-            StringBuilder sbr = new StringBuilder();
-            sbr.append(fastConn.getSocket().getInetAddress().getHostAddress());
-            sbr.append(":");
-            sbr.append(fastConn.getSocket().getPort());
-
-            SocketPermission sp = new SocketPermission(sbr.toString(), 
-                    AstPolicy.DEFAULT_ACTION);            
-            
-            if(AstPolicyUtil.hasPermission(sp)) {                                                    
-                AgiCommandHandler cHandler = new AgiCommandHandler(conn);
-                FastAgiResponse response = new FastAgiResponse(cHandler);
-                AstivletRequest aRequest = new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
-                AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
-
-                AstivletProcessor.invokeAstivlet(aRequest, aResponse);
-
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug("done.");
-                }
-            } else {
-                LOG.warn(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
-                try {
-                    fastConn.getSocket().close();
-                } catch (IOException ex) {
-                    // Drop connection
-                }
-            }
-        } catch (AgiException ex) {
-            LOG.error(AppLocale.getI18n("unexpectedError", new Object[]{ex.getMessage()}));
+          fastConn.getSocket().close();
+        } catch (IOException ex) {
+          // Drop connection
         }
+      }
+    } catch (AgiException ex) {
+      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
     }
+  }
 
-    /**
-     * DOCUMENT ME!
-     */
-    @Override
-    public void run() {
-        while (true) {
-            final FastAgiConnection conn;
+  /**
+   * DOCUMENT ME!
+   */
+  @Override
+  public void run() {
+    while (true) {
+      final FastAgiConnection conn;
 
-            try {
-                conn = server.acceptConnection();
+      try {
+        conn = server.acceptConnection();
 
-                // TODO: This should be configurable.
-                if (threadPoolExecutor.getMaximumPoolSize() == threadPoolExecutor.getTaskCount()) {
-                    conn.close();
-                    continue;
-                }
+        // TODO: This should be configurable.
+        if (threadPoolExecutor.getMaximumPoolSize() == threadPoolExecutor.getTaskCount()) {
+          conn.close();
 
-                threadPoolExecutor.execute(new Runnable() {
+          continue;
+        }
 
-                    @Override
-                    public void run() {
-                        manager.add(conn);
+        threadPoolExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+              manager.add(conn);
 
-                        try {
-                            processConnection(conn);
-                        } catch (AstiveException ex) {
-                            LOG.warn(ex.getMessage());
-                        }
+              try {
+                processConnection(conn);
+              } catch (AstiveException ex) {
+                LOG.warn(ex.getMessage());
+              }
 
-                        try {
-                            manager.remove(conn);
-                        } catch (IOException ex) {
-                            LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
-                                    new Object[]{ex.getMessage()}));
-                        }
-                    }
-                });
-            } catch (IOException ex) {
+              try {
+                manager.remove(conn);
+              } catch (IOException ex) {
                 LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
-                        new Object[]{ex.getMessage()}));
+                                            new Object[] { ex.getMessage() }));
+              }
             }
-        }
+          });
+      } catch (IOException ex) {
+        LOG.error(AppLocale.getI18n("unableToPerformIOOperations", new Object[] { ex.getMessage() }));
+      }
     }
+  }
 }

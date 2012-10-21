@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,13 +19,13 @@
  */
 package com.phonytive.astive.ami;
 
-import com.phonytive.astive.util.AppLocale;
 import java.util.HashMap;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.util.AppLocale;
 
 /**
- * 
- * @since 1.0.0 
+ *
+ * @since 1.0.0
  */
 public class ResponseQuee {
   private static final Logger LOG = Logger.getLogger(ResponseQuee.class);
@@ -62,8 +62,8 @@ public class ResponseQuee {
    */
   public Message pullMessage(String key) throws AmiException {
     if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
-        }
+      LOG.debug(AppLocale.getI18n("pullingMessageFromQuee", new Object[] { key }));
+    }
 
     Message msg = responseQuee.get(key);
     responseQuee.remove(key);
@@ -79,8 +79,8 @@ public class ResponseQuee {
    */
   public void pushMessage(String key, Message message) {
     if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
-        }
+      LOG.debug(AppLocale.getI18n("pushingMessageToQuee", new Object[] { key }));
+    }
 
     responseQuee.put(key, message);
   }

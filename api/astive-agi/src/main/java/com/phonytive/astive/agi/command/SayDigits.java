@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Say a given digit string, returning early if any of the given DTMF digits
@@ -35,72 +34,72 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SAY DIGITS")
 public class SayDigits implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    @Parameter(optional = false)
-    private String digits;
+  /**
+   * Serial version identifier.
+   */
+  @Parameter(optional = false)
+  private String digits;
 
-    /**
-     * Can be use to the interrupt the audio on a channel.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String escapeDigits;
+  /**
+   * Can be use to the interrupt the audio on a channel.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String escapeDigits;
 
-    /**
-     * Create a new SayDigits object with the digits to say.
-     *
-     * @param digits digits to say.
-     */
-    public SayDigits(String digits) {
-        this.digits = digits;
-        this.escapeDigits = "";
-    }
+  /**
+   * Create a new SayDigits object with the digits to say.
+   *
+   * @param digits digits to say.
+   */
+  public SayDigits(String digits) {
+    this.digits = digits;
+    this.escapeDigits = "";
+  }
 
-    /**
-     * Create a new SayDigits object with the digits to say and escape digits.
-     *
-     * @param digits digits to say.
-     * @param escapeDigits escape digits.
-     */
-    public SayDigits(String digits, String escapeDigits) {
-        this.digits = digits;
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Create a new SayDigits object with the digits to say and escape digits.
+   *
+   * @param digits digits to say.
+   * @param escapeDigits escape digits.
+   */
+  public SayDigits(String digits, String escapeDigits) {
+    this.digits = digits;
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Get digits to say.
-     *
-     * @return digits to say.
-     */
-    public String getDigits() {
-        return digits;
-    }
+  /**
+   * Get digits to say.
+   *
+   * @return digits to say.
+   */
+  public String getDigits() {
+    return digits;
+  }
 
-    /**
-     * Set digits to say.
-     *
-     * @param digits digits to say.
-     */
-    public void setDigits(String digits) {
-        this.digits = digits;
-    }
+  /**
+   * Get the digits used to interrupt the audio.
+   *
+   * @return digits used to interrupt the audio.
+   */
+  public String getEscapeDigits() {
+    return escapeDigits;
+  }
 
-    /**
-     * Get the digits used to interrupt the audio.
-     *
-     * @return digits used to interrupt the audio.
-     */
-    public String getEscapeDigits() {
-        return escapeDigits;
-    }
+  /**
+   * Set digits to say.
+   *
+   * @param digits digits to say.
+   */
+  public void setDigits(String digits) {
+    this.digits = digits;
+  }
 
-    /**
-     * Set the digits to be use to interrupt the audio.
-     *
-     * @param escapeDigits digits to be use to interrupt the audio.
-     */
-    public void setEscapeDigits(String escapeDigits) {
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Set the digits to be use to interrupt the audio.
+   *
+   * @param escapeDigits digits to be use to interrupt the audio.
+   */
+  public void setEscapeDigits(String escapeDigits) {
+    this.escapeDigits = escapeDigits;
+  }
 }

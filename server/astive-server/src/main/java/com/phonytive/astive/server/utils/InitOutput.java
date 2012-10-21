@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,11 +19,11 @@
  */
 package com.phonytive.astive.server.utils;
 
+import static java.lang.System.out;
+import java.util.ArrayList;
 import com.phonytive.astive.Version;
 import com.phonytive.astive.server.ServiceProperties;
 import com.phonytive.astive.util.AppLocale;
-import static java.lang.System.out;
-import java.util.ArrayList;
 
 /**
  * Print the start info.
@@ -31,43 +31,47 @@ import java.util.ArrayList;
  * @since 1.0.0
  */
 public class InitOutput {
+  private InitOutput() {
+  }
 
-    /**
-     * Print the start info.
-     *
-     * @param properties info to be printed.
-     */
-    public static void printInit(ArrayList<ServiceProperties> properties) {
-        // TODO: Programmatically include the build and the version
-        
-        StringBuilder sb = new StringBuilder(AppLocale.getI18n("init.header", new String[]{Version.VERSION, Version.BUILD_TIME}));
-        
-        for (ServiceProperties param : properties) {            
-            if (param.isDisabled()) {
-                continue;
-            }
-            // This is not elegant but work !
-            if (param.getServiceName().length() > 7) {
-                sb.append(param.getServiceName());
-                sb.append("\t");
-            } else {
-                sb.append(param.getServiceName());
-                sb.append("\t\t");
-            }
-            sb.append(param.getBindAddr().getHostAddress());
-            sb.append("\t");
-            if(param.isUnableToOpen()) {
-                sb.append(AppLocale.getI18n("unableToOpen"));
-            } else {
-                sb.append(param.getPort());
-            }
-            sb.append("\n");
-        }
+  /**
+   * Print the start info.
+   *
+   * @param properties info to be printed.
+   */
+  public static void printInit(ArrayList<ServiceProperties> properties) {
+    // TODO: Programmatically include the build and the version
+    StringBuilder sb =
+      new StringBuilder(AppLocale.getI18n("init.header",
+                                          new String[] { Version.VERSION, Version.BUILD_TIME }));
 
-        sb.append(AppLocale.getI18n("init.footer"));
-        out.println(sb.toString());
+    for (ServiceProperties param : properties) {
+      if (param.isDisabled()) {
+        continue;
+      }
+
+      // This is not elegant but work !
+      if (param.getServiceName().length() > 7) {
+        sb.append(param.getServiceName());
+        sb.append("\t");
+      } else {
+        sb.append(param.getServiceName());
+        sb.append("\t\t");
+      }
+
+      sb.append(param.getBindAddr().getHostAddress());
+      sb.append("\t");
+
+      if (param.isUnableToOpen()) {
+        sb.append(AppLocale.getI18n("unableToOpen"));
+      } else {
+        sb.append(param.getPort());
+      }
+
+      sb.append("\n");
     }
 
-    private InitOutput() {
-    }
+    sb.append(AppLocale.getI18n("init.footer"));
+    out.println(sb.toString());
+  }
 }

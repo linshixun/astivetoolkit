@@ -121,14 +121,12 @@
         <blanklines>
             <after>
                 <block>1</block>
-
                 <braceLeft>0</braceLeft>
                 <class>1</class>
                 <declaration>0</declaration>
                 <footer>1</footer>
                 <header>1</header>
                 <interface>1</interface>
-
                 <lastImport>1</lastImport>
                 <method>1</method>
                 <package>1</package>
@@ -136,7 +134,6 @@
             <before>
                 <block>1</block>
                 <braceRight>0</braceRight>
-
                 <caseBlock>1</caseBlock>
                 <comment>
                     <javadoc>1</javadoc>
@@ -144,7 +141,6 @@
                     <singleline>1</singleline>
                 </comment>
                 <controlStatement>1</controlStatement>
-
                 <declaration>1</declaration>
                 <footer>0</footer>
                 <header>0</header>
@@ -152,7 +148,6 @@
             <keepUpTo>1</keepUpTo>
         </blanklines>
         <braces>
-
             <empty>
                 <cuddle>false</cuddle>
                 <insertStatement>false</insertStatement>
@@ -176,7 +171,6 @@
                 <methodClass>false</methodClass>
                 <methodClassIfWrapped>false</methodClassIfWrapped>
             </treatDifferent>
-
         </braces>
         <chunks>
             <blanklines>true</blanklines>
@@ -185,7 +179,6 @@
         <comments>
             <format>
                 <multiline>true</multiline>
-
             </format>
             <javadoc>
                 <check>
@@ -193,14 +186,12 @@
                     <tags>true</tags>
                     <throwsTags>true</throwsTags>
                 </check>
-
                 <fieldsShort>false</fieldsShort>
                 <generate>
                     <class>21</class>
                     <constructor>21</constructor>
                     <field>4</field>
                     <method>21</method>
-
                 </generate>
                 <parseComments>false</parseComments>
                 <tags>
@@ -208,6 +199,7 @@
                     <standard>@topazproject|@avalon</standard>
                 </tags>
                 <templates>
+                    <class>/**| * DOCUMENT ME |*/</class>
                     <method>
 
                         <bottom> */</bottom>
@@ -223,7 +215,6 @@
                 <javadoc>false</javadoc>
                 <multiline>false</multiline>
                 <singleline>false</singleline>
-
             </remove>
             <separator>
                 <fillCharacter>-</fillCharacter>
@@ -231,14 +222,12 @@
                 <insertRecursive>false</insertRecursive>
                 <text>
                     <class>Inner Classes</class>
-
                     <constructor>Constructors</constructor>
                     <field>Instance fields</field>
                     <initializer>Instance initializers</initializer>
                     <interface>Inner Interfaces</interface>
                     <method>Methods</method>
                     <static>Static fields/initializers</static>
-
                 </text>
             </separator>
         </comments>
@@ -260,9 +249,8 @@
         </history>
         <imports>
             <grouping>
-                <defaultDepth>3</defaultDepth>
+                <defaultDepth>0</defaultDepth>
                 <packages>java:2|javax:2|org:3|*:0</packages>
-
             </grouping>
             <policy>expand</policy>
             <sort>true</sort>
@@ -270,7 +258,6 @@
         <indentation>
             <caseFromSwitch>false</caseFromSwitch>
             <continuation>
-
                 <block>true</block>
                 <operator>true</operator>
             </continuation>
@@ -315,7 +302,6 @@
                 <class>true</class>
                 <constructor>true</constructor>
                 <enable>true</enable>
-
                 <interface>true</interface>
                 <method>true</method>
                 <order>static|field|initializer|constructor|method|interface|class</order>
@@ -323,7 +309,6 @@
             </declaration>
             <modifier>
                 <enable>false</enable>
-
                 <order>public|protected|private|abstract|static|final|synchronized|transient|volatile|native|strictfp</order>
             </modifier>
         </sorting>

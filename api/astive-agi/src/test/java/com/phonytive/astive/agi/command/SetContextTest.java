@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SetContextTest extends TestCase {
-    public SetContextTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SetContextTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SetContextTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String context = "my-context";
-        StringBuilder b = new StringBuilder("SET CONTEXT");
-        b.append(" ");
-        b.append("\"");
-        b.append(context);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String context = "my-context";
+    StringBuilder b = new StringBuilder("SET CONTEXT");
+    b.append(" ");
+    b.append("\"");
+    b.append(context);
+    b.append("\"");
 
-        SetContext command = new SetContext(context);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SetContext command = new SetContext(context);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

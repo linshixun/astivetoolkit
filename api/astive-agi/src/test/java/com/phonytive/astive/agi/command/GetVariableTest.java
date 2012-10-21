@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,22 +23,34 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class GetVariableTest extends TestCase {
-    public GetVariableTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new GetVariableTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public GetVariableTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String variable = "var1";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String variable = "var1";
 
-        StringBuilder b = new StringBuilder("GET VARIABLE");
-        b.append(" ");
-        b.append("\"");
-        b.append(variable);
-        b.append("\"");
+    StringBuilder b = new StringBuilder("GET VARIABLE");
+    b.append(" ");
+    b.append("\"");
+    b.append(variable);
+    b.append("\"");
 
-        GetVariable command = new GetVariable(variable);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    GetVariable command = new GetVariable(variable);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

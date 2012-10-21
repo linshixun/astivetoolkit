@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.phonytive.astive.ami.action;
+package com.phonytive.astive.ami.action;
 
 
 /**

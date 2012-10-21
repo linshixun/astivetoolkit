@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,17 +19,17 @@
  */
 package com.phonytive.astive.ami;
 
-import com.phonytive.astive.ami.event.ManagerEvent;
-import com.phonytive.astive.util.AppLocale;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import com.phonytive.astive.ami.event.ManagerEvent;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *
  * @since 1.0.0
  */
-class MessageHandler implements Runnable {  
+class MessageHandler implements Runnable {
   private final BufferedReader reader;
   private final Manager manager;
   private final PrintWriter writer;
@@ -45,8 +45,7 @@ class MessageHandler implements Runnable {
    *
    * @throws AmiException DOCUMENT ME!
    */
-  MessageHandler(Manager manager, Socket client)
-                 throws AmiException {
+  MessageHandler(Manager manager, Socket client) throws AmiException {
     try {
       this.manager = manager;
       reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -84,7 +83,6 @@ class MessageHandler implements Runnable {
       Message msg = new Message(lines);
 
       if (msg.getType().equals(MessageType.RESPONSE)) {
-
         String actionId = msg.getParameter("ActionID");
 
         synchronized (responseQuee) {

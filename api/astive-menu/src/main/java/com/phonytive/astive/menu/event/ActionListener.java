@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,10 +26,10 @@ package com.phonytive.astive.menu.event;
  * @see ActionEvent
  */
 public interface ActionListener {
-    /**
-     * The action to be performed
-     *
-     * @param evt fired event
-     */
-    abstract void processAction(ActionEvent evt);
+  /**
+   * The action to be performed
+   *
+   * @param evt fired event
+   */
+  abstract void processAction(ActionEvent evt);
 }

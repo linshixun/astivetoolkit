@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Returns 0 if <code>variablename</code> is not set.
@@ -36,42 +35,42 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "GET VARIABLE")
 public class GetVariable implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xcf16444fd1474312L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xcf16444fd1474312L;
 
-    /**
-     * Variable name.
-     */
-    @Parameter(optional = false)
-    private String variable;
+  /**
+   * Variable name.
+   */
+  @Parameter(optional = false)
+  private String variable;
 
-    /**
-     * Create a new GetVariable object to get the variable on the current
-     * <code>channel</code>.
-     *
-     * @param variable variable name.
-     */
-    public GetVariable(String variable) {
-        this.variable = variable;
-    }
+  /**
+   * Create a new GetVariable object to get the variable on the current
+   * <code>channel</code>.
+   *
+   * @param variable variable name.
+   */
+  public GetVariable(String variable) {
+    this.variable = variable;
+  }
 
-    /**
-     * Get variable name.
-     *
-     * @return variable name.
-     */
-    public String getVariable() {
-        return variable;
-    }
+  /**
+   * Get variable name.
+   *
+   * @return variable name.
+   */
+  public String getVariable() {
+    return variable;
+  }
 
-    /**
-     * Set variable name.
-     *
-     * @param variable variable name.
-     */
-    public void setVariable(String variable) {
-        this.variable = variable;
-    }
+  /**
+   * Set variable name.
+   *
+   * @param variable variable name.
+   */
+  public void setVariable(String variable) {
+    this.variable = variable;
+  }
 }

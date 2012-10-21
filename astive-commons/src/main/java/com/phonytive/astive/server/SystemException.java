@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,26 +19,26 @@
  */
 package com.phonytive.astive.server;
 
+
 /**
  * This exception is used whenever a critical action is perform by the system.
- * 
+ *
  * @since 1.0.0
  */
 public class SystemException extends Exception {
-    
   /**
    * Creates a new SystemException object with null as its detail message.
    */
   public SystemException() {
-  }  
-  
+  }
+
   /**
    * Creates a new SystemException object with the specified detail message.
    *
-   * @param message the detail message (which is saved for later retrieval by the 
+   * @param message the detail message (which is saved for later retrieval by the
    * <code>Throwable.getMessage()</code> method).
    */
   public SystemException(String message) {
-    super(message);    
+    super(message);
   }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,25 +19,24 @@
  */
 package com.phonytive.astive.astivlet;
 
+
 /**
  * Defines methods that all astivle's must implement.
- * 
- * <p>A astivlet is a small Java program that runs within a Astive Server. 
- * Astivlets receive and respond to requests from Telephone systems like 
- * Asterisk. 
- * 
+ *
+ * <p>A astivlet is a small Java program that runs within a Astive Server.
+ * Astivlets receive and respond to requests from Telephone systems like
+ * Asterisk.
+ *
  * @see AstivletRequest
  * @see AstivletResponse
  * @since 1.0.0
  */
 public abstract class Astivlet {
-
-    /**
-     * Called by Astive Server to allow the astivlet to respond to a request.
-     *
-     * @param request object that contains the client's request
-     * @param response object that contains the astivle's response
-     */
-    abstract protected void service(AstivletRequest request,
-            AstivletResponse response);
+  /**
+   * Called by Astive Server to allow the astivlet to respond to a request.
+   *
+   * @param request object that contains the client's request
+   * @param response object that contains the astivle's response
+   */
+  abstract protected void service(AstivletRequest request, AstivletResponse response);
 }

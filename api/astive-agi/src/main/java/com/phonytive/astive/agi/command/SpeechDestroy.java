@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,26 +19,25 @@
  */
 package com.phonytive.astive.agi.command;
 
-import com.phonytive.astive.agi.annotation.AgiCommand;
 import java.io.Serializable;
-
+import com.phonytive.astive.agi.annotation.AgiCommand;
 
 /**
  * Destroy the speech object created by {@link SpeechCreate}.
- * 
+ *
  * @since 1.0.0
  * @see SpeechCreate
  */
 @AgiCommand(command = "SPEECH DESTROY")
 public class SpeechDestroy implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xc6e25b4a00754d47L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xc6e25b4a00754d47L;
 
-    /**
-     * Create a new SpeechDestroy object.
-     */
-    public SpeechDestroy() {
-    }
+  /**
+   * Create a new SpeechDestroy object.
+   */
+  public SpeechDestroy() {
+  }
 }

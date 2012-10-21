@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,6 +19,9 @@
  */
 package com.phonytive.astive.ami.action;
 
+/**
+ * DOCUMENT ME 
+ */
 public class ParkAction extends ActionMessage {
   private String channel;
   private String channel2;

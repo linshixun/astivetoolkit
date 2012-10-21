@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Returns 0 if <code>variablename</code> is not set or channel does not exist.
@@ -36,78 +35,78 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "GET FULL VARIABLE")
 public class GetFullVariable implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x89475b375dc3e426L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x89475b375dc3e426L;
 
-    /**
-     * Channel variable.
-     */
-    @Parameter(optional = false)
-    private String variable;
+  /**
+   * Channel name.
+   */
+  @Parameter(position = 0x1)
+  private String channel;
 
-    /**
-     * Channel name.
-     */
-    @Parameter(position = 0x1)
-    private String channel;
+  /**
+   * Channel variable.
+   */
+  @Parameter(optional = false)
+  private String variable;
 
-    /**
-     * Create a new GetFullVariable object to get the variable on the current
-     * <code>channel</code>.
-     *
-     * @param variable channel variable.
-     */
-    public GetFullVariable(String variable) {
-        this.variable = variable;
-    }
+  /**
+   * Create a new GetFullVariable object to get the variable on the current
+   * <code>channel</code>.
+   *
+   * @param variable channel variable.
+   */
+  public GetFullVariable(String variable) {
+    this.variable = variable;
+  }
 
-    /**
-     * Create a new GetFullVariable object to get the variable on
-     * <code>channel</code>.
-     *
-     * @param variable channel variable.
-     * @param channel channel name.
-     */
-    public GetFullVariable(String variable, String channel) {
-        this.variable = variable;
-        this.channel = channel;
-    }
+  /**
+   * Create a new GetFullVariable object to get the variable on
+   * <code>channel</code>.
+   *
+   * @param variable channel variable.
+   * @param channel channel name.
+   */
+  public GetFullVariable(String variable, String channel) {
+    this.variable = variable;
+    this.channel = channel;
+  }
 
-    /**
-     * Get channel name or null for current channel.
-     *
-     * @return channel name.
-     */
-    public String getChannel() {
-        return channel;
-    }
+  /**
+   * Get channel name or null for current channel.
+   *
+   * @return channel name.
+   */
+  public String getChannel() {
+    return channel;
+  }
 
-    /**
-     * Set channel name. Use null for current channel.
-     *
-     * @param channel channel name.
-     */
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+  /**
+   * Get channel variable.
+   *
+   * @return channel variable.
+   */
+  public String getVariable() {
+    return variable;
+  }
 
-    /**
-     * Get channel variable.
-     *
-     * @return channel variable.
-     */
-    public String getVariable() {
-        return variable;
-    }
+  /**
+   * Set channel name. Use null for current channel.
+   *
+   * @param channel channel name.
+   */
+  public void setChannel(String channel) {
+    this.channel = channel;
+  }
 
-    /**
-     * Set channel variable.
-     *
-     * @param variable channel variable.
-     */
-    public void setVariable(String variable) {
-        this.variable = variable;
-    }
+  /**
+   * Set channel variable.
+   *
+   * @param variable channel variable.
+   */
+  public void setVariable(String variable) {
+    this.variable = variable;
+  }
 }

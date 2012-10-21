@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,14 +23,26 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class NoopTest extends TestCase {
-    public NoopTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new NoopTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public NoopTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Noop command = new Noop();
-        assert ("NOOP".equals(CommandProcessor.buildCommand(command)));
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Noop command = new Noop();
+    assertEquals("NOOP", CommandProcessor.buildCommand(command));
+  }
 }

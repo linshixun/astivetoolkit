@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Hangs up the specified channel. If no channel name is given, hangs up the
@@ -32,47 +31,47 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "HANGUP")
 public class Hangup implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x9ac45e68e16b63edL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x9ac45e68e16b63edL;
 
-    /**
-     * Channel name.
-     */
-    @Parameter(optional = false)
-    private String channel;
+  /**
+   * Channel name.
+   */
+  @Parameter(optional = false)
+  private String channel;
 
-    /**
-     * Create a new Hangup object.
-     */
-    public Hangup() {
-    }
+  /**
+   * Create a new Hangup object.
+   */
+  public Hangup() {
+  }
 
-    /**
-     * Create a new Hangup object with channel.
-     * 
-     * @param channel channel name to hangup or null for current channel.
-     */
-    public Hangup(String channel) {
-        this.channel = channel;
-    }
+  /**
+   * Create a new Hangup object with channel.
+   *
+   * @param channel channel name to hangup or null for current channel.
+   */
+  public Hangup(String channel) {
+    this.channel = channel;
+  }
 
-    /**
-     * Channel name or null for current channel.
-     *
-     * @return channel name.
-     */
-    public String getChannel() {
-        return channel;
-    }
+  /**
+   * Channel name or null for current channel.
+   *
+   * @return channel name.
+   */
+  public String getChannel() {
+    return channel;
+  }
 
-    /**
-     * Set channel name. Null for current channel.
-     *
-     * @param channel channel name.
-     */
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+  /**
+   * Set channel name. Null for current channel.
+   *
+   * @param channel channel name.
+   */
+  public void setChannel(String channel) {
+    this.channel = channel;
+  }
 }

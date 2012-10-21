@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,9 +19,9 @@
  */
 package com.phonytive.astive.ami.action;
 
+import java.util.ArrayList;
 import com.phonytive.astive.ami.AmiException;
 import com.phonytive.astive.ami.Message;
-import java.util.ArrayList;
 
 /**
  *

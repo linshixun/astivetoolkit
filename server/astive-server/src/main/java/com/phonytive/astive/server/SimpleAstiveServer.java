@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,12 +19,12 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.astivlet.Astivlet;
-import com.phonytive.astive.server.monitor.SimpleConnectionMonitor;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.astivlet.Astivlet;
+import com.phonytive.astive.server.monitor.SimpleConnectionMonitor;
 
 /**
  *
@@ -49,7 +49,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
    * @throws IOException DOCUMENT ME!
    */
   public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
-    super();    
+    super();
     this.port = DEFAULT_AGI_SERVER_PORT;
     this.astivlet = astivlet;
   }
@@ -64,7 +64,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
    * @throws IOException DOCUMENT ME!
    */
   public SimpleAstiveServer(Astivlet astivlet, int port)
-                     throws SystemException, IOException {    
+                     throws SystemException, IOException {
     super(port);
     this.port = port;
     this.astivlet = astivlet;

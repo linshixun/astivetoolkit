@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,32 +23,44 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class DatabaseDelTreeTest extends TestCase {
-    public DatabaseDelTreeTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new DatabaseDelTreeTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public DatabaseDelTreeTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String family = "familyDb";
-        String keyTree = "keyTreeDb";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String family = "familyDb";
+    String keyTree = "keyTreeDb";
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("DATABASE DELTREE");
-        b.append(" ");
-        b.append("\"");
-        b.append(family);
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("DATABASE DELTREE");
+    b.append(" ");
+    b.append("\"");
+    b.append(family);
+    b.append("\"");
 
-        DatabaseDelTree command = new DatabaseDelTree(family);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    DatabaseDelTree command = new DatabaseDelTree(family);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor        
-        b.append(" ");
-        b.append("\"");
-        b.append(keyTree);
-        b.append("\"");
-        command = new DatabaseDelTree(family, keyTree);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor        
+    b.append(" ");
+    b.append("\"");
+    b.append(keyTree);
+    b.append("\"");
+    command = new DatabaseDelTree(family, keyTree);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

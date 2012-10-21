@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,194 +19,204 @@
  */
 package com.phonytive.astive.telnet;
 
-import com.phonytive.astive.server.security.AstPolicy;
-import com.phonytive.astive.server.security.AstPolicyUtil;
-import com.phonytive.astive.util.AppLocale;
-import com.phonytive.astive.util.NetUtil;
 import java.io.*;
 import java.net.*;
 import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.server.security.AstPolicy;
+import com.phonytive.astive.server.security.AstPolicyUtil;
+import com.phonytive.astive.util.AppLocale;
+import com.phonytive.astive.util.NetUtil;
 
 /**
  * Default implementation of Astive Server - Telnet service.
- * 
+ *
  * @since 1.0.0
  */
 public abstract class TelnetServer extends ServerSocket implements Runnable {
+  private static final Logger logger = Logger.getLogger(TelnetServer.class);
+  private static String promptSymbol = ColorsANSI.BRIGHT + "[astive]$ " + ColorsANSI.SANE;
+  private InetAddress bindAddr;
+  private int backlog;
+  private int port;
 
-    private static final Logger logger = Logger.getLogger(TelnetServer.class);
-    private InetAddress bindAddr;
-    private int backlog;
-    private int port;
-    private static String promptSymbol = ColorsANSI.BRIGHT + "[astive]$ " + ColorsANSI.SANE;
+  /**
+   * Create a new TelnetServer with bindAddr, backlog and port not initialized.
+   * @throws IOException when unable to perform IO operations.
+   */
+  public TelnetServer() throws IOException {
+  }
 
-    /**
-     * Create a new TelnetServer with bindAddr, backlog and port not initialized.
-     * @throws IOException when unable to perform IO operations.
-     */
-    public TelnetServer() throws IOException {}
-    
-    /**
-     * Create a new TelnetServer with port, backlog and bindAddr.
-     * 
-     * @param port port to where the service should bound.
-     * @param backlog maximun connections in queue. After that all connections
-     * will be dropped.
-     * @param bindAddr address to where the service should be bound.
-     * @throws IOException when unable to perform IO operations.
-     */
-    public TelnetServer(int port, int backlog, InetAddress bindAddr) throws IOException {
-        super();
-        this.port = port;
-        this.backlog = backlog;
-        this.bindAddr = bindAddr;
-    }
-    
-    /**
-     * Stop the TelnetServer
-     */
-    public abstract void stop();
-    
-    /**
-     * Return a list with all applications deployed into the server.
-     * 
-     * @return a list of string with the applications running into the server.
-     */
-    public abstract List<String> lookup();
-    
-    /**
-     * Return the version of the running server.
-     * 
-     * @return server instance version.
-     */
-    public abstract String version();
-    
-   /**
-    * List all <code>server</code> configurations.
-    */     
-    public abstract String system();    
+  /**
+   * Create a new TelnetServer with port, backlog and bindAddr.
+   *
+   * @param port port to where the service should bound.
+   * @param backlog maximun connections in queue. After that all connections
+   * will be dropped.
+   * @param bindAddr address to where the service should be bound.
+   * @throws IOException when unable to perform IO operations.
+   */
+  public TelnetServer(int port, int backlog, InetAddress bindAddr)
+               throws IOException {
+    super();
+    this.port = port;
+    this.backlog = backlog;
+    this.bindAddr = bindAddr;
+  }
 
-    @Override
-    public void run() {
-        try {
+  /**
+   * Return a list with all applications deployed into the server.
+   *
+   * @return a list of string with the applications running into the server.
+   */
+  public abstract List<String> lookup();
 
-            if (!NetUtil.isPortAvailable(port)) {
-                throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[]{port}));
-            }            
-            
-            InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
-            bind(inet, backlog);
+  /**
+   * DOCUMENT ME!
+   */
+  @Override
+  public void run() {
+    try {
+      if (!NetUtil.isPortAvailable(port)) {
+        throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[] { port }));
+      }
 
-            while (true) {
-                Socket client = accept();
+      InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
+      bind(inet, backlog);
 
-                StringBuilder sbr = new StringBuilder();
-                sbr.append(client.getInetAddress().getHostAddress());
-                sbr.append(":");
-                sbr.append(port);
-                
-                SocketPermission sp = new SocketPermission(sbr.toString(), 
-                        AstPolicy.DEFAULT_ACTION);
-                
-                if(!AstPolicyUtil.hasPermission(sp)) {
-                    client.close();
-                    continue;
-                }
-                
-                BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        client.getInputStream()));
-                PrintWriter writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+      while (true) {
+        Socket client = accept();
 
-                writer.println(AppLocale.getI18n("telnetIntro"));
-                writer.println(AppLocale.getI18n("telnetHelp"));
-                writer.print(promptSymbol);
-                writer.flush();
+        StringBuilder sbr = new StringBuilder();
+        sbr.append(client.getInetAddress().getHostAddress());
+        sbr.append(":");
+        sbr.append(port);
 
-                while (true) {
+        SocketPermission sp = new SocketPermission(sbr.toString(), AstPolicy.DEFAULT_ACTION);
 
-                    String commandStr = reader.readLine();
+        if (!AstPolicyUtil.hasPermission(sp)) {
+          client.close();
 
-                    TelnetCommand command = TelnetCommand.get(commandStr);
-
-                    if (command == null) {
-                        writer.println(AppLocale.getI18n("telnetCommandNotFound"));
-                        writer.print(promptSymbol);
-                        writer.flush();
-                        continue;
-                    }
-
-                    if (command.equals(TelnetCommand.STOP)) {
-                        stop();
-                        break;
-                    }
-
-                    if (command.equals(TelnetCommand.SYSTEM)) {
-                        writer.println(AppLocale.getI18n("telnetCommandNotImpl"));
-                        writer.print(promptSymbol);
-                        writer.flush();
-                        continue;
-                    }
-
-                    if (command.equals(TelnetCommand.HELP)) {
-                        StringBuilder sb = new StringBuilder(" ");
-                        sb.append("stop");
-                        sb.append("\n");
-                        sb.append(" ");
-                        sb.append("system");
-                        sb.append("\n");
-                        sb.append(" ");
-                        sb.append("help");
-                        sb.append("\n");
-                        sb.append(" ");
-                        sb.append("lookup");
-                        sb.append("\n");
-                        sb.append(" ");
-                        sb.append("exit");
-                        sb.append("\n");
-                        sb.append(" ");
-                        sb.append("version");
-                        writer.println(sb.toString());
-                        writer.print(promptSymbol);
-                        writer.flush();
-                        continue;
-                    }
-
-                    if (command.equals(TelnetCommand.LOOKUP)) {
-                        StringBuilder sb = new StringBuilder();
-                        Iterator<String> i = lookup().iterator();
-                        while (i.hasNext()) {
-                            String appInfo = i.next();
-                            sb.append(appInfo);
-                            if (i.hasNext()) {
-                                sb.append("\n");
-                            }
-                        }
-                        // TODO: Print a message if is empty?
-                        writer.println(sb.toString());
-                        writer.print(promptSymbol);
-                        writer.flush();
-                        continue;
-                    }
-
-                    if (command.equals(TelnetCommand.EXIT)) {
-                        client.close();
-                        break;
-                    }
-
-                    if (command.equals(TelnetCommand.VERSION)) {
-                        writer.println(version());
-                        writer.print(promptSymbol);
-                        writer.flush();
-                        continue;
-                    }
-                }
-            }
-        } catch (IOException ex) {
-            logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
-                    new Object[]{ex.getMessage()}));
+          continue;
         }
-    }    
-    
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+
+        writer.println(AppLocale.getI18n("telnetIntro"));
+        writer.println(AppLocale.getI18n("telnetHelp"));
+        writer.print(promptSymbol);
+        writer.flush();
+
+        while (true) {
+          String commandStr = reader.readLine();
+
+          TelnetCommand command = TelnetCommand.get(commandStr);
+
+          if (command == null) {
+            writer.println(AppLocale.getI18n("telnetCommandNotFound"));
+            writer.print(promptSymbol);
+            writer.flush();
+
+            continue;
+          }
+
+          if (command.equals(TelnetCommand.STOP)) {
+            stop();
+
+            break;
+          }
+
+          if (command.equals(TelnetCommand.SYSTEM)) {
+            writer.println(AppLocale.getI18n("telnetCommandNotImpl"));
+            writer.print(promptSymbol);
+            writer.flush();
+
+            continue;
+          }
+
+          if (command.equals(TelnetCommand.HELP)) {
+            StringBuilder sb = new StringBuilder(" ");
+            sb.append("stop");
+            sb.append("\n");
+            sb.append(" ");
+            sb.append("system");
+            sb.append("\n");
+            sb.append(" ");
+            sb.append("help");
+            sb.append("\n");
+            sb.append(" ");
+            sb.append("lookup");
+            sb.append("\n");
+            sb.append(" ");
+            sb.append("exit");
+            sb.append("\n");
+            sb.append(" ");
+            sb.append("version");
+            writer.println(sb.toString());
+            writer.print(promptSymbol);
+            writer.flush();
+
+            continue;
+          }
+
+          if (command.equals(TelnetCommand.LOOKUP)) {
+            StringBuilder sb = new StringBuilder();
+            Iterator<String> i = lookup().iterator();
+
+            while (i.hasNext()) {
+              String appInfo = i.next();
+              sb.append(appInfo);
+
+              if (i.hasNext()) {
+                sb.append("\n");
+              }
+            }
+
+            // TODO: Print a message if is empty?
+            writer.println(sb.toString());
+            writer.print(promptSymbol);
+            writer.flush();
+
+            continue;
+          }
+
+          if (command.equals(TelnetCommand.EXIT)) {
+            client.close();
+
+            break;
+          }
+
+          if (command.equals(TelnetCommand.VERSION)) {
+            writer.println(version());
+            writer.print(promptSymbol);
+            writer.flush();
+
+            continue;
+          }
+        }
+      }
+    } catch (IOException ex) {
+      logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
+                                     new Object[] { ex.getMessage() }));
+    }
+  }
+
+  /**
+   * Stop the TelnetServer
+   */
+  public abstract void stop();
+
+  /**
+   * List all <code>server</code> configurations.
+   */
+  public abstract String system();
+
+  /**
+   * Return the version of the running server.
+   *
+   * @return server instance version.
+   */
+  public abstract String version();
 }

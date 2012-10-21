@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,66 +19,65 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
- * Waits up to <code>timeout</code> milliseconds for channel to receive a DTMF 
- * digit. 
- * 
- * <p>Returns -1 on channel failure, 0 if no digit is received in the timeout, 
- * or the numerical value of the ASCII of the digit if one is received. 
- * 
- * <p>Use -1 for the <code>timeout</code> value if you desire the call to block 
+ * Waits up to <code>timeout</code> milliseconds for channel to receive a DTMF
+ * digit.
+ *
+ * <p>Returns -1 on channel failure, 0 if no digit is received in the timeout,
+ * or the numerical value of the ASCII of the digit if one is received.
+ *
+ * <p>Use -1 for the <code>timeout</code> value if you desire the call to block
  * indefinitely.
  *
  * @since 1.0.0
  */
 @AgiCommand(command = "WAIT FOR DIGIT")
 public class WaitForDigit implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x11aec99baeae4872L;
-    
-    /**
-     * Timeout in milliseconds. 
-     */
-    @Parameter(optional = false)
-    private Integer timeout;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x11aec99baeae4872L;
 
-    /**
-     * Create a new WaitForDigit object.
-     */
-    public WaitForDigit() {
-    }    
-    
-    /**
-     * Create a new WaitForDigit object with timeout.
-     * 
-     * @param timeout time in milliseconds to wait for a digit.
-     */
-    public WaitForDigit(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Timeout in milliseconds.
+   */
+  @Parameter(optional = false)
+  private Integer timeout;
 
-    /**
-     * Get time to wait for a digit.
-     * 
-     * @return time(in milliseconds) to wait for a digit.
-     */
-    public Integer getTimeout() {
-        return timeout;
-    }
+  /**
+   * Create a new WaitForDigit object.
+   */
+  public WaitForDigit() {
+  }
 
-    /**
-     * Set time to wait for a digit or null to wait forever.
-     * 
-     * @param timeout time(in milliseconds) to wait for a digit.
-     */
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Create a new WaitForDigit object with timeout.
+   *
+   * @param timeout time in milliseconds to wait for a digit.
+   */
+  public WaitForDigit(Integer timeout) {
+    this.timeout = timeout;
+  }
+
+  /**
+   * Get time to wait for a digit.
+   *
+   * @return time(in milliseconds) to wait for a digit.
+   */
+  public Integer getTimeout() {
+    return timeout;
+  }
+
+  /**
+   * Set time to wait for a digit or null to wait forever.
+   *
+   * @param timeout time(in milliseconds) to wait for a digit.
+   */
+  public void setTimeout(Integer timeout) {
+    this.timeout = timeout;
+  }
 }

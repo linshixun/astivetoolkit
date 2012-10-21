@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -29,10 +29,10 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface AgiCommand {
-    /**
-     * Get command identifier(e.g. "ANSWER" or "CHANNEL STATUS")
-     *
-     * @return command identifier.
-     */
-    public String command();
+  /**
+   * Get command identifier(e.g. "ANSWER" or "CHANNEL STATUS")
+   *
+   * @return command identifier.
+   */
+  public String command();
 }

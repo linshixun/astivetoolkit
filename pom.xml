@@ -13,7 +13,14 @@
             <name>Local Maven repository of releases</name>
             <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
         </pluginRepository>
-    </pluginRepositories>          
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>jetty-releases</id>
+            <name>Jetty Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/jetty-releases</url>
+        </repository>        
+    </repositories>
     <build>
         <plugins>
             <plugin>

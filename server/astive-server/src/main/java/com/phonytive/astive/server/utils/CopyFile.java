@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -27,41 +27,40 @@ import java.io.*;
  * @since 1.0.0
  */
 public class CopyFile {
+  private CopyFile() {
+  }
 
-    /**
-     * Copy a file from one location to another.
-     *
-     * @param srFile source file
-     * @param dtFile destination file
-     *
-     * @throws FileNotFoundException if source file is not found.
-     * @throws IOException if can't perform a I/O operation.
-     */
-    public static synchronized void copyfile(String srFile, String dtFile)
-            throws FileNotFoundException, IOException {
-        try {
-            File f1 = new File(srFile);
-            File f2 = new File(dtFile);
-            InputStream in = new FileInputStream(f1);
-            
-            OutputStream out = new FileOutputStream(f2);
+  /**
+   * Copy a file from one location to another.
+   *
+   * @param srFile source file
+   * @param dtFile destination file
+   *
+   * @throws FileNotFoundException if source file is not found.
+   * @throws IOException if can't perform a I/O operation.
+   */
+  public static synchronized void copyfile(String srFile, String dtFile)
+                                    throws FileNotFoundException, IOException {
+    try {
+      File f1 = new File(srFile);
+      File f2 = new File(dtFile);
+      InputStream in = new FileInputStream(f1);
 
-            byte[] buf = new byte[0x400];
-            int len;
+      OutputStream out = new FileOutputStream(f2);
 
-            while ((len = in.read(buf)) > 0x0) {
-                out.write(buf, 0x0, len);
-            }
+      byte[] buf = new byte[0x400];
+      int len;
 
-            in.close();
-            out.close();
-        } catch (FileNotFoundException ex) {
-            throw new FileNotFoundException();
-        } catch (IOException e) {
-            throw new IOException();
-        }
+      while ((len = in.read(buf)) > 0x0) {
+        out.write(buf, 0x0, len);
+      }
+
+      in.close();
+      out.close();
+    } catch (FileNotFoundException ex) {
+      throw new FileNotFoundException();
+    } catch (IOException e) {
+      throw new IOException();
     }
-
-    private CopyFile() {
-    }
+  }
 }

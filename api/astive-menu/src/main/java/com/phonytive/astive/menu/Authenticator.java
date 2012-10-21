@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -28,7 +28,7 @@ public abstract class Authenticator {
   private boolean authenticated = false;
   private int maxAuth = 0x3;
 
-  /** 
+  /**
    * Creates a new Authenticator object.
    */
   public Authenticator() {

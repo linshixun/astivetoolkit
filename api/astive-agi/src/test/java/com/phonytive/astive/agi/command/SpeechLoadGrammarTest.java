@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,26 +23,41 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME!
+ *
+ * @author $author$
+ * @version $Revision$
+ */
 public class SpeechLoadGrammarTest extends TestCase {
-    public SpeechLoadGrammarTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SpeechLoadGrammarTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SpeechLoadGrammarTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String name = "myGrammar";
-        String path = "path-to-grammar";
-        StringBuilder b = new StringBuilder("SPEECH LOAD GRAMMAR");
-        b.append(" ");
-        b.append("\"");
-        b.append(name);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(path);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String name = "myGrammar";
+    String path = "path-to-grammar";
+    StringBuilder b = new StringBuilder("SPEECH LOAD GRAMMAR");
+    b.append(" ");
+    b.append("\"");
+    b.append(name);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(path);
+    b.append("\"");
 
-        SpeechLoadGrammar command = new SpeechLoadGrammar(name, path);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SpeechLoadGrammar command = new SpeechLoadGrammar(name, path);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

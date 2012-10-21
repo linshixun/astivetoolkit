@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,57 +19,56 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
- * Sends the given text on a <code>channel</code>. Most channels do not support 
- * the transmission of text. 
- * 
- * <p>Returns 0 if text is sent, or if the channel does not support text 
+ * Sends the given text on a <code>channel</code>. Most channels do not support
+ * the transmission of text.
+ *
+ * <p>Returns 0 if text is sent, or if the channel does not support text
  * transmission. Returns -1 only on error/hangup.
  *
  * @since 1.0.0
  */
 @AgiCommand(command = "SEND TEXT")
 public class SendText implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xfb835223893846d2L;
-    
-    /**
-     * Text to send to channel.
-     */
-    @Parameter(optional = false)
-    private String text;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xfb835223893846d2L;
 
-    /**
-     * Create a new SendText object.
-     * 
-     * @param text text to send.
-     */
-    public SendText(String text) {
-        this.text = text;
-    }
+  /**
+   * Text to send to channel.
+   */
+  @Parameter(optional = false)
+  private String text;
 
-    /**
-     * Get text to send.
-     * 
-     * @return text to send.
-     */
-    public String getText() {
-        return text;
-    }
+  /**
+   * Create a new SendText object.
+   *
+   * @param text text to send.
+   */
+  public SendText(String text) {
+    this.text = text;
+  }
 
-    /**
-     * Set text to send.
-     * 
-     * @param text text to send.
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
+  /**
+   * Get text to send.
+   *
+   * @return text to send.
+   */
+  public String getText() {
+    return text;
+  }
+
+  /**
+   * Set text to send.
+   *
+   * @param text text to send.
+   */
+  public void setText(String text) {
+    this.text = text;
+  }
 }

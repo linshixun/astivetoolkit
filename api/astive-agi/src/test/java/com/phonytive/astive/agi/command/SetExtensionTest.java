@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SetExtensionTest extends TestCase {
-    public SetExtensionTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SetExtensionTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SetExtensionTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String extension = "100";
-        StringBuilder b = new StringBuilder("SET EXTENSION");
-        b.append(" ");
-        b.append("\"");
-        b.append(extension);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String extension = "100";
+    StringBuilder b = new StringBuilder("SET EXTENSION");
+    b.append(" ");
+    b.append("\"");
+    b.append(extension);
+    b.append("\"");
 
-        SetExtension command = new SetExtension(extension);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SetExtension command = new SetExtension(extension);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

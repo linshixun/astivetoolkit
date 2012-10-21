@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,14 +23,26 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class AsyncAgiBreakTest extends TestCase {
-    public AsyncAgiBreakTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new AsyncAgiBreakTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public AsyncAgiBreakTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        AsyncAgiBreak command = new AsyncAgiBreak();
-        assert ("ASYNC AGI BREAK".equals(CommandProcessor.buildCommand(command)));
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    AsyncAgiBreak command = new AsyncAgiBreak();
+    assertEquals("ASYNC AGI BREAK", CommandProcessor.buildCommand(command));
+  }
 }

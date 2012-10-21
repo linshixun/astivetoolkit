@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SetPriorityTest extends TestCase {
-    public SetPriorityTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SetPriorityTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SetPriorityTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String priority = "1";
-        StringBuilder b = new StringBuilder("SET PRIORITY");
-        b.append(" ");
-        b.append("\"");
-        b.append(priority);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String priority = "1";
+    StringBuilder b = new StringBuilder("SET PRIORITY");
+    b.append(" ");
+    b.append("\"");
+    b.append(priority);
+    b.append("\"");
 
-        SetPriority command = new SetPriority(priority);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SetPriority command = new SetPriority(priority);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,33 +23,45 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SetMusicTest extends TestCase {
-    public SetMusicTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SetMusicTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SetMusicTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Boolean on = true;
-        String musicOn = "ON";
-        String classStr = "my-class";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Boolean on = true;
+    String musicOn = "ON";
+    String classStr = "my-class";
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SET MUSIC");
-        b.append(" ");
-        b.append("\"");
-        b.append(musicOn);
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SET MUSIC");
+    b.append(" ");
+    b.append("\"");
+    b.append(musicOn);
+    b.append("\"");
 
-        SetMusic command = new SetMusic(on);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    SetMusic command = new SetMusic(on);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor                
-        b.append(" ");
-        b.append("\"");
-        b.append(classStr);
-        b.append("\"");
-        command = new SetMusic(on, classStr);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor                
+    b.append(" ");
+    b.append("\"");
+    b.append(classStr);
+    b.append("\"");
+    command = new SetMusic(on, classStr);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

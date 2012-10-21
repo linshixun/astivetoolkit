@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Create a speech object to be used by the other Speech AGI commands.
@@ -32,42 +31,42 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SPEECH CREATE")
 public class SpeechCreate implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x8c366ec054ed1a06L;
-    
-    /**
-     * The name of the speech engine to use for subsequent Speech AGI commands.
-     */
-    @Parameter(optional = false)
-    private String engine;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x8c366ec054ed1a06L;
 
-    /**
-     * Create a new SpeechCreate object.
-     * 
-     * @param engine the name of the speech engine to use for subsequent 
-     * Speech AGI commands.
-     */
-    public SpeechCreate(String engine) {
-        this.engine = engine;
-    }
+  /**
+   * The name of the speech engine to use for subsequent Speech AGI commands.
+   */
+  @Parameter(optional = false)
+  private String engine;
 
-    /**
-     * Get engine name.
-     * 
-     * @return engine name.
-     */
-    public String getEngine() {
-        return engine;
-    }
+  /**
+   * Create a new SpeechCreate object.
+   *
+   * @param engine the name of the speech engine to use for subsequent
+   * Speech AGI commands.
+   */
+  public SpeechCreate(String engine) {
+    this.engine = engine;
+  }
 
-    /**
-     * Set engine name.
-     * 
-     * @param engine engine name.
-     */
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
+  /**
+   * Get engine name.
+   *
+   * @return engine name.
+   */
+  public String getEngine() {
+    return engine;
+  }
+
+  /**
+   * Set engine name.
+   *
+   * @param engine engine name.
+   */
+  public void setEngine(String engine) {
+    this.engine = engine;
+  }
 }

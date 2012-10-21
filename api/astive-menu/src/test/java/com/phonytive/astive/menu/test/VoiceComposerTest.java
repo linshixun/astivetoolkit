@@ -19,12 +19,11 @@
  */
 package com.phonytive.astive.menu.test;
 
+import java.util.TimeZone;
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import com.phonytive.astive.menu.VoiceComposer;
 import com.phonytive.astive.menu.VoiceComposition;
-import java.util.Date;
-import java.util.TimeZone;
 import junit.framework.TestCase;
 
 /**
@@ -32,24 +31,26 @@ import junit.framework.TestCase;
  * @since 1.0.0
  */
 public class VoiceComposerTest extends TestCase {
+
+    /**
+     * Creates a new VoiceComposerTest object.
+     *
+     * @param testName DOCUMENT ME!
+     */
     public VoiceComposerTest(String testName) {
         super(testName);
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @throws AgiException DOCUMENT ME!
+     */
     public void testVoiceComposer() throws AgiException {
-        Date date = new Date();
-        VoiceComposition vc = VoiceComposer.withEscapeDigits("12345")
-                                           .withFormat("")
-                                           .withTimeZone(TimeZone.getDefault())
-                                           .streamFile("file1").addSilence(0x1)
-                                           .withEscapeDigits("").sayAlpha("abcd")
-                                           .create();
-        
-        assert ("STREAM FILE \"file1\" \"12345\" 0".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(0x0))));
-        assert ("STREAM FILE \"silence/1\" \"12345\" 0".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(0x1))));
-        assert ("SAY ALPHA \"abcd\" \"\"".equals(CommandProcessor.buildCommand(
-                vc.getCommands().get(0x2))));
+        VoiceComposition vc =
+                VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault()).streamFile("file1").addSilence(0x1).withEscapeDigits("").sayAlpha("abcd").create();
+        assertEquals("STREAM FILE \"file1\" \"12345\" 0", CommandProcessor.buildCommand(vc.getCommands().get(0x0)));
+        assertEquals("STREAM FILE \"silence/1\" \"12345\" 0", CommandProcessor.buildCommand(vc.getCommands().get(0x1)));
+        assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(0x2)));
     }
 }

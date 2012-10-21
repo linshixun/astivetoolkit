@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -24,11 +24,11 @@ import java.lang.annotation.Target;
 
 /**
  * Used by AgiRequest to identify Agi fields.
- * 
+ *
  * @since 1.0.0
  */
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
 public @interface RequestField {
-    public String value();
+  public String value();
 }

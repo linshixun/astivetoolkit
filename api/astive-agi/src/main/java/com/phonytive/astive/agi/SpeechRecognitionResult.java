@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Contains the results of a speech recognition command.
  *
@@ -32,153 +31,212 @@ import java.util.List;
  * @see org.asteriskjava.fastagi.command.SpeechRecognizeCommand
  * @since 1.0.0
  */
-public class SpeechRecognitionResult {    
-    private final AgiCommandReply AgiCommandReply;
+public class SpeechRecognitionResult {
+  private final AgiCommandReply AgiCommandReply;
 
-    public SpeechRecognitionResult(AgiCommandReply AgiCommandReply) {
-        this.AgiCommandReply = AgiCommandReply;
-    }
-   
-    public boolean isDtmf() {
-        return "digit".equals(AgiCommandReply.getExtra());
-    }
+  /**
+   * Creates a new SpeechRecognitionResult object.
+   *
+   * @param AgiCommandReply DOCUMENT ME!
+   */
+  public SpeechRecognitionResult(AgiCommandReply AgiCommandReply) {
+    this.AgiCommandReply = AgiCommandReply;
+  }
 
-    public boolean isSpeech() {
-        return "speech".equals(AgiCommandReply.getExtra());
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public List<SpeechResult> getAllResults() {
+    final int numberOfResults = getNumberOfResults();
+    final List<SpeechResult> results = new ArrayList<SpeechResult>(numberOfResults);
 
-    public boolean isTimeout() {
-        return "timeout".equals(AgiCommandReply.getExtra());
-    }
-
-    public char getDigit() {
-        final String digit = AgiCommandReply.getAttribute("digit");
-
-        if ((digit == null) || (digit.length() == 0x0)) {
-            return 0;
-        }
-
-        return digit.charAt(0x0);
-    }
-    
-    public int getEndpos() {
-        return Integer.valueOf(AgiCommandReply.getAttribute("endpos"));
-    }
-    
-    public int getScore() {
-        final String score0 = AgiCommandReply.getAttribute("score0");
-
-        return (score0 == null) ? 0x0 : Integer.valueOf(score0);
+    for (int i = 0x0; i < numberOfResults; i++) {
+      SpeechResult result =
+        new SpeechResult(Integer.valueOf(AgiCommandReply.getAttribute("score" + i)),
+                         AgiCommandReply.getAttribute("text" + i),
+                         AgiCommandReply.getAttribute("grammar" + i));
+      results.add(result);
     }
 
-    public String getText() {
-        return AgiCommandReply.getAttribute("text0");
+    return results;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public char getDigit() {
+    final String digit = AgiCommandReply.getAttribute("digit");
+
+    if ((digit == null) || (digit.length() == 0x0)) {
+      return 0;
     }
 
+    return digit.charAt(0x0);
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int getEndpos() {
+    return Integer.valueOf(AgiCommandReply.getAttribute("endpos"));
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getGrammar() {
+    return AgiCommandReply.getAttribute("grammar0");
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int getNumberOfResults() {
+    final String numberOfResults = AgiCommandReply.getAttribute("results");
+
+    return (numberOfResults == null) ? 0x0 : Integer.valueOf(numberOfResults);
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int getScore() {
+    final String score0 = AgiCommandReply.getAttribute("score0");
+
+    return (score0 == null) ? 0x0 : Integer.valueOf(score0);
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getText() {
+    return AgiCommandReply.getAttribute("text0");
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public boolean isDtmf() {
+    return "digit".equals(AgiCommandReply.getExtra());
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public boolean isSpeech() {
+    return "speech".equals(AgiCommandReply.getExtra());
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public boolean isTimeout() {
+    return "timeout".equals(AgiCommandReply.getExtra());
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("SpeechRecognitionResult[");
+
+    if (isDtmf()) {
+      sb.append("dtmf=true,");
+      sb.append("digit=").append(getDigit()).append(",");
+    }
+
+    if (isSpeech()) {
+      sb.append("speech=true,");
+      sb.append("score=").append(getScore()).append(",");
+      sb.append("text='").append(getText()).append("',");
+      sb.append("grammar='").append(getGrammar()).append("',");
+    }
+
+    if (isTimeout()) {
+      sb.append("timeout=true,");
+    }
+
+    if (getNumberOfResults() > 0x1) {
+      sb.append("numberOfResults=").append(getNumberOfResults()).append(",");
+      sb.append("allResults=").append(getAllResults()).append(",");
+    }
+
+    sb.append("endpos=").append(getEndpos()).append("]");
+
+    return sb.toString();
+  }
+
+  public static class SpeechResult implements Serializable {
+    private static final long serialVersionUID = 0x0L;
+    private final String grammar;
+    private final String text;
+    private final int score;
+
+    private SpeechResult(int score, String text, String grammar) {
+      this.score = score;
+      this.text = text;
+      this.grammar = grammar;
+    }
+
+    /**
+     * Returns the grammar. This is the grammar that was used by the speech engine.
+     *
+     * @return the grammar
+     */
     public String getGrammar() {
-        return AgiCommandReply.getAttribute("grammar0");
+      return grammar;
     }
 
-    public int getNumberOfResults() {
-        final String numberOfResults = AgiCommandReply.getAttribute("results");
-
-        return (numberOfResults == null) ? 0x0 : Integer.valueOf(numberOfResults);
+    /**
+     * Returns the confidence score. This is an integer between 0 (lowest confidence)
+     * and 1000 (highest confidence).
+     *
+     * @return the confidence score.
+     */
+    public int getScore() {
+      return score;
     }
 
-    public List<SpeechResult> getAllResults() {
-        final int numberOfResults = getNumberOfResults();
-        final List<SpeechResult> results = new ArrayList<SpeechResult>(numberOfResults);
-
-        for (int i = 0x0; i < numberOfResults; i++) {
-            SpeechResult result = new SpeechResult(Integer.valueOf(
-                        AgiCommandReply.getAttribute("score" + i)),
-                    AgiCommandReply.getAttribute("text" + i),
-                    AgiCommandReply.getAttribute("grammar" + i));
-            results.add(result);
-        }
-
-        return results;
+    /**
+     * Returns the text. This is the text that was recognized by the speech engine.
+     *
+     * @return the text
+     */
+    public String getText() {
+      return text;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("SpeechRecognitionResult[");
+      final StringBuilder sb = new StringBuilder("[");
+      sb.append("score=").append(score).append(",");
+      sb.append("text='").append(text).append("',");
+      sb.append("grammar='").append(grammar).append("']");
 
-        if (isDtmf()) {
-            sb.append("dtmf=true,");
-            sb.append("digit=").append(getDigit()).append(",");
-        }
-
-        if (isSpeech()) {
-            sb.append("speech=true,");
-            sb.append("score=").append(getScore()).append(",");
-            sb.append("text='").append(getText()).append("',");
-            sb.append("grammar='").append(getGrammar()).append("',");
-        }
-
-        if (isTimeout()) {
-            sb.append("timeout=true,");
-        }
-
-        if (getNumberOfResults() > 0x1) {
-            sb.append("numberOfResults=").append(getNumberOfResults())
-              .append(",");
-            sb.append("allResults=").append(getAllResults()).append(",");
-        }
-
-        sb.append("endpos=").append(getEndpos()).append("]");
-
-        return sb.toString();
+      return sb.toString();
     }
-
-    public static class SpeechResult implements Serializable {
-        private static final long serialVersionUID = 0x0L;
-        private final int score;
-        private final String text;
-        private final String grammar;
-
-        private SpeechResult(int score, String text, String grammar) {
-            this.score = score;
-            this.text = text;
-            this.grammar = grammar;
-        }
-
-        /**
-         * Returns the confidence score. This is an integer between 0 (lowest confidence)
-         * and 1000 (highest confidence).
-         *
-         * @return the confidence score.
-         */
-        public int getScore() {
-            return score;
-        }
-
-        /**
-         * Returns the text. This is the text that was recognized by the speech engine.
-         *
-         * @return the text
-         */
-        public String getText() {
-            return text;
-        }
-
-        /**
-         * Returns the grammar. This is the grammar that was used by the speech engine.
-         *
-         * @return the grammar
-         */
-        public String getGrammar() {
-            return grammar;
-        }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder("[");
-            sb.append("score=").append(score).append(",");
-            sb.append("text='").append(text).append("',");
-            sb.append("grammar='").append(grammar).append("']");
-
-            return sb.toString();
-        }
-    }
+  }
 }

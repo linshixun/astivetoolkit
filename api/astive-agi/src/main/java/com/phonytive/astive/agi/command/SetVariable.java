@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,79 +19,78 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Sets a variable to the current channel.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "SET VARIABLE")
 public class SetVariable implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa3ec74c9fd284a9bL;
-    
-    /**
-     * Variable name.
-     */
-    @Parameter(optional = false)
-    private String variable;
-    
-    /**
-     * Variable value.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String value;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa3ec74c9fd284a9bL;
 
-    /**
-     * Create a new SetVariable object with key/value.
-     * 
-     * @param variable variable name.
-     * @param value variable value.
-     */
-    public SetVariable(String variable, String value) {
-        this.variable = variable;
-        this.value = value;
-    }
+  /**
+   * Variable value.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String value;
 
-    /**
-     * Get variable name.
-     * 
-     * @return variable name.
-     */
-    public String getVariable() {
-        return variable;
-    }
+  /**
+   * Variable name.
+   */
+  @Parameter(optional = false)
+  private String variable;
 
-    /**
-     * Set variable name.
-     * 
-     * @param variable variable name.
-     */
-    public void setVariable(String variable) {
-        this.variable = variable;
-    }    
-    
-    /**
-     * Get variable value.
-     * 
-     * @return variable value.
-     */
-    public String getValue() {
-        return value;
-    }
+  /**
+   * Create a new SetVariable object with key/value.
+   *
+   * @param variable variable name.
+   * @param value variable value.
+   */
+  public SetVariable(String variable, String value) {
+    this.variable = variable;
+    this.value = value;
+  }
 
-    /**
-     * Set variable value.
-     * 
-     * @param value variable value.
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+  /**
+   * Get variable value.
+   *
+   * @return variable value.
+   */
+  public String getValue() {
+    return value;
+  }
+
+  /**
+   * Get variable name.
+   *
+   * @return variable name.
+   */
+  public String getVariable() {
+    return variable;
+  }
+
+  /**
+   * Set variable value.
+   *
+   * @param value variable value.
+   */
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  /**
+   * Set variable name.
+   *
+   * @param variable variable name.
+   */
+  public void setVariable(String variable) {
+    this.variable = variable;
+  }
 }

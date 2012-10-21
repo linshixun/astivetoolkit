@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,80 +19,79 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
- * Sends <code>message</code> to the console via verbose message system. 
+ * Sends <code>message</code> to the console via verbose message system.
  * <code>level</code> is the verbose level (1-4). Always returns 1.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "VERBOSE")
 public class Verbose implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x47dfb2d79b894cecL;
-    
-    /**
-     * Message to send.
-     */
-    @Parameter(optional = false)
-    private String message;
-    
-    /**
-     * Verbosity level(1-4).
-     */
-    @Parameter(position = 0x1, optional = false)
-    private Integer level;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x47dfb2d79b894cecL;
 
-    /**
-     * Create a new Verbose object.
-     * 
-     * @param message message to send.
-     * @param level verbosity level(1-4).
-     */
-    public Verbose(String message, Integer level) {
-        this.message = message;
-        this.level = level;
-    }
+  /**
+   * Verbosity level(1-4).
+   */
+  @Parameter(position = 0x1, optional = false)
+  private Integer level;
 
-    /**
-     * Get verbosity level.
-     * 
-     * @return level verbosity level
-     */
-    public Integer getLevel() {
-        return level;
-    }
+  /**
+   * Message to send.
+   */
+  @Parameter(optional = false)
+  private String message;
 
-    /**
-     * Set verbosity level.
-     * 
-     * @param level verbosity level of verbosity(1-4).
-     */    
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+  /**
+   * Create a new Verbose object.
+   *
+   * @param message message to send.
+   * @param level verbosity level(1-4).
+   */
+  public Verbose(String message, Integer level) {
+    this.message = message;
+    this.level = level;
+  }
 
-    /**
-     * Get message to send.
-     * 
-     * @return message to send.
-     */
-    public String getMessage() {
-        return message;
-    }
+  /**
+   * Get verbosity level.
+   *
+   * @return level verbosity level
+   */
+  public Integer getLevel() {
+    return level;
+  }
 
-    /**
-     * Set message to send.
-     * 
-     * @param message 
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  /**
+   * Get message to send.
+   *
+   * @return message to send.
+   */
+  public String getMessage() {
+    return message;
+  }
+
+  /**
+   * Set verbosity level.
+   *
+   * @param level verbosity level of verbosity(1-4).
+   */
+  public void setLevel(Integer level) {
+    this.level = level;
+  }
+
+  /**
+   * Set message to send.
+   *
+   * @param message
+   */
+  public void setMessage(String message) {
+    this.message = message;
+  }
 }

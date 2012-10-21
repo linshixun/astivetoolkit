@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Changes the priority for continuation upon exiting the application. The
@@ -32,43 +31,43 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SET PRIORITY")
 public class SetPriority implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x91fa8992e58a2c8fL;
-    
-    /**
-     * The priority or label for continuation upon exiting the application.
-     */
-    @Parameter(optional = false)
-    private String priority;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x91fa8992e58a2c8fL;
 
-    /**
-     * Create a new SetPriority object.
-     * 
-     * @param priority priority or label for continuation upon exiting the 
-     * application.
-     */
-    public SetPriority(String priority) {
-        this.priority = priority;
-    }
+  /**
+   * The priority or label for continuation upon exiting the application.
+   */
+  @Parameter(optional = false)
+  private String priority;
 
-    /**
-     * Get priority.
-     * 
-     * @return priority.
-     */
-    public String getPriority() {
-        return priority;
-    }
+  /**
+   * Create a new SetPriority object.
+   *
+   * @param priority priority or label for continuation upon exiting the
+   * application.
+   */
+  public SetPriority(String priority) {
+    this.priority = priority;
+  }
 
-    /**
-     * Set priority or label for continuation upon exiting the application.
-     * 
-     * @param priority priority or label for continuation upon exiting the 
-     * application.
-     */
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
+  /**
+   * Get priority.
+   *
+   * @return priority.
+   */
+  public String getPriority() {
+    return priority;
+  }
+
+  /**
+   * Set priority or label for continuation upon exiting the application.
+   *
+   * @param priority priority or label for continuation upon exiting the
+   * application.
+   */
+  public void setPriority(String priority) {
+    this.priority = priority;
+  }
 }

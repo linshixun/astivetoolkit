@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,27 +19,39 @@
  */
 package com.phonytive.astive.server.test;
 
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.AstObj;
-import com.phonytive.astive.server.AstiveException;
+import java.io.File;
 import junit.framework.TestCase;
+import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 
 /**
  *
  * @since 1.0.0
  */
 public class AppObjTest extends TestCase {
+  /**
+   * Creates a new AppObjTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public AppObjTest(String testName) {
+    super(testName);
+  }
+  
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AstiveException DOCUMENT ME!
+   */
+  public void testAppObj() throws AstiveException {
+    File file = MavenTestingUtils.getProjectFile("/src/test/resources/helloworld.jar");          
+    AstObj astObj = new AstObj("helloworld.jar", file.getAbsolutePath());
+    Astivlet ast = astObj.getAstivletByURLPattern("/examples/HelloWorld");
+    assertNotNull(ast);
     
-    public AppObjTest(String testName) {
-        super(testName);
-    }
-        
-    // TODO: find a better way to test this !!!
-    public void testAppObj() throws AstiveException {
-        AstObj astObj = 
-                new AstObj("helloworld-1.0.0-M3.jar","/home/psanders/Projects/PhonyTive"
-                        + "/astive/examples/helloworld/target"
-                            + "/helloworld-1.0.0-M3.jar");
-        Astivlet ast = astObj.getAstivletByURLPattern("/examp2les2/2/HelloWorld3");
-    }
+    ast = astObj.getAstivletByURLPattern("/wha?");
+    assertNull(ast);
+  }
 }

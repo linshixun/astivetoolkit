@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -27,18 +27,32 @@ import java.util.List;
  * @since 1.0.0
  */
 public class VoiceComposition {
+  private List<Object> commands;
 
-    private List<Object> commands;
+  /**
+   * Creates a new VoiceComposition object.
+   *
+   * @param commands DOCUMENT ME!
+   */
+  public VoiceComposition(List<Object> commands) {
+    this.commands = commands;
+  }
 
-    public VoiceComposition(List<Object> commands) {
-        this.commands = commands;
-    }
-    
-    public List<Object> getCommands() {
-        return Collections.unmodifiableList(commands);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public List<Object> getCommands() {
+    return Collections.unmodifiableList(commands);
+  }
 
-    public void setCommands(List<Object> commands) {
-        this.commands = commands;
-    }        
+  /**
+   * DOCUMENT ME!
+   *
+   * @param commands DOCUMENT ME!
+   */
+  public void setCommands(List<Object> commands) {
+    this.commands = commands;
+  }
 }

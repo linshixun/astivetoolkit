@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,93 +19,92 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Say a given character string, returning early if any of the given DTMF digits
- * are received on the channel. 
- * 
- * <p>Returns 0 if playback completes without a digit being pressed, or the ASCII 
+ * are received on the channel.
+ *
+ * <p>Returns 0 if playback completes without a digit being pressed, or the ASCII
  * numerical value of the digit if one was pressed or -1 on error/hangup.
  *
  * @since 1.0.0
  */
 @AgiCommand(command = "SAY ALPHA")
 public class SayAlpha implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xdd5ba21a052144aeL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xdd5ba21a052144aeL;
 
-    /**
-     * Text to say.
-     */
-    @Parameter(optional = false)
-    private String text;
+  /**
+   * Can be use to the interrupt the audio on a channel.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String escapeDigits;
 
-    /**
-     * Can be use to the interrupt the audio on a channel.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String escapeDigits;
+  /**
+   * Text to say.
+   */
+  @Parameter(optional = false)
+  private String text;
 
-    /**
-     * Create a new SayAlpha object with the text to "say".
-     *
-     * @param text text to say.
-     */
-    public SayAlpha(String text) {
-        this.text = text;
-        this.escapeDigits = "";
-    }
+  /**
+   * Create a new SayAlpha object with the text to "say".
+   *
+   * @param text text to say.
+   */
+  public SayAlpha(String text) {
+    this.text = text;
+    this.escapeDigits = "";
+  }
 
-    /**
-     * Create a new SayAlpha object with the text to "say" and escape digits.
-     *
-     * @param text text to say.
-     * @param escapeDigits escape digits.
-     */
-    public SayAlpha(String text, String escapeDigits) {
-        this.text = text;
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Create a new SayAlpha object with the text to "say" and escape digits.
+   *
+   * @param text text to say.
+   * @param escapeDigits escape digits.
+   */
+  public SayAlpha(String text, String escapeDigits) {
+    this.text = text;
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Get text to say.
-     *
-     * @return text to say.
-     */
-    public String getText() {
-        return text;
-    }
+  /**
+   * Get the digits used to interrupt the audio.
+   *
+   * @return digits used to interrupt the audio.
+   */
+  public String getEscapeDigits() {
+    return escapeDigits;
+  }
 
-    /**
-     * Set text to say.
-     *
-     * @param text text to say.
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
+  /**
+   * Get text to say.
+   *
+   * @return text to say.
+   */
+  public String getText() {
+    return text;
+  }
 
-    /**
-     * Get the digits used to interrupt the audio.
-     *
-     * @return digits used to interrupt the audio.
-     */
-    public String getEscapeDigits() {
-        return escapeDigits;
-    }
+  /**
+   * Set the digits to be use to interrupt the audio.
+   *
+   * @param escapeDigits digits to be use to interrupt the audio.
+   */
+  public void setEscapeDigits(String escapeDigits) {
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Set the digits to be use to interrupt the audio.
-     *
-     * @param escapeDigits digits to be use to interrupt the audio.
-     */
-    public void setEscapeDigits(String escapeDigits) {
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Set text to say.
+   *
+   * @param text text to say.
+   */
+  public void setText(String text) {
+    this.text = text;
+  }
 }

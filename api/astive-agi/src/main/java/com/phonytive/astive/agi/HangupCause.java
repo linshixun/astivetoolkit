@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,29 +26,29 @@ package com.phonytive.astive.agi;
  * @since 1.0.0
  */
 public enum HangupCause { // TODO: Define all enum elements below this comment.
-    UNKNOWN(0xffffffff);
+  UNKNOWN(0xffffffff);
 
-    /**
-     * Int value of this type.
-     */
-    private int code;
+  /**
+   * Int value of this type.
+   */
+  private int code;
 
-    /**
-     * Create a new {@link HangupCause} object. This class is an enum,
-     * therefore can't be instantiated directly.
-     *
-     * @param code hangup cause int.
-     */
-    private HangupCause(int code) {
-        this.code = code;
-    }
+  /**
+   * Create a new {@link HangupCause} object. This class is an enum,
+   * therefore can't be instantiated directly.
+   *
+   * @param code hangup cause int.
+   */
+  private HangupCause(int code) {
+    this.code = code;
+  }
 
-    /**
-     * Get int code of hangup cause.
-     *
-     * @return code of hangup cause.
-     */
-    public int getCode() {
-        return code;
-    }
+  /**
+   * Get int code of hangup cause.
+   *
+   * @return code of hangup cause.
+   */
+  public int getCode() {
+    return code;
+  }
 }

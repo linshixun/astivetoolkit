@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,35 +23,47 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class GetOptionTest extends TestCase {
-    public GetOptionTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new GetOptionTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public GetOptionTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String file = "tt-monkeys";
-        String escapeDigits = "12";
-        Integer timeout = 0xffffffff;
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String file = "tt-monkeys";
+    String escapeDigits = "12";
+    Integer timeout = 0xffffffff;
 
-        // Test first constructor
-        StringBuilder b = new StringBuilder("GET OPTION");
-        b.append(" ");
-        b.append("\"");
-        b.append(file);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(timeout);
+    // Test first constructor
+    StringBuilder b = new StringBuilder("GET OPTION");
+    b.append(" ");
+    b.append("\"");
+    b.append(file);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(timeout);
 
-        GetOption command = new GetOption(file, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    GetOption command = new GetOption(file, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing the second constructor
-        command = new GetOption(file, escapeDigits, timeout);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing the second constructor
+    command = new GetOption(file, escapeDigits, timeout);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

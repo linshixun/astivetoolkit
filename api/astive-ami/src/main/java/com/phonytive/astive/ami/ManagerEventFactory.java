@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,10 @@
  */
 package com.phonytive.astive.ami;
 
+import org.apache.log4j.Logger;
 import com.phonytive.astive.ami.event.EventType;
 import com.phonytive.astive.ami.event.ManagerEvent;
 import com.phonytive.astive.util.AppLocale;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -45,7 +45,7 @@ public class ManagerEventFactory {
    */
   public ManagerEvent getEvent(Object source, Message msg) {
     LOG.warn(AppLocale.getI18n("unknownEvent",
-                                  new Object[] { msg.getMessageLines().get(0x0), msg.toString() }));
+                               new Object[] { msg.getMessageLines().get(0x0), msg.toString() }));
 
     return new ManagerEvent(source, EventType.UNKNOWN, msg.getParams());
   }

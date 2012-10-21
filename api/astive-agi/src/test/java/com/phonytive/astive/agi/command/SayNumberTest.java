@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,39 +23,51 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SayNumberTest extends TestCase {
-    public SayNumberTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SayNumberTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SayNumberTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Integer number = 0x7b;
-        String escapeDigits = "";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Integer number = 0x7b;
+    String escapeDigits = "";
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SAY NUMBER");
-        b.append(" ");
-        b.append(number);
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SAY NUMBER");
+    b.append(" ");
+    b.append(number);
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
 
-        SayNumber command = new SayNumber(number);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    SayNumber command = new SayNumber(number);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        escapeDigits = "123";
-        b = new StringBuilder("SAY NUMBER");
-        b.append(" ");
-        b.append(number);
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
+    // Testing second constructor
+    escapeDigits = "123";
+    b = new StringBuilder("SAY NUMBER");
+    b.append(" ");
+    b.append(number);
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
 
-        command = new SayNumber(number, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    command = new SayNumber(number, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

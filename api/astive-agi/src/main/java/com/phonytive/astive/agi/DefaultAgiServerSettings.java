@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,18 +26,12 @@ package com.phonytive.astive.agi;
  * @since 1.0.0
  */
 public interface DefaultAgiServerSettings {
-    /**
-     * Default port for an FASTAGI server.
-     */
-    public static int DEFAULT_AGI_SERVER_PORT = 0x11dd;
+  /**ADOC_COMME */
+  public static int DEFAULT_AGI_SERVER_PORT = 0x11dd;
 
-    /**
-     * Default backlog for AstiveServerImpl
-     */
-    public static int DEFAULT_AGI_SERVER_BACKLOG = 0x32;
+  /**ADOC_COMME */
+  public static int DEFAULT_AGI_SERVER_BACKLOG = 0x32;
 
-    /**
-     * The default server bind address is localhost address.
-     */
-    public static String DEFAULT_AGI_SERVER_BIND_ADDR = "127.0.0.1";
+  /**ADOC_COMME */
+  public static String DEFAULT_AGI_SERVER_BIND_ADDR = "127.0.0.1";
 }

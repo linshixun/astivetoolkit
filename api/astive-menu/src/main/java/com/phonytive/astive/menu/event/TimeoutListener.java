@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,7 +26,7 @@ package com.phonytive.astive.menu.event;
  * @see TimeoutEvent
  */
 public interface TimeoutListener {
-  /**  
+  /**
    *
    * @param evt
    */

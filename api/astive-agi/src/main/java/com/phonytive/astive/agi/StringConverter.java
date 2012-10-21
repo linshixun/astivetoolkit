@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,24 +26,24 @@ package com.phonytive.astive.agi;
  * @since 1.0.0
  */
 public class StringConverter implements Converter {
-    /**
-     * Get a comma separated value from an array of strings.
-     *
-     * @param a string values
-     * @param separator use to separate values
-     * @return an string of command separated values.
-     */
-    public String fromArrayString(String[] a, String separator) {
-        StringBuilder b = new StringBuilder();
+  /**
+   * Get a comma separated value from an array of strings.
+   *
+   * @param a string values
+   * @param separator use to separate values
+   * @return an string of command separated values.
+   */
+  public String fromArrayString(String[] a, String separator) {
+    StringBuilder b = new StringBuilder();
 
-        for (int i = 0x0; i < a.length; i++) {
-            b.append(a[i]);
+    for (int i = 0x0; i < a.length; i++) {
+      b.append(a[i]);
 
-            if (i < (a.length - 0x1)) {
-                b.append(separator);
-            }
-        }
-
-        return b.toString();
+      if (i < (a.length - 0x1)) {
+        b.append(separator);
+      }
     }
+
+    return b.toString();
+  }
 }

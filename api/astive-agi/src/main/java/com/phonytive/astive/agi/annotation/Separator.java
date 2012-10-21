@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -32,14 +32,14 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
 public @interface Separator {
-    /**
-     * Default separator.
-     */
-    public static final String DEFAULT_SEPARATOR = ",";
-    /**
-     * Get separator. By default is comma(",") is used.
-     *
-     * @return the separator.
-     */
-    public String value() default DEFAULT_SEPARATOR;
+  /**
+   * Default separator.
+   */
+  public static final String DEFAULT_SEPARATOR = ",";
+  /**
+   * Get separator. By default is comma(",") is used.
+   *
+   * @return the separator.
+   */
+  public String value() default DEFAULT_SEPARATOR;
 }

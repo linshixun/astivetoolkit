@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -24,6 +24,7 @@ package com.phonytive.astive.ami.action;
  *
  * @since 1.0.0
  */
+
 // TODO: Implement !
 public class AocMessageAction extends ActionMessage {
   private ChargeType chargeType;

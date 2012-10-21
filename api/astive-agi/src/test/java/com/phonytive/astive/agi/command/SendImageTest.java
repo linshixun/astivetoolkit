@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SendImageTest extends TestCase {
-    public SendImageTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SendImageTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SendImageTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String image = "myImage";
-        StringBuilder b = new StringBuilder("SEND IMAGE");
-        b.append(" ");
-        b.append("\"");
-        b.append(image);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String image = "myImage";
+    StringBuilder b = new StringBuilder("SEND IMAGE");
+    b.append(" ");
+    b.append("\"");
+    b.append(image);
+    b.append("\"");
 
-        SendImage command = new SendImage(image);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SendImage command = new SendImage(image);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

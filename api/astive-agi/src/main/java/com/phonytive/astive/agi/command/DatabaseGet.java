@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Retrieves an entry in the Asterisk database for a given <code>family</code>
@@ -37,67 +36,67 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "DATABASE GET")
 public class DatabaseGet implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x5265e4918f644119L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x5265e4918f644119L;
 
-    /**
-     * Database family.
-     */
-    @Parameter(optional = false)
-    private String family;
+  /**
+   * Database family.
+   */
+  @Parameter(optional = false)
+  private String family;
 
-    /**
-     * Family element.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String key;
+  /**
+   * Family element.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String key;
 
-    /**
-     * Create a new DatabaseGet object with family and key as parameter.
-     *
-     * @param family database family.
-     * @param key family element.
-     */
-    public DatabaseGet(String family, String key) {
-        this.family = family;
-        this.key = key;
-    }
+  /**
+   * Create a new DatabaseGet object with family and key as parameter.
+   *
+   * @param family database family.
+   * @param key family element.
+   */
+  public DatabaseGet(String family, String key) {
+    this.family = family;
+    this.key = key;
+  }
 
-    /**
-     * Get database family.
-     *
-     * @return database family.
-     */
-    public String getFamily() {
-        return family;
-    }
+  /**
+   * Get database family.
+   *
+   * @return database family.
+   */
+  public String getFamily() {
+    return family;
+  }
 
-    /**
-     * Set database family.
-     *
-     * @param family database family
-     */
-    public void setFamily(String family) {
-        this.family = family;
-    }
+  /**
+   * Get family element.
+   *
+   * @return family element.
+   */
+  public String getKey() {
+    return key;
+  }
 
-    /**
-     * Get family element.
-     *
-     * @return family element.
-     */
-    public String getKey() {
-        return key;
-    }
+  /**
+   * Set database family.
+   *
+   * @param family database family
+   */
+  public void setFamily(String family) {
+    this.family = family;
+  }
 
-    /**
-     * Set family element.
-     *
-     * @param key family element.
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
+  /**
+   * Set family element.
+   *
+   * @param key family element.
+   */
+  public void setKey(String key) {
+    this.key = key;
+  }
 }

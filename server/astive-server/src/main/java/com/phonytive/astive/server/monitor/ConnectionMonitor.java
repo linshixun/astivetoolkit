@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,8 +19,8 @@
  */
 package com.phonytive.astive.server.monitor;
 
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.agi.Connection;
-import com.phonytive.astive.server.AstiveException;
 
 /**
  *

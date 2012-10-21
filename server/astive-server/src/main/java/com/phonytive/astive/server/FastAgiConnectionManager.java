@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,11 +19,11 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.agi.Connection;
-import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.agi.Connection;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
 
 /**
  *

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,59 +23,71 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class ControlStreamFileTest extends TestCase {
-    public ControlStreamFileTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new ControlStreamFileTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public ControlStreamFileTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String file = "tt-monkeys";
-        String escapeDigits = "";
-        Integer offset = 0x0;
-        char forwardDigit = '*';
-        char rewindDigit = '#';
-        char pauseDigit = '9';
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String file = "tt-monkeys";
+    String escapeDigits = "";
+    Integer offset = 0x0;
+    char forwardDigit = '*';
+    char rewindDigit = '#';
+    char pauseDigit = '9';
 
-        // Testing first constructor 
-        StringBuilder b = new StringBuilder("CONTROL STREAM FILE");
-        b.append(" ");
-        b.append("\"");
-        b.append(file);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(offset);
+    // Testing first constructor 
+    StringBuilder b = new StringBuilder("CONTROL STREAM FILE");
+    b.append(" ");
+    b.append("\"");
+    b.append(file);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(offset);
 
-        ControlStreamFile command = new ControlStreamFile(file);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    ControlStreamFile command = new ControlStreamFile(file);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        command = new ControlStreamFile(file, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    // Testing second constructor
+    command = new ControlStreamFile(file, escapeDigits);
+    assertEquals(b.toString(), (CommandProcessor.buildCommand(command)));
 
-        // Testing third constructor
-        command = new ControlStreamFile(file, escapeDigits, offset);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    // Testing third constructor
+    command = new ControlStreamFile(file, escapeDigits, offset);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing 4th constructor
-        b.append(" ");
-        b.append("\"");
-        b.append(forwardDigit);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(rewindDigit);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(pauseDigit);
-        b.append("\"");
-        command = new ControlStreamFile(file, escapeDigits, offset,
-                forwardDigit, rewindDigit, pauseDigit);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing 4th constructor
+    b.append(" ");
+    b.append("\"");
+    b.append(forwardDigit);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(rewindDigit);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(pauseDigit);
+    b.append("\"");
+    command = new ControlStreamFile(file, escapeDigits, offset, forwardDigit, rewindDigit,
+                                    pauseDigit);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

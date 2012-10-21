@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Set an engine-specific setting in a key/value format.
@@ -31,67 +30,67 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SPEECH SET")
 public class SpeechSet implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xeb76021be8d34beeL;
-    
-    /**
-     * Property name(key).
-     */
-    @Parameter(optional = false)
-    private String name;
-    
-    /**
-     * Property value.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String value;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xeb76021be8d34beeL;
 
-    /**
-     * Create a new SpeechSet object.
-     * 
-     * @param name property name.
-     * @param value propert value.
-     */
-    public SpeechSet(String name, String value) {
-        this.name = name;
-        this.value = value;
-    }
+  /**
+   * Property name(key).
+   */
+  @Parameter(optional = false)
+  private String name;
 
-    /**
-     * Get property name.
-     * 
-     * @return property name.
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Property value.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String value;
 
-    /**
-     * Set property name.
-     * 
-     * @param name property name.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Create a new SpeechSet object.
+   *
+   * @param name property name.
+   * @param value propert value.
+   */
+  public SpeechSet(String name, String value) {
+    this.name = name;
+    this.value = value;
+  }
 
-    /**
-     * Get property value.
-     * 
-     * @return property value.
-     */
-    public String getValue() {
-        return value;
-    }
+  /**
+   * Get property name.
+   *
+   * @return property name.
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Set property value.
-     * 
-     * @param value property value.
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+  /**
+   * Get property value.
+   *
+   * @return property value.
+   */
+  public String getValue() {
+    return value;
+  }
+
+  /**
+   * Set property name.
+   *
+   * @param name property name.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Set property value.
+   *
+   * @param value property value.
+   */
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

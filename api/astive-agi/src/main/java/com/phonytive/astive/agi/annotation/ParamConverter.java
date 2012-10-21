@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,10 @@
  */
 package com.phonytive.astive.agi.annotation;
 
-import com.phonytive.astive.agi.StringConverter;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import com.phonytive.astive.agi.StringConverter;
 
 /**
  * Define the converter to be use in a parameter. For instance, arguments
@@ -40,12 +40,12 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
 public @interface ParamConverter {
-    /**
-     * Get the converter to be use in a parameter. The default converter is
-     * {@link StringConverter}. However, for new commands new converters
-     * can be define.
-     *
-     * @return converter to be use in a parameter.
-     */
-    public Class<?> converter() default StringConverter.class;
+  /**
+   * Get the converter to be use in a parameter. The default converter is
+   * {@link StringConverter}. However, for new commands new converters
+   * can be define.
+   *
+   * @return converter to be use in a parameter.
+   */
+  public Class<?> converter() default StringConverter.class;
 }

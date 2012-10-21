@@ -1,4 +1,7 @@
 #!/bin/sh
-mvn install package assembly:assembly -DskipTests=true
+#mvn install package assembly:assembly -DskipTests=true
+mvn install package assembly:assembly 
 # Uncomment next line to generate the javadocs.
 #mvn javadoc:aggregate
+# Uncoment next line to format using Jalopy
+#mvn jalopy:format

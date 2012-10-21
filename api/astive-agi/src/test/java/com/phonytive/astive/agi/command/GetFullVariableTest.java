@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,32 +23,44 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class GetFullVariableTest extends TestCase {
-    public GetFullVariableTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new GetFullVariableTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public GetFullVariableTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String variable = "tt-monkeys";
-        String channel = "SIP/Sanders";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String variable = "tt-monkeys";
+    String channel = "SIP/Sanders";
 
-        // Test first constructor
-        StringBuilder b = new StringBuilder("GET FULL VARIABLE");
-        b.append(" ");
-        b.append("\"");
-        b.append(variable);
-        b.append("\"");
+    // Test first constructor
+    StringBuilder b = new StringBuilder("GET FULL VARIABLE");
+    b.append(" ");
+    b.append("\"");
+    b.append(variable);
+    b.append("\"");
 
-        GetFullVariable command = new GetFullVariable(variable);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    GetFullVariable command = new GetFullVariable(variable);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing the second constructor
-        b.append(" ");
-        b.append("\"");
-        b.append(channel);
-        b.append("\"");
-        command = new GetFullVariable(variable, channel);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing the second constructor
+    b.append(" ");
+    b.append("\"");
+    b.append(channel);
+    b.append("\"");
+    command = new GetFullVariable(variable, channel);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

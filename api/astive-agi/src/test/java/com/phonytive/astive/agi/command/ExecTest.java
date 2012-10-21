@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,31 +23,43 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class ExecTest extends TestCase {
-    public ExecTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new ExecTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public ExecTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String application = "Test";
-        String opt = "\"1,abc,amor\"";
-        String[] options = { "1", "abc", "amor" };
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String application = "Test";
+    String opt = "\"1,abc,amor\"";
+    String[] options = { "1", "abc", "amor" };
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("EXEC");
-        b.append(" ");
-        b.append("\"");
-        b.append(application);
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("EXEC");
+    b.append(" ");
+    b.append("\"");
+    b.append(application);
+    b.append("\"");
 
-        Exec command = new Exec(application);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    Exec command = new Exec(application);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        b.append(" ");
-        b.append(opt);
-        command = new Exec(application, options);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor
+    b.append(" ");
+    b.append(opt);
+    command = new Exec(application, options);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

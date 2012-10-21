@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,42 +23,54 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SayAlphaTest extends TestCase {
-    public SayAlphaTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SayAlphaTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SayAlphaTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String text = "abc";
-        String escapeDigits = "";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String text = "abc";
+    String escapeDigits;
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SAY ALPHA");
-        b.append(" ");
-        b.append("\"");
-        b.append(text);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SAY ALPHA");
+    b.append(" ");
+    b.append("\"");
+    b.append(text);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append("\"");
 
-        SayAlpha command = new SayAlpha(text);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    SayAlpha command = new SayAlpha(text);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        escapeDigits = "123";
-        b = new StringBuilder("SAY ALPHA");
-        b.append(" ");
-        b.append("\"");
-        b.append(text);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
+    // Testing second constructor
+    escapeDigits = "123";
+    b = new StringBuilder("SAY ALPHA");
+    b.append(" ");
+    b.append("\"");
+    b.append(text);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
 
-        command = new SayAlpha(text, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    command = new SayAlpha(text, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

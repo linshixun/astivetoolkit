@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Stream the given <code>file</code>, and receive DTMF data.
@@ -33,127 +32,127 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "GET DATA")
 public class GetData implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa857a610017b3676L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa857a610017b3676L;
 
-    /**
-     * Default max digits.
-     */
-    private static final int DEFAULT_MAX_DIGITS = 0x400;
+  /**
+   * Default max digits.
+   */
+  private static final int DEFAULT_MAX_DIGITS = 0x400;
 
-    /**
-     * Default max timeout.
-     */
-    private static final int DEFAULT_TIMEOUT = 0x0;
+  /**
+   * Default max timeout.
+   */
+  private static final int DEFAULT_TIMEOUT = 0x0;
 
-    /**
-     * Audio to send to channel.
-     */
-    @Parameter(optional = false)
-    private String file;
+  /**
+   * Max digits to enter.
+   */
+  @Parameter(position = 0x2)
+  private Integer maxDigits;
 
-    /**
-     * Time in milliseconds to wait for DTMF. If a digit is pressed the wait
-     * time is reset. <p>With timeout set to -1 this command wait forever.
-     */
-    @Parameter(position = 0x1)
-    private Integer timeout;
+  /**
+   * Time in milliseconds to wait for DTMF. If a digit is pressed the wait
+   * time is reset. <p>With timeout set to -1 this command wait forever.
+   */
+  @Parameter(position = 0x1)
+  private Integer timeout;
 
-    /**
-     * Max digits to enter.
-     */
-    @Parameter(position = 0x2)
-    private Integer maxDigits;
+  /**
+   * Audio to send to channel.
+   */
+  @Parameter(optional = false)
+  private String file;
 
-    /**
-     * Create a new GetData object with file as parameter.
-     *
-     * @param file audio to stream.
-     */
-    public GetData(String file) {
-        this.file = file;
-        this.timeout = DEFAULT_TIMEOUT;
-        this.maxDigits = DEFAULT_MAX_DIGITS;
-    }
+  /**
+   * Create a new GetData object with file as parameter.
+   *
+   * @param file audio to stream.
+   */
+  public GetData(String file) {
+    this.file = file;
+    this.timeout = DEFAULT_TIMEOUT;
+    this.maxDigits = DEFAULT_MAX_DIGITS;
+  }
 
-    /**
-     * Create a new GetData object with timeout.
-     *
-     * @param file audio to stream.
-     * @param timeout time in milliseconds to wait for a new DTMF digit.
-     */
-    public GetData(String file, Integer timeout) {
-        this.file = file;
-        this.timeout = timeout;
-        this.maxDigits = DEFAULT_MAX_DIGITS;
-    }
+  /**
+   * Create a new GetData object with timeout.
+   *
+   * @param file audio to stream.
+   * @param timeout time in milliseconds to wait for a new DTMF digit.
+   */
+  public GetData(String file, Integer timeout) {
+    this.file = file;
+    this.timeout = timeout;
+    this.maxDigits = DEFAULT_MAX_DIGITS;
+  }
 
-    /**
-     * Create a new GetData object with timeout and maxDigits.
-     *
-     * @param file audio to stream.
-     * @param timeout time in milliseconds to wait for a new DTMF digit.
-     * @param maxDigits maximum amount digits accepted.
-     */
-    public GetData(String file, Integer timeout, Integer maxDigits) {
-        this.file = file;
-        this.timeout = timeout;
-        this.maxDigits = maxDigits;
-    }
+  /**
+   * Create a new GetData object with timeout and maxDigits.
+   *
+   * @param file audio to stream.
+   * @param timeout time in milliseconds to wait for a new DTMF digit.
+   * @param maxDigits maximum amount digits accepted.
+   */
+  public GetData(String file, Integer timeout, Integer maxDigits) {
+    this.file = file;
+    this.timeout = timeout;
+    this.maxDigits = maxDigits;
+  }
 
-    /**
-     * Get audio file.
-     *
-     * @return audio file.
-     */
-    public String getFile() {
-        return file;
-    }
+  /**
+   * Get audio file.
+   *
+   * @return audio file.
+   */
+  public String getFile() {
+    return file;
+  }
 
-    /**
-     * Set audio file
-     *
-     * @param file audio file.
-     */
-    public void setFile(String file) {
-        this.file = file;
-    }
+  /**
+   * Get maximum amount of digits.
+   *
+   * @return maximum amount of digits.
+   */
+  public Integer getMaxDigits() {
+    return maxDigits;
+  }
 
-    /**
-     * Get maximum amount of digits.
-     *
-     * @return maximum amount of digits.
-     */
-    public Integer getMaxDigits() {
-        return maxDigits;
-    }
+  /**
+   * Get timeout(in milliseconds).
+   *
+   * @return time in milliseconds.
+   */
+  public Integer getTimeout() {
+    return timeout;
+  }
 
-    /**
-     * Set maximum amount of digits.
-     *
-     * @param maxDigits maximum amount of digits.
-     */
-    public void setMaxDigits(Integer maxDigits) {
-        this.maxDigits = maxDigits;
-    }
+  /**
+   * Set audio file
+   *
+   * @param file audio file.
+   */
+  public void setFile(String file) {
+    this.file = file;
+  }
 
-    /**
-     * Get timeout(in milliseconds).
-     *
-     * @return time in milliseconds.
-     */
-    public Integer getTimeout() {
-        return timeout;
-    }
+  /**
+   * Set maximum amount of digits.
+   *
+   * @param maxDigits maximum amount of digits.
+   */
+  public void setMaxDigits(Integer maxDigits) {
+    this.maxDigits = maxDigits;
+  }
 
-    /**
-     * Set timeout(in milliseconds).
-     *
-     * @param timeout time in milliseconds
-     */
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Set timeout(in milliseconds).
+   *
+   * @param timeout time in milliseconds
+   */
+  public void setTimeout(Integer timeout) {
+    this.timeout = timeout;
+  }
 }

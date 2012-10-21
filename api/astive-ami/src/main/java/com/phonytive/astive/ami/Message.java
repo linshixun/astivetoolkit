@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,14 +19,14 @@
  */
 package com.phonytive.astive.ami;
 
-import com.phonytive.astive.ami.action.ActionType;
-import com.phonytive.astive.ami.event.EventType;
-import com.phonytive.astive.ami.util.Utils;
-import com.phonytive.astive.util.AppLocale;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Pattern;
+import com.phonytive.astive.ami.action.ActionType;
+import com.phonytive.astive.ami.event.EventType;
+import com.phonytive.astive.ami.util.Utils;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *

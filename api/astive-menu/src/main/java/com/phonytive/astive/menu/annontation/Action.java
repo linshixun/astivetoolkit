@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -33,5 +33,5 @@ import java.lang.annotation.Target;
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.METHOD)
 public @interface Action {
-    public String actionId();
+  public String actionId();
 }

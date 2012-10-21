@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -21,33 +21,32 @@ package com.phonytive.astive.agi;
 
 import java.io.IOException;
 
-
 /**
  * Provide read/write capabilities for few objects.
  *
  * @since 1.0.0
  */
 public interface Connection {
-    /**
-     * Reads a line of text from I/O channel.
-     *
-     * @return line of text from I/O channel.
-     * @throws IOException if unable to perform input operation.
-     */
-    abstract String readLine() throws IOException;
+  /**
+   * Whether or not the channel is closed.
+   *
+   * @return true for a closed channel, false otherwise.
+   */
+  abstract boolean isClosed();
 
-    /**
-     * Sends a given String to I/O channel.
-     *
-     * @param line string to send.
-     * @throws IOException if unable to perform output operation.
-     */
-    abstract void write(String str) throws IOException;
+  /**
+   * Reads a line of text from I/O channel.
+   *
+   * @return line of text from I/O channel.
+   * @throws IOException if unable to perform input operation.
+   */
+  abstract String readLine() throws IOException;
 
-    /**
-     * Whether or not the channel is closed.
-     *
-     * @return true for a closed channel, false otherwise.
-     */
-    abstract boolean isClosed();
+  /**
+   * Sends a given String to I/O channel.
+   *
+   * @param line string to send.
+   * @throws IOException if unable to perform output operation.
+   */
+  abstract void write(String str) throws IOException;
 }

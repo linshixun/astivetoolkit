@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,41 +23,53 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class GoSubTest extends TestCase {
-    public GoSubTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new GoSubTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public GoSubTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String context = "test-context";
-        String extension = "100";
-        String priority = "1";
-        String opt = "\"1,abc,amor\"";
-        String[] options = { "1", "abc", "amor" };
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String context = "test-context";
+    String extension = "100";
+    String priority = "1";
+    String opt = "\"1,abc,amor\"";
+    String[] options = { "1", "abc", "amor" };
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("GOSUB");
-        b.append(" ");
-        b.append("\"");
-        b.append(context);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(extension);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(priority);
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("GOSUB");
+    b.append(" ");
+    b.append("\"");
+    b.append(context);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(extension);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(priority);
+    b.append("\"");
 
-        GoSub command = new GoSub(context, extension, priority);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    GoSub command = new GoSub(context, extension, priority);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        b.append(" ");
-        b.append(opt);
-        command = new GoSub(context, extension, priority, options);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor
+    b.append(" ");
+    b.append(opt);
+    command = new GoSub(context, extension, priority, options);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

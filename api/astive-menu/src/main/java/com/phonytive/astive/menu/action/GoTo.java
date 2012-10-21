@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.menu.action;
 
-
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
 import com.phonytive.astive.menu.Menu;
@@ -37,7 +36,7 @@ public class GoTo implements Action {
 
   /**
    * Creates a new GoTo object.
-   * 
+   *
    * @param agiResponse agi response.
    * @param menu menu where to jump.
    */
@@ -59,5 +58,5 @@ public class GoTo implements Action {
     } catch (MenuException ex) {
       // Manage this exception
     }
-  }    
+  }
 }

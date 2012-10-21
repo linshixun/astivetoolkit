@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,69 +19,81 @@
  */
 package com.phonytive.astive.agi.command;
 
-import com.phonytive.astive.agi.AgiException;
-import com.phonytive.astive.agi.CommandProcessor;
 import java.util.Date;
 import java.util.TimeZone;
+import com.phonytive.astive.agi.AgiException;
+import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SayDatetimeTest extends TestCase {
-    public SayDatetimeTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SayDatetimeTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SayDatetimeTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Date date = new Date();
-        long seconds = (date).getTime() / 0x3e8;
-        String escapeDigits = "";
-        String format = SayDatetime.DEFAULT_FORMAT;
-        TimeZone tz = TimeZone.getDefault();
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Date date = new Date();
+    long seconds = (date).getTime() / 0x3e8;
+    String escapeDigits;
+    String format = SayDatetime.DEFAULT_FORMAT;
+    TimeZone tz = TimeZone.getDefault();
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SAY DATETIME");
-        b.append(" ");
-        b.append("\"");
-        b.append(seconds);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SAY DATETIME");
+    b.append(" ");
+    b.append("\"");
+    b.append(seconds);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append("\"");
 
-        SayDatetime command = new SayDatetime(date);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    SayDatetime command = new SayDatetime(date);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        escapeDigits = "123";
-        b = new StringBuilder("SAY DATETIME");
-        b.append(" ");
-        b.append("\"");
-        b.append(seconds);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
+    // Testing second constructor
+    escapeDigits = "123";
+    b = new StringBuilder("SAY DATETIME");
+    b.append(" ");
+    b.append("\"");
+    b.append(seconds);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
 
-        command = new SayDatetime(date, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    command = new SayDatetime(date, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing third constructor
-        b.append(" ");
-        b.append("\"");
-        b.append(format);
-        b.append("\"");
+    // Testing third constructor
+    b.append(" ");
+    b.append("\"");
+    b.append(format);
+    b.append("\"");
 
-        command = new SayDatetime(date, escapeDigits, format);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    command = new SayDatetime(date, escapeDigits, format);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing last constructor
-        b.append(" ");
-        b.append("\"");
-        b.append(tz.getID());
-        b.append("\"");
+    // Testing last constructor
+    b.append(" ");
+    b.append("\"");
+    b.append(tz.getID());
+    b.append("\"");
 
-        command = new SayDatetime(date, escapeDigits, format, tz);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    command = new SayDatetime(date, escapeDigits, format, tz);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

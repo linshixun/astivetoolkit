@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -36,16 +36,16 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
 public @interface BooleanChoose {
-    /**
-     * Get string value for a true.
-     *
-     * @return string value for a true. The default value is "ON".
-     */
-    public String valueOnTrue() default "ON";
-    /**
-     * Get string value for a false.
-     *
-     * @return string value for a false. The default value is "OFF".
-     */
-    public String valueOnFalse() default "OFF";
+  /**
+   * Get string value for a true.
+   *
+   * @return string value for a true. The default value is "ON".
+   */
+  public String valueOnTrue() default "ON";
+  /**
+   * Get string value for a false.
+   *
+   * @return string value for a false. The default value is "OFF".
+   */
+  public String valueOnFalse() default "OFF";
 }

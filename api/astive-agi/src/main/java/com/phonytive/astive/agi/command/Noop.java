@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,25 +19,24 @@
  */
 package com.phonytive.astive.agi.command;
 
-import com.phonytive.astive.agi.annotation.AgiCommand;
 import java.io.Serializable;
-
+import com.phonytive.astive.agi.annotation.AgiCommand;
 
 /**
  * Does nothing.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "NOOP")
 public class Noop implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x8c1ee759b542229dL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x8c1ee759b542229dL;
 
-    /**
-     * Create a new Noop object.
-     */
-    public Noop() {
-    }
+  /**
+   * Create a new Noop object.
+   */
+  public Noop() {
+  }
 }

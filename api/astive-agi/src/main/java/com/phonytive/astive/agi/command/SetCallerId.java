@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,54 +19,53 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Changes the <code>callerid</code> of the current <code>channel.</code>
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "SET CALLERID")
 public class SetCallerId implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xf339e45ad21d4cc8L;
-    
-    /**
-     * Caller Id.
-     */
-    @Parameter(optional = false)
-    private String callerId;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xf339e45ad21d4cc8L;
 
-    /**
-     * Create a new SetCallerId object to change the caller id for the 
-     * current channel.
-     * 
-     * @param callerId caller id for the current channel.
-     */
-    public SetCallerId(String callerId) {
-        this.callerId = callerId;
-    }
+  /**
+   * Caller Id.
+   */
+  @Parameter(optional = false)
+  private String callerId;
 
-    /**
-     * Get caller id.
-     * 
-     * @return caller id.
-     */
-    public String getCallerId() {
-        return callerId;
-    }
+  /**
+   * Create a new SetCallerId object to change the caller id for the
+   * current channel.
+   *
+   * @param callerId caller id for the current channel.
+   */
+  public SetCallerId(String callerId) {
+    this.callerId = callerId;
+  }
 
-    /**
-     * Set caller id for the current channel.
-     * 
-     * @param callerId caller id.
-     */
-    public void setCallerId(String callerId) {
-        this.callerId = callerId;
-    }
+  /**
+   * Get caller id.
+   *
+   * @return caller id.
+   */
+  public String getCallerId() {
+    return callerId;
+  }
+
+  /**
+   * Set caller id for the current channel.
+   *
+   * @param callerId caller id.
+   */
+  public void setCallerId(String callerId) {
+    this.callerId = callerId;
+  }
 }

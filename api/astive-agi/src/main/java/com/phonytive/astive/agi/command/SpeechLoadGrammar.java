@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,79 +19,79 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Unloads the specified grammar.
- * 
+ *
  * @since 1.0.0
  * @see SpeechUnloadGrammar
  */
 @AgiCommand(command = "SPEECH LOAD GRAMMAR")
 public class SpeechLoadGrammar implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x77d81cb1529e48b3L;
-    /**
-     * Grammar name.
-     */
-    @Parameter(optional = false)
-    private String name;
-    
-    /**
-     * Path to grammar.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String path;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x77d81cb1529e48b3L;
 
-    /**
-     * Create a new SpeechLoadGrammar object.
-     * 
-     * @param name grammar name.
-     * @param path path to grammar.
-     */
-    public SpeechLoadGrammar(String name, String path) {
-        this.name = name;
-        this.path = path;
-    }
+  /**
+   * Grammar name.
+   */
+  @Parameter(optional = false)
+  private String name;
 
-    /**
-     * Get grammar name.
-     * 
-     * @return grammar name.
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Path to grammar.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String path;
 
-    /**
-     * Set grammar name.
-     * 
-     * @param name grammar name.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Create a new SpeechLoadGrammar object.
+   *
+   * @param name grammar name.
+   * @param path path to grammar.
+   */
+  public SpeechLoadGrammar(String name, String path) {
+    this.name = name;
+    this.path = path;
+  }
 
-    /**
-     * Get path to grammar.
-     * 
-     * @return path to grammar.
-     */
-    public String getPath() {
-        return path;
-    }
+  /**
+   * Get grammar name.
+   *
+   * @return grammar name.
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Set path to grammar.
-     * 
-     * @param path path to grammar.
-     */
-    public void setPath(String path) {
-        this.path = path;
-    }
+  /**
+   * Get path to grammar.
+   *
+   * @return path to grammar.
+   */
+  public String getPath() {
+    return path;
+  }
+
+  /**
+   * Set grammar name.
+   *
+   * @param name grammar name.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Set path to grammar.
+   *
+   * @param path path to grammar.
+   */
+  public void setPath(String path) {
+    this.path = path;
+  }
 }

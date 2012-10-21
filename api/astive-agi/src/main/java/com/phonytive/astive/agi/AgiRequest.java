@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,12 +19,12 @@
  */
 package com.phonytive.astive.agi;
 
-import com.phonytive.astive.agi.annotation.RequestField;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.agi.annotation.RequestField;
 
 /**
  * Contain information about the channel the script is invoked on.
@@ -33,448 +33,591 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  */
 public class AgiRequest {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = -6279678160047296949L;
-    // A usual logging class
-    private static final Logger LOG = Logger.getLogger(AgiRequest.class);    
-    
-    private static Map<String, String> parameters;
-            
-    /**
-     * Collection of a pair key/value element with information about
-     * the <code>channel</code>.
-     */
-    private ArrayList<String> lines;
-    /**
-     * Account code (if specified).
-     */
-    @RequestField("agi_accountcode")
-    private String accountCode;
-    /**
-     * Caller Id Number only(e.g. "123").
-     */
-    @RequestField("agi_callerid")
-    private String callerId;
-    /**
-     * Caller Id Name only(e.g. "John Doe")
-     */
-    @RequestField("agi_calleridname")
-    private String callerIdName;
-    /**
-     * ANI2 (Info digits) also called Originating line information or OLI.
-     * Possible codes are listed can be founded at:
-     *
-     * <br>http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
-     */
-    @RequestField("agi_callingani2")
-    private Integer callingAni2;
-    /**
-     * Caller ID presentation for incoming calls (PRI channels).
-     * Class {@link PresentationType} can be use to decode this value.
-     */
-    @RequestField("agi_callingpres")
-    private Integer callingPres;
-    /**
-     * Transit Network Selector (PRI channels).
-     * Note: Will be a great contribution if you send us a link or document
-     * with an in deep explanation about this parameter.
-     */
-    @RequestField("agi_callingtns")
-    private Integer callingTns;
-    /**
-     * Caller Type of Number (PRI channels).
-     * Class {@link TonType} can be use to decode this value.
-     */
-    @RequestField("agi_callington")
-    private Integer callingTon;
-    /**
-     * Current channel name.
-     */
-    @RequestField("agi_channel")
-    private String channel;
-    /**
-     * Current context.
-     */
-    @RequestField("agi_context")
-    private String context;
-    /**
-     * Dialed Number Identifier.
-     */
-    @RequestField("agi_dnid")
-    private String dnId;
-    /**
-     * Whether this Agi is passed audio (EAGI - Enhanced AGI).
-     */
-    @RequestField("agi_enhanced")
-    private Boolean enhanced;
-    /**
-     * Extension that was called (e.g. 300).
-     */
-    @RequestField("agi_extension")
-    private String extension;
-    /**
-     * Current language. Language for the current <code>channel</code>.
-     */
-    @RequestField("agi_language")
-    private String language;
-    /**
-     * Whether or not this lines was sent throw a network(fastagi).
-     */
-    @RequestField("agi_network")
-    private Boolean network;
-    /**
-     * Remote Agi script(fastagi script).
-     */
-    @RequestField("agi_network_script")
-    private String script;
-    /**
-     * Current priority in the dialplan.
-     */
-    @RequestField("agi_priority")
-    private String priority;
-    /**
-     * Redirected Dial Number ID Service.
-     */
-    @RequestField("agi_rdnis")
-    private String rdNis;
-    /**
-     * Name of the Agi script that is being called.
-     */
-    @RequestField("agi_request")
-    private String requestURL;
-    /**
-     *
-     */
-    @RequestField("agi_threadid")
-    private String threadId;
-    /**
-     * Channel type(e.g. ZAP, SIP, H323, IAX...).
-     */
-    @RequestField("agi_type")
-    private ChannelType channelType;
-    /**
-     * Current call unique identifier
-     */
-    @RequestField("agi_uniqueid")
-    private String callId;
-    /**
-     * Version of the AGI version(Asterisk Version).
-     */
-    @RequestField("agi_version")
-    private String version; // TODO: Investigate, how to get asterisk version...
-    /**
-     * Use to map Agi field with AgiRequest variables.
-     */
-    private HashMap<String, String> fieldsMap;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = -6279678160047296949L;
 
-    /**
-     * Create a new AgiRequest object with the info sent by a new
-     * <code>channel</code>.
-     *
-     * @param lines array of a pairs key/value elements with information about
-     * the <code>channel</code>.
-     */
-    public AgiRequest(final ArrayList<String> lines) {
-        this.lines = lines;
+  // A usual logging class
+  private static final Logger LOG = Logger.getLogger(AgiRequest.class);
+  private static Map<String, String> parameters;
 
-        fieldsMap = new HashMap();
+  /**
+   * Collection of a pair key/value element with information about
+   * the <code>channel</code>.
+   */
+  private ArrayList<String> lines;
 
-        for (String line : lines) {
-            if (line.split(":").length < 2) {
-                continue;
-            }
-            // WARNING: Ensure it work for the parameter agi_request
-            String key = line.split(":")[0].trim();
-            String value = line.split(":")[1].trim();
-            if(key.equals("agi_request") && line.split(":").length == 3) {
-                value =  value + ":" + line.split(":")[2].trim();
-            }
-            fieldsMap.put(key, value);
-        }
+  /**
+   * Whether this Agi is passed audio (EAGI - Enhanced AGI).
+   */
+  @RequestField("agi_enhanced")
+  private Boolean enhanced;
 
-        try {
-            fillFields();                                    
-        } catch (IllegalArgumentException ex) {
-            LOG.warn(ex.getMessage());
-        } catch (IllegalAccessException ex) {
-            LOG.warn(ex.getMessage());
-        }
-        
-        // Get parameters.
-        // Note: The URL needs to be validated prior to do the next process.
-        // TODO: Improve this by using regex        
-        parameters = new HashMap<String, String>();
-        
-        String params = null;
-        
-        if(script.split("\\?").length > 1) {
-            params = script.split("\\?")[1];
-        }
-        
-        String and = null;
-        
-        if(params != null) {
-            if(params.split("&").length > 1) {
-                String[] p = params.split("&");
-                for(String s: p) {
-                    String key = s.split("=")[0].trim();
-                    String val = s.split("=")[1].trim();
-                    parameters.put(key, val);
-                }
-            }
-        }
+  /**
+   * Whether or not this lines was sent throw a network(fastagi).
+   */
+  @RequestField("agi_network")
+  private Boolean network;
+
+  /**
+   * Channel type(e.g. ZAP, SIP, H323, IAX...).
+   */
+  @RequestField("agi_type")
+  private ChannelType channelType;
+
+  /**
+   * Use to map Agi field with AgiRequest variables.
+   */
+  private HashMap<String, String> fieldsMap;
+
+  /**
+   * ANI2 (Info digits) also called Originating line information or OLI.
+   * Possible codes are listed can be founded at:
+   *
+   * <br>http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
+   */
+  @RequestField("agi_callingani2")
+  private Integer callingAni2;
+
+  /**
+   * Caller ID presentation for incoming calls (PRI channels).
+   * Class {@link PresentationType} can be use to decode this value.
+   */
+  @RequestField("agi_callingpres")
+  private Integer callingPres;
+
+  /**
+   * Transit Network Selector (PRI channels).
+   * Note: Will be a great contribution if you send us a link or document
+   * with an in deep explanation about this parameter.
+   */
+  @RequestField("agi_callingtns")
+  private Integer callingTns;
+
+  /**
+   * Caller Type of Number (PRI channels).
+   * Class {@link TonType} can be use to decode this value.
+   */
+  @RequestField("agi_callington")
+  private Integer callingTon;
+
+  /**
+   * Account code (if specified).
+   */
+  @RequestField("agi_accountcode")
+  private String accountCode;
+
+  /**
+   * Current call unique identifier
+   */
+  @RequestField("agi_uniqueid")
+  private String callId;
+
+  /**
+   * Caller Id Number only(e.g. "123").
+   */
+  @RequestField("agi_callerid")
+  private String callerId;
+
+  /**
+   * Caller Id Name only(e.g. "John Doe")
+   */
+  @RequestField("agi_calleridname")
+  private String callerIdName;
+
+  /**
+   * Current channel name.
+   */
+  @RequestField("agi_channel")
+  private String channel;
+
+  /**
+   * Current context.
+   */
+  @RequestField("agi_context")
+  private String context;
+
+  /**
+   * Dialed Number Identifier.
+   */
+  @RequestField("agi_dnid")
+  private String dnId;
+
+  /**
+   * Extension that was called (e.g. 300).
+   */
+  @RequestField("agi_extension")
+  private String extension;
+
+  /**
+   * Current language. Language for the current <code>channel</code>.
+   */
+  @RequestField("agi_language")
+  private String language;
+
+  /**
+   * Current priority in the dialplan.
+   */
+  @RequestField("agi_priority")
+  private String priority;
+
+  /**
+   * Redirected Dial Number ID Service.
+   */
+  @RequestField("agi_rdnis")
+  private String rdNis;
+
+  /**
+   * Name of the Agi script that is being called.
+   */
+  @RequestField("agi_request")
+  private String requestURL;
+
+  /**
+   * Remote Agi script(fastagi script).
+   */
+  @RequestField("agi_network_script")
+  private String script;
+
+  /**
+   *
+   */
+  @RequestField("agi_threadid")
+  private String threadId;
+
+  /**
+   * Version of the AGI version(Asterisk Version).
+   */
+  @RequestField("agi_version")
+  private String version; // TODO: Investigate, how to get asterisk version...
+
+  /**
+   * Create a new AgiRequest object with the info sent by a new
+   * <code>channel</code>.
+   *
+   * @param lines array of a pairs key/value elements with information about
+   * the <code>channel</code>.
+   */
+  public AgiRequest(final ArrayList<String> lines) {
+    this.lines = lines;
+
+    fieldsMap = new HashMap();
+
+    for (String line : lines) {
+      if (line.split(":").length < 2) {
+        continue;
+      }
+
+      // WARNING: Ensure it work for the parameter agi_request
+      String key = line.split(":")[0].trim();
+      String value = line.split(":")[1].trim();
+
+      if (key.equals("agi_request") && (line.split(":").length == 3)) {
+        value = value + ":" + line.split(":")[2].trim();
+      }
+
+      fieldsMap.put(key, value);
     }
 
-    /**
-     * Set a variables by using reflection.
-     */
-    private void fillFields()
-            throws IllegalArgumentException, IllegalAccessException {
-        for (String af : fieldsMap.keySet()) {
-            for (Field f : AgiRequest.class.getDeclaredFields()) {
-                RequestField rf;
+    try {
+      fillFields();
+    } catch (IllegalArgumentException ex) {
+      LOG.warn(ex.getMessage());
+    } catch (IllegalAccessException ex) {
+      LOG.warn(ex.getMessage());
+    }
 
-                if (f.isAnnotationPresent(RequestField.class)) {
-                    rf = f.getAnnotation(RequestField.class);
-                } else {
-                    continue;
-                }
+    // Get parameters.
+    // Note: The URL needs to be validated prior to do the next process.
+    // TODO: Improve this by using regex        
+    parameters = new HashMap<String, String>();
 
-                if (rf.value().equals(af)) {
-                    // There is an exeption for the variables:
-                    // channelType, enhanced and network
-                    if (f.getName().equals("network")) {
-                        if (fieldsMap.get(af).equals("yes")) {
-                            f.set(this, Boolean.TRUE);
-                        } else {
-                            f.set(this, Boolean.FALSE);
-                        }
+    String params = null;
 
-                        break;
-                    } else if (f.getName().equals("enhanced")) {
-                        if (fieldsMap.get(af).equals("1.0")) {
-                            f.set(this, Boolean.TRUE);
-                        } else {
-                            f.set(this, Boolean.FALSE);
-                        }
+    if (script.split("\\?").length > 1) {
+      params = script.split("\\?")[1];
+    }
 
-                        break;
-                    } else if (f.getType().equals(ChannelType.class)) {
-                        f.set(this, ChannelType.get(fieldsMap.get(af)));
+    String and = null;
 
-                        break;
-                    } else if (f.getType().equals(Integer.class)) {
-                        f.set(this, new Integer(fieldsMap.get(af)));
+    if (params != null) {
+      if (params.split("&").length > 1) {
+        String[] p = params.split("&");
 
-                        break;
-                    } else {
-                        f.set(this, fieldsMap.get(af));
-
-                        break;
-                    }
-                }
-            }
+        for (String s : p) {
+          String key = s.split("=")[0].trim();
+          String val = s.split("=")[1].trim();
+          parameters.put(key, val);
         }
+      }
     }
+  }
 
-    /**
-     * Get a list with the requestURL parameters.
-     */
-    public ArrayList<String> getLines() {
-        return lines;
-    }
+  /**
+   * Set a variables by using reflection.
+   */
+  private void fillFields() throws IllegalArgumentException, IllegalAccessException {
+    for (String af : fieldsMap.keySet()) {
+      for (Field f : AgiRequest.class.getDeclaredFields()) {
+        RequestField rf;
 
-    /**
-     * Return all elements key/value of this lines.
-     *
-     * @return all elements key/value of this lines.
-     */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("agi_network:");
-
-        if (isNetwork()) {
-            sb.append("yes");
+        if (f.isAnnotationPresent(RequestField.class)) {
+          rf = f.getAnnotation(RequestField.class);
         } else {
-            sb.append("no");
+          continue;
         }
 
-        sb.append("\n");
+        if (rf.value().equals(af)) {
+          // There is an exeption for the variables:
+          // channelType, enhanced and network
+          if (f.getName().equals("network")) {
+            if (fieldsMap.get(af).equals("yes")) {
+              f.set(this, Boolean.TRUE);
+            } else {
+              f.set(this, Boolean.FALSE);
+            }
 
-        sb.append("agi_network_script:");
-        sb.append(getRequestURL());
-        sb.append("\n");
+            break;
+          } else if (f.getName().equals("enhanced")) {
+            if (fieldsMap.get(af).equals("1.0")) {
+              f.set(this, Boolean.TRUE);
+            } else {
+              f.set(this, Boolean.FALSE);
+            }
 
-        sb.append("agi_request:");
-        sb.append(getScript());
-        sb.append("\n");
+            break;
+          } else if (f.getType().equals(ChannelType.class)) {
+            f.set(this, ChannelType.get(fieldsMap.get(af)));
 
-        sb.append("agi_channel:");
-        sb.append(getChannel());
-        sb.append("\n");
+            break;
+          } else if (f.getType().equals(Integer.class)) {
+            f.set(this, new Integer(fieldsMap.get(af)));
 
-        sb.append("agi_language:");
-        sb.append(getLanguage());
-        sb.append("\n");
+            break;
+          } else {
+            f.set(this, fieldsMap.get(af));
 
-        sb.append("agi_type:");
-        sb.append(getChannelType());
-        sb.append("\n");
+            break;
+          }
+        }
+      }
+    }
+  }
 
-        sb.append("agi_uniqueid:");
-        sb.append(getCallId());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getAccountCode() {
+    return accountCode;
+  }
 
-        sb.append("agi_version:");
-        sb.append(getVersion());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getCallId() {
+    return callId;
+  }
 
-        sb.append("agi_callerid:");
-        sb.append(getCallerId());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getCallerId() {
+    return callerId;
+  }
 
-        sb.append("agi_calleridname:");
-        sb.append(getCallerIdName());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getCallerIdName() {
+    return callerIdName;
+  }
 
-        sb.append("agi_callingpres:");
-        sb.append(getCallingPres());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Integer getCallingAni2() {
+    return callingAni2;
+  }
 
-        sb.append("agi_callingani2:");
-        sb.append(getCallingAni2());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Integer getCallingPres() {
+    return callingPres;
+  }
 
-        sb.append("agi_callingtns:");
-        sb.append(getCallingTns());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Integer getCallingTns() {
+    return callingTns;
+  }
 
-        sb.append("agi_dnid:");
-        sb.append(getDnId());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Integer getCallingTon() {
+    return callingTon;
+  }
 
-        sb.append("agi_rdnis:");
-        sb.append(getRdNis());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getChannel() {
+    return channel;
+  }
 
-        sb.append("agi_context:");
-        sb.append(getContext());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public ChannelType getChannelType() {
+    return channelType;
+  }
 
-        sb.append("agi_extension:");
-        sb.append(getExtension());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getContext() {
+    return context;
+  }
 
-        sb.append("agi_priority:");
-        sb.append(getPriority());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getDnId() {
+    return dnId;
+  }
 
-        sb.append("agi_enhanced:");
-        sb.append(isEnhanced());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getExtension() {
+    return extension;
+  }
 
-        sb.append("agi_accountcode:");
-        sb.append(getAccountCode());
-        sb.append("\n");
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getLanguage() {
+    return language;
+  }
 
-        sb.append("agi_threadid:");
-        sb.append(getThreadId());
+  /**
+   * Get a list with the requestURL parameters.
+   */
+  public ArrayList<String> getLines() {
+    return lines;
+  }
 
-        return sb.toString();
+  /**
+   * DOCUMENT ME!
+   *
+   * @param parameter DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getParameter(String parameter) {
+    return parameters.get(parameter);
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getPriority() {
+    return priority;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getRdNis() {
+    return rdNis;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getRequestURL() {
+    return requestURL;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getScript() {
+    return script;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getThreadId() {
+    return threadId;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getVersion() {
+    return version;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Boolean isEnhanced() {
+    return enhanced;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Boolean isNetwork() {
+    return network;
+  }
+
+  /**
+   * Return all elements key/value of this lines.
+   *
+   * @return all elements key/value of this lines.
+   */
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("agi_network:");
+
+    if (isNetwork()) {
+      sb.append("yes");
+    } else {
+      sb.append("no");
     }
 
-    public String getAccountCode() {
-        return accountCode;
-    }
+    sb.append("\n");
 
-    public String getCallerId() {
-        return callerId;
-    }
+    sb.append("agi_network_script:");
+    sb.append(getRequestURL());
+    sb.append("\n");
 
-    public String getCallerIdName() {
-        return callerIdName;
-    }
+    sb.append("agi_request:");
+    sb.append(getScript());
+    sb.append("\n");
 
-    public Integer getCallingAni2() {
-        return callingAni2;
-    }
+    sb.append("agi_channel:");
+    sb.append(getChannel());
+    sb.append("\n");
 
-    public Integer getCallingPres() {
-        return callingPres;
-    }
+    sb.append("agi_language:");
+    sb.append(getLanguage());
+    sb.append("\n");
 
-    public Integer getCallingTns() {
-        return callingTns;
-    }
+    sb.append("agi_type:");
+    sb.append(getChannelType());
+    sb.append("\n");
 
-    public Integer getCallingTon() {
-        return callingTon;
-    }
+    sb.append("agi_uniqueid:");
+    sb.append(getCallId());
+    sb.append("\n");
 
-    public String getChannel() {
-        return channel;
-    }
+    sb.append("agi_version:");
+    sb.append(getVersion());
+    sb.append("\n");
 
-    public String getContext() {
-        return context;
-    }
+    sb.append("agi_callerid:");
+    sb.append(getCallerId());
+    sb.append("\n");
 
-    public String getDnId() {
-        return dnId;
-    }
+    sb.append("agi_calleridname:");
+    sb.append(getCallerIdName());
+    sb.append("\n");
 
-    public Boolean isEnhanced() {
-        return enhanced;
-    }
+    sb.append("agi_callingpres:");
+    sb.append(getCallingPres());
+    sb.append("\n");
 
-    public String getExtension() {
-        return extension;
-    }
+    sb.append("agi_callingani2:");
+    sb.append(getCallingAni2());
+    sb.append("\n");
 
-    public String getLanguage() {
-        return language;
-    }
+    sb.append("agi_callingtns:");
+    sb.append(getCallingTns());
+    sb.append("\n");
 
-    public Boolean isNetwork() {
-        return network;
-    }
+    sb.append("agi_dnid:");
+    sb.append(getDnId());
+    sb.append("\n");
 
-    public String getScript() {
-        return script;
-    }
+    sb.append("agi_rdnis:");
+    sb.append(getRdNis());
+    sb.append("\n");
 
-    public String getPriority() {
-        return priority;
-    }
+    sb.append("agi_context:");
+    sb.append(getContext());
+    sb.append("\n");
 
-    public String getRdNis() {
-        return rdNis;
-    }
+    sb.append("agi_extension:");
+    sb.append(getExtension());
+    sb.append("\n");
 
-    public String getRequestURL() {
-        return requestURL;
-    }
+    sb.append("agi_priority:");
+    sb.append(getPriority());
+    sb.append("\n");
 
-    public String getThreadId() {
-        return threadId;
-    }
+    sb.append("agi_enhanced:");
+    sb.append(isEnhanced());
+    sb.append("\n");
 
-    public ChannelType getChannelType() {
-        return channelType;
-    }
+    sb.append("agi_accountcode:");
+    sb.append(getAccountCode());
+    sb.append("\n");
 
-    public String getCallId() {
-        return callId;
-    }
+    sb.append("agi_threadid:");
+    sb.append(getThreadId());
 
-    public String getVersion() {
-        return version;
-    }
-    
-    public String getParameter(String parameter) {
-        return parameters.get(parameter);
-    }
+    return sb.toString();
+  }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,55 +23,66 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class RecordFileTest extends TestCase {
-    public RecordFileTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new RecordFileTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public RecordFileTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String filename = "abc";
-        String format = "mp3";
-        String escapeDigits = "";
-        Integer timeout = 0xffffffff;
-        Integer offset = 0x0;
-        String beep = "BEEP";
-        Integer silence = 0x0;
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String filename = "abc";
+    String format = "mp3";
+    String escapeDigits = "";
+    Integer timeout = 0xffffffff;
+    Integer offset = 0x0;
+    String beep = "BEEP";
+    Integer silence = 0x0;
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("RECORD FILE");
-        b.append(" ");
-        b.append("\"");
-        b.append(filename);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(format);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(timeout);
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("RECORD FILE");
+    b.append(" ");
+    b.append("\"");
+    b.append(filename);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(format);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(timeout);
 
-        RecordFile command = new RecordFile(filename, format);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    RecordFile command = new RecordFile(filename, format);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing 3th constructor
-        b.append(" ");
-        b.append(offset);
-        b.append(" ");
-        b.append("\"");
-        b.append(beep);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append("s=");
-        b.append(silence);
-        b.append("\"");
-        command = new RecordFile(filename, format, escapeDigits, timeout,
-                offset, true, silence);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing 3th constructor
+    b.append(" ");
+    b.append(offset);
+    b.append(" ");
+    b.append("\"");
+    b.append(beep);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append("s=");
+    b.append(silence);
+    b.append("\"");
+    command = new RecordFile(filename, format, escapeDigits, timeout, offset, true, silence);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

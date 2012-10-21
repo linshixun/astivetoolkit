@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,27 +19,26 @@
  */
 package com.phonytive.astive.server.appmanager;
 
-import com.phonytive.astive.server.AstiveException;
+import com.phonytive.astive.AstiveException;
 
 /**
  *
  * @since 1.0.0
  */
 public interface Deployer {
+  /**
+   * Adds app to the server index.
+   *
+   * @param file app path
+   * @throws AstiveException
+   */
+  void deploy(String file) throws AstiveException;
 
-    /**
-     * Adds app to the server index.
-     *
-     * @param file app path
-     * @throws AstiveException
-     */
-    void deploy(String file) throws AstiveException;
-
-    /**
-     * Discharge app from the server.
-     *
-     * @param deploymentId app to undeployed.
-     * @throws AstiveException if app don't exist.
-     */
-    void undeploy(String deploymentId) throws AstiveException;
+  /**
+   * Discharge app from the server.
+   *
+   * @param deploymentId app to undeployed.
+   * @throws AstiveException if app don't exist.
+   */
+  void undeploy(String deploymentId) throws AstiveException;
 }

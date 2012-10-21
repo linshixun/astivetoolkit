@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -18,10 +18,12 @@
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.phonytive.astive.ami.action;
+
 /**
  *
  * @since 1.0.0
  */
+
 /*public class UpdateConfigAction extends Action  {
    private String srcFilename;
    private String dstFilename;

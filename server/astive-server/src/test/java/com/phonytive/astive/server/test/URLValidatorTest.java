@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -27,23 +27,30 @@ import junit.framework.TestCase;
  * @since 1.0.0
  */
 public class URLValidatorTest extends TestCase {
+  /**
+   * Creates a new URLValidatorTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public URLValidatorTest(String testName) {
+    super(testName);
+  }
 
-    public URLValidatorTest(String testName) {
-        super(testName);
-    }
-
-    public void testValidateURLs() {
-        assert (URLValidator.isValidURL("/") == true);
-        assert (URLValidator.isValidURL("/*") == false);
-        assert (URLValidator.isValidURL("/2") == false);
-        assert (URLValidator.isValidURL("/myproject") == true);
-        assert (URLValidator.isValidURL("/_abc") == false);
-        assert (URLValidator.isValidURL("/myproject/") == true);
-        assert (URLValidator.isValidURL("/myproject/*") == true);
-        assert (URLValidator.isValidURL("/myproject/myAstivlet") == true);
-        assert (URLValidator.isValidURL("*.ast") == true);
-        assert (URLValidator.isValidURL("*.ast2") == true);
-        assert (URLValidator.isValidURL("*.ast?%$") == true);
-        assert (URLValidator.isValidURL("abc.ast?%$") == false);
-    }
+  /**
+   * DOCUMENT ME!
+   */
+  public void testValidateURLs() {
+    assertTrue (URLValidator.isValidURL("/"));
+    assertFalse (URLValidator.isValidURL("/*"));
+    assertFalse (URLValidator.isValidURL("/2"));
+    assertTrue (URLValidator.isValidURL("/myproject"));
+    assertFalse (URLValidator.isValidURL("/_abc"));
+    assertTrue (URLValidator.isValidURL("/myproject/"));
+    assertTrue (URLValidator.isValidURL("/myproject/*"));
+    assertTrue (URLValidator.isValidURL("/myproject/myAstivlet"));
+    assertTrue (URLValidator.isValidURL("*.ast"));
+    assertTrue (URLValidator.isValidURL("*.ast2"));
+    assertTrue (URLValidator.isValidURL("*.ast?%$"));
+    assertFalse (URLValidator.isValidURL("abc.ast?%$"));
+  }
 }

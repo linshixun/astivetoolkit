@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,62 +19,62 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
- * Receives a string of text on a <code>channel</code>. Most channels  do not 
- * support the reception of text. 
- * 
+ * Receives a string of text on a <code>channel</code>. Most channels  do not
+ * support the reception of text.
+ *
  * <p>Returns -1 for failure or 1 for success, and the string in parenthesis.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "RECEIVE TEXT")
 public class ReceiveText implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x2c84005f3e094b88L;
-    /**
-     * Time in milliseconds to wait for text.
-     */
-    @Parameter
-    private Integer timeout;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x2c84005f3e094b88L;
 
-    /**
-     * Create a new ReceiveText object.
-     */    
-    public ReceiveText() {
-        timeout = 0x0;
-    }
+  /**
+   * Time in milliseconds to wait for text.
+   */
+  @Parameter
+  private Integer timeout;
 
-    /**
-     * Create a new ReceiveText object with timeout.
-     * 
-     * @param timeout time in milliseconds to wait for text.
-     */    
-    public ReceiveText(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Create a new ReceiveText object.
+   */
+  public ReceiveText() {
+    timeout = 0x0;
+  }
 
-    /**
-     * Get timeout in milliseconds to wait for text.
-     * 
-     * @return timeout in milliseconds.
-     */
-    public Integer getTimeout() {
-        return timeout;
-    }
+  /**
+   * Create a new ReceiveText object with timeout.
+   *
+   * @param timeout time in milliseconds to wait for text.
+   */
+  public ReceiveText(Integer timeout) {
+    this.timeout = timeout;
+  }
 
-    /**
-     * Set Timeout in milliseconds to wait for text.
-     * 
-     * @param timeout timeout in milliseconds.
-     */
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Get timeout in milliseconds to wait for text.
+   *
+   * @return timeout in milliseconds.
+   */
+  public Integer getTimeout() {
+    return timeout;
+  }
+
+  /**
+   * Set Timeout in milliseconds to wait for text.
+   *
+   * @param timeout timeout in milliseconds.
+   */
+  public void setTimeout(Integer timeout) {
+    this.timeout = timeout;
+  }
 }

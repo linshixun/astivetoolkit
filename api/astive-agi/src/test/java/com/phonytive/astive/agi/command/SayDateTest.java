@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,48 +19,60 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.util.Date;
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
-import java.util.Date;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SayDateTest extends TestCase {
-    public SayDateTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SayDateTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SayDateTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Date date = new Date();
-        long seconds = (date).getTime() / 0x3e8;
-        String escapeDigits = "";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Date date = new Date();
+    long seconds = (date).getTime() / 0x3e8;
+    String escapeDigits;
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SAY DATE");
-        b.append(" ");
-        b.append("\"");
-        b.append(seconds);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append("\"");
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SAY DATE");
+    b.append(" ");
+    b.append("\"");
+    b.append(seconds);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append("\"");
 
-        SayDate command = new SayDate(date);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    SayDate command = new SayDate(date);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        escapeDigits = "123";
-        b = new StringBuilder("SAY DATE");
-        b.append(" ");
-        b.append("\"");
-        b.append(seconds);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
+    // Testing second constructor
+    escapeDigits = "123";
+    b = new StringBuilder("SAY DATE");
+    b.append(" ");
+    b.append("\"");
+    b.append(seconds);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
 
-        command = new SayDate(date, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    command = new SayDate(date, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

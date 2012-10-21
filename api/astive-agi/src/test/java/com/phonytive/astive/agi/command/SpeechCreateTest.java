@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SpeechCreateTest extends TestCase {
-    public SpeechCreateTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SpeechCreateTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SpeechCreateTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String engine = "myEngine";
-        StringBuilder b = new StringBuilder("SPEECH CREATE");
-        b.append(" ");
-        b.append("\"");
-        b.append(engine);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String engine = "myEngine";
+    StringBuilder b = new StringBuilder("SPEECH CREATE");
+    b.append(" ");
+    b.append("\"");
+    b.append(engine);
+    b.append("\"");
 
-        SpeechCreate command = new SpeechCreate(engine);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SpeechCreate command = new SpeechCreate(engine);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

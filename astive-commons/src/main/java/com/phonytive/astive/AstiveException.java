@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.server;
+package com.phonytive.astive;
 
 
 /**
@@ -25,19 +25,17 @@ package com.phonytive.astive.server;
  * @since 1.0.0
  * @see AgiException
  */
-public class AstiveException extends Exception {
-  private String msg;
-
+public class AstiveException extends Exception {  
   /**
-   * Creates a new AstiveException object with the original exception as 
+   * Creates a new AstiveException object with the original exception as
    * parameter to be nested as part of this exception.
-   * 
+   *
    * @param exception used to provide further info about the original exception.
    */
   public AstiveException(Exception exception) {
-      super(exception);
+    super(exception);
   }
-  
+
   /**
    * Creates a new AstiveException object.
    *
@@ -45,7 +43,6 @@ public class AstiveException extends Exception {
    */
   public AstiveException(String msg) {
     super(msg);
-    this.msg = msg;
   }
 
   /**

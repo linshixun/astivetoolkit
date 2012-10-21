@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Deletes an entry in the Asterisk database for a given family and key
@@ -41,67 +40,67 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "DATABASE DEL")
 public class DatabaseDel implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa2a28d494ab2c757L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa2a28d494ab2c757L;
 
-    /**
-     * Arbitrary name use to group a collection of values defined by a key.
-     */
-    @Parameter(optional = false)
-    private String family;
+  /**
+   * Arbitrary name use to group a collection of values defined by a key.
+   */
+  @Parameter(optional = false)
+  private String family;
 
-    /**
-     * Element of database.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String key;
+  /**
+   * Element of database.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String key;
 
-    /**
-     * Create a new DatabaseDel object.
-     *
-     * @param family database family
-     * @param key identifier of object in database.
-     */
-    public DatabaseDel(String family, String key) {
-        this.family = family;
-        this.key = key;
-    }
+  /**
+   * Create a new DatabaseDel object.
+   *
+   * @param family database family
+   * @param key identifier of object in database.
+   */
+  public DatabaseDel(String family, String key) {
+    this.family = family;
+    this.key = key;
+  }
 
-    /**
-     * Get database family for the element to be deleted.
-     *
-     * @return database family.
-     */
-    public String getFamily() {
-        return family;
-    }
+  /**
+   * Get database family for the element to be deleted.
+   *
+   * @return database family.
+   */
+  public String getFamily() {
+    return family;
+  }
 
-    /**
-     * Set database family with the element to be deleted.
-     *
-     * @param family
-     */
-    public void setFamily(String family) {
-        this.family = family;
-    }
+  /**
+   * Get element to deleted.
+   *
+   * @return element to delete.
+   */
+  public String getKey() {
+    return key;
+  }
 
-    /**
-     * Get element to deleted.
-     *
-     * @return element to delete.
-     */
-    public String getKey() {
-        return key;
-    }
+  /**
+   * Set database family with the element to be deleted.
+   *
+   * @param family
+   */
+  public void setFamily(String family) {
+    this.family = family;
+  }
 
-    /**
-     * Set element to deleted.
-     *
-     * @param key element to delete.
-     */
-    public void setKey(String key) {
-        this.key = key;
-    }
+  /**
+   * Set element to deleted.
+   *
+   * @param key element to delete.
+   */
+  public void setKey(String key) {
+    this.key = key;
+  }
 }

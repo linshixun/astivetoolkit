@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,15 +19,14 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
- * Receives a character of text on a <code>channel</code>. Most channels do 
+ * Receives a character of text on a <code>channel</code>. Most channels do
  * not support the reception of text.
- * 
+ *
  * <p>Returns the decimal value of the character if one is
  * received, or 0 if the channel does not support text reception. Returns
  * -1 only on error/hangup.
@@ -36,48 +35,48 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "RECEIVE CHAR")
 public class ReceiveChar implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xbac66eca6b4e4f22L;
-    
-    /**
-     * Time in milliseconds to wait for char.
-     */
-    @Parameter
-    private Integer timeout;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xbac66eca6b4e4f22L;
 
-    /**
-     * Create a new ReceiveChar object.
-     */
-    public ReceiveChar() {
-        timeout = 0x0;
-    }
+  /**
+   * Time in milliseconds to wait for char.
+   */
+  @Parameter
+  private Integer timeout;
 
-    /**
-     * Create a new ReceiveChar object with timeout.
-     * 
-     * @param timeout time in milliseconds to wait for char.
-     */
-    public ReceiveChar(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Create a new ReceiveChar object.
+   */
+  public ReceiveChar() {
+    timeout = 0x0;
+  }
 
-    /**
-     * Get timeout in milliseconds to wait for char.
-     * 
-     * @return timeout in milliseconds.
-     */
-    public Integer getTimeout() {
-        return timeout;
-    }
+  /**
+   * Create a new ReceiveChar object with timeout.
+   *
+   * @param timeout time in milliseconds to wait for char.
+   */
+  public ReceiveChar(Integer timeout) {
+    this.timeout = timeout;
+  }
 
-    /**
-     * Set Timeout in milliseconds to wait for char.
-     * 
-     * @param timeout timeout in milliseconds.
-     */
-    public void setTimeout(Integer timeout) {
-        this.timeout = timeout;
-    }
+  /**
+   * Get timeout in milliseconds to wait for char.
+   *
+   * @return timeout in milliseconds.
+   */
+  public Integer getTimeout() {
+    return timeout;
+  }
+
+  /**
+   * Set Timeout in milliseconds to wait for char.
+   *
+   * @param timeout timeout in milliseconds.
+   */
+  public void setTimeout(Integer timeout) {
+    this.timeout = timeout;
+  }
 }

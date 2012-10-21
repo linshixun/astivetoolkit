@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,8 +19,8 @@
  */
 package com.phonytive.astive.menu;
 
-import com.phonytive.astive.util.AppLocale;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *

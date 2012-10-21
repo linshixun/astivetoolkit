@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,9 +19,9 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.agi.Connection;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.phonytive.astive.agi.Connection;
 
 /**
  *

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,14 +23,26 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SpeechDestroyTest extends TestCase {
-    public SpeechDestroyTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SpeechDestroyTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SpeechDestroyTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        SpeechDestroy command = new SpeechDestroy();
-        assert ("SPEECH DESTROY".equals(CommandProcessor.buildCommand(command)));
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    SpeechDestroy command = new SpeechDestroy();
+    assertEquals("SPEECH DESTROY", CommandProcessor.buildCommand(command));
+  }
 }

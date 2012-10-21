@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,95 +19,93 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.ParamConverter;
 import com.phonytive.astive.agi.annotation.Parameter;
 import com.phonytive.astive.agi.annotation.Separator;
-import java.io.Serializable;
-
 
 /**
  * Executes <code>application</code> with given <code>options</code>.
  *
  * <p>Returns whatever the application returns, or -2 on failure to find
  * application.
-
  * @since 1.0.0
  */
 @AgiCommand(command = "EXEC")
 public class Exec implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa5f26d38c9382610L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa5f26d38c9382610L;
 
-    /**
-     * Application to execute.
-     */
-    @Parameter(optional = false)
-    private String application;
+  /**
+   * Application to execute.
+   */
+  @Parameter(optional = false)
+  private String application;
 
-    /**
-     * Application options.
-     */
-    @Parameter(position = 0x1)
-    @ParamConverter
-    @Separator
-    private String[] options;
+  /**
+   * Application options.
+   */
+  @Parameter(position = 0x1)
+  @ParamConverter
+  @Separator
+  private String[] options;
 
-    /**
-     * Create a new Exec object.
-     *
-     * @param application application to execute.
-     */
-    public Exec(String application) {
-        this.application = application;
-    }
+  /**
+   * Create a new Exec object.
+   *
+   * @param application application to execute.
+   */
+  public Exec(String application) {
+    this.application = application;
+  }
 
-    /**
-     * Create a new Exec object with options.
-     *
-     * @param application application to execute.
-     * @param options application options.
-     */
-    public Exec(String application, String... options) {
-        this.application = application;
-        this.options = options;
-    }
+  /**
+   * Create a new Exec object with options.
+   *
+   * @param application application to execute.
+   * @param options application options.
+   */
+  public Exec(String application, String... options) {
+    this.application = application;
+    this.options = options;
+  }
 
-    /**
-     * Get application to execute.
-     *
-     * @return application to execute.
-     */
-    public String getApplication() {
-        return application;
-    }
+  /**
+   * Get application to execute.
+   *
+   * @return application to execute.
+   */
+  public String getApplication() {
+    return application;
+  }
 
-    /**
-     * Set application to execute.
-     *
-     * @param application application to execute.
-     */
-    public void setApplication(String application) {
-        this.application = application;
-    }
+  /**
+   * Get application options.
+   *
+   * @return application options.
+   */
+  public String[] getOptions() {
+    return options;
+  }
 
-    /**
-     * Get application options.
-     *
-     * @return application options.
-     */
-    public String[] getOptions() {
-        return options;
-    }
+  /**
+   * Set application to execute.
+   *
+   * @param application application to execute.
+   */
+  public void setApplication(String application) {
+    this.application = application;
+  }
 
-    /**
-     * Set application options.
-     *
-     * @param options applications options
-     */
-    public void setOptions(String... options) {
-        this.options = options;
-    }
+  /**
+   * Set application options.
+   *
+   * @param options applications options
+   */
+  public void setOptions(String... options) {
+    this.options = options;
+  }
 }

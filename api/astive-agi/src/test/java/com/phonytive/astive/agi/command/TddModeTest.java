@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,22 +23,34 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class TddModeTest extends TestCase {
-    public TddModeTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new TddModeTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public TddModeTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Boolean enable = true;
-        String on = "ON";
-        StringBuilder b = new StringBuilder("TDD MODE");
-        b.append(" ");
-        b.append("\"");
-        b.append(on);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Boolean enable = true;
+    String on = "ON";
+    StringBuilder b = new StringBuilder("TDD MODE");
+    b.append(" ");
+    b.append("\"");
+    b.append(on);
+    b.append("\"");
 
-        TddMode command = new TddMode(enable);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    TddMode command = new TddMode(enable);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,53 +19,52 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Deactivates the specified grammar on the speech object.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "SPEECH DEACTIVATE GRAMMAR")
 public class SpeechDeactivateGrammar implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x5f9ff66f11de4626L;
-    
-    /**
-     * Grammar name.
-     */
-    @Parameter
-    private String name;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x5f9ff66f11de4626L;
 
-    /**
-     * Create a new SpeechDeactivateGrammar object.
-     * 
-     * @param name grammar name.
-     */
-    public SpeechDeactivateGrammar(String name) {
-        this.name = name;
-    }
+  /**
+   * Grammar name.
+   */
+  @Parameter
+  private String name;
 
-    /**
-     * Get grammar name.
-     * 
-     * @return grammar name.
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Create a new SpeechDeactivateGrammar object.
+   *
+   * @param name grammar name.
+   */
+  public SpeechDeactivateGrammar(String name) {
+    this.name = name;
+  }
 
-    /**
-     * Set grammar name.
-     * 
-     * @param name grammar name.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+  /**
+   * Get grammar name.
+   *
+   * @return grammar name.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Set grammar name.
+   *
+   * @param name grammar name.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 }

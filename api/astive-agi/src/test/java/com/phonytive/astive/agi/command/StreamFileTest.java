@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,61 +23,73 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class StreamFileTest extends TestCase {
-    public StreamFileTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new StreamFileTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public StreamFileTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String filename = "file";
-        String escapeDigits = "";
-        Integer offset = 0x0;
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String filename = "file";
+    String escapeDigits = "";
+    Integer offset = 0x0;
 
-        // Testing first constructor 
-        StringBuilder b = new StringBuilder("STREAM FILE");
-        b.append(" ");
-        b.append("\"");
-        b.append(filename);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(offset);
+    // Testing first constructor 
+    StringBuilder b = new StringBuilder("STREAM FILE");
+    b.append(" ");
+    b.append("\"");
+    b.append(filename);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(offset);
 
-        StreamFile command = new StreamFile(filename);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    StreamFile command = new StreamFile(filename);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        b = new StringBuilder("STREAM FILE");
-        b.append(" ");
-        b.append("\"");
-        b.append(filename);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(offset);
-        command = new StreamFile(filename, escapeDigits);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    // Testing second constructor
+    b = new StringBuilder("STREAM FILE");
+    b.append(" ");
+    b.append("\"");
+    b.append(filename);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(offset);
+    command = new StreamFile(filename, escapeDigits);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        b = new StringBuilder("STREAM FILE");
-        b.append(" ");
-        b.append("\"");
-        b.append(filename);
-        b.append("\"");
-        b.append(" ");
-        b.append("\"");
-        b.append(escapeDigits);
-        b.append("\"");
-        b.append(" ");
-        b.append(offset);
-        command = new StreamFile(filename, escapeDigits, offset);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor
+    b = new StringBuilder("STREAM FILE");
+    b.append(" ");
+    b.append("\"");
+    b.append(filename);
+    b.append("\"");
+    b.append(" ");
+    b.append("\"");
+    b.append(escapeDigits);
+    b.append("\"");
+    b.append(" ");
+    b.append(offset);
+    command = new StreamFile(filename, escapeDigits, offset);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

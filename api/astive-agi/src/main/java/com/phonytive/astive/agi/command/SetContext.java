@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,53 +19,52 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Sets the context for continuation upon exiting the application.
- * 
+ *
  * @since 1.0.0
  */
 @AgiCommand(command = "SET CONTEXT")
 public class SetContext implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xf8cc7767896c4b01L;
-    
-    /**
-     * Desired context for channel.
-     */
-    @Parameter(optional = false)
-    private String context;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xf8cc7767896c4b01L;
 
-    /**
-     * Create a new SetContext object.
-     * 
-     * @param context channel context
-     */
-    public SetContext(String context) {
-        this.context = context;
-    }
+  /**
+   * Desired context for channel.
+   */
+  @Parameter(optional = false)
+  private String context;
 
-    /**
-     * Get context.
-     * 
-     * @return context.
-     */
-    public String getContext() {
-        return context;
-    }
+  /**
+   * Create a new SetContext object.
+   *
+   * @param context channel context
+   */
+  public SetContext(String context) {
+    this.context = context;
+  }
 
-    /**
-     * Set desired context for channel.
-     * 
-     * @param context desired context for channel.
-     */
-    public void setContext(String context) {
-        this.context = context;
-    }
+  /**
+   * Get context.
+   *
+   * @return context.
+   */
+  public String getContext() {
+    return context;
+  }
+
+  /**
+   * Set desired context for channel.
+   *
+   * @param context desired context for channel.
+   */
+  public void setContext(String context) {
+    this.context = context;
+  }
 }

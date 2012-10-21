@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -30,7 +30,7 @@ public class ActionEvent {
   private Object source;
   private String digits;
 
-  /** 
+  /**
    * Creates a new ActionEvent object.
    */
   public ActionEvent(Object source, String digits) {

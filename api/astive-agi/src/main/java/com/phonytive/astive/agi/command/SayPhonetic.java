@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,93 +19,92 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Say a given character string with phonetics, returning early if any of the
- * given DTMF digits are received on the channel. 
- * 
- * <p>Returns 0 if playback completes without a digit pressed, the ASCII 
+ * given DTMF digits are received on the channel.
+ *
+ * <p>Returns 0 if playback completes without a digit pressed, the ASCII
  * numerical value of the digit if one was pressed, or -1 on error/hangup.
  *
  * @since 1.0.0
  */
 @AgiCommand(command = "SAY PHONETIC")
 public class SayPhonetic implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xb0b517aa25938669L;
-    
-    /**
-     * Text to say.
-     */
-    @Parameter(optional = false)
-    private String text;
-    
-    /**
-     * Can be use to the interrupt the audio on a channel.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String escapeDigits;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xb0b517aa25938669L;
 
-    /**
-     * Create a new SayPhonetic object with the text to say.
-     *
-     * @param text number to say.
-     */
-    public SayPhonetic(String text) {
-        this.text = text;
-        this.escapeDigits = "";
-    }
+  /**
+   * Can be use to the interrupt the audio on a channel.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String escapeDigits;
 
-    /**
-     * Create a new SayPhonetic object with the text to say and escape digits.
-     *
-     * @param text text to say.
-     * @param escapeDigits escape digits.
-     */    
-    public SayPhonetic(String text, String escapeDigits) {
-        this.text = text;
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Text to say.
+   */
+  @Parameter(optional = false)
+  private String text;
 
-    /**
-     * Get text to say.
-     * 
-     * @return text to say.
-     */
-    public String getText() {
-        return text;
-    }
+  /**
+   * Create a new SayPhonetic object with the text to say.
+   *
+   * @param text number to say.
+   */
+  public SayPhonetic(String text) {
+    this.text = text;
+    this.escapeDigits = "";
+  }
 
-    /**
-     * Set text to say.
-     * 
-     * @param text text to say.
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
-    
-    /**
-     * Get the digits used to interrupt the audio.
-     *
-     * @return digits used to interrupt the audio.
-     */
-    public String getEscapeDigits() {
-        return escapeDigits;
-    }
+  /**
+   * Create a new SayPhonetic object with the text to say and escape digits.
+   *
+   * @param text text to say.
+   * @param escapeDigits escape digits.
+   */
+  public SayPhonetic(String text, String escapeDigits) {
+    this.text = text;
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Set the digits to be use to interrupt the audio.
-     *
-     * @param escapeDigits digits to be use to interrupt the audio.
-     */
-    public void setEscapeDigits(String escapeDigits) {
-        this.escapeDigits = escapeDigits;
-    }    
+  /**
+   * Get the digits used to interrupt the audio.
+   *
+   * @return digits used to interrupt the audio.
+   */
+  public String getEscapeDigits() {
+    return escapeDigits;
+  }
+
+  /**
+   * Get text to say.
+   *
+   * @return text to say.
+   */
+  public String getText() {
+    return text;
+  }
+
+  /**
+   * Set the digits to be use to interrupt the audio.
+   *
+   * @param escapeDigits digits to be use to interrupt the audio.
+   */
+  public void setEscapeDigits(String escapeDigits) {
+    this.escapeDigits = escapeDigits;
+  }
+
+  /**
+   * Set text to say.
+   *
+   * @param text text to say.
+   */
+  public void setText(String text) {
+    this.text = text;
+  }
 }

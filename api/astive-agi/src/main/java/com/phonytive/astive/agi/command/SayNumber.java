@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Say a given number, returning early if any of the given DTMF digits are
@@ -35,77 +34,77 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SAY NUMBER")
 public class SayNumber implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xb22adc1c8796438fL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xb22adc1c8796438fL;
 
-    /**
-     * Number to say.
-     */
-    @Parameter(optional = false)
-    private Integer number;
+  /**
+   * Number to say.
+   */
+  @Parameter(optional = false)
+  private Integer number;
 
-    /**
-     * Can be use to the interrupt the audio on a channel.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String escapeDigits;
+  /**
+   * Can be use to the interrupt the audio on a channel.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String escapeDigits;
 
-    /**
-     * Create a new SayNumber object with the number to say.
-     *
-     * @param number number to say.
-     */
-    public SayNumber(Integer number) {
-        this.number = number;
-        this.escapeDigits = "";
-    }
+  /**
+   * Create a new SayNumber object with the number to say.
+   *
+   * @param number number to say.
+   */
+  public SayNumber(Integer number) {
+    this.number = number;
+    this.escapeDigits = "";
+  }
 
-    /**
-     * Create a new SayNumber object with the number to say and escape digits.
-     *
-     * @param number number to say.
-     * @param escapeDigits escape digits.
-     */
-    public SayNumber(Integer number, String escapeDigits) {
-        this.number = number;
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Create a new SayNumber object with the number to say and escape digits.
+   *
+   * @param number number to say.
+   * @param escapeDigits escape digits.
+   */
+  public SayNumber(Integer number, String escapeDigits) {
+    this.number = number;
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Get number to say.
-     *
-     * @return number to say.
-     */
-    public Integer getNumber() {
-        return number;
-    }
+  /**
+   * Get the digits used to interrupt the audio.
+   *
+   * @return digits used to interrupt the audio.
+   */
+  public String getEscapeDigits() {
+    return escapeDigits;
+  }
 
-    /**
-     * Set number to say.
-     *
-     * @param number number to say.
-     */
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
+  /**
+   * Get number to say.
+   *
+   * @return number to say.
+   */
+  public Integer getNumber() {
+    return number;
+  }
 
-    /**
-     * Get the digits used to interrupt the audio.
-     *
-     * @return digits used to interrupt the audio.
-     */
-    public String getEscapeDigits() {
-        return escapeDigits;
-    }
+  /**
+   * Set the digits to be use to interrupt the audio.
+   *
+   * @param escapeDigits digits to be use to interrupt the audio.
+   */
+  public void setEscapeDigits(String escapeDigits) {
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Set the digits to be use to interrupt the audio.
-     *
-     * @param escapeDigits digits to be use to interrupt the audio.
-     */
-    public void setEscapeDigits(String escapeDigits) {
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Set number to say.
+   *
+   * @param number number to say.
+   */
+  public void setNumber(Integer number) {
+    this.number = number;
+  }
 }

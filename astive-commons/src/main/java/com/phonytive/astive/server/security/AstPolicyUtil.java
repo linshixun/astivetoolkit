@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -30,21 +30,19 @@ import java.security.PermissionCollection;
  * @since 1.0.0
  */
 public class AstPolicyUtil {
+  private static PermissionCollection p = AstPolicy.getInstance().getPermissions();
 
-    private static PermissionCollection p =
-            AstPolicy.getInstance().getPermissions();
+  private AstPolicyUtil() {
+  }
 
-    /**
-     * Verified if a particular permission is granted in {@link AstPolicy}
-     *
-     * @param permission to be checked.
-     * @return true if permission is store in {@link AstPolicy}, false
-     * otherwise.
-     */
-    static public boolean hasPermission(Permission permission) {
-        return p.implies(permission);
-    }
-
-    private AstPolicyUtil() {
-    }
+  /**
+   * Verified if a particular permission is granted in {@link AstPolicy}
+   *
+   * @param permission to be checked.
+   * @return true if permission is store in {@link AstPolicy}, false
+   * otherwise.
+   */
+  static public boolean hasPermission(Permission permission) {
+    return p.implies(permission);
+  }
 }

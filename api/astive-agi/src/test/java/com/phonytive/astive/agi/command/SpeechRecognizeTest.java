@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,33 +23,45 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
+/**
+ * DOCUMENT ME 
+ */
 public class SpeechRecognizeTest extends TestCase {
+  /**
+   * Creates a new SpeechRecognizeTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SpeechRecognizeTest(String testName) {
+    super(testName);
+  }
 
-    public SpeechRecognizeTest(String testName) {
-        super(testName);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String prompt = "Something to speech";
+    Integer timeout = 0x3e8;
+    Integer offset = 0x258;
 
-    public void testCommand() throws AgiException {
-        String prompt = "Something to speech";
-        Integer timeout = 0x3e8;
-        Integer offset = 0x258;
+    // Testing first constructor
+    StringBuilder b = new StringBuilder("SPEECH RECOGNIZE");
+    b.append(" ");
+    b.append("\"");
+    b.append(prompt);
+    b.append("\"");
+    b.append(" ");
+    b.append(timeout);
 
-        // Testing first constructor
-        StringBuilder b = new StringBuilder("SPEECH RECOGNIZE");
-        b.append(" ");
-        b.append("\"");
-        b.append(prompt);
-        b.append("\"");
-        b.append(" ");
-        b.append(timeout);
+    SpeechRecognize command = new SpeechRecognize(prompt, timeout);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        SpeechRecognize command = new SpeechRecognize(prompt, timeout);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-
-        // Testing second constructor
-        b.append(" ");
-        b.append(offset);
-        command = new SpeechRecognize(prompt, timeout, offset);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    // Testing second constructor
+    b.append(" ");
+    b.append(offset);
+    command = new SpeechRecognize(prompt, timeout, offset);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

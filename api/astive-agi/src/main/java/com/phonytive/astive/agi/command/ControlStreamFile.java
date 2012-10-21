@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Send the given file, allowing playback to be controlled by the given digits,
@@ -37,220 +36,220 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "CONTROL STREAM FILE")
 public class ControlStreamFile implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x2c457b4779424a41L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x2c457b4779424a41L;
 
-    /**
-     * Audio to send to channel.
-     */
-    @Parameter(optional = false)
-    private String file;
+  /**
+   * Silence time in milliseconds after audio finished. The default value
+   * is '0' (no silence).
+   */
+  @Parameter(position = 0x2, optional = false)
+  private Integer offset;
 
-    /**
-     * Can be use to the interrupt the audio on a channel.
-     */
-    @Parameter(position = 0x1, optional = false)
-    private String escapeDigits;
+  /**
+   * Can be use to the interrupt the audio on a channel.
+   */
+  @Parameter(position = 0x1, optional = false)
+  private String escapeDigits;
 
-    /**
-     * Silence time in milliseconds after audio finished. The default value
-     * is '0' (no silence).
-     */
-    @Parameter(position = 0x2, optional = false)
-    private Integer offset;
+  /**
+   * Audio to send to channel.
+   */
+  @Parameter(optional = false)
+  private String file;
 
-    /**
-     * Digit used to move audio forward.
-     */
-    @Parameter(position = 0x3)
-    private char forwardDigit;
+  /**
+   * Digit used to move audio forward.
+   */
+  @Parameter(position = 0x3)
+  private char forwardDigit;
 
-    /**
-     * Digit used to rewind audio.
-     */
-    @Parameter(position = 0x4)
-    private char rewindDigit;
+  /**
+   * Digit used to pause audio.
+   */
+  @Parameter(position = 0x5)
+  private char pauseDigit;
 
-    /**
-     * Digit used to pause audio.
-     */
-    @Parameter(position = 0x5)
-    private char pauseDigit;
+  /**
+   * Digit used to rewind audio.
+   */
+  @Parameter(position = 0x4)
+  private char rewindDigit;
 
-    /**
-     * Create a new ControlStreamFile object for a file. Audio can not be
-     * interrupted when use this constructor.
-     *
-     * @param file audio to play.
-     */
-    public ControlStreamFile(String file) {
-        this.file = file;
-        escapeDigits = "";
-        offset = 0x0;
-    }
+  /**
+   * Create a new ControlStreamFile object for a file. Audio can not be
+   * interrupted when use this constructor.
+   *
+   * @param file audio to play.
+   */
+  public ControlStreamFile(String file) {
+    this.file = file;
+    escapeDigits = "";
+    offset = 0x0;
+  }
 
-    /**
-     * Create a new ControlStreamFile object that can interrupt the audio by press
-     * a digit present in escapeDigits param.
-     *
-     * @param file audio to play.
-     * @param escapeDigits digits to interrupt the audio.
-     */
-    public ControlStreamFile(String file, String escapeDigits) {
-        this.file = file;
-        this.escapeDigits = escapeDigits;
-        offset = 0x0;
-    }
+  /**
+   * Create a new ControlStreamFile object that can interrupt the audio by press
+   * a digit present in escapeDigits param.
+   *
+   * @param file audio to play.
+   * @param escapeDigits digits to interrupt the audio.
+   */
+  public ControlStreamFile(String file, String escapeDigits) {
+    this.file = file;
+    this.escapeDigits = escapeDigits;
+    offset = 0x0;
+  }
 
-    /**
-     * Create a new ControlStreamFile object that can interrupt the audio by
-     * press a digit present in escapeDigits. The offset(in milliseconds)
-     * indicate a silence time after audio finished.
-     *
-     * @param file audio to play.
-     * @param escapeDigits digits to interrupt the audio.
-     * @param offset silence time in milliseconds after audio finished.
-     */
-    public ControlStreamFile(String file, String escapeDigits, Integer offset) {
-        this.file = file;
-        this.escapeDigits = escapeDigits;
-        this.offset = offset;
-    }
+  /**
+   * Create a new ControlStreamFile object that can interrupt the audio by
+   * press a digit present in escapeDigits. The offset(in milliseconds)
+   * indicate a silence time after audio finished.
+   *
+   * @param file audio to play.
+   * @param escapeDigits digits to interrupt the audio.
+   * @param offset silence time in milliseconds after audio finished.
+   */
+  public ControlStreamFile(String file, String escapeDigits, Integer offset) {
+    this.file = file;
+    this.escapeDigits = escapeDigits;
+    this.offset = offset;
+  }
 
-    /**
-     * Create a new ControlStreamFile object that can interrupt. Can interrupt
-     * the audio by press a digit present in escapeDigits. The offset(in milliseconds)
-     * indicate a silence time after audio finished. Also, digits can be use to
-     * control the stream.
-     *
-     * @param file audio to play.
-     * @param escapeDigits digits to interrupt the audio.
-     * @param offset silence time in milliseconds after audio finished.
-     * @param forwardDigit move audio forward.
-     * @param rewindDigit repeat the audio.
-     * @param pauseDigit stop the steam.
-     */
-    public ControlStreamFile(String file, String escapeDigits, Integer offset,
-        char forwardDigit, char rewindDigit, char pauseDigit) {
-        this.file = file;
-        this.escapeDigits = escapeDigits;
-        this.offset = offset;
-        this.forwardDigit = forwardDigit;
-        this.rewindDigit = rewindDigit;
-        this.pauseDigit = pauseDigit;
-    }
+  /**
+   * Create a new ControlStreamFile object that can interrupt. Can interrupt
+   * the audio by press a digit present in escapeDigits. The offset(in milliseconds)
+   * indicate a silence time after audio finished. Also, digits can be use to
+   * control the stream.
+   *
+   * @param file audio to play.
+   * @param escapeDigits digits to interrupt the audio.
+   * @param offset silence time in milliseconds after audio finished.
+   * @param forwardDigit move audio forward.
+   * @param rewindDigit repeat the audio.
+   * @param pauseDigit stop the steam.
+   */
+  public ControlStreamFile(String file, String escapeDigits, Integer offset, char forwardDigit,
+                           char rewindDigit, char pauseDigit) {
+    this.file = file;
+    this.escapeDigits = escapeDigits;
+    this.offset = offset;
+    this.forwardDigit = forwardDigit;
+    this.rewindDigit = rewindDigit;
+    this.pauseDigit = pauseDigit;
+  }
 
-    /**
-     * Get audio to be send to <code>channel</code>.
-     *
-     * @return audio to be send to <code>channel</code>.
-     */
-    public String getFile() {
-        return file;
-    }
+  /**
+   * Get the digits used to interrupt the audio.
+   *
+   * @return digits used to interrupt the audio.
+   */
+  public String getEscapeDigits() {
+    return escapeDigits;
+  }
 
-    /**
-     * Set audio to be send to <code>channel</code>. Keep in mind that
-     * the audio must not contain any extension.
-     *
-     * @param file audio to be send to <code>channel</code>
-     */
-    public void setFile(String file) {
-        this.file = file;
-    }
+  /**
+   * Get audio to be send to <code>channel</code>.
+   *
+   * @return audio to be send to <code>channel</code>.
+   */
+  public String getFile() {
+    return file;
+  }
 
-    /**
-     * Get the digits used to interrupt the audio.
-     *
-     * @return digits used to interrupt the audio.
-     */
-    public String getEscapeDigits() {
-        return escapeDigits;
-    }
+  /**
+   * Get the digit that move audio forward.
+   *
+   * @return digit that move audio forward or null if none is provided.
+   */
+  public char getForwardDigit() {
+    return forwardDigit;
+  }
 
-    /**
-     * Set the digits to be use to interrupt the audio.
-     *
-     * @param escapeDigits digits to be use to interrupt the audio.
-     */
-    public void setEscapeDigits(String escapeDigits) {
-        this.escapeDigits = escapeDigits;
-    }
+  /**
+   * Get time in milliseconds for silence after audio finished.
+   *
+   * @return time in milliseconds for silence after audio finished.
+   */
+  public Integer getOffset() {
+    return offset;
+  }
 
-    /**
-     * Get time in milliseconds for silence after audio finished.
-     *
-     * @return time in milliseconds for silence after audio finished.
-     */
-    public Integer getOffset() {
-        return offset;
-    }
+  /**
+   * Get the digit to pause audio.
+   *
+   * @return digit to pause audio.
+   */
+  public char getPauseDigit() {
+    return pauseDigit;
+  }
 
-    /**
-     * Set time in milliseconds for silence after audio finished.
-     *
-     * @param offset time in milliseconds after audio finished. If this is set null
-     * any subsequent parameter will be ignore.
-     */
-    public void setOffset(Integer offset) {
-        this.offset = offset;
-    }
+  /**
+   * Get the digit to pause audio.
+   *
+   * @return digit to pause audio.
+   */
+  public char getRewindDigit() {
+    return rewindDigit;
+  }
 
-    /**
-     * Get the digit that move audio forward.
-     *
-     * @return digit that move audio forward or null if none is provided.
-     */
-    public char getForwardDigit() {
-        return forwardDigit;
-    }
+  /**
+   * Set the digits to be use to interrupt the audio.
+   *
+   * @param escapeDigits digits to be use to interrupt the audio.
+   */
+  public void setEscapeDigits(String escapeDigits) {
+    this.escapeDigits = escapeDigits;
+  }
 
-    /**
-     * Set the digit that move audio forward.
-     *
-     * @param forwardDigit digit that move audio forward. If this is set null
-     * any subsequent parameter will be ignore.
-     */
-    public void setForwardDigit(char forwardDigit) {
-        this.forwardDigit = forwardDigit;
-    }
+  /**
+   * Set audio to be send to <code>channel</code>. Keep in mind that
+   * the audio must not contain any extension.
+   *
+   * @param file audio to be send to <code>channel</code>
+   */
+  public void setFile(String file) {
+    this.file = file;
+  }
 
-    /**
-     * Get the digit to pause audio.
-     *
-     * @return digit to pause audio.
-     */
-    public char getPauseDigit() {
-        return pauseDigit;
-    }
+  /**
+   * Set the digit that move audio forward.
+   *
+   * @param forwardDigit digit that move audio forward. If this is set null
+   * any subsequent parameter will be ignore.
+   */
+  public void setForwardDigit(char forwardDigit) {
+    this.forwardDigit = forwardDigit;
+  }
 
-    /**
-     * Set the digit to pause audio. If this is set null any subsequent
-     * parameter will be ignore.
-     *
-     * @param pauseDigit digit to pause audio.
-     */
-    public void setPauseDigit(char pauseDigit) {
-        this.pauseDigit = pauseDigit;
-    }
+  /**
+   * Set time in milliseconds for silence after audio finished.
+   *
+   * @param offset time in milliseconds after audio finished. If this is set null
+   * any subsequent parameter will be ignore.
+   */
+  public void setOffset(Integer offset) {
+    this.offset = offset;
+  }
 
-    /**
-     * Get the digit to pause audio.
-     *
-     * @return digit to pause audio.
-     */
-    public char getRewindDigit() {
-        return rewindDigit;
-    }
+  /**
+   * Set the digit to pause audio. If this is set null any subsequent
+   * parameter will be ignore.
+   *
+   * @param pauseDigit digit to pause audio.
+   */
+  public void setPauseDigit(char pauseDigit) {
+    this.pauseDigit = pauseDigit;
+  }
 
-    /**
-     * Set the digit to rewind audio.
-     *
-     * @param rewindDigit digit to rewind audio.
-     */
-    public void setRewindDigit(char rewindDigit) {
-        this.rewindDigit = rewindDigit;
-    }
+  /**
+   * Set the digit to rewind audio.
+   *
+   * @param rewindDigit digit to rewind audio.
+   */
+  public void setRewindDigit(char rewindDigit) {
+    this.rewindDigit = rewindDigit;
+  }
 }

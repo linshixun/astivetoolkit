@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Deletes a <code>family</code> or specific <code>keytree</code> within a
@@ -35,77 +34,77 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "DATABASE DELTREE")
 public class DatabaseDelTree implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa1f5e4eeaf7df841L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa1f5e4eeaf7df841L;
 
-    /**
-     * Database family.
-     */
-    @Parameter(optional = false)
-    private String family;
+  /**
+   * Database family.
+   */
+  @Parameter(optional = false)
+  private String family;
 
-    /**
-     * Keytree within family.
-     */
-    @Parameter(position = 0x1)
-    private String keyTree;
+  /**
+   * Keytree within family.
+   */
+  @Parameter(position = 0x1)
+  private String keyTree;
 
-    /**
-     * Create a new DatabaseDelTree object to delete a database family.
-     *
-     * @param family database family.
-     */
-    public DatabaseDelTree(String family) {
-        this.family = family;
-    }
+  /**
+   * Create a new DatabaseDelTree object to delete a database family.
+   *
+   * @param family database family.
+   */
+  public DatabaseDelTree(String family) {
+    this.family = family;
+  }
 
-    /**
-     * Create a new DatabaseDelTree object to delete a keytree within a database
-     * family.
-     *
-     * @param family database family.
-     * @param keyTree keytree to be deleted.
-     */
-    public DatabaseDelTree(String family, String keyTree) {
-        this.family = family;
-        this.keyTree = keyTree;
-    }
+  /**
+   * Create a new DatabaseDelTree object to delete a keytree within a database
+   * family.
+   *
+   * @param family database family.
+   * @param keyTree keytree to be deleted.
+   */
+  public DatabaseDelTree(String family, String keyTree) {
+    this.family = family;
+    this.keyTree = keyTree;
+  }
 
-    /**
-     * Get database family.
-     *
-     * @return database family.
-     */
-    public String getFamily() {
-        return family;
-    }
+  /**
+   * Get database family.
+   *
+   * @return database family.
+   */
+  public String getFamily() {
+    return family;
+  }
 
-    /**
-     * Set database family.
-     *
-     * @param family database family.
-     */
-    public void setFamily(String family) {
-        this.family = family;
-    }
+  /**
+   * Get family keytree.
+   *
+   * @return family keytree.
+   */
+  public String getKeyTree() {
+    return keyTree;
+  }
 
-    /**
-     * Get family keytree.
-     *
-     * @return family keytree.
-     */
-    public String getKeyTree() {
-        return keyTree;
-    }
+  /**
+   * Set database family.
+   *
+   * @param family database family.
+   */
+  public void setFamily(String family) {
+    this.family = family;
+  }
 
-    /**
-     * Set family keytree.
-     *
-     * @param keyTree family keytree.
-     */
-    public void setKeyTree(String keyTree) {
-        this.keyTree = keyTree;
-    }
+  /**
+   * Set family keytree.
+   *
+   * @param keyTree family keytree.
+   */
+  public void setKeyTree(String keyTree) {
+    this.keyTree = keyTree;
+  }
 }

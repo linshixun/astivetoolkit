@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,20 +23,32 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class ReceiveTextTest extends TestCase {
-    public ReceiveTextTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new ReceiveTextTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public ReceiveTextTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        Integer timeout = 0x3e8;
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    Integer timeout = 0x3e8;
 
-        StringBuilder b = new StringBuilder("RECEIVE TEXT");
-        b.append(" ");
-        b.append(timeout);
+    StringBuilder b = new StringBuilder("RECEIVE TEXT");
+    b.append(" ");
+    b.append(timeout);
 
-        ReceiveText command = new ReceiveText(timeout);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    ReceiveText command = new ReceiveText(timeout);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

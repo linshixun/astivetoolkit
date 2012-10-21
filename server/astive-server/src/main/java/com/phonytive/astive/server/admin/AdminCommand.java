@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,72 +19,72 @@
  */
 package com.phonytive.astive.server.admin;
 
+
 /**
  *
  * @since 1.0.0
  */
 public enum AdminCommand {
+  /**
+   * Start server.
+   */
+  START("start"),
+  /**
+   * Stop server.
+   */
+  STOP("stop"),
+  /**
+   * Deploy an application.
+   */
+  DEPLOY("deploy"),
+  /**
+   * Undeploy an application.
+   */
+  UNDEPLOY("undeploy"),
+  /**
+   * Show help for commands
+   */
+  HELP("help"),
+  /**
+   *
+   */
+  VERSION("version");
+  /**
+   * String value for this enum.
+   */
+  private String command;
 
-    /**
-     * Start server.
-     */
-    START("start"),
-    /**
-     * Stop server.
-     */
-    STOP("stop"),
-    /**
-     * Deploy an application.
-     */
-    DEPLOY("deploy"),
-    /**
-     * Undeploy an application.
-     */
-    UNDEPLOY("undeploy"),
-    /**
-     * Show help for commands
-     */
-    HELP("help"),    
-    /**
-     * 
-     */
-    VERSION("version");
-    
-    /**
-     * String value for this enum.
-     */
-    private String command;
+  /**
+   * Create a new AdminCommand object with status code as parameter. This
+   * class is an enum, therefore can't be instantiated directly.
+   */
+  private AdminCommand(String command) {
+    this.command = command;
+  }
 
-    /**
-     * Create a new AdminCommand object with status code as parameter. This
-     * class is an enum, therefore can't be instantiated directly.
-     */
-    private AdminCommand(String command) {
-        this.command = command;
+  /**
+   * Get command enum.
+   *
+   * @param command command as text.
+   * @return command as enum
+   */
+  static public AdminCommand get(String command) {
+    for (AdminCommand ac : AdminCommand.values()) {
+      if (ac.command.equals(command)) {
+        return ac;
+      }
     }
 
-    /**
-     * Get command enum.
-     *
-     * @param command command as text.
-     * @return command as enum
-     */
-    static public AdminCommand get(String command) {
-        for (AdminCommand ac : AdminCommand.values()) {
-            if (ac.command.equals(command)) {
-                return ac;
-            }
-        }
-        return null;
-    }
+    return null;
+  }
 
-    /**
-     * Get command as text.
-     *
-     * @param command command as enum.
-     * @return command as text.
-     */
-    public String getCommand() {
-        return command;
-    }
+  /**
+   * Get command as text.
+   *
+   * @param command command as enum.
+   * @return command as text.
+   */
+  public String getCommand() {
+    return command;
+  }
 }

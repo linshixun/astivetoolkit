@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,27 +23,39 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class HangupTest extends TestCase {
-    public HangupTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new HangupTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public HangupTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String channel = "SIP/John Doe";
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String channel = "SIP/John Doe";
 
-        StringBuilder b = new StringBuilder("HANGUP");
+    StringBuilder b = new StringBuilder("HANGUP");
 
-        Hangup command = new Hangup();
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
+    Hangup command = new Hangup();
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
-        // Testing second constructor
-        b.append(" ");
-        b.append("\"");
-        b.append(channel);
-        b.append("\"");
+    // Testing second constructor
+    b.append(" ");
+    b.append("\"");
+    b.append(channel);
+    b.append("\"");
 
-        command = new Hangup(channel);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    command = new Hangup(channel);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

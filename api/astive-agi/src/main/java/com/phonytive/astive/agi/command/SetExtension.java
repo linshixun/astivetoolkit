@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -17,12 +17,11 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-    package com.phonytive.astive.agi.command;
+package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Changes the extension for continuation upon exiting the application.
@@ -31,41 +30,41 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "SET EXTENSION")
 public class SetExtension implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0x966dff0bd7e9464dL;
-    
-    /**
-     * New extension.
-     */    
-    @Parameter(optional = false)
-    private String extension;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0x966dff0bd7e9464dL;
 
-    /**
-     * Create a new SetExtension object.
-     * 
-     * @param extension new extension for channel.
-     */
-    public SetExtension(String extension) {
-        this.extension = extension;
-    }
+  /**
+   * New extension.
+   */
+  @Parameter(optional = false)
+  private String extension;
 
-    /**
-     * Get extension.
-     * 
-     * @return extension.
-     */
-    public String getExtension() {
-        return extension;
-    }
+  /**
+   * Create a new SetExtension object.
+   *
+   * @param extension new extension for channel.
+   */
+  public SetExtension(String extension) {
+    this.extension = extension;
+  }
 
-    /**
-     * Set new extension.
-     * 
-     * @param extension new extension.
-     */
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
+  /**
+   * Get extension.
+   *
+   * @return extension.
+   */
+  public String getExtension() {
+    return extension;
+  }
+
+  /**
+   * Set new extension.
+   *
+   * @param extension new extension.
+   */
+  public void setExtension(String extension) {
+    this.extension = extension;
+  }
 }

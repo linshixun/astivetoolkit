@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -23,21 +23,33 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
-
+/**
+ * DOCUMENT ME 
+ */
 public class SpeechUnloadGrammarTest extends TestCase {
-    public SpeechUnloadGrammarTest(String testName) {
-        super(testName);
-    }
+  /**
+   * Creates a new SpeechUnloadGrammarTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public SpeechUnloadGrammarTest(String testName) {
+    super(testName);
+  }
 
-    public void testCommand() throws AgiException {
-        String name = "myGrammar";
-        StringBuilder b = new StringBuilder("SPEECH UNLOAD GRAMMAR");
-        b.append(" ");
-        b.append("\"");
-        b.append(name);
-        b.append("\"");
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testCommand() throws AgiException {
+    String name = "myGrammar";
+    StringBuilder b = new StringBuilder("SPEECH UNLOAD GRAMMAR");
+    b.append(" ");
+    b.append("\"");
+    b.append(name);
+    b.append("\"");
 
-        SpeechUnloadGrammar command = new SpeechUnloadGrammar(name);
-        assert (b.toString().equals(CommandProcessor.buildCommand(command)));
-    }
+    SpeechUnloadGrammar command = new SpeechUnloadGrammar(name);
+    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+  }
 }

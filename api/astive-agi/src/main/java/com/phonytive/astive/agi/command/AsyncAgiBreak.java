@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,9 +19,8 @@
  */
 package com.phonytive.astive.agi.command;
 
-import com.phonytive.astive.agi.annotation.AgiCommand;
 import java.io.Serializable;
-
+import com.phonytive.astive.agi.annotation.AgiCommand;
 
 /**
  * Interrupts expected flow of Async AGI commands and returns control to
@@ -31,14 +30,14 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "ASYNC AGI BREAK")
 public class AsyncAgiBreak implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xa8da0d406d934e4bL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xa8da0d406d934e4bL;
 
-    /**
-     * Create a new AsyncAgiBreak object.
-     */
-    public AsyncAgiBreak() {
-    }
+  /**
+   * Create a new AsyncAgiBreak object.
+   */
+  public AsyncAgiBreak() {
+  }
 }

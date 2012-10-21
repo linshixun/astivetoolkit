@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,10 +19,9 @@
  */
 package com.phonytive.astive.agi.command;
 
+import java.io.Serializable;
 import com.phonytive.astive.agi.annotation.AgiCommand;
 import com.phonytive.astive.agi.annotation.Parameter;
-import java.io.Serializable;
-
 
 /**
  * Returns the status of the specified channel. If no channel name is given
@@ -44,47 +43,47 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "CHANNEL STATUS")
 public class GetChannelStatus implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xf49cb707210542c5L;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xf49cb707210542c5L;
 
-    /**
-     * Channel name, or null for current channel.
-     */
-    @Parameter
-    private String channel;
+  /**
+   * Channel name, or null for current channel.
+   */
+  @Parameter
+  private String channel;
 
-    /**
-     * Create a new GetChannelStatus object.
-     */
-    public GetChannelStatus() {
-    }
+  /**
+   * Create a new GetChannelStatus object.
+   */
+  public GetChannelStatus() {
+  }
 
-    /**
-     * Create a new GetChannelStatus object with channel name as parameter.
-     *
-     * @param channel
-     */
-    public GetChannelStatus(String channel) {
-        this.channel = channel;
-    }
+  /**
+   * Create a new GetChannelStatus object with channel name as parameter.
+   *
+   * @param channel
+   */
+  public GetChannelStatus(String channel) {
+    this.channel = channel;
+  }
 
-    /**
-     * Get channel name or null for current channel.
-     *
-     * @return channel name.
-     */
-    public String getChannel() {
-        return channel;
-    }
+  /**
+   * Get channel name or null for current channel.
+   *
+   * @return channel name.
+   */
+  public String getChannel() {
+    return channel;
+  }
 
-    /**
-     * Set channel name.
-     *
-     * @param channel channel name, or null for current channel.
-     */
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
+  /**
+   * Set channel name.
+   *
+   * @param channel channel name, or null for current channel.
+   */
+  public void setChannel(String channel) {
+    this.channel = channel;
+  }
 }

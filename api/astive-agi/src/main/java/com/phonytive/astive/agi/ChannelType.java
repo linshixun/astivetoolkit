@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -26,61 +26,61 @@ package com.phonytive.astive.agi;
  * @since 1.0.0
  */
 public enum ChannelType {
-    /**
-     * Channel type is unknown.
-     */
-    UNKNOWN("UNKNOWN"),
-    /**
-     * Channel type ZAP.
-     */
-    ZAP("ZAP"),
-    /**
-     * Channel type SIP
-     */
-    SIP("SIP"),
-    /**
-     * Channel type IAX
-     */
-    IAX("IAX"),
-    /**
-     * Channel type H.323
-     */
-    H323("H.323");
-    /**
-     * Type of channel as string.
-     */
-    private String name;
+  /**
+   * Channel type is unknown.
+   */
+  UNKNOWN("UNKNOWN"),
+  /**
+   * Channel type ZAP.
+   */
+  ZAP("ZAP"),
+  /**
+   * Channel type SIP
+   */
+  SIP("SIP"),
+  /**
+   * Channel type IAX
+   */
+  IAX("IAX"),
+  /**
+   * Channel type H.323
+   */
+  H323("H.323");
+  /**
+   * Type of channel as string.
+   */
+  private String name;
 
-    /**
-     * Create a new ChannelStatus object with status code as parameter. This
-     * class is an enum, therefore can't be instantiated directly.
-     */
-    private ChannelType(String name) {
-        this.name = name;
+  /**
+   * Create a new ChannelStatus object with status code as parameter. This
+   * class is an enum, therefore can't be instantiated directly.
+   */
+  private ChannelType(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Return enum for channel status code.
+   *
+   * @param code channel status code
+   * @return ChannelStatus enum
+   */
+  public static ChannelType get(String name) {
+    for (ChannelType ct : ChannelType.values()) {
+      if (ct.toString().equalsIgnoreCase(name)) {
+        return ChannelType.valueOf(name);
+      }
     }
 
-    /**
-     * Return enum for channel status code.
-     *
-     * @param code channel status code
-     * @return ChannelStatus enum
-     */
-    public static ChannelType get(String name) {
-        for (ChannelType ct : ChannelType.values()) {
-            if (ct.toString().equalsIgnoreCase(name)) {
-                return ChannelType.valueOf(name);
-            }
-        }
+    return ChannelType.UNKNOWN;
+  }
 
-        return ChannelType.UNKNOWN;
-    }
-
-    /**
-     * Get the name for this channel type.
-     *
-     * @return the name for this channel type.
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Get the name for this channel type.
+   *
+   * @return the name for this channel type.
+   */
+  public String getName() {
+    return name;
+  }
 }

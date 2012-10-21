@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,9 +19,8 @@
  */
 package com.phonytive.astive.agi.command;
 
-import com.phonytive.astive.agi.annotation.AgiCommand;
 import java.io.Serializable;
-
+import com.phonytive.astive.agi.annotation.AgiCommand;
 
 /**
  * Answers channel if not already in answer state.
@@ -30,14 +29,14 @@ import java.io.Serializable;
  */
 @AgiCommand(command = "ANSWER")
 public class Answer implements Serializable {
-    /**
-     * Serial version identifier.
-     */
-    private static final long serialVersionUID = 0xbb739b18b5e94c7eL;
+  /**
+   * Serial version identifier.
+   */
+  private static final long serialVersionUID = 0xbb739b18b5e94c7eL;
 
-    /**
-     * Create a new Answer object.
-     */
-    public Answer() {
-    }
+  /**
+   * Create a new Answer object.
+   */
+  public Answer() {
+  }
 }

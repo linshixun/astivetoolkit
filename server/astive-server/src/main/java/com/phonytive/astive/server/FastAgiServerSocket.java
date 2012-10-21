@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,15 +19,15 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.agi.DefaultAgiServerSettings;
-import com.phonytive.astive.agi.fastagi.FastAgiConnection;
-import com.phonytive.astive.util.AppLocale;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
+import com.phonytive.astive.agi.DefaultAgiServerSettings;
+import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *
@@ -36,10 +36,13 @@ import org.apache.log4j.xml.DOMConfigurator;
  */
 public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
   private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
-  {DOMConfigurator.configure("conf/log4j.xml");}
   private InetAddress bindAddr;
   private int backlog;
   private int port;
+
+  {
+    DOMConfigurator.configure("conf/log4j.xml");
+  }
 
   /**
    * Creates a new FastAgiServerSocket object.
@@ -53,6 +56,7 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   public FastAgiServerSocket(int port, int backlog, InetAddress bindAddr)
                       throws IOException {
     super();
+
     if (LOG.isDebugEnabled()) {
       LOG.debug("port = " + port);
     }
@@ -61,7 +65,7 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
       LOG.debug("backlog = " + backlog);
     }
 
-    if (LOG.isDebugEnabled()){
+    if (LOG.isDebugEnabled()) {
       LOG.debug("bindAddr = " + bindAddr);
     }
 
@@ -99,8 +103,8 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   @Override
   public void start() throws SystemException {
     if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
-        }
+      LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+    }
 
     try {
       InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
