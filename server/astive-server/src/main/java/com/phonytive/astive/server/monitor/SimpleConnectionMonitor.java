@@ -117,13 +117,13 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
       String requestAppName = aRequest.getRequestURL();
 
       if (LOG.isDebugEnabled()) {
-        LOG.debug("exec app = " + requestAppName);
+        LOG.debug(AppLocale.getI18n("execApp", new Object[]{requestAppName}));
       }
 
       AstivletProcessor.invokeAstivlet(getAstivlet(), aRequest, aResponse);
 
       if (LOG.isDebugEnabled()) {
-        LOG.debug("done.");
+        LOG.debug(AppLocale.getI18n("done"));
       }
     } catch (AgiException ex) {
       LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));

@@ -35,7 +35,7 @@ import com.phonytive.astive.util.NetUtil;
  * @since 1.0.0
  */
 public abstract class TelnetServer extends ServerSocket implements Runnable {
-  private static final Logger logger = Logger.getLogger(TelnetServer.class);
+  private static final Logger LOG = Logger.getLogger(TelnetServer.class);
   private static String promptSymbol = ColorsANSI.BRIGHT + "[astive]$ " + ColorsANSI.SANE;
   private InetAddress bindAddr;
   private int backlog;
@@ -198,7 +198,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
         }
       }
     } catch (IOException ex) {
-      logger.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
+      LOG.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
                                      new Object[] { ex.getMessage() }));
     }
   }

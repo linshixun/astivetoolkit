@@ -115,7 +115,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
           LOG.debug("done.");
         }
       } else {
-        LOG.warn(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
+        LOG.error(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
 
         try {
           fastConn.getSocket().close();

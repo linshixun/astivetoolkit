@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.menu;
 
-import org.apache.log4j.Logger;
 import com.phonytive.astive.util.AppLocale;
 
 /**
@@ -27,13 +26,10 @@ import com.phonytive.astive.util.AppLocale;
  * @since 1.0.0
  */
 public class DuplicatedDigitsException extends RuntimeException {
-  // A usual logging class
-  private static final Logger LOG = Logger.getLogger(DuplicatedDigitsException.class);
   private static final String msg = AppLocale.getI18n("exeption.DuplicatedKeyInMenuException");
 
   /** <p>Creates a new instance of DuplicatedDigitsException</p> */
   public DuplicatedDigitsException() {
     super(msg);
-    LOG.error(msg);
   }
 }

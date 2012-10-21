@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import com.phonytive.astive.agi.Connection;
 import com.phonytive.astive.agi.fastagi.FastAgiConnection;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *
@@ -31,66 +32,89 @@ import com.phonytive.astive.agi.fastagi.FastAgiConnection;
  * @see ConnectionManager
  */
 public class FastAgiConnectionManager implements ConnectionManager {
-  // A usual logging class
-  private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
-  private ArrayList<Connection> conns;
+    // A usual logging class
 
-  /**
-   * Creates a new FastAgiConnectionManager object.
-   */
-  public FastAgiConnectionManager() {
-    conns = new ArrayList<Connection>();
-  }
+    private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
+    private ArrayList<Connection> conns;
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   */
-  @Override
-  public void add(Connection conn) {
-    conns.add(conn);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  @Override
-  public ArrayList<Connection> connections() {
-    return conns;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  @Override
-  public void remove(Connection conn) throws IOException {
-    if (!conn.isClosed()) {
-      ((FastAgiConnection) conn).close();
+    /**
+     * Creates a new FastAgiConnectionManager object.
+     */
+    public FastAgiConnectionManager() {
+        conns = new ArrayList<Connection>();
     }
 
-    conns.remove(conn);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  @Override
-  public void removeAll() throws IOException {
-    for (Connection conn : conns) {
-      if (!conn.isClosed()) {
-        ((FastAgiConnection) conn).close();
-      }
+    /**
+     * DOCUMENT ME!
+     *
+     * @param conn DOCUMENT ME!
+     */
+    @Override
+    public void add(Connection conn) {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("newConnectionAdded", new String[]{conn.toString()}));
+        }
+        conns.add(conn);
     }
 
-    conns.clear();
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    @Override
+    public ArrayList<Connection> connections() {
+        return conns;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param conn DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    @Override
+    public void remove(Connection conn) throws IOException {
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("removingConnection", new String[]{conn.toString()}));
+        }
+
+        if (!conn.isClosed()) {
+            ((FastAgiConnection) conn).close();
+        }
+
+        conns.remove(conn);
+
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("done"));
+        }
+
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    @Override
+    public void removeAll() throws IOException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("removingAllConnection"));
+        }
+                
+        for (Connection conn : conns) {
+            if (!conn.isClosed()) {
+                ((FastAgiConnection) conn).close();
+            }
+        }
+
+        conns.clear();
+        
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("done"));
+        }        
+    }
 }

@@ -35,98 +35,106 @@ import com.phonytive.astive.util.AppLocale;
  * @see Service
  */
 public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
-  private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
-  private InetAddress bindAddr;
-  private int backlog;
-  private int port;
 
-  {
-    DOMConfigurator.configure("conf/log4j.xml");
-  }
+    private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
+    private InetAddress bindAddr;
+    private int backlog;
+    private int port;
 
-  /**
-   * Creates a new FastAgiServerSocket object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public FastAgiServerSocket(int port, int backlog, InetAddress bindAddr)
-                      throws IOException {
-    super();
-
-    if (LOG.isDebugEnabled()) {
-      LOG.debug("port = " + port);
+    {
+        DOMConfigurator.configure("conf/log4j.xml");
     }
 
-    if (LOG.isDebugEnabled()) {
-      LOG.debug("backlog = " + backlog);
+    /**
+     * Creates a new FastAgiServerSocket object.
+     *
+     * @param port DOCUMENT ME!
+     * @param backlog DOCUMENT ME!
+     * @param bindAddr DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public FastAgiServerSocket(int port, int backlog, InetAddress bindAddr)
+            throws IOException {
+        super();
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("port = " + port);
+            LOG.debug("backlog = " + backlog);
+            LOG.debug("bindAddr = " + bindAddr);
+        }
+
+        this.port = port;
+        this.backlog = backlog;
+        this.bindAddr = bindAddr;
     }
 
-    if (LOG.isDebugEnabled()) {
-      LOG.debug("bindAddr = " + bindAddr);
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     *
+     * @throws IOException DOCUMENT ME!
+     */
+    public FastAgiConnection acceptConnection() throws IOException {
+        return new FastAgiConnection(accept());
     }
 
-    this.port = port;
-    this.backlog = backlog;
-    this.bindAddr = bindAddr;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public FastAgiConnection acceptConnection() throws IOException {
-    return new FastAgiConnection(accept());
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  @Override
-  public boolean isRunning() {
-    return !isClosed();
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
-  @Override
-  public void start() throws SystemException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+    /**
+     * DOCUMENT ME!
+     *
+     * @return DOCUMENT ME!
+     */
+    @Override
+    public boolean isRunning() {
+        return !isClosed();
     }
 
-    try {
-      InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
-      bind(inet, backlog);
-    } catch (IOException ex) {
-      throw new SystemException(AppLocale.getI18n("cantStartFastAgiServerSocket",
-                                                  new Object[] { bindAddr.getHostAddress(), port }));
-    }
-  }
+    /**
+     * DOCUMENT ME!
+     *
+     * @throws SystemException DOCUMENT ME!
+     */
+    @Override
+    public void start() throws SystemException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+        }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
-  @Override
-  public void stop() throws SystemException {
-    try {
-      close();
-    } catch (IOException ex) {
-      throw new SystemException(AppLocale.getI18n("cantStopFastAgiServerSocket",
-                                                  new Object[] { ex.getMessage() }));
+        try {
+            InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
+            bind(inet, backlog);
+        } catch (IOException ex) {
+            throw new SystemException(AppLocale.getI18n("cantStartFastAgiServerSocket",
+                    new Object[]{bindAddr.getHostAddress(), port}));
+        }
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("done"));
+        }
     }
-  }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @throws SystemException DOCUMENT ME!
+     */
+    @Override
+    public void stop() throws SystemException {
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("stoppingFastAgiServerSocket"));
+        }
+
+        try {
+            close();
+        } catch (IOException ex) {
+            throw new SystemException(AppLocale.getI18n("cantStopFastAgiServerSocket",
+                    new Object[]{ex.getMessage()}));
+        }
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("done"));
+        }
+    }
 }

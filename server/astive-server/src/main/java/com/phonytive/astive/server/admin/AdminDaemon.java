@@ -77,7 +77,7 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
   }
 
   /**
-   * DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void run() {
