@@ -221,13 +221,13 @@ public class AstiveServer extends AbstractAstiveServer {
 
     AdminCommand cmd = AdminCommand.get(args[0]);
 
-    if (cmd.equals(AdminCommand.DEPLOY) && ((args.length < 2) || !isFileJar(args[1]))) {
+    if (cmd.equals(AdminCommand.DEPLOY) && ((args.length < 2))) {
       LOG.error(AppLocale.getI18n("cli.invalid.app"));
       printUsage(AdminCommand.DEPLOY, deploy);
       System.exit(1);
     }
 
-    if (cmd.equals(AdminCommand.UNDEPLOY) && ((args.length < 2) || !isFileJar(args[1]))) {
+    if (cmd.equals(AdminCommand.UNDEPLOY) && ((args.length < 2))) {
       printUsage(AdminCommand.UNDEPLOY, undeploy);
       System.exit(1);
     }
@@ -330,7 +330,7 @@ public class AstiveServer extends AbstractAstiveServer {
       }
 
       // TODO: This needs to be researched before a full implementation.
-      // for now is only possible to do deployments into the local server.
+      // for now is only possible to do deployments into a local server.
       if (cmd.equals(AdminCommand.DEPLOY)) {
         AdminDaemonClient adClient =
           new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
@@ -343,7 +343,7 @@ public class AstiveServer extends AbstractAstiveServer {
         adClient.undeploy(args[1]);
       }
     } catch (java.net.ConnectException ex) {
-      LOG.warn("serverNotRunning");
+      LOG.error(AppLocale.getI18n("serverNotRunning"));
     } catch (Exception ex) {
       LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
     }

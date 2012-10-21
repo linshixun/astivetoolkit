@@ -278,7 +278,6 @@
                 <implements>-1</implements>
                 <leading>0</leading>
                 <tabs>2</tabs>
-
                 <throws>-1</throws>
                 <trailingComment>1</trailingComment>
             </sizes>
@@ -286,7 +285,6 @@
                 <enable>false</enable>
                 <onlyLeading>false</onlyLeading>
             </tabs>
-
         </indentation>
         <misc>
             <arrayBracketsAfterIdent>false</arrayBracketsAfterIdent>

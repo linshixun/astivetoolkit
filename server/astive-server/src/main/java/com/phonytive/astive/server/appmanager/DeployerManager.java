@@ -117,14 +117,14 @@ public final class DeployerManager implements Deployer, AstDB {
         LOG.info(AppLocale.getI18n("cli.deploy.appDeployed",
                                    new Object[] { app.getInfo().getName() }));
       }
-    } catch (FileNotFoundException ex) {
+    } catch (FileNotFoundException ex) {        
       LOG.error(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
     } catch (IOException ex) {
       LOG.error(AppLocale.getI18n("cli.deploy.cantCopy"));
-    } catch (JclException ex) {
+    } catch (JclException ex) {        
       LOG.error(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
-    } catch (AstiveException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+    } catch (AstiveException ex) {        
+      LOG.error(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
     }
   }
 
@@ -237,9 +237,9 @@ public final class DeployerManager implements Deployer, AstDB {
         LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
       }
     } catch (org.xeustechnologies.jcl.exception.JclException ex) {
-      LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
+      LOG.error(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
     } catch (AstiveException ex) {
-      LOG.warn(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
     }
   }
 }
