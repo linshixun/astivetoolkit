@@ -373,6 +373,14 @@ public class AgiCommandReply {
    *
    * @return DOCUMENT ME!
    */
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param s DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   Map<String, String> parseAttributes(String s) {
     StringBuilder keyBuilder = new StringBuilder();
     StringBuilder valueBuilder = new StringBuilder();

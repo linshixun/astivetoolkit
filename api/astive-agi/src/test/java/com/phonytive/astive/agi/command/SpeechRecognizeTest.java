@@ -24,7 +24,7 @@ import com.phonytive.astive.agi.CommandProcessor;
 import junit.framework.TestCase;
 
 /**
- * DOCUMENT ME 
+ * DOCUMENT ME
  */
 public class SpeechRecognizeTest extends TestCase {
   /**
@@ -54,12 +54,12 @@ public class SpeechRecognizeTest extends TestCase {
     b.append("\"");
     b.append(" ");
     b.append(timeout);
-        
+
     SpeechRecognize command = new SpeechRecognize(prompt, timeout);
 
     System.out.println(b.toString());
-    System.out.println(CommandProcessor.buildCommand(command));    
-    
+    System.out.println(CommandProcessor.buildCommand(command));
+
     assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
     // Testing second constructor

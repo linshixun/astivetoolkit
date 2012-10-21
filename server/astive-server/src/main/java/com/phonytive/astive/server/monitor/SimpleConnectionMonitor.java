@@ -19,11 +19,11 @@
  */
 package com.phonytive.astive.server.monitor;
 
-import com.phonytive.astive.AstiveException;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.agi.AgiCommandHandler;
 import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.agi.AgiResponse;
@@ -117,7 +117,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
       String requestAppName = aRequest.getRequestURL();
 
       if (LOG.isDebugEnabled()) {
-        LOG.debug(AppLocale.getI18n("execApp", new Object[]{requestAppName}));
+        LOG.debug(AppLocale.getI18n("execApp", new Object[] { requestAppName }));
       }
 
       AstivletProcessor.invokeAstivlet(getAstivlet(), aRequest, aResponse);

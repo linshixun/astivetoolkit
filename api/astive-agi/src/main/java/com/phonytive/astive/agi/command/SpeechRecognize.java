@@ -36,23 +36,23 @@ public class SpeechRecognize implements Serializable {
   private static final long serialVersionUID = 0x5f5b2b116d8d48efL;
 
   /**
+   * Offset samples to skip when playing the prompt.
+   */
+  @Parameter(position = 0x2)
+  private Integer offset;
+
+  /**
    *  Maximum recognition time(in milliseconds).
    */
   @Parameter(position = 0x1, optional = false)
-  private Integer timeout;  
+  private Integer timeout;
 
   /**
    * Prompt to play.
    */
   @Parameter(optional = false)
-  private String prompt;  
+  private String prompt;
 
-  /**
-   * Offset samples to skip when playing the prompt.
-   */
-  @Parameter(position = 0x2)
-  private Integer offset;  
-  
   /**
    * Creates a new SpeechRecognizeCommand object that plays the given prompt
    * and listens for for speech and DTMF.

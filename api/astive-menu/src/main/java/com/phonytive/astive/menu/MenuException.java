@@ -19,25 +19,25 @@
  */
 package com.phonytive.astive.menu;
 
+
 /**
  *
  * @since 1.0.0
  * @see Application
  */
 public class MenuException extends Exception {
+  /**
+   * Creates a new MenuException object.
+   *
+   * @param msg DOCUMENT ME!
+   */
+  public MenuException(String msg) {
+    super(msg);
+  }
 
-    /**
-     * Creates a new MenuException object.
-     *
-     * @param msg DOCUMENT ME!
-     */
-    public MenuException(String msg) {
-        super(msg);
-    }
-
-    /**
-     * Creates a new MenuException object.
-     */
-    public MenuException() {
-    }
+  /**
+   * Creates a new MenuException object.
+   */
+  public MenuException() {
+  }
 }

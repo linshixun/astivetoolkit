@@ -25,7 +25,7 @@ package com.phonytive.astive;
  * @since 1.0.0
  * @see AgiException
  */
-public class AstiveException extends Exception {  
+public class AstiveException extends Exception {
   /**
    * Creates a new AstiveException object with the original exception as
    * parameter to be nested as part of this exception.

@@ -19,93 +19,91 @@
  */
 package com.phonytive.astive.server.admin;
 
-import com.phonytive.astive.server.FastAgiConnectionManager;
-import com.phonytive.astive.util.AppLocale;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import org.apache.log4j.Logger;
+import com.phonytive.astive.server.FastAgiConnectionManager;
+import com.phonytive.astive.util.AppLocale;
 
 /**
  *
  * @since 1.0.0
  */
 public class AdminDaemonClient extends Socket {
+  private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
+  private BufferedReader reader;
+  private PrintWriter writer;
 
-    private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
-    private BufferedReader reader;
-    private PrintWriter writer;
+  /**
+   * Creates a new AdminDaemonClient object.
+   *
+   * @param addr DOCUMENT ME!
+   * @param port DOCUMENT ME!
+   *
+   * @throws IOException DOCUMENT ME!
+   */
+  public AdminDaemonClient(InetAddress addr, int port)
+                    throws IOException {
+    super(addr, port);
+    reader = new BufferedReader(new InputStreamReader(getInputStream()));
+    writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
+  }
 
-    /**
-     * Creates a new AdminDaemonClient object.
-     *
-     * @param addr DOCUMENT ME!
-     * @param port DOCUMENT ME!
-     *
-     * @throws IOException DOCUMENT ME!
-     */
-    public AdminDaemonClient(InetAddress addr, int port)
-            throws IOException {
-        super(addr, port);
-        reader = new BufferedReader(new InputStreamReader(getInputStream()));
-        writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
+  /**
+   * DOCUMENT ME!
+   *
+   * @param app DOCUMENT ME!
+   *
+   * @throws IOException DOCUMENT ME!
+   */
+  public void deploy(String app) throws IOException {
+    send(AdminCommand.DEPLOY, app);
+  }
+
+  private BufferedReader getReader() throws IOException {
+    return reader;
+  }
+
+  private PrintWriter getWriter() throws IOException {
+    return writer;
+  }
+
+  private void send(AdminCommand cmd, String arg) throws IOException {
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("sendingCmd", new Object[] { cmd, arg }));
     }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @param app DOCUMENT ME!
-     *
-     * @throws IOException DOCUMENT ME!
-     */
-    public void deploy(String app) throws IOException {
-        send(AdminCommand.DEPLOY, app);
+    getWriter().println(cmd.toString());
+
+    if ((arg != null) && !arg.isEmpty()) {
+      getWriter().println(arg);
     }
 
-    private BufferedReader getReader() throws IOException {
-        return reader;
+    getWriter().flush();
+
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("done"));
     }
+  }
 
-    private PrintWriter getWriter() throws IOException {
-        return writer;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws IOException DOCUMENT ME!
+   */
+  public void stop() throws IOException {
+    send(AdminCommand.STOP, null);
+  }
 
-    private void send(AdminCommand cmd, String arg) throws IOException {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("sendingCmd", new Object[]{cmd, arg}));
-        }
-        
-        getWriter().println(cmd.toString());
-        
-
-        if ((arg != null) && !arg.isEmpty()) {
-            getWriter().println(arg);
-        }
-
-        getWriter().flush();
-
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("done"));
-        }    
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @throws IOException DOCUMENT ME!
-     */
-    public void stop() throws IOException {
-        send(AdminCommand.STOP, null);
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param app DOCUMENT ME!
-     *
-     * @throws IOException DOCUMENT ME!
-     */
-    public void undeploy(String app) throws IOException {
-        send(AdminCommand.UNDEPLOY, app);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param app DOCUMENT ME!
+   *
+   * @throws IOException DOCUMENT ME!
+   */
+  public void undeploy(String app) throws IOException {
+    send(AdminCommand.UNDEPLOY, app);
+  }
 }

@@ -19,23 +19,28 @@
  */
 package com.phonytive.astive.server.test;
 
-import com.phonytive.astive.util.AppLocale;
-import junit.framework.TestCase;
 import org.junit.AfterClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import org.junit.Test;
+import com.phonytive.astive.util.AppLocale;
+import junit.framework.TestCase;
 
 /**
  *
  * @since 1.0.0
  */
 public class AppLocaleTest extends TestCase {
-    
-    public AppLocaleTest() {
-    }
-    
-    public void testAppLocale() {        
-        assertEquals(AppLocale.getI18n("test", new Object[]{"test"}), "This is a test.");
-    }
+  /**
+   * Creates a new AppLocaleTest object.
+   */
+  public AppLocaleTest() {
+  }
+
+  /**
+   * DOCUMENT ME!
+   */
+  public void testAppLocale() {
+    assertEquals(AppLocale.getI18n("test", new Object[] { "test" }), "This is a test.");
+  }
 }

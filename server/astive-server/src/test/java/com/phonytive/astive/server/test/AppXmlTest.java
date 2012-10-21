@@ -23,11 +23,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import org.apache.xmlbeans.XmlException;
+import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
+import org.junit.Ignore;
 import junit.framework.TestCase;
 import noNamespace.AppDocument;
 import noNamespace.AppType;
-import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
-import org.junit.Ignore;
 
 /**
  * Test AppXml.
@@ -50,11 +50,11 @@ public class AppXmlTest extends TestCase {
    * @throws XmlException DOCUMENT ME!
    * @throws IOException DOCUMENT ME!
    */
-  public void testHello() throws XmlException, IOException {        
+  public void testHello() throws XmlException, IOException {
     File file = MavenTestingUtils.getProjectFile("/src/test/resources/app_test.xml");
 
     AppDocument doc = AppDocument.Factory.parse(file);
-    assertTrue (doc.validate());
+    assertTrue(doc.validate());
 
     AppType app = doc.getApp();
     assertFalse(app.getName().isEmpty());

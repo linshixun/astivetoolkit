@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.AstiveException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +28,7 @@ import org.xeustechnologies.jcl.JarResources;
 import org.xeustechnologies.jcl.JclObjectFactory;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.utils.URLValidator;
 import com.phonytive.astive.util.AppLocale;

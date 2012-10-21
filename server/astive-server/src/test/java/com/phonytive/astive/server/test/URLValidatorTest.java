@@ -40,17 +40,17 @@ public class URLValidatorTest extends TestCase {
    * DOCUMENT ME!
    */
   public void testValidateURLs() {
-    assertTrue (URLValidator.isValidURL("/"));
-    assertFalse (URLValidator.isValidURL("/*"));
-    assertFalse (URLValidator.isValidURL("/2"));
-    assertTrue (URLValidator.isValidURL("/myproject"));
-    assertFalse (URLValidator.isValidURL("/_abc"));
-    assertTrue (URLValidator.isValidURL("/myproject/"));
-    assertTrue (URLValidator.isValidURL("/myproject/*"));
-    assertTrue (URLValidator.isValidURL("/myproject/myAstivlet"));
-    assertTrue (URLValidator.isValidURL("*.ast"));
-    assertTrue (URLValidator.isValidURL("*.ast2"));
-    assertTrue (URLValidator.isValidURL("*.ast?%$"));
-    assertFalse (URLValidator.isValidURL("abc.ast?%$"));
+    assertTrue(URLValidator.isValidURL("/"));
+    assertFalse(URLValidator.isValidURL("/*"));
+    assertFalse(URLValidator.isValidURL("/2"));
+    assertTrue(URLValidator.isValidURL("/myproject"));
+    assertFalse(URLValidator.isValidURL("/_abc"));
+    assertTrue(URLValidator.isValidURL("/myproject/"));
+    assertTrue(URLValidator.isValidURL("/myproject/*"));
+    assertTrue(URLValidator.isValidURL("/myproject/myAstivlet"));
+    assertTrue(URLValidator.isValidURL("*.ast"));
+    assertTrue(URLValidator.isValidURL("*.ast2"));
+    assertTrue(URLValidator.isValidURL("*.ast?%$"));
+    assertFalse(URLValidator.isValidURL("abc.ast?%$"));
   }
 }

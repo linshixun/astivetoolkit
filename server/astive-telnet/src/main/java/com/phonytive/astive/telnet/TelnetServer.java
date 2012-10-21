@@ -199,7 +199,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
       }
     } catch (IOException ex) {
       LOG.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
-                                     new Object[] { ex.getMessage() }));
+                                  new Object[] { ex.getMessage() }));
     }
   }
 

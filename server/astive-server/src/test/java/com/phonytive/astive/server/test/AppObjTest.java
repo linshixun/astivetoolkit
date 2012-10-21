@@ -19,12 +19,12 @@
  */
 package com.phonytive.astive.server.test;
 
+import java.io.File;
+import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.AstObj;
-import java.io.File;
 import junit.framework.TestCase;
-import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 
 /**
  *
@@ -39,18 +39,18 @@ public class AppObjTest extends TestCase {
   public AppObjTest(String testName) {
     super(testName);
   }
-  
+
   /**
    * DOCUMENT ME!
    *
    * @throws AstiveException DOCUMENT ME!
    */
   public void testAppObj() throws AstiveException {
-    File file = MavenTestingUtils.getProjectFile("/src/test/resources/helloworld.jar");          
+    File file = MavenTestingUtils.getProjectFile("/src/test/resources/helloworld.jar");
     AstObj astObj = new AstObj("helloworld.jar", file.getAbsolutePath());
     Astivlet ast = astObj.getAstivletByURLPattern("/examples/HelloWorld");
     assertNotNull(ast);
-    
+
     ast = astObj.getAstivletByURLPattern("/wha?");
     assertNull(ast);
   }

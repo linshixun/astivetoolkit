@@ -19,8 +19,9 @@
  */
 package com.phonytive.astive.ami.action;
 
+
 /**
- * DOCUMENT ME 
+ * DOCUMENT ME
  */
 public class ParkAction extends ActionMessage {
   private String channel;

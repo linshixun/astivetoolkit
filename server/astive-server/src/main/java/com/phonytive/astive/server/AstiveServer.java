@@ -19,7 +19,6 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.AstiveException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,6 +32,7 @@ import java.util.concurrent.Executors;
 import org.apache.commons.cli.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.server.admin.AdminCommand;
 import com.phonytive.astive.server.admin.AdminDaemon;
 import com.phonytive.astive.server.admin.AdminDaemonClient;

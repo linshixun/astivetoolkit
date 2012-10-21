@@ -34,93 +34,93 @@ import com.phonytive.astive.server.monitor.SimpleConnectionMonitor;
  * @see AstiveServer
  */
 public class SimpleAstiveServer extends AbstractAstiveServer {
-    private Astivlet astivlet;
-    private ExecutorService executorService;
-    private int port;
+  private Astivlet astivlet;
+  private ExecutorService executorService;
+  private int port;
 
-    /**
-     * Creates a new SimpleAstiveServer object.
-     *
-     * @param astivlet DOCUMENT ME!
-     *
-     * @throws SystemException DOCUMENT ME!
-     * @throws IOException DOCUMENT ME!
-     */
-    public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
-        super();
-        this.port = DEFAULT_AGI_SERVER_PORT;
-        this.astivlet = astivlet;
-    }
+  /**
+   * Creates a new SimpleAstiveServer object.
+   *
+   * @param astivlet DOCUMENT ME!
+   *
+   * @throws SystemException DOCUMENT ME!
+   * @throws IOException DOCUMENT ME!
+   */
+  public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
+    super();
+    this.port = DEFAULT_AGI_SERVER_PORT;
+    this.astivlet = astivlet;
+  }
 
-    /**
-     * Creates a new SimpleAstiveServer object.
-     *
-     * @param astivlet DOCUMENT ME!
-     * @param port DOCUMENT ME!
-     *
-     * @throws SystemException DOCUMENT ME!
-     * @throws IOException DOCUMENT ME!
-     */
-    public SimpleAstiveServer(Astivlet astivlet, int port)
-            throws SystemException, IOException {
-        super(port);
-        this.port = port;
-        this.astivlet = astivlet;
-    }
+  /**
+   * Creates a new SimpleAstiveServer object.
+   *
+   * @param astivlet DOCUMENT ME!
+   * @param port DOCUMENT ME!
+   *
+   * @throws SystemException DOCUMENT ME!
+   * @throws IOException DOCUMENT ME!
+   */
+  public SimpleAstiveServer(Astivlet astivlet, int port)
+                     throws SystemException, IOException {
+    super(port);
+    this.port = port;
+    this.astivlet = astivlet;
+  }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @return DOCUMENT ME!
-     */
-    public Astivlet getAstivlet() {
-        return astivlet;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Astivlet getAstivlet() {
+    return astivlet;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getPort() {
-        return port;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public int getPort() {
+    return port;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void launchConnectionMonitor() {
-        SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
-        monitor.run();
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  protected void launchConnectionMonitor() {
+    SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
+    monitor.run();
 
-        //executorService.execute(monitor);
-    }
+    //executorService.execute(monitor);
+  }
 
-    /**
-     * DOCUMENT ME!
-     *
-     * @param astivlet DOCUMENT ME!
-     */
-    public void setAstivlet(Astivlet astivlet) {
-        this.astivlet = astivlet;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param astivlet DOCUMENT ME!
+   */
+  public void setAstivlet(Astivlet astivlet) {
+    this.astivlet = astivlet;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void start() throws SystemException {
-        super.start();
-        executorService = Executors.newSingleThreadExecutor();
-        launchConnectionMonitor();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void start() throws SystemException {
+    super.start();
+    executorService = Executors.newSingleThreadExecutor();
+    launchConnectionMonitor();
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void stop() throws SystemException {
-        executorService.shutdown();
-        super.stop();
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void stop() throws SystemException {
+    executorService.shutdown();
+    super.stop();
+  }
 }

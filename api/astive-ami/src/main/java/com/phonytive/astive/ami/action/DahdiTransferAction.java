@@ -19,8 +19,9 @@
  */
 package com.phonytive.astive.ami.action;
 
+
 /**
- * DOCUMENT ME 
+ * DOCUMENT ME
  */
 public class DahdiTransferAction extends ActionMessage {
   private String dahdiChannel;

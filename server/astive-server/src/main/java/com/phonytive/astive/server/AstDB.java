@@ -19,8 +19,8 @@
  */
 package com.phonytive.astive.server;
 
-import com.phonytive.astive.AstiveException;
 import java.util.List;
+import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 
 /**

@@ -75,6 +75,12 @@ public interface ServiceProperties {
    */
 
   /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+
+  /**
    * Return the address list from where connections are accept.
    *
    * @return by default <code>service</code> accept connections only from the <code>local</code>
