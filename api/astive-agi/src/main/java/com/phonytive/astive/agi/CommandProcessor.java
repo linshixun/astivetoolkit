@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2012 PhonyTive LLC
  * http://astive.phonytive.com
  *
@@ -19,12 +19,12 @@
  */
 package com.phonytive.astive.agi;
 
-import com.phonytive.astive.agi.annotation.*;
-import com.phonytive.astive.util.AppLocale;
 import java.lang.reflect.Field;
 import java.util.*;
 import org.apache.log4j.Logger;
-
+import com.phonytive.astive.agi.annotation.*;
+import com.phonytive.astive.util.AppLocale;
+import java.util.logging.Level;
 
 /**
  * This class is a helper. Can be use to extract meta information from Agi
@@ -33,65 +33,13 @@ import org.apache.log4j.Logger;
  * @since 1.0.0
  */
 public class CommandProcessor {
+
     /**
      * Usual logger.
      */
     private static final Logger LOG = Logger.getLogger(CommandProcessor.class);
 
-    /**
-     * Get all fields marked with annotation @Parameter in a class marked with
-     * annotation annotation @Command.
-     *
-     * @param o object to analyze.
-     * @return list of parameters
-     * @throws AgiException
-     */
-    private static ArrayList getParameters(Object o) throws AgiException {        
-        ArrayList parameters = new ArrayList();
-        HashMap hmParameters = new HashMap();
-
-        try {
-            Field[] fs = o.getClass().getDeclaredFields();
-
-            for (Field f : fs) {
-                f.setAccessible(true);
-
-                if (f.getAnnotation(Parameter.class) != null) {
-                    // Then this field is a parameter
-                    Parameter p = f.getAnnotation(Parameter.class);
-                    int order = p.position();
-                    Object c = f.get(o);
-
-                    // This avoid automatic cast to string
-                    if (c != null) {
-                        hmParameters.put(order, f);
-                    } else {
-                        // Ignore any other parameter, since it break the
-                        // secuense. Also write a Warning to alert the
-                        // developers about that issue.
-                        LOG.warn(AppLocale.getI18n(
-                                "ignoringSubsequentParameters"));
-
-                        break;
-                    }
-                }
-            }
-
-            Object[] keysArr = hmParameters.keySet().toArray();
-            Arrays.sort(keysArr);
-
-            for (Object i : keysArr) {
-                parameters.add(hmParameters.get(i));
-            }
-        } catch (SecurityException ex) {
-            throw new AgiException(ex.getMessage());
-        } catch (IllegalArgumentException ex) {
-            throw new AgiException(ex.getMessage());
-        } catch (IllegalAccessException ex) {
-            throw new AgiException(ex.getMessage());
-        }
-
-        return parameters;
+    private CommandProcessor() {
     }
 
     /**
@@ -108,7 +56,7 @@ public class CommandProcessor {
             throw new AgiException(AppLocale.getI18n("notACommandObject"));
         }
 
-        ArrayList<Field> parameters = getParameters(o);
+        List<Field> parameters = getParameters(o);
 
         StringBuilder cmd = new StringBuilder(command.command());
 
@@ -118,53 +66,51 @@ public class CommandProcessor {
 
         for (Field field : parameters) {
             Parameter p = field.getAnnotation(Parameter.class);
-            Object param = null;
+            Object param;
 
             try {
                 param = field.get(o);
             } catch (IllegalArgumentException ex) {
-                throw new AgiException();
+                throw new AgiException(ex);
             } catch (IllegalAccessException ex) {
-                throw new AgiException();
+                throw new AgiException(ex);
             }
 
             // Separate parameters
             cmd.append(" ");
 
             if (param instanceof String || param instanceof Character) {
-                if(param instanceof Character) {
+                if (param instanceof Character) {
                     Character c = (Character) param;
-                    if(!c.toString().trim().isEmpty()) {
-                        cmd.append("\"");                                
+
+                    if (!c.toString().trim().isEmpty()) {
+                        cmd.append("\"");
                         cmd.append(c);
                         cmd.append("\"");
                     }
                 } else {
-                    cmd.append("\"");                                
+                    cmd.append("\"");
                     cmd.append(param.toString().trim());
                     cmd.append("\"");
                 }
             } else if (param.getClass().isArray()) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation",
-                            new Object[] { ParamConverter.class }));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation",
+                            new Object[]{ParamConverter.class}));
                 } else if (!field.isAnnotationPresent(Separator.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation",
-                            new Object[] { Separator.class }));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation",
+                            new Object[]{Separator.class}));
                 }
 
                 ParamConverter pc = field.getAnnotation(ParamConverter.class);
                 Separator separator = field.getAnnotation(Separator.class);
                 StringConverter sc;
-
                 try {
                     sc = (StringConverter) pc.converter().newInstance();
 
                     String[] paramArr = (String[]) param;
-                    String paramStr = sc.fromArrayString(paramArr,
-                            separator.value());
+                    String paramStr = sc.fromArrayString(paramArr, separator.value());
+
                     cmd.append("\"");
                     cmd.append(paramStr);
                     cmd.append("\"");
@@ -175,12 +121,10 @@ public class CommandProcessor {
                 }
             } else if (param instanceof Boolean) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation"));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
                 } else if (!field.isAnnotationPresent(BooleanChoose.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation",
-                            new Object[] { Separator.class }));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation",
+                            new Object[]{Separator.class}));
                 }
 
                 // XXX: Move this to a converter.
@@ -198,10 +142,8 @@ public class CommandProcessor {
                 cmd.append("\"");
             } else if (param instanceof Date) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation"));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
                 }
-
                 // TODO: Move this to a converter.
                 Date date = (Date) param;
                 long seconds = date.getTime() / 1000;
@@ -210,10 +152,8 @@ public class CommandProcessor {
                 cmd.append("\"");
             } else if (param instanceof TimeZone) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
-                    throw new AgiException(AppLocale.getI18n(
-                            "cantFoundAnnotation"));
+                    throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
                 }
-
                 // TODO: Move this to a converter.
                 TimeZone tz = (TimeZone) param;
                 String id = tz.getID();
@@ -235,6 +175,51 @@ public class CommandProcessor {
         return cmd.toString().trim();
     }
 
-    private CommandProcessor() {
+    /**
+     * Get all fields marked with annotation @Parameter in a class marked with
+     * annotation annotation @Command.
+     *
+     * @param o object to analyze.
+     * @return list of parameters
+     * @throws AgiException
+     */
+    private static List getParameters(Object o) throws AgiException {
+        List parameters = new ArrayList();
+        Field[] fs = o.getClass().getDeclaredFields();
+        HashMap map = new HashMap();
+
+        for (Field f : fs) {
+            if (f.getAnnotation(Parameter.class) != null) {
+                map.put(f.getAnnotation(Parameter.class).position(), f);
+            }
+        }
+
+        Object[] keysArr = map.keySet().toArray();
+        Arrays.sort(keysArr);
+
+        for (Object i : keysArr) {
+            Field f = (Field) map.get(i);
+            f.setAccessible(true);
+            Object c;
+            try {
+                c = f.get(o);
+            } catch (IllegalArgumentException ex) {
+                throw new AgiException(ex);
+            } catch (IllegalAccessException ex) {
+                throw new AgiException(ex);
+            }
+
+            // This avoid automatic cast to string
+            if (c != null) {
+                parameters.add(map.get(i));
+            } else {
+                // Ignore any other parameter, since it break the
+                // secuense. Also send an Error message to alert the
+                // developers about that issue.
+                LOG.error(AppLocale.getI18n("ignoringSubsequentParameters"));
+                break;
+            }
+        }
+        return parameters;
     }
 }
