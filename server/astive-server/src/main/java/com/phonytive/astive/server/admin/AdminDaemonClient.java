@@ -19,13 +19,11 @@
  */
 package com.phonytive.astive.server.admin;
 
-import com.phonytive.astive.server.AbstractAstiveServer;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import org.apache.log4j.Logger;
 import com.phonytive.astive.util.AppLocale;
-import org.apache.log4j.xml.DOMConfigurator;
 
 /**
  *
