@@ -23,6 +23,7 @@ import com.phonytive.astive.agi.AgiException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.astivlet.AstivletRequest;
 import com.phonytive.astive.astivlet.AstivletResponse;
+import org.apache.log4j.Logger;
 
 /**
  * Yahoo Weather example.
@@ -30,7 +31,7 @@ import com.phonytive.astive.astivlet.AstivletResponse;
  * @since 1.0.0
  */
 public class App extends Astivlet {
-
+    private static final Logger LOG = Logger.getLogger(App.class);
     private int maxFail = 3;
     private String zip;
     private String enterZip = "enter-zip";
@@ -50,7 +51,7 @@ public class App extends Astivlet {
 
             while (true) {
                 // Wait three seconds in beetween digits
-                zip = response.getData(enterZip, 3000);
+                zip = response.getData(enterZip, 3000, 5);
                 // Wait ws response.
                 response.streamFile(pleaseWait);
 
@@ -83,10 +84,10 @@ public class App extends Astivlet {
                     continue;
                 }
 
-                // The only available option is '1'
-                char answer = response.controlStreamFile(newZip, "1");
+                // The only available option is '1'                
+                String answer = response.getData(newZip, 5000, 1);                                                       
 
-                if (answer == '1') {
+                if (answer.equals("1")) {
                     failCount = 0;
 
                     continue;
@@ -98,9 +99,9 @@ public class App extends Astivlet {
             // Ends the call
             response.hangup();
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            LOG.error(ex.getMessage());
         } catch (Exception ex) {
-            // TODO: Do something intersting here !
+            LOG.error(ex.getMessage());
         }
     }
 }
