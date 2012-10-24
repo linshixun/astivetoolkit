@@ -44,7 +44,7 @@ public class ControlStreamFileTest extends TestCase {
   public void testCommand() throws AgiException {
     String file = "tt-monkeys";
     String escapeDigits = "";
-    int offset = 0x0;
+    int offset = -1;
     char forwardDigit = '*';
     char rewindDigit = '#';
     char pauseDigit = '9';

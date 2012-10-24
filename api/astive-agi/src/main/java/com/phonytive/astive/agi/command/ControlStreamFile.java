@@ -87,7 +87,7 @@ public class ControlStreamFile implements Serializable {
   public ControlStreamFile(String file) {
     this.file = file;
     escapeDigits = "";
-    offset = 0x0;
+    offset = -1;
   }
 
   /**
@@ -100,17 +100,17 @@ public class ControlStreamFile implements Serializable {
   public ControlStreamFile(String file, String escapeDigits) {
     this.file = file;
     this.escapeDigits = escapeDigits;
-    offset = 0x0;
+    offset = -1;
   }
 
   /**
    * Create a new ControlStreamFile object that can interrupt the audio by
    * press a digit present in escapeDigits. The offset(in milliseconds)
-   * indicate a silence time after audio finished.
+   * is provided then the audio will seek to sample offset before play starts.
    *
    * @param file audio to play.
    * @param escapeDigits digits to interrupt the audio.
-   * @param offset silence time in milliseconds after audio finished.
+   * @param offset is provided then the audio will seek to sample offset before play starts.
    */
   public ControlStreamFile(String file, String escapeDigits, Integer offset) {
     this.file = file;
@@ -126,7 +126,7 @@ public class ControlStreamFile implements Serializable {
    *
    * @param file audio to play.
    * @param escapeDigits digits to interrupt the audio.
-   * @param offset silence time in milliseconds after audio finished.
+   * @param offset is provided then the audio will seek to sample offset before play starts.
    * @param forwardDigit move audio forward.
    * @param rewindDigit repeat the audio.
    * @param pauseDigit stop the steam.
