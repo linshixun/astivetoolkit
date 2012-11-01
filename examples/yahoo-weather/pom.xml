@@ -6,8 +6,7 @@
         <groupId>com.phonytive.astive</groupId>
         <artifactId>examples</artifactId>
         <version>1.0.0-M3</version>
-    </parent>
-    <groupId>com.phonytive.astive</groupId>
+    </parent>    
     <artifactId>yahooweather</artifactId>    
     <name>Astive :: Examples :: Yahoo Weather</name>
     <packaging>jar</packaging>
@@ -52,9 +51,12 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.7.1</version>
                 <configuration>
+                    <finalName>uber-${artifactId}-${version}</finalName>
                     <artifactSet>
                         <excludes>
-                            <exclude>com.phonytive.astive:astive-client:*</exclude>
+                            <exclude>com.phonytive.astive:astive-client</exclude>
+                            <exclude>com.phonytive.astive:astive-agi</exclude>
+                            <exclude>com.phonytive.astive:astive-commons</exclude>
                         </excludes>
                     </artifactSet>
                 </configuration>
