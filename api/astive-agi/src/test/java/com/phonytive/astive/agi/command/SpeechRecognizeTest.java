@@ -57,9 +57,6 @@ public class SpeechRecognizeTest extends TestCase {
 
     SpeechRecognize command = new SpeechRecognize(prompt, timeout);
 
-    System.out.println(b.toString());
-    System.out.println(CommandProcessor.buildCommand(command));
-
     assertEquals(b.toString(), CommandProcessor.buildCommand(command));
 
     // Testing second constructor
