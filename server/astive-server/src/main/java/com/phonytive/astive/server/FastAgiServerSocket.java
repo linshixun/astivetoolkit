@@ -34,7 +34,7 @@ import com.phonytive.astive.util.AppLocale;
  * @since 1.0.0
  * @see Service
  */
-public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
+    public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
   private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
   private InetAddress bindAddr;
   private int backlog;

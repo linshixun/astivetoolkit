@@ -30,7 +30,7 @@ import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
-import com.phonytive.astive.server.utils.URLValidator;
+import com.phonytive.astive.util.URLValidator;
 import com.phonytive.astive.util.AppLocale;
 import noNamespace.AppDocument;
 import noNamespace.AppType;

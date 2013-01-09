@@ -19,7 +19,7 @@
  */
 package com.phonytive.astive.server.test;
 
-import com.phonytive.astive.server.utils.URLValidator;
+import com.phonytive.astive.util.URLValidator;
 import junit.framework.TestCase;
 
 /**

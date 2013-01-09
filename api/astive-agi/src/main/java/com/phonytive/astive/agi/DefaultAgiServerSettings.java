@@ -27,10 +27,10 @@ package com.phonytive.astive.agi;
  */
 public interface DefaultAgiServerSettings {
   /**ADOC_COMME */
-  public static int DEFAULT_AGI_SERVER_PORT = 0x11dd;
+  public static int DEFAULT_AGI_SERVER_PORT = 4573;
 
   /**ADOC_COMME */
-  public static int DEFAULT_AGI_SERVER_BACKLOG = 0x32;
+  public static int DEFAULT_AGI_SERVER_BACKLOG = 50;
 
   /**ADOC_COMME */
   public static String DEFAULT_AGI_SERVER_BIND_ADDR = "127.0.0.1";

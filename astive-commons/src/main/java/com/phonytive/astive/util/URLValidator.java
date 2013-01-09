@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.phonytive.astive.server.utils;
+package com.phonytive.astive.util;
 
 import java.util.regex.Pattern;
 

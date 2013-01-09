@@ -30,7 +30,7 @@ import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.*;
-import com.phonytive.astive.server.utils.CopyFile;
+import com.phonytive.astive.util.CopyFile;
 import com.phonytive.astive.util.AppLocale;
 
 /**

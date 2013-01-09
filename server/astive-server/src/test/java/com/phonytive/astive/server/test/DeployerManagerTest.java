@@ -17,20 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.phonytive.astive.server.test;
 
-import java.io.File;
-import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
-import static org.junit.Assert.*;
 import com.phonytive.astive.AstiveException;
 import com.phonytive.astive.astivlet.Astivlet;
 import com.phonytive.astive.server.AstObj;
 import com.phonytive.astive.server.appmanager.DeployerManager;
+import java.io.File;
 import junit.framework.TestCase;
+import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 
 /**
  *
