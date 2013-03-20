@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>astive</artifactId>
-        <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-M3</version>
-    </parent>    
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.astivetoolkit</groupId>
+        <artifactId>astivetoolkit</artifactId>
+        <version>1.0.0-M4</version>
+    </parent> 
     <artifactId>api</artifactId>
+    <name>Astive Toolkit :: API</name>
     <packaging>pom</packaging>
-    <name>Astive :: APIs</name>
     <modules>
-	<module>astive-agi</module>
-	<module>astive-menu</module>
-	<module>astive-ami</module>
+	<module>api-agi</module>
+	<module>api-menu</module>
+	<module>api-ami</module>
     </modules>
 </project>

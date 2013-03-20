@@ -21,8 +21,8 @@ then
     exit
 fi
 
-mvn archetype:create -DarchetypeGroupId=com.phonytive.astive \
-                    -DarchetypeArtifactId=astive-archetype \
+mvn archetype:create -DarchetypeGroupId=org.astivetoolkit \
+                    -DarchetypeArtifactId=archetype \
                     -DarchetypeVersion=${project.version} \
                     -DgroupId=$1 \
                     -DartifactId=$2

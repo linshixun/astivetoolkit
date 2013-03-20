@@ -3,23 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.phonytive.astive</groupId>
+        <groupId>org.astivetoolkit</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-M3</version>
+        <version>1.0.0-M4</version>
     </parent>
-    <groupId>com.phonytive.astive</groupId>
-    <artifactId>voicecomposer</artifactId>  
-    <name>Astive :: Examples :: VoiceComposer</name> 
+    <artifactId>voice-composer</artifactId>
+    <name>Examples :: Voice Composer</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
+            <artifactId>server-client</artifactId>
             <version>[1.0.0-M1,)</version>
         </dependency>
         <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-menu</artifactId>
-            <version>1.0.0-M3</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>server-menu</artifactId>
+            <version>1.0.0-M4</version>
             <type>jar</type>
         </dependency>
     </dependencies>

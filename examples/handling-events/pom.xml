@@ -2,32 +2,32 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <groupId>org.astivetoolkit</groupId>        
         <artifactId>examples</artifactId>
-        <groupId>com.phonytive.astive</groupId>
-        <version>1.0.0-M3</version>
+        <version>1.0.0-M4</version>
     </parent>    
-    <artifactId>handlingevents</artifactId>    
-    <name>Astive :: Examples :: Handling Events</name>
+    <artifactId>handling-events</artifactId>    
+    <name>Examples :: Handling Events</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
+            <artifactId>server-client</artifactId>
             <version>[1.0.0-M2,)</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-agi</artifactId>
+            <artifactId>api-agi</artifactId>
             <version>${project.version}</version>            
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-menu</artifactId>
+            <artifactId>api-menu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-server</artifactId>
+            <artifactId>server-core</artifactId>
             <version>[1.0.0-M2,)</version>
             <type>jar</type>
         </dependency>

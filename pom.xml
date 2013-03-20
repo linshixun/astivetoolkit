@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.phonytive.astive</groupId>
-    <artifactId>astive</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0.0-M3</version>
+    <groupId>org.astivetoolkit</groupId>
+    <artifactId>astivetoolkit</artifactId>
+    <version>1.0.0-M4</version>
     <name>Astive Toolkit</name>
-    <url>http://astive.phonytive.com</url>
+    <packaging>pom</packaging>
+    <url>http://astivetoolkit.org</url>
     <pluginRepositories>
         <pluginRepository>
             <id>mc-release</id>
@@ -104,10 +104,10 @@
         telephony applications.
     </description>
     <modules>
-        <module>astive-commons</module>
+        <module>commons</module>
         <module>api</module>
         <module>server</module>
-        <module>astive-archetype</module>
+        <module>archetype</module>
     </modules>    
     <scm>
         <connection>scm:git://github.com/psanders/astive.git</connection>

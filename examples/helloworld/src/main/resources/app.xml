@@ -4,7 +4,7 @@
     <description>Ready to hear the monkeys?</description>
     <astivlet>
         <astivletId>HelloWorld</astivletId>
-        <class>com.phonytive.astive.examples.helloworld.App</class>
+        <class>org.astivetoolkit.examples.helloworld.App</class>
     </astivlet>
     <astivletMapping>
         <astivletId>HelloWorld</astivletId>
