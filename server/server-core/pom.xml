@@ -6,8 +6,7 @@
         <groupId>org.astivetoolkit</groupId>        
         <artifactId>server</artifactId>
         <version>1.0.0-M4</version>
-    </parent>
-    <groupId>org.astivetoolkit.examples</groupId>
+    </parent>    
     <artifactId>server-core</artifactId>
     <name>Server :: Core</name>
     <packaging>jar</packaging>
