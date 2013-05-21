@@ -16,7 +16,7 @@ accompanying it.
 
 GETTING Astive
 
-Please look into http://astive.phonytive.com/documentation/tutorials
+Please look into http://astivetoolkit.org/documentation/tutorials
 for more info on how to get Astive up and running.
 
 SYSTEM REQUIREMENTS

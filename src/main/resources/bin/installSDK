@@ -1,6 +1,6 @@
 mvn install:install-file \
     -Dfile=astive-archetype-${project.version}.jar \
-    -DgroupId=com.phonytive.astive \
+    -DgroupId=org.astivetoolkit \
     -DartifactId=astive-archetype \
     -Dversion=${project.version} \
     -Dpackaging=jar
