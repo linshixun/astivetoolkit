@@ -34,7 +34,7 @@
                     <aggregate>true</aggregate>
                     <properties>
                         <owner>PhonyTive LLC</owner>
-                        <year>2012</year>
+                        <year>2013</year>
                         <email>psanders@kaffeineminds.com</email>
                     </properties>
                     <includes>
@@ -60,15 +60,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.8</version>
+                <version>2.10</version>
             </plugin>            
             <plugin>
-                <version>2.3.2</version>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -83,26 +83,20 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                  <!--There is a bug with the fileMode and directoryMode for
                  the zip format in the previous versions-->
-                <version>2.2-beta-3</version>
+                <version>2.4</version>
                 <configuration>
                     <descriptors>
                         <descriptor>src/main/resources/sdk-assembly.xml</descriptor>
                         <descriptor>src/main/resources/server-assembly.xml</descriptor>
                     </descriptors>
-                    <finalName>astive</finalName>
+                    <finalName>astivetoolkit</finalName>
                     <outputDirectory>dist</outputDirectory>
-                    <workDirectory>target/assembly/astive-${project.version}</workDirectory>                    
-                    <!--<tasks>
-                      <mkdir dir="apps"/>
-                    </tasks>-->
+                    <workDirectory>target/assembly/astive-${project.version}</workDirectory>
                 </configuration> 
             </plugin>            
         </plugins>
     </build>
-    <description>Astive is a toolkit and server for Java that provides an 
-        extensible architecture for developing, maintaining, and deploying
-        telephony applications.
-    </description>
+    <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
     <modules>
         <module>commons</module>
         <module>api</module>
@@ -110,9 +104,9 @@
         <module>archetype</module>
     </modules>    
     <scm>
-        <connection>scm:git://github.com/psanders/astive.git</connection>
-        <url>scm:git://github.com/psanders/astive.git</url>
-        <developerConnection>scm:git://github.com/psanders/astive.git</developerConnection>
+        <connection>scm:git://github.com/psanders/astivetoolkit.git</connection>
+        <url>scm:git://github.com/psanders/astivetoolkit.git</url>
+        <developerConnection>scm:git://github.com/psanders/astivetoolkit.git</developerConnection>
     </scm>
     <distributionManagement>
 		<!--site> <id>website</id> <url>scp://www.mycompany.com/www/docs/project/</url> 
