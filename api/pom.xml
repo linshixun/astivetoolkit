@@ -13,6 +13,5 @@
     <modules>
 	<module>api-agi</module>
 	<module>api-menu</module>
-	<module>api-ami</module>
     </modules>
 </project>
