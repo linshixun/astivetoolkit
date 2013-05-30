@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.phonytive.astive.menu.test;
+package org.astivetoolkit.menu.test;
 
 import java.util.TimeZone;
 import junit.framework.TestCase;
@@ -30,20 +30,11 @@ import org.astivetoolkit.menu.VoiceComposition;
  * @since 1.0.0
  */
 public class VoiceComposerTest extends TestCase {
-  /**
-   * Creates a new VoiceComposerTest object.
-   *
-   * @param testName DOCUMENT ME!
-   */
+
   public VoiceComposerTest(String testName) {
     super(testName);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws AgiException DOCUMENT ME!
-   */
   public void testVoiceComposer() throws AgiException {
     VoiceComposition vc =
       VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())

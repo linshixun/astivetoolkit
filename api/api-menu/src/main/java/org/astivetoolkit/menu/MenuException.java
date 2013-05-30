@@ -20,26 +20,27 @@ package org.astivetoolkit.menu;
 
 
 /**
- *
+ * 
+ * 
  * @since 1.0.0
  * @see Application
  */
 public class MenuException extends Exception {
- private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-/**
-   * Creates a new MenuException object.
-   *
-   * @param msg DOCUMENT ME!
-   */
-  public MenuException(final String msg) {
-    super(msg);
-  }
+    /**
+     * Creates a new MenuException object with a message.
+     *
+     * @param msg description of the exception.
+     */
+    public MenuException(final String msg) {
+        super(msg);
+    }
 
-  /**
-   * Creates a new MenuException object.
-   */
-  public MenuException() {
-	  super();
-  }
+    /**
+     * Creates a new MenuException object.
+     */
+    public MenuException() {
+        super();
+    }
 }

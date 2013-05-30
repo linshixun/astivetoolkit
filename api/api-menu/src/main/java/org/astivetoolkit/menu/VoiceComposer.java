@@ -47,13 +47,6 @@ public class VoiceComposer {
     commands = new ArrayList<Object>();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param silence DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer addSilence(int silence) {
     if (hasEscapeDigits()) {
       commands.add(new StreamFile("silence/" + silence, VoiceComposer.escapeDigits));
@@ -64,11 +57,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposition create() {
     VoiceComposition vc = new VoiceComposition(VoiceComposer.commands);
     VoiceComposer.reset();
@@ -100,13 +88,6 @@ public class VoiceComposer {
     VoiceComposer.offset = 0x0;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param text DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayAlpha(final String text) {
     if (hasEscapeDigits()) {
       commands.add(new SayAlpha(text, VoiceComposer.escapeDigits));
@@ -117,13 +98,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param date DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDate(final Date date) {
     if (hasEscapeDigits()) {
       commands.add(new SayDate(date, VoiceComposer.escapeDigits));
@@ -134,13 +108,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param datetime DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDatetime(final Date datetime) {
     if (hasEscapeDigits()) {
       commands.add(new SayDatetime(datetime, VoiceComposer.escapeDigits));
@@ -151,13 +118,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param digits DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDigits(final String digits) {
     if (hasEscapeDigits()) {
       commands.add(new SayDigits(digits, VoiceComposer.escapeDigits));
@@ -168,13 +128,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param number DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayNumber(int number) {
     if (hasEscapeDigits()) {
       commands.add(new SayNumber(number, VoiceComposer.escapeDigits));
@@ -185,13 +138,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param text DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayPhonetic(String text) {
     if (hasEscapeDigits()) {
       commands.add(new SayPhonetic(text, VoiceComposer.escapeDigits));
@@ -202,13 +148,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param time DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayTime(Date time) {
     if (hasEscapeDigits()) {
       commands.add(new SayTime(time, VoiceComposer.escapeDigits));
@@ -219,13 +158,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param file DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer streamFile(String file) {
     if (hasEscapeDigits()) {
       commands.add(new StreamFile(file, VoiceComposer.escapeDigits));
@@ -236,52 +168,24 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param escapeDigits DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withEscapeDigits(String escapeDigits) {
     VoiceComposer.escapeDigits = escapeDigits;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param format DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withFormat(String format) {
     VoiceComposer.format = format;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param offset DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withOffset(int offset) {
     VoiceComposer.offset = offset;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param timeZone DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withTimeZone(TimeZone timeZone) {
     VoiceComposer.timeZone = timeZone;
 

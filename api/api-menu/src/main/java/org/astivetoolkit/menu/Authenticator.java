@@ -25,7 +25,7 @@ package org.astivetoolkit.menu;
  */
 public abstract class Authenticator {
   private boolean authenticated = false;
-  private int maxAuth = 0x3;
+  private int maxAuth = 3;
 
   /**
    * Creates a new Authenticator object.
@@ -33,42 +33,30 @@ public abstract class Authenticator {
   public Authenticator() {
   }
 
-  /**
-   * @return the maxAuth
-   */
   public int getMaxAuth() {
     return maxAuth;
   }
-
-  /**
-   * @return the authenticated
-   */
+  
   public boolean isAuthenticated() {
     return authenticated;
   }
 
-  /**
-   * @param authenticated the authenticated to set
-   */
   public void setAuthenticated(boolean authenticated) {
     this.authenticated = authenticated;
   }
 
-  /**
-   * @param maxAuth the maxAuth to set
-   */
   public void setMaxAuth(int maxAuth) {
     this.maxAuth = maxAuth;
   }
 
   /**
-   * <p>This method must be implemented in the concrete class. If
-   * athentication meet your criteria you must set authenticated as true.</p>
+   * Use by final implementation to set the variable <code>authenticated</code> 
+   * to true.
    */
   public abstract void signIn();
 
   /**
-   * <p>Set's the variable authenticated as false.</p>
+   * Set's the variable authenticated to false.
    */
   public void signOut() {
     setAuthenticated(false);

@@ -25,24 +25,10 @@ package org.astivetoolkit.menu.event;
  * @see AuthenticationEvent
  */
 public interface AuthenticationListener {
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
+    
   abstract void authenticationFail(AuthenticationEvent evt);
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
   abstract void authenticationSuccess(AuthenticationEvent evt);
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param evt DOCUMENT ME!
-   */
+  
   abstract void tryingToAuthenticate(AuthenticationEvent evt);
 }

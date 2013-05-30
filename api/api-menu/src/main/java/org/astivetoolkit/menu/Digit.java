@@ -18,13 +18,13 @@
  */
 package org.astivetoolkit.menu;
 
-
 /**
- * Code/decode DTMF code from/to Asterisk.
+ * Code or decode DTMF tone from or to the gateway.
  *
  * @since 1.0.0
  */
-public enum Digit {ONE_KEY("1"),
+public enum Digit {
+  ONE_KEY("1"),
   TWO_KEY("2"),
   THREE_KEY("3"),
   FOUR_KEY("4"),
@@ -41,34 +41,30 @@ public enum Digit {ONE_KEY("1"),
   ASTERISK_KEY("*"),
   NUMBER_KEY("#");
 
-  /**
-   * Int value of this type.
-   */
   private String digit;
 
-  /**
-   * Create a new Digit object with status code as parameter. This
-   * class is an enum, therefore can't be instantiated directly.
-   */
   private Digit(String digit) {
     this.digit = digit;
   }
 
   /**
-   * Get the int value of this type.
-   * @return numeric value for the enum element.
+   * Converts object <code>Digit</code> into its string representation.
+   * 
+   * @param digit the DTMF tone object.
+   * @return string formated value for the DTMF tone.
    */
   static public String getDigit(Digit digit) {
     return digit.digit;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param digit DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns an object <code>Digit</code>(DTMF tone) from a string.
+   * 
+   * @param digit the string transform.
+   * @return the digit object or null if number is an invalid DTMF
    */
+  // WARNING: This method should throw an exception instead </code>null</code> 
+  // if DTMF the string is invalid.
   static public Digit getDigit(String digit) {
     for (Digit d : Digit.values()) {
       if (d.digit.equals(digit)) {
@@ -78,23 +74,14 @@ public enum Digit {ONE_KEY("1"),
 
     return null;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @param digit DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
+   * Returns an object <code>Digit</code>(DTMF tone) from a char.
+   * 
+   * @param digit the char to convert
+   * @return the digit object or null if number is an invalid DTMF
+   */    
   static public Digit getDigit(char digit) {
-    String dgt = "" + digit;
-
-    for (Digit d : Digit.values()) {
-      if (d.digit.equals(dgt)) {
-        return d;
-      }
-    }
-
-    return null;
+    return getDigit("" + digit);
   }
 }

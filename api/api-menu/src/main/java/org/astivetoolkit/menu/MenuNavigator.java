@@ -58,8 +58,8 @@ public class MenuNavigator {
   /**
    * Creates a new MenuNavigator object.
    *
-   * @param agiResponse DOCUMENT ME!
-   * @param autoAnswer DOCUMENT ME!
+   * @param agiResponse
+   * @param autoAnswer
    */
   public MenuNavigator(AgiResponse agiResponse, boolean autoAnswer) {
     this.agiResponse = agiResponse;
@@ -118,11 +118,6 @@ public class MenuNavigator {
     return result;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   private Menu getCurrentMenu() {
     return currentMenu;
   }
@@ -239,7 +234,7 @@ public class MenuNavigator {
   }
 
   /**
-   * <p>Start the menu execution.</p>
+   * Start the menu execution.
    *
    * @param menu and object containing all menu and menu items.
    */
@@ -447,12 +442,7 @@ public class MenuNavigator {
       return;
     }
   }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param autoAnswer DOCUMENT ME!
-   */
+  
   public void setAutoAnswer(boolean autoAnswer) {
     this.autoAnswer = autoAnswer;
   }

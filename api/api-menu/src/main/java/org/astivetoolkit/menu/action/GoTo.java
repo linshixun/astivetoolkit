@@ -52,9 +52,7 @@ public class GoTo implements Action {
     try {
       MenuNavigator e = new MenuNavigator(agiResponse);
       e.run(menu);
-    } catch (AgiException ex) {
-      // Manage this exception
-    } catch (MenuException ex) {
+    } catch (AgiException | MenuException ex) {
       // Manage this exception
     }
   }

@@ -18,16 +18,15 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
  *
  * @since 1.0.0
  * @see MaxFailureEvent
  */
 public interface MaxFailureListener /*extends DigitsListener*/ {
-  /**
-   *
-   * @param evt
-   */
-  abstract void maxFailurePerform(MaxFailureEvent evt);
+    /**
+     *
+     * @param evt
+     */
+     abstract void maxFailurePerform(MaxFailureEvent evt);
 }

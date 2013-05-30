@@ -28,29 +28,14 @@ import java.util.List;
 public class VoiceComposition {
   private List<Object> commands;
 
-  /**
-   * Creates a new VoiceComposition object.
-   *
-   * @param commands DOCUMENT ME!
-   */
   public VoiceComposition(List<Object> commands) {
     this.commands = commands;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public List<Object> getCommands() {
     return Collections.unmodifiableList(commands);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param commands DOCUMENT ME!
-   */
   public void setCommands(List<Object> commands) {
     this.commands = commands;
   }

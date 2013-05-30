@@ -54,8 +54,7 @@
                 </dependencySets>
             </binaries>
             <excludes>
-                <exclude>com.phonytive.astive:astive-archetype</exclude>
-                <exclude>com.phonytive.astive:astive-ami</exclude>
+                <exclude>org.astivetoolkit:archetype</exclude>
             </excludes>
         </moduleSet>
     </moduleSets>

@@ -28,31 +28,15 @@ package org.astivetoolkit.menu.event;
 public class DigitsEvent extends Event {
   private String digits;
 
-  /**
-   * Creates a new DigitsEvent object.
-   *
-   * @param source DOCUMENT ME!
-   * @param digits DOCUMENT ME!
-   */
   public DigitsEvent(Object source, String digits) {
     super(source);
     this.digits = digits;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getDigits() {
     return digits;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param digits DOCUMENT ME!
-   */
   public void setDigits(String digits) {
     this.digits = digits;
   }

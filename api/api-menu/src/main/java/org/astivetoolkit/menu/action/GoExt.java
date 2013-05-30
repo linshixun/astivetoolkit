@@ -43,8 +43,8 @@ public class GoExt implements Action {
     this.priority = priority;
   }
 
-  /**
-   * DOCUMENT ME!
+  /** 
+   * {@inheritDoc}
    */
   @Override
   public void doAction() {

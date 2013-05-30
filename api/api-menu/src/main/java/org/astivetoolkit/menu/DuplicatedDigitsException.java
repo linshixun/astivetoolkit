@@ -21,21 +21,20 @@ package org.astivetoolkit.menu;
 import org.astivetoolkit.util.AppLocale;
 
 /**
+ * This exception is trigger when user attempts to insert more than one menu or
+ * menu item into the same menu level using the same </code>Digit</code>.
  * 
  * @since 1.0.0
  */
 public class DuplicatedDigitsException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+    private static final String MSG = AppLocale
+                    .getI18n("exeption.DuplicatedKeyInMenuException");
 
-	private static final long serialVersionUID = 1L;
-	private static final String MSG = AppLocale
-			.getI18n("exeption.DuplicatedKeyInMenuException");
-
-	/**
-	 * <p>
-	 * Creates a new instance of DuplicatedDigitsException
-	 * </p>
-	 */
-	public DuplicatedDigitsException() {
-		super(DuplicatedDigitsException.MSG);
-	}
+    /**
+     * Creates a new instance of DuplicatedDigitsException.
+     */
+    public DuplicatedDigitsException() {
+        super(DuplicatedDigitsException.MSG);
+    }
 }
