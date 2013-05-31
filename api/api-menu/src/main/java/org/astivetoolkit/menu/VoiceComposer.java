@@ -1,21 +1,20 @@
-/*
- * Copyright (C) 2010-2012 PhonyTive LLC
- * http://astive.phonytive.com
+/* 
+ * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+ * http://astivetoolkit.org
  *
- * This file is part of Astive Toolkit
+ * This file is part of Astive Toolkit(ATK)
  *
- * Astive is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  *
- * Astive is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU General Public License
- * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.astivetoolkit.menu;
 
@@ -48,13 +47,6 @@ public class VoiceComposer {
     commands = new ArrayList<Object>();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param silence DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer addSilence(int silence) {
     if (hasEscapeDigits()) {
       commands.add(new StreamFile("silence/" + silence, VoiceComposer.escapeDigits));
@@ -65,11 +57,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposition create() {
     VoiceComposition vc = new VoiceComposition(VoiceComposer.commands);
     VoiceComposer.reset();
@@ -101,13 +88,6 @@ public class VoiceComposer {
     VoiceComposer.offset = 0x0;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param text DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayAlpha(final String text) {
     if (hasEscapeDigits()) {
       commands.add(new SayAlpha(text, VoiceComposer.escapeDigits));
@@ -118,13 +98,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param date DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDate(final Date date) {
     if (hasEscapeDigits()) {
       commands.add(new SayDate(date, VoiceComposer.escapeDigits));
@@ -135,13 +108,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param datetime DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDatetime(final Date datetime) {
     if (hasEscapeDigits()) {
       commands.add(new SayDatetime(datetime, VoiceComposer.escapeDigits));
@@ -152,13 +118,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param digits DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayDigits(final String digits) {
     if (hasEscapeDigits()) {
       commands.add(new SayDigits(digits, VoiceComposer.escapeDigits));
@@ -169,13 +128,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param number DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayNumber(int number) {
     if (hasEscapeDigits()) {
       commands.add(new SayNumber(number, VoiceComposer.escapeDigits));
@@ -186,13 +138,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param text DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayPhonetic(String text) {
     if (hasEscapeDigits()) {
       commands.add(new SayPhonetic(text, VoiceComposer.escapeDigits));
@@ -203,13 +148,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param time DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer sayTime(Date time) {
     if (hasEscapeDigits()) {
       commands.add(new SayTime(time, VoiceComposer.escapeDigits));
@@ -220,13 +158,6 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param file DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer streamFile(String file) {
     if (hasEscapeDigits()) {
       commands.add(new StreamFile(file, VoiceComposer.escapeDigits));
@@ -237,52 +168,24 @@ public class VoiceComposer {
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param escapeDigits DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withEscapeDigits(String escapeDigits) {
     VoiceComposer.escapeDigits = escapeDigits;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param format DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withFormat(String format) {
     VoiceComposer.format = format;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param offset DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withOffset(int offset) {
     VoiceComposer.offset = offset;
 
     return instance;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param timeZone DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static VoiceComposer withTimeZone(TimeZone timeZone) {
     VoiceComposer.timeZone = timeZone;
 

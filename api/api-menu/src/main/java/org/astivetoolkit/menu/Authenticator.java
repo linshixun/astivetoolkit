@@ -1,21 +1,20 @@
-/*
- * Copyright (C) 2010-2012 PhonyTive LLC
- * http://astive.phonytive.com
+/* 
+ * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+ * http://astivetoolkit.org
  *
- * This file is part of Astive Toolkit
+ * This file is part of Astive Toolkit(ATK)
  *
- * Astive is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  *
- * Astive is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU General Public License
- * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.astivetoolkit.menu;
 
@@ -26,7 +25,7 @@ package org.astivetoolkit.menu;
  */
 public abstract class Authenticator {
   private boolean authenticated = false;
-  private int maxAuth = 0x3;
+  private int maxAuth = 3;
 
   /**
    * Creates a new Authenticator object.
@@ -34,42 +33,30 @@ public abstract class Authenticator {
   public Authenticator() {
   }
 
-  /**
-   * @return the maxAuth
-   */
   public int getMaxAuth() {
     return maxAuth;
   }
-
-  /**
-   * @return the authenticated
-   */
+  
   public boolean isAuthenticated() {
     return authenticated;
   }
 
-  /**
-   * @param authenticated the authenticated to set
-   */
   public void setAuthenticated(boolean authenticated) {
     this.authenticated = authenticated;
   }
 
-  /**
-   * @param maxAuth the maxAuth to set
-   */
   public void setMaxAuth(int maxAuth) {
     this.maxAuth = maxAuth;
   }
 
   /**
-   * <p>This method must be implemented in the concrete class. If
-   * athentication meet your criteria you must set authenticated as true.</p>
+   * Use by final implementation to set the variable <code>authenticated</code> 
+   * to true.
    */
   public abstract void signIn();
 
   /**
-   * <p>Set's the variable authenticated as false.</p>
+   * Set's the variable authenticated to false.
    */
   public void signOut() {
     setAuthenticated(false);

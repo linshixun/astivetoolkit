@@ -7,27 +7,27 @@
             <param name="ConversionPattern" value="[%-5p] %m%n" />
         </layout>
     </appender>
-   <logger name="com.phonytive.astive.server">
+   <logger name="org.astivetoolkit.server">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.server.admin">
+   <logger name="org.astivetoolkit.server.admin">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi">
+   <logger name="org.astivetoolkit.api.agi">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi.command">
+   <logger name="org.astivetoolkit.api.agi.command">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
-   <logger name="com.phonytive.astive.api.agi.fastagi">
+   <logger name="org.astivetoolkit.api.agi.fastagi">
         <level value="trace"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />

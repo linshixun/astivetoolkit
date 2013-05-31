@@ -1,31 +1,30 @@
-/*
- * Copyright (C) 2010-2012 PhonyTive LLC
- * http://astive.phonytive.com
+/* 
+ * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+ * http://astivetoolkit.org
  *
- * This file is part of Astive Toolkit
+ * This file is part of Astive Toolkit(ATK)
  *
- * Astive is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  *
- * Astive is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU General Public License
- * along with Astive.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.astivetoolkit.menu;
 
-
 /**
- * Code/decode DTMF code from/to Asterisk.
+ * Code or decode DTMF tone from or to the gateway.
  *
  * @since 1.0.0
  */
-public enum Digit {ONE_KEY("1"),
+public enum Digit {
+  ONE_KEY("1"),
   TWO_KEY("2"),
   THREE_KEY("3"),
   FOUR_KEY("4"),
@@ -42,34 +41,30 @@ public enum Digit {ONE_KEY("1"),
   ASTERISK_KEY("*"),
   NUMBER_KEY("#");
 
-  /**
-   * Int value of this type.
-   */
   private String digit;
 
-  /**
-   * Create a new Digit object with status code as parameter. This
-   * class is an enum, therefore can't be instantiated directly.
-   */
   private Digit(String digit) {
     this.digit = digit;
   }
 
   /**
-   * Get the int value of this type.
-   * @return numeric value for the enum element.
+   * Converts object <code>Digit</code> into its string representation.
+   * 
+   * @param digit the DTMF tone object.
+   * @return string formated value for the DTMF tone.
    */
   static public String getDigit(Digit digit) {
     return digit.digit;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param digit DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns an object <code>Digit</code>(DTMF tone) from a string.
+   * 
+   * @param digit the string transform.
+   * @return the digit object or null if number is an invalid DTMF
    */
+  // WARNING: This method should throw an exception instead </code>null</code> 
+  // if DTMF the string is invalid.
   static public Digit getDigit(String digit) {
     for (Digit d : Digit.values()) {
       if (d.digit.equals(digit)) {
@@ -79,23 +74,14 @@ public enum Digit {ONE_KEY("1"),
 
     return null;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @param digit DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
+   * Returns an object <code>Digit</code>(DTMF tone) from a char.
+   * 
+   * @param digit the char to convert
+   * @return the digit object or null if number is an invalid DTMF
+   */    
   static public Digit getDigit(char digit) {
-    String dgt = "" + digit;
-
-    for (Digit d : Digit.values()) {
-      if (d.digit.equals(dgt)) {
-        return d;
-      }
-    }
-
-    return null;
+    return getDigit("" + digit);
   }
 }
