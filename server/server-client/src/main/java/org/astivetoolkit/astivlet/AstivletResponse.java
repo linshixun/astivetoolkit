@@ -23,8 +23,8 @@ import java.util.TimeZone;
 import org.astivetoolkit.agi.*;
 
 /**
- * Extends the {@link AgiResponse} interface to provide astivlets functionality
- * in sending a response.
+ * Extends the {@link AgiResponse} interface to provide astivlets, with
+ * the capability of response to client requests.
  *
  * @since 1.0.0
  * @see AstivletRequest
