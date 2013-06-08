@@ -35,7 +35,9 @@ import org.astivetoolkit.agi.CommandProcessor;
 import org.astivetoolkit.menu.action.Action;
 
 /**
- *
+ * Is the heart/engine of Menu API. It eliminate the necessity of loops commonly
+ * needed by AGI to create user iteration.
+ * 
  * @since 1.0.0
  */
 public class MenuNavigator {
@@ -47,23 +49,13 @@ public class MenuNavigator {
   private boolean autoAnswer;
 
   /**
-   * Creates a new instance of MenuNavigator
+   * Creates a new instance of MenuNavigator.
+   * 
+   * @param agiResponse allows user iteration with telephony system.
    */
   public MenuNavigator(AgiResponse agiResponse) {
-    this.agiResponse = agiResponse;
+    this.agiResponse = agiResponse;    
     autoAnswer = true;
-    answered = false;
-  }
-
-  /**
-   * Creates a new MenuNavigator object.
-   *
-   * @param agiResponse
-   * @param autoAnswer
-   */
-  public MenuNavigator(AgiResponse agiResponse, boolean autoAnswer) {
-    this.agiResponse = agiResponse;
-    this.autoAnswer = autoAnswer;
     answered = false;
   }
 
@@ -124,7 +116,7 @@ public class MenuNavigator {
 
   private String getData(String file, int milliSecondsWatting, int maxDigits,
                          AgiResponse agiResponse, MenuItem item, char c)
-                  throws MenuException, AgiException {
+                  throws AgiException {
     Menu menu;
     String result = new String();
 
@@ -238,15 +230,16 @@ public class MenuNavigator {
    *
    * @param menu and object containing all menu and menu items.
    */
-  public void run(Menu menu) throws MenuException, AgiException {
+  public void run(Menu menu) throws AgiException {
     String digits = null;
     setCurrentMenu(menu);
 
-    // For example if channel is closed by customer the player must be auto-halt.    
+    // If channel is closed by customer the player must be auto-halt.    
     if (agiResponse.getChannelStatus().getCode() == -1) {
       return;
     }
 
+    // WARNING: To be reviewed
     if ((answered == false) && (isAutoAnswer() == true)) {
       agiResponse.answer();
       answered = true;
@@ -356,7 +349,7 @@ public class MenuNavigator {
         LOG.debug("Enter digits is: " + digits);
       }
 
-      // WARNING: This event should be only at Menu level?
+      // WARNING: Should this event be only at Menu level?
       DigitsEvent evt = new DigitsEvent((Object) menu, digits);
       menu.fireDigitsEvent_digitsEnter(evt);
     }
@@ -441,10 +434,6 @@ public class MenuNavigator {
 
       return;
     }
-  }
-  
-  public void setAutoAnswer(boolean autoAnswer) {
-    this.autoAnswer = autoAnswer;
   }
 
   private void setCurrentMenu(Menu currentMenu) {
