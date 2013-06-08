@@ -21,7 +21,6 @@ package org.astivetoolkit.menu.action;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.AgiResponse;
 import org.astivetoolkit.menu.Menu;
-import org.astivetoolkit.menu.MenuException;
 import org.astivetoolkit.menu.MenuNavigator;
 
 /**
@@ -52,7 +51,7 @@ public class GoTo implements Action {
     try {
       MenuNavigator e = new MenuNavigator(agiResponse);
       e.run(menu);
-    } catch (AgiException | MenuException ex) {
+    } catch (AgiException ex) {
       // Manage this exception
     }
   }

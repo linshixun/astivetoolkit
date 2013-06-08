@@ -42,7 +42,7 @@ public class VoiceComposer {
   private static VoiceComposer instance = new VoiceComposer();
   private static int offset;
 
-  // hide the constructor
+  //hide the constructor
   private VoiceComposer() {
     commands = new ArrayList<Object>();
   }

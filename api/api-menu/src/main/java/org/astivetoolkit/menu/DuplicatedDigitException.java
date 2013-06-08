@@ -38,3 +38,4 @@ public class DuplicatedDigitException extends RuntimeException {
         super(DuplicatedDigitException.MSG);
     }
 }
+ 

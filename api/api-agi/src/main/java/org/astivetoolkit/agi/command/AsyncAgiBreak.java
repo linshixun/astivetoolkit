@@ -29,10 +29,5 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
  */
 @AgiCommand(command = "ASYNC AGI BREAK")
 public class AsyncAgiBreak implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 0xa8da0d406d934e4bL;
-
-
 }

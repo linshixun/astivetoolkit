@@ -44,10 +44,6 @@ public class MenuItem {
   private ArrayList<KeyListener> keyListenerList = new ArrayList<>();
   private Authenticator authenticator;
   private List<VoiceComposition> voiceCompositionList;
-
-  /**
-   * DOCUMENT ME!
-   */
   protected MenuItem parent;
   private String digits;
   private String file;

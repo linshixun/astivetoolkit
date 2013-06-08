@@ -18,6 +18,9 @@
  */
 package org.astivetoolkit.examples.voicecomposer;
 
+import static java.lang.System.out;
+import java.util.Date;
+import java.util.TimeZone;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.astivlet.AstivletRequest;
@@ -27,9 +30,6 @@ import org.astivetoolkit.menu.event.DigitsEvent;
 import org.astivetoolkit.menu.event.DigitsListener;
 import org.astivetoolkit.menu.event.KeyEvent;
 import org.astivetoolkit.menu.event.KeyListener;
-import static java.lang.System.out;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * VoiceComposer example.
@@ -81,8 +81,8 @@ public class App extends Astivlet {
         
         try {
             mn.run(m);
-        } catch (MenuException ex) {            
         } catch (AgiException ex) {
+            out.println(ex.getMessage());
         }
     }
 }

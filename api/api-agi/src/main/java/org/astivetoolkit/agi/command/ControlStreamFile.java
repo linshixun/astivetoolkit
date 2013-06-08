@@ -35,9 +35,6 @@ import org.astivetoolkit.agi.annotation.Parameter;
  */
 @AgiCommand(command = "CONTROL STREAM FILE")
 public class ControlStreamFile implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 0x2c457b4779424a41L;
 
   /**

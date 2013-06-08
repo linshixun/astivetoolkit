@@ -32,10 +32,6 @@ import org.astivetoolkit.util.AppLocale;
  * @see AstivletResponse
  */
 public class FastAgiResponse implements AgiResponse {
-  /**
-   * Handle communication with Asterisk, in the lowest level. Full info in
-   * {@link AgiCommandHandler}.
-   */
   private AgiCommandHandler cHandler;
 
   /**

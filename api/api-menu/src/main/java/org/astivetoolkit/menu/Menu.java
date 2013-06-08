@@ -63,9 +63,9 @@ public class Menu extends MenuItem {
   //private int timeout;
   private int timeoutCount;
 
-    public Menu() {
+  public Menu() {
     super();
-    }
+  }
 
   public Menu(final String digits, final String file) {
     super(digits, file);
@@ -111,7 +111,7 @@ public class Menu extends MenuItem {
   protected void checkDigits(String digits) {
     for (MenuItem m : getChilds()) {
       if (m.getDigits().equals(digits)) {
-        throw new DuplicatedDigitsException();
+        throw new DuplicatedDigitException();
       }
     }
   }

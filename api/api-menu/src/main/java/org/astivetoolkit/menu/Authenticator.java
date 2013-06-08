@@ -20,7 +20,8 @@ package org.astivetoolkit.menu;
 
 
 /**
- *
+ * Allowed or denied access to client to enter restricted menus.
+ * 
  * @since 1.0.0
  */
 public abstract class Authenticator {
@@ -33,18 +34,40 @@ public abstract class Authenticator {
   public Authenticator() {
   }
 
+  /**
+   * Use by (@link Menu) to obtain the maximum amount of authentication attempts 
+   * before call is close.
+   * 
+   * @return max amount of authentication attempts before call is hangup.
+   */
   public int getMaxAuth() {
     return maxAuth;
   }
   
+  /**
+   * Helps check whether client is authenticated or not.
+   * 
+   * @return true if authentication was successful false otherwise.
+   */
   public boolean isAuthenticated() {
     return authenticated;
   }
 
+  /**
+   * Force authentication to be true or false.
+   * 
+   * @param authenticated set to true to allow client to enter restricted menus, 
+   * or false to denied access.
+   */
   public void setAuthenticated(boolean authenticated) {
     this.authenticated = authenticated;
   }
 
+  /**
+   * Overwrites the default maximum attempts to authenticate.
+   * 
+   * @param maxAuth new maximum attempts to authenticate.
+   */
   public void setMaxAuth(int maxAuth) {
     this.maxAuth = maxAuth;
   }

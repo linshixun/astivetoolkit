@@ -26,8 +26,8 @@ import org.apache.log4j.Logger;
 import org.astivetoolkit.agi.annotation.RequestField;
 
 /**
- * Contain information about the channel the script is invoked on.
- * This is the first package sent by a <code>channel</code> in AGI protocol.
+ * This includes information about the channel the script is invoked on and
+ * parameters passed from the dialplan.
  *
  * @since 1.0.0
  */
@@ -36,153 +36,103 @@ public class AgiRequest {
   private static final Logger LOG = Logger.getLogger(AgiRequest.class);
   private static Map<String, String> parameters;
 
-  /**
-   * Collection of a pair key/value element with information about
-   * the <code>channel</code>.
-   */
+  // Collection of a pair key/value element with information about
+  // the <code>channel</code>.  
   private ArrayList<String> lines;
-
-  /**
-   * Whether this Agi is passed audio (EAGI - Enhanced AGI).
-   */
+  
+  // Whether this Agi is passed audio (EAGI - Enhanced AGI).   
   @RequestField("agi_enhanced")
   private Boolean enhanced;
-
-  /**
-   * Whether or not this lines was sent throw a network(fastagi).
-   */
+  
+  // Whether or not this lines was sent throw a network(fastagi).   
   @RequestField("agi_network")
   private Boolean network;
-
-  /**
-   * Channel type(e.g. ZAP, SIP, H323, IAX...).
-   */
+ 
+  // Channel type(e.g. ZAP, SIP, H323, IAX...).   
   @RequestField("agi_type")
   private ChannelType channelType;
-
-  /**
-   * Use to map Agi field with AgiRequest variables.
-   */
+  
+  // Use to map Agi field with AgiRequest variables.   
   private HashMap<String, String> fieldsMap;
-
-  /**
-   * ANI2 (Info digits) also called Originating line information or OLI.
-   * Possible codes are listed can be founded at:
-   *
-   * <br>http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
-   */
+  
+  // ANI2 (Info digits) also called Originating line information or OLI.
+  // Possible codes are listed can be founded at:   
+  // http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
   @RequestField("agi_callingani2")
   private Integer callingAni2;
-
-  /**
-   * Caller ID presentation for incoming calls (PRI channels).
-   * Class {@link PresentationType} can be use to decode this value.
-   */
+  
+  // Caller ID presentation for incoming calls (PRI channels).
+  // Class {@link PresentationType} can be use to decode this value.   
   @RequestField("agi_callingpres")
   private Integer callingPres;
-
-  /**
-   * Transit Network Selector (PRI channels).
-   * Note: Will be a great contribution if you send us a link or document
-   * with an in deep explanation about this parameter.
-   */
+  
+  // Transit Network Selector (PRI channels).
+  // Note: Will be a great contribution if you send us a link or document
+  // with an in deep explanation about this parameter.   
   @RequestField("agi_callingtns")
   private Integer callingTns;
-
-  /**
-   * Caller Type of Number (PRI channels).
-   * Class {@link TonType} can be use to decode this value.
-   */
+  
+  // Caller Type of Number (PRI channels).
+  // Class {@link TonType} can be use to decode this value.   
   @RequestField("agi_callington")
   private Integer callingTon;
-
-  /**
-   * Account code (if specified).
-   */
+  
+  // Account code (if specified).   
   @RequestField("agi_accountcode")
   private String accountCode;
-
-  /**
-   * Current call unique identifier
-   */
+  
+  // Current call unique identifier   
   @RequestField("agi_uniqueid")
   private String callId;
-
-  /**
-   * Caller Id Number only(e.g. "123").
-   */
+  
+  // Caller Id Number only(e.g. "123").   
   @RequestField("agi_callerid")
   private String callerId;
-
-  /**
-   * Caller Id Name only(e.g. "John Doe")
-   */
+  
+  // Caller Id Name only(e.g. "John Doe")   
   @RequestField("agi_calleridname")
   private String callerIdName;
-
-  /**
-   * Current channel name.
-   */
+  
+  // Current channel name.   
   @RequestField("agi_channel")
   private String channel;
-
-  /**
-   * Current context.
-   */
+  
+  // Current context.   
   @RequestField("agi_context")
   private String context;
-
-  /**
-   * Dialed Number Identifier.
-   */
+  
+  // Dialed Number Identifier.   
   @RequestField("agi_dnid")
   private String dnId;
-
-  /**
-   * Extension that was called (e.g. 300).
-   */
+  
+  // Extension that was called (e.g. 300).  
   @RequestField("agi_extension")
   private String extension;
-
-  /**
-   * Current language. Language for the current <code>channel</code>.
-   */
+  
+  // Current language. Language for the current <code>channel</code>.   
   @RequestField("agi_language")
   private String language;
 
-  /**
-   * Current priority in the dialplan.
-   */
+  // Current priority in the dialplan.   
   @RequestField("agi_priority")
   private String priority;
-
-  /**
-   * Redirected Dial Number ID Service.
-   */
+  
+  // Redirected Dial Number ID Service.   
   @RequestField("agi_rdnis")
   private String rdNis;
-
-  /**
-   * Name of the Agi script that is being called.
-   */
+  
+  // Name of the Agi script that is being called.  
   @RequestField("agi_request")
   private String requestURL;
-
-  /**
-   * Remote Agi script(fastagi script).
-   */
+  
+  // Remote Agi script(fastagi script).   
   @RequestField("agi_network_script")
   private String script;
 
-  /**
-   *
-   */
   @RequestField("agi_threadid")
   private String threadId;
-
-  /**
-   * Version of the AGI version(Asterisk Version).
-   */
+  
+  // Version of the AGI version(Asterisk Version).   
   @RequestField("agi_version")
   private String version; // TODO: Investigate, how to get asterisk version...
 
@@ -216,9 +166,7 @@ public class AgiRequest {
 
     try {
       fillFields();
-    } catch (IllegalArgumentException ex) {
-      LOG.warn(ex.getMessage());
-    } catch (IllegalAccessException ex) {
+    } catch (IllegalArgumentException | IllegalAccessException ex) {
       LOG.warn(ex.getMessage());
     }
 
@@ -246,10 +194,8 @@ public class AgiRequest {
       }
     }
   }
-
-  /**
-   * Set a variables by using reflection.
-   */
+  
+  // Set a variables by using reflection.
   private void fillFields() throws IllegalArgumentException, IllegalAccessException {
     for (String af : fieldsMap.keySet()) {
       for (Field f : AgiRequest.class.getDeclaredFields()) {
@@ -515,9 +461,9 @@ public class AgiRequest {
   }
 
   /**
-   * Return all elements key/value of this lines.
+   * Return and string with all elements key/value separated by a change of line.
    *
-   * @return all elements key/value of this lines.
+   * @return all elements key/value separated by a change of line.
    */
   @Override
   public String toString() {

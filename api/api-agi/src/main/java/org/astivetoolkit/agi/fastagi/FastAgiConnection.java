@@ -23,7 +23,7 @@ import java.net.Socket;
 import org.astivetoolkit.agi.Connection;
 
 /**
- * Create a communication channel from Asterisk to the Fastagi server.
+ * Create a communication channel from Asterisk to the Fastagi Server.
  *
  * @since 1.0.0
  * @see Connection
@@ -59,7 +59,7 @@ public class FastAgiConnection implements Connection {
   /**
    * Close the current connection.
    *
-   * @throws IOException if socket was closed already.
+   * @throws IOException if socket was already closed.
    */
   public void close() throws IOException {
     socket.close();
