@@ -31,8 +31,16 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- *
+ * Helps build voice compositions - which is a group of commands executed 
+ * in sequence. 
+ * 
+ * <p>The use of the functions {@link #withTimeZone(TimeZone)},
+ * {@link #withFormat(String)} and {@link #withEscapeDigits(String)} only affect
+ * subsequent commands.
+ * 
  * @since 1.0.0
+ * @see VoiceComposition
+ * @see MenuItem 
  */
 public class VoiceComposer {
   private static ArrayList<Object> commands;
@@ -40,13 +48,29 @@ public class VoiceComposer {
   private static String format;
   private static TimeZone timeZone;
   private static VoiceComposer instance = new VoiceComposer();
-  private static int offset;
 
-  //hide the constructor
   private VoiceComposer() {
     commands = new ArrayList<Object>();
   }
 
+  /**
+   * Creates a new {@link VoiceComposition}.
+   * 
+   * @return the voice composition with the sequence of commands.
+   */
+  public static VoiceComposition create() {
+    VoiceComposition vc = new VoiceComposition(VoiceComposer.commands);
+    VoiceComposer.reset();
+
+    return vc;
+  }  
+  
+  /**
+   * Appends a silence to the sequence.
+   * 
+   * @param silence time in milliseconds for silence.
+   * @return a reference to this object.
+   */
   public static VoiceComposer addSilence(int silence) {
     if (hasEscapeDigits()) {
       commands.add(new StreamFile("silence/" + silence, VoiceComposer.escapeDigits));
@@ -56,24 +80,188 @@ public class VoiceComposer {
 
     return instance;
   }
+  
+  /**
+   * Appends a command {@link SayAlpha} to the sequence.
+   * 
+   * @param text the text to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayAlpha(final String text) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayAlpha(text, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayAlpha(text));
+    }
 
-  public static VoiceComposition create() {
-    VoiceComposition vc = new VoiceComposition(VoiceComposer.commands);
-    VoiceComposer.reset();
-
-    return vc;
+    return instance;
   }
 
+  /**
+   * Appends a command {@link SayDate} to the sequence.
+   * 
+   * @param date the date to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayDate(final Date date) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayDate(date, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayDate(date));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link SayDatetime} to the sequence.
+   * 
+   * @param datetime the datetime to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayDatetime(final Date datetime) {
+      
+    SayDatetime command = new SayDatetime(datetime);
+      
+    if (hasEscapeDigits()) {
+        command.setEscapeDigits(VoiceComposer.escapeDigits);
+    } 
+    
+    if(hasFormat()){
+      command.setFormat(VoiceComposer.format);
+    }
+
+    if(hasTimeZone()){
+      command.setTimeZone(VoiceComposer.timeZone);
+    }    
+    
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link SayDigits} to the sequence.
+   * 
+   * @param digits the digits to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayDigits(final String digits) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayDigits(digits, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayDigits(digits));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link SayNumber} to the sequence.
+   * 
+   * @param number the number to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayNumber(int number) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayNumber(number, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayNumber(number));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link SayPhonetic} to the sequence.
+   * 
+   * @param text the text to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayPhonetic(String text) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayPhonetic(text, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayPhonetic(text));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link SayTime} to the sequence.
+   * 
+   * @param time the time to say.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer sayTime(Date time) {
+    if (hasEscapeDigits()) {
+      commands.add(new SayTime(time, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new SayTime(time));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Appends a command {@link StreamFile} to the sequence.
+   * 
+   * @param file the file extension must not be included in the filename.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer streamFile(String file) {
+    if (hasEscapeDigits()) {
+      commands.add(new StreamFile(file, VoiceComposer.escapeDigits));
+    } else {
+      commands.add(new StreamFile(file));
+    }
+
+    return instance;
+  }
+
+  /**
+   * Adds escape digits to the subsequent commands.
+   * 
+   * @param escapeDigits allow users to finish stream.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer withEscapeDigits(String escapeDigits) {
+    VoiceComposer.escapeDigits = escapeDigits;
+
+    return instance;
+  }
+
+  /**
+   * Adds format to the subsequent commands. Not all commands use this 
+   * parameter.
+   * 
+   * @param format the format
+   * @return a reference to this object.
+   */
+  public static VoiceComposer withFormat(String format) {
+    VoiceComposer.format = format;
+
+    return instance;
+  }
+
+  /**
+   * Adds time zone to the subsequent commands. Not all commands use this
+   * parameter.
+   * 
+   * @param timeZone the time zone.
+   * @return a reference to this object.
+   */
+  public static VoiceComposer withTimeZone(TimeZone timeZone) {
+    VoiceComposer.timeZone = timeZone;
+
+    return instance;
+  }
+  
   private static boolean hasEscapeDigits() {
     return (escapeDigits != null) && (escapeDigits.length() != 0x0);
   }
 
   private static boolean hasFormat() {
     return (VoiceComposer.format != null) ;
-  }
-
-  private static boolean hasOffset() {
-     return (VoiceComposer.offset == 0x0);
   }
 
   private static boolean hasTimeZone() {
@@ -85,110 +273,5 @@ public class VoiceComposer {
     VoiceComposer.commands = new ArrayList<Object>();
     VoiceComposer.format = "";
     VoiceComposer.timeZone = null;
-    VoiceComposer.offset = 0x0;
-  }
-
-  public static VoiceComposer sayAlpha(final String text) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayAlpha(text, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayAlpha(text));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayDate(final Date date) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayDate(date, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayDate(date));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayDatetime(final Date datetime) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayDatetime(datetime, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayDatetime(datetime));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayDigits(final String digits) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayDigits(digits, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayDigits(digits));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayNumber(int number) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayNumber(number, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayNumber(number));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayPhonetic(String text) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayPhonetic(text, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayPhonetic(text));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer sayTime(Date time) {
-    if (hasEscapeDigits()) {
-      commands.add(new SayTime(time, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new SayTime(time));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer streamFile(String file) {
-    if (hasEscapeDigits()) {
-      commands.add(new StreamFile(file, VoiceComposer.escapeDigits));
-    } else {
-      commands.add(new StreamFile(file));
-    }
-
-    return instance;
-  }
-
-  public static VoiceComposer withEscapeDigits(String escapeDigits) {
-    VoiceComposer.escapeDigits = escapeDigits;
-
-    return instance;
-  }
-
-  public static VoiceComposer withFormat(String format) {
-    VoiceComposer.format = format;
-
-    return instance;
-  }
-
-  public static VoiceComposer withOffset(int offset) {
-    VoiceComposer.offset = offset;
-
-    return instance;
-  }
-
-  public static VoiceComposer withTimeZone(TimeZone timeZone) {
-    VoiceComposer.timeZone = timeZone;
-
-    return instance;
-  }
+  }  
 }
