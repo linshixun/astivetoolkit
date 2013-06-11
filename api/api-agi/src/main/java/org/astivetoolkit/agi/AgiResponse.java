@@ -20,6 +20,7 @@ package org.astivetoolkit.agi;
 
 import java.util.Date;
 import java.util.TimeZone;
+import org.astivetoolkit.agi.command.SetMusic;
 
 /**
  * API with all commands supported by the AGI protocol, since Asterisk version
@@ -88,7 +89,7 @@ public interface AgiResponse {
    * @param file the file extension must not be included in the filename.
    * @param escapeDigits allow users to finish stream.
    * @param offset silence time(in milliseconds) before play stream.
-   * @return the key press by the user
+   * @return the key press by the user if any.
    * @throws AgiException
    */
   char controlStreamFile(String file, String escapeDigits, int offset)
@@ -305,7 +306,7 @@ public interface AgiResponse {
    * Receives one character from channels supporting it.
    *
    * @return the character if one is received.
-   * @throws AgiException if channel does not support this operation.
+   * @throws AgiException if channel doesn't support this operation.
    */
   char receiveChar() throws AgiException;  
 
@@ -315,7 +316,7 @@ public interface AgiResponse {
    * @param timeout maximum time to wait for input in milliseconds or 0 for 
    * infinite.
    * @return the character if one is received.
-   * @throws AgiException if channel does not support this operation.
+   * @throws AgiException if channel doesn't support this operation.
    */
   char receiveChar(int timeout) throws AgiException;  
  
@@ -324,7 +325,7 @@ public interface AgiResponse {
    * reception of text.
    *
    * @return the text receive by the channel.
-   * @throws AgiException if channel does not support this operation.
+   * @throws AgiException if channel doesn't support this operation.
    */
   String receiveText() throws AgiException;
 
@@ -335,14 +336,10 @@ public interface AgiResponse {
    * @param timeout maximum time to wait for input in milliseconds or 0 for 
    * infinite.
    * @return the text receive by the channel.
-   * @throws AgiException if channel does not support this operation.
+   * @throws AgiException if channel doesn't support this operation.
    */
   String receiveText(int timeout) throws AgiException;  
   
-  void musicOnHold(boolean on) throws AgiException;
-
-  void musicOnHold(boolean on, String musicClass) throws AgiException;
-
   /**
    * Record to a file until a given DTMF digit in the sequence is received.
    * 
@@ -414,12 +411,12 @@ public interface AgiResponse {
    * @param escapeDigits the string containing the DTMF digits that allow the
    * user to escape.
    * @return '0' if playback completes without a digit being pressed,
-   * or the DTMF numerical value of the digit if one was pressed or
-   * -1 on error/hangup.
+   * or the DTMF numerical value of the digit if one was pressed.
    * @throws AgiException 
    */
   char sayAlpha(String text, String escapeDigits) throws AgiException;
-
+  
+  
   /**
    * Says the given date.
    * 
@@ -436,42 +433,66 @@ public interface AgiResponse {
    * @param escapeDigits the string containing the DTMF digits that allow the
    * user to escape.
    * @return '0' if playback completes without a digit being pressed,
-   * or the DTMF numerical value of the digit if one was pressed or
-   * -1 on error/hangup.
+   * or the DTMF numerical value of the digit if one was pressed.
    * @throws AgiException 
    */
   char sayDate(Date date, String escapeDigits) throws AgiException;
 
   /**
+   * Says a given time as specified by the format given.
    * 
-   * @param datetime
+   * @param datetime the date and to to say.
    * @throws AgiException 
    */
   void sayDatetime(Date datetime) throws AgiException;
 
   /**
+   * Say a given time, returning early if any of the given DTMF digits are 
+   * received on the channel.
    * 
-   * @param datetime
-   * @param escapeDigits
-   * @return
-   * @throws AgiException 
+   * @param datetime the number of seconds elapsed since 00:00:00 on 
+   * January 1, 1970, Coordinated Universal Time (UTC).
+   * @param escapeDigits the string containing the DTMF digits that allow the
+   * user to escape.
+   * @return '0' if playback completes without a digit being pressed,
+   * or the DTMF numerical value of the digit if one was pressed.
+   * @throws AgiException
    */
   char sayDatetime(Date datetime, String escapeDigits)
             throws AgiException;
 
   /**
+   * Say a given time, returning early if any of the given DTMF digits are 
+   * received on the channel.
    * 
-   * @param datetime
-   * @param escapeDigits
-   * @param format
-   * @return
-   * @throws AgiException 
+   * @param datetime the number of seconds elapsed since 00:00:00 on 
+   * January 1, 1970, Coordinated Universal Time (UTC).
+   * @param escapeDigits the string containing the DTMF digits that allow the
+   * user to escape.
+   * @param format the format the time should be said in. See voicemail.conf 
+   * (defaults to ABdY 'digits/at' IMp).
+   * @return '0' if playback completes without a digit being pressed,
+   * or the DTMF numerical value of the digit if one was pressed.
+   * @throws AgiException
    */
   char sayDatetime(Date datetime, String escapeDigits, String format)
             throws AgiException;
 
-  /*
+  /**
+   * Say a given time, returning early if any of the given DTMF digits are 
+   * received on the channel.
    * 
+   * @param datetime the number of seconds elapsed since 00:00:00 on 
+   * January 1, 1970, Coordinated Universal Time (UTC).
+   * @param escapeDigits the string containing the DTMF digits that allow the
+   * user to escape.
+   * @param format the format the time should be said in. See voicemail.conf 
+   * (defaults to ABdY 'digits/at' IMp).
+   * @param timeZone acceptable values can be found in /usr/share/zoneinfo 
+   * Defaults to machine default.
+   * @return '0' if playback completes without a digit being pressed,
+   * or the DTMF numerical value of the digit if one was pressed.
+   * @throws AgiException
    */
   char sayDatetime(Date datetime, String escapeDigits, String format, TimeZone timeZone)
             throws AgiException;
@@ -479,7 +500,7 @@ public interface AgiResponse {
   /**
    * Say a given digit string.
    *
-   * @param text the text to say.
+   * @param digits the digits to say.
    */
   void sayDigits(String digits) throws AgiException;
 
@@ -487,28 +508,32 @@ public interface AgiResponse {
    * Say a given digit string returning early if any of the given DTMF
    * number are received on the channel.
    *
-   * @param text the text to say.
+   * @param digits the digits to say.
    * @param escapeDigits a String containing the DTMF digits that allow the
    * user to escape.
    * @return '0' if playback completes without a digit being pressed,
-   * or the DTMF numerical value of the digit if one was pressed or
-   * -1 on error/hangup.
+   * or the DTMF numerical value of the digit if one was pressed.
    * @throws AgiException
    */
   char sayDigits(String digits, String escapeDigits) throws AgiException;
 
   /**
+   * Says a given number.
    * 
-   * @param number
+   * @param number the number to say.
    * @throws AgiException 
    */
   void sayNumber(int number) throws AgiException;
 
   /**
+   * Say a given number, returning early if any of the given DTMF digits are 
+   * received on the channel.
    * 
-   * @param number
-   * @param escapeDigits
-   * @return
+   * @param number the number to say.
+   * @param escapeDigits a String containing the DTMF digits that allow the
+   * user to escape.
+   * @return '0' if playback completes without a digit being pressed,
+   * or the DTMF numerical value of the digit if one was pressed.
    * @throws AgiException 
    */
   char sayNumber(int number, String escapeDigits) throws AgiException;
@@ -517,6 +542,7 @@ public interface AgiResponse {
    * Says the given character string with phonetics.
    *
    * @param text the text to say.
+   * @throws AgiException 
    */
   void sayPhonetic(String text) throws AgiException;
 
@@ -526,72 +552,266 @@ public interface AgiResponse {
    *
    * @param text the text to say.
    * @param escapeDigits a String containing the DTMF digits that allow the
-   *                     user to escape.
-   * @return the DTMF digit pressed or 0x0 if none was pressed.
+   * user to escape.
+   * @return the DTMF digit pressed or '0' if none was pressed.
+   * @throws AgiException 
    */
   char sayPhonetic(String text, String escapeDigits) throws AgiException;
 
   /**
+   * Says a given time.
    * 
-   * @param time
+   * @param time the number of seconds elapsed since 00:00:00 on January 1, 1970. 
+   * Coordinated Universal Time (UTC).
    * @throws AgiException 
    */
   void sayTime(Date time) throws AgiException;
 
   /**
-   *    
-   * @param time
-   * @param escapeDigits
-   * @return
-   * @throws AgiException 
+   * Say a given time, returning early if any of the given DTMF digits are 
+   * received on the channel.
+   * 
+   * @param time the number of seconds elapsed since 00:00:00 on January 1, 1970. 
+   * Coordinated Universal Time (UTC).
+   * @param escapeDigits a String containing the DTMF digits that allow the
+   * user to escape.
+   * @return the DTMF digit pressed or '0' if none was pressed.
+   * @throws AgiException
    */
   char sayTime(Date time, String escapeDigits) throws AgiException;
   
+  /**
+   * Sends the given image on a channel. Most channels do not support the 
+   * transmission of images.
+   * 
+   * @param image the image to send.
+   * @throws AgiException 
+   */
   void sendImage(String image) throws AgiException;
 
+  /**
+   * Sends the given text on a channel. Most channels do not support the 
+   * transmission of text.
+   * 
+   * @param text the text to send.
+   * @throws AgiException 
+   */
   void sendText(String text) throws AgiException;
 
+  /**
+   * Cause the channel to automatically hangup at <code>time</code>
+   * seconds in the future.
+   * 
+   * @param time the seconds to hangup channel in the future.
+   * @throws AgiException 
+   */
   void setAutoHangup(int time) throws AgiException;
 
+  /**
+   * Changes the <code>callerid</code> of the current channel.
+   * 
+   * @param callerId the new caller id number.
+   * @throws AgiException 
+   */
   void setCallerId(String callerId) throws AgiException;
 
+  /**
+   * Sets the context for continuation upon exiting the application.
+   * 
+   * @param context the desired context.
+   * @throws AgiException 
+   */
   void setContext(String context) throws AgiException;
 
+  /**
+   * Changes the extension for continuation upon exiting the application.
+   * 
+   * @param extension the new extension.
+   * @throws AgiException 
+   */
   void setExtension(String extension) throws AgiException;
-
+ 
+  /**
+   * Enables/Disables the music on hold generator, using the default music on 
+   * hold class.
+   * 
+   * @param on true enables the music on hold.
+   * @throws AgiException 
+   */
+  void musicOnHold(boolean on) throws AgiException;
+    
+  /**
+   * Enables/Disables the music on hold generator for an specific music class.
+   * 
+   * @param on true enables the music on hold.
+   * @param musicClass the music class to enable/disable.
+   * @throws AgiException 
+   */
+  void musicOnHold(boolean on, String musicClass)throws AgiException;  
+  
+  /**
+   * Changes the priority for continuation upon exiting the application. 
+   * 
+   * @param priority the priority must be a valid priority or label.
+   * @throws AgiException 
+   */
   void setPriority(String priority) throws AgiException;
 
-  void setTddMode(Boolean on) throws AgiException;
-
+  /**
+   * Sets a variable to the current channel.
+   * 
+   * @param variable the variable to be set.
+   * @param value the value for the variable.
+   * @throws AgiException 
+   */
+  void setVar(String variable, String value) throws AgiException;
+  
+  /**
+   * Activates the specified grammar on the speech object.
+   * 
+   * @param name the grammar name.
+   * @throws AgiException 
+   */
   void speechActivateGrammar(String name) throws AgiException;
 
+  /**
+   * Creates a speech object that uses the default speech engine. The speech object is
+   * used by the other speech methods and must be created before they are called.
+   * 
+   * @throws AgiException 
+   */
   void speechCreate() throws AgiException;
 
+  /**
+   * Create a speech object to be used by the other Speech AGI commands.
+   * 
+   * @param engine the name of the speech engine.
+   * @throws AgiException 
+   */
   void speechCreate(String engine) throws AgiException;
 
+  /**
+   * Deactivates the specified grammar on the speech object.
+   * 
+   * @param name the grammar name.
+   * @throws AgiException 
+   */
   void speechDeactivateGrammar(String name) throws AgiException;
 
+  /**
+   * Destroys the current speech object.
+   * 
+   * @throws AgiException 
+   */
   void speechDestroy() throws AgiException;
 
+  /**
+   * Loads the specified grammar as the specified name.
+   * 
+   * @param name the name of the grammar.
+   * @param path the path to the grammar to load.
+   * @throws AgiException 
+   */
   void speechLoadGrammar(String name, String path) throws AgiException;
 
+  /**
+   * Plays back given prompt while listening for speech and dtmf.
+   * 
+   * @param prompt the name of the file to stream, must not include extension.
+   * @param timeout the timeout in milliseconds to wait for user input.<p>
+   * 0 means standard timeout value, -1 means "ludicrous time"
+   * (essentially never times out).
+   * @return the recognition result
+   * @throws AgiException 
+   */
   SpeechRecognitionResult speechRecognize(String prompt, int timeout)
                                    throws AgiException;
-
+  
+  /**
+   * Sets the speech engine setting indicated by name to the given value.
+   * 
+   * @param name the name of the setting to set.
+   * @param value the value to set.
+   * @throws AgiException 
+   */
   void speechSet(String name, String value) throws AgiException;
 
+  /**
+   * Unloads the specified grammar.
+   * 
+   * @param name the grammar.
+   * @throws AgiException 
+   */
   void speechUnloadGrammar(String name) throws AgiException;
 
+  /**
+   * Send the given file, allowing playback to be interrupted by the given 
+   * digits, if any.
+   * 
+   * @param file the name of the file to stream, must not include extension.
+   * @throws AgiException 
+   */
   void streamFile(String file) throws AgiException;
 
+  /**
+   * Send the given file, allowing playback to be interrupted by the given 
+   * digits, if any.
+   * 
+   * @param file the name of the file to stream, must not include extension.
+   * @param escapeDigits contains the digits that the user is expected to
+   * press.
+   * @return the DTMF digit pressed or '0' if none was pressed.
+   * @throws AgiException
+   */
   char streamFile(String file, String escapeDigits) throws AgiException;
 
+ /**  
+  * Send the given file, allowing playback to be interrupted by the given 
+  * digits, if any.
+  * 
+  * @param file the name of the file to stream, must not include extension.
+  * @param escapeDigits contains the digits that the user is expected to
+  * press.
+  * @param offset silence time(in milliseconds) before play stream.
+  * @return the DTMF digit pressed or '0' if none was pressed.
+  * @throws AgiException 
+  */
   char streamFile(String file, String escapeDigits, int offset)
            throws AgiException;
 
+  /**
+   * Enable/Disable TDD transmission/reception on a channel.
+   * 
+   * @param on true to enable TDD false otherwise.
+   * @throws AgiException 
+   */
+  void setTddMode(boolean on) throws AgiException;  
+  
+  /**
+   * Sends message to the console via verbose message system. 
+   * 
+   * @param message the message to send.
+   * @param level the verbose level (1-4).
+   * @throws AgiException 
+   */
   void verbose(String message, int level) throws AgiException;
 
-  char waitForDigit(int interDigitsTimeout) throws AgiException;
+  /**
+   * Waits up to <code>timeout</code> milliseconds for channel to receive a 
+   * DTMF digit.
+   * 
+   * @param timeout maximum will wait for digit.
+   * @return '0' if no digit is received in the timeout or the digit pressed.
+   * @throws AgiException 
+   */
+  char waitForDigit(int timout) throws AgiException;
   
-  AgiCommandReply sendAgiCommand(String cmd) throws AgiException;
+  /**
+   * Sends a command to asterisk and returns the corresponding reply.
+   * 
+   * @param cmd the command to send.
+   * @return the reply of the asterisk server containing the return value.
+   * @throws AgiException 
+   */
+  AgiCommandReply sendAgiCommand(String cmd) throws AgiException; 
 }
