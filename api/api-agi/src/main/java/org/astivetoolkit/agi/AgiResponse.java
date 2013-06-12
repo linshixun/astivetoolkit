@@ -20,7 +20,6 @@ package org.astivetoolkit.agi;
 
 import java.util.Date;
 import java.util.TimeZone;
-import org.astivetoolkit.agi.command.SetMusic;
 
 /**
  * API with all commands supported by the AGI protocol, since Asterisk version
