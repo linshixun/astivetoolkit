@@ -314,7 +314,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on) throws AgiException {
+  public void musicOnHold(boolean on) throws AgiException {
     SetMusic command = new SetMusic(on);
     cHandler.sendAgiCommand(command);
   }
@@ -323,7 +323,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on, String musicClass)
+  public void musicOnHold(boolean on, String musicClass)
                    throws AgiException {
     SetMusic command = new SetMusic(on, musicClass);
     cHandler.sendAgiCommand(command);
@@ -654,7 +654,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void setTddMode(Boolean on) throws AgiException {
+  public void setTddMode(boolean on) throws AgiException {
     TddMode command = new TddMode(on);
     cHandler.sendAgiCommand(command);
   }
@@ -804,5 +804,23 @@ public class FastAgiResponse implements AgiResponse {
     WaitForDigit command = new WaitForDigit(interDigitsTimeout);
 
     return cHandler.sendAgiCommand(command).getResultCodeAsChar();
+  }
+
+  /**
+   * {@inheritDoc}
+   */  
+  @Override
+  public void hangup(String channel) throws AgiException {
+    Hangup command = new Hangup(channel);
+    cHandler.sendAgiCommand(command);
+  }
+
+  /**
+   * {@inheritDoc}
+   */  
+  @Override
+  public void setVar(String variable, String value) throws AgiException {
+    SetVariable command = new SetVariable(variable, value);
+    cHandler.sendAgiCommand(command);
   }
 }
