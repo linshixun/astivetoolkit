@@ -20,7 +20,7 @@ package org.astivetoolkit.agi;
 
 
 /**
- * Enum that handle the status of a <code>channel</code>.
+ * Enumerator that handle the status of a <code>channel</code>.
  *
  * @since 1.0.0
  */
@@ -68,17 +68,17 @@ public enum ChannelStatus {
 
   /**
    * Create a new ChannelStatus object with status code as parameter. This
-   * class is an enum, therefore can't be instantiated directly.
+   * class is an enumerator, therefore can't be instantiated directly.
    */
   private ChannelStatus(int code) {
     this.code = code;
   }
 
   /**
-   * Return enum for channel status code.
+   * Return enumerator for channel status code.
    *
    * @param code channel status code
-   * @return ChannelStatus enum
+   * @return ChannelStatus enumerator
    */
   public static ChannelStatus get(int code) {
     for (ChannelStatus cs : ChannelStatus.values()) {
@@ -93,7 +93,7 @@ public enum ChannelStatus {
   /**
    * Get the int value of this type.
    *
-   * @return value for the enum element.
+   * @return value for the enumerator element.
    */
   public int getCode() {
     return code;
