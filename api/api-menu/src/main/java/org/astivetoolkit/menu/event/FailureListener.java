@@ -25,7 +25,7 @@ package org.astivetoolkit.menu.event;
  * @since 1.0.0
  * @see FailEvent
  */
-public interface FailListener {
+public interface FailureListener {
   /**
    * Callback triggered when the digits pressed are not part of the 
    * {@link Menu}.

@@ -360,7 +360,7 @@ public class MenuNavigator {
       // signo de número.            
       if (digits == null) {
         FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
-        menu.fireFailListener_failurePerform(evt);
+        menu.fireFailureListener_failurePerform(evt);
       } else if (digits.equals("(timeout)")) {
         // WARNNING:
         //menu.fireTimeoutListener_timeoutPerform(null);
@@ -415,8 +415,8 @@ public class MenuNavigator {
       return;
     } else {
       // Invalid option
-      if ((menu.getInvalidDigitFile() != null) && !menu.getInvalidDigitFile().isEmpty()) {
-        agiResponse.streamFile(menu.getInvalidDigitFile());
+      if ((menu.getInvalidDigitsFile() != null) && !menu.getInvalidDigitsFile().isEmpty()) {
+        agiResponse.streamFile(menu.getInvalidDigitsFile());
       }
 
       menu.incrementFailuresCount();
