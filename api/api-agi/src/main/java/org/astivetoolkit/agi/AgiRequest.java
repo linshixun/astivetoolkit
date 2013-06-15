@@ -103,7 +103,6 @@ public class AgiRequest {
         continue;
       }
 
-      // WARNING: Ensure it work for the parameter agi_request
       String key = line.split(":")[0].trim();
       String value = line.split(":")[1].trim();
 
@@ -117,6 +116,7 @@ public class AgiRequest {
     try {
       fillFields();
     } catch (IllegalArgumentException | IllegalAccessException ex) {
+        ex.printStackTrace();
       LOG.warn(ex.getMessage());
     }
 
@@ -131,7 +131,6 @@ public class AgiRequest {
       params = script.split("\\?")[1];
     }
  
-
     if (params != null) {
       if (params.split("&").length > 1) {
         String[] p = params.split("&");
@@ -145,6 +144,15 @@ public class AgiRequest {
     }
   }
 
+  /**
+   * Returns an array with all the parameters.
+   * 
+   * @return the array with all parameters that conform this request.
+   */
+  public ArrayList<String> getLines() {
+      return lines;
+  }
+  
   // Set a variables by using reflection.
   private void fillFields() throws IllegalArgumentException, IllegalAccessException {
     for (String af : fieldsMap.keySet()) {
@@ -180,7 +188,7 @@ public class AgiRequest {
             f.set(this, ChannelType.get(fieldsMap.get(af)));
 
             break;
-          } else if (f.getType().equals(Integer.class)) {
+          } else if (f.getType().equals(int.class)) {
             f.set(this, Integer.valueOf(fieldsMap.get(af)));
 
             break;
@@ -195,8 +203,8 @@ public class AgiRequest {
   }
 
   /**
-   * Returns a parameter by using a parameter name. Particularly use for
-   * new parameters that don't have a getter.
+   * Returns a parameter by parameter name. Useful for new parameters without 
+   * equivalent getter.
    * 
    * @param parameter parameter name.
    * @return the value of the parameter.
