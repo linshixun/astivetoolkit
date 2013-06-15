@@ -35,7 +35,7 @@ public abstract class Authenticator {
   }
 
   /**
-   * Use by (@link Menu) to obtain the maximum amount of authentication attempts 
+   * Use by {@link Menu} to obtain the maximum amount of authentication attempts 
    * before call is close.
    * 
    * @return max amount of authentication attempts before call is hangup.

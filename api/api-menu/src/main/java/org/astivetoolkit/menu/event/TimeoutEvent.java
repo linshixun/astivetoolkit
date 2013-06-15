@@ -20,37 +20,34 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * A TimeoutEvent is triggered when the maximum time(as define in {@link Menu}) 
+ * waiting for user iteration is reached.
+ * 
  * @since 1.0.0
  * @see TimeoutListener
  */
 public class TimeoutEvent extends DigitsEvent {
-  /**
-   * DOCUMENT ME!
-   */
-  protected int timeout;
+  private int timeout;
 
-  /** <p>Creates a new instance of TimeoutEvent</p> */
-  public TimeoutEvent(Object source, String digit, int timeout) {
+  /**
+   * Create a new TimeoutEvent object.
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param maxTimeout maximum time waiting for user iteration.
+   */
+  public TimeoutEvent(final Object source, final String digit, final int timeout) {
     super(source, digit);
     this.timeout = timeout;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
+   * Returns maximum time waiting for user iteration.
+   * 
+   * @return maximum time (as define in the {@link Menu}) waiting for user
+   * iteration.
+   */  
   public int getTimeout() {
     return timeout;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param timeout DOCUMENT ME!
-   */
-  public void setTimeout(int timeout) {
-    this.timeout = timeout;
   }
 }

@@ -18,46 +18,37 @@
  */
 package org.astivetoolkit.menu.event;
 
+import java.util.EventObject;
 import org.astivetoolkit.menu.Digit;
 
 /**
- *
+ * A KeyEvent is triggered for every key pressed by a <code>Subject</code>.
+ * 
  * @since 1.0.0
  * @see KeyListener
+ * @see DigitsEvent
  */
-public class KeyEvent extends Event {
-  /**
-   * DOCUMENT ME!
-   */
-  protected Digit key;
+public class KeyEvent extends EventObject {
+  private Digit key;
 
   /**
    * Creates a new KeyEvent object.
-   *
-   * @param source DOCUMENT ME!
-   * @param key DOCUMENT ME!
+   * 
+   * @param source the object that originated the event.
+   * @param key the key pressed by a <code>Subject</code>.
    */
-  public KeyEvent(Object source, Digit key) {
+  public KeyEvent(final Object source,final Digit key) {
     super(source);
     this.source = source;
     this.key = key;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the key pressed by the User's.
+   * 
+   * @return the key pressed by a <code>Subject</code>.
    */
   public Digit getKey() {
     return key;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param key DOCUMENT ME!
-   */
-  public void setKey(Digit key) {
-    this.key = key;
   }
 }

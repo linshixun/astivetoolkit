@@ -20,44 +20,36 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * A FailEvent is triggered when a <code>Subject</code> attempts to enter an
+ * option that is not part a menu.
+ * 
  * @since 1.0.0
  * @see FailListener
  * @see DigitsEvent
  */
 public class FailEvent extends DigitsEvent {
-  /**
-   * DOCUMENT ME!
-   */
-  protected int failCount;
-
+  private int failCount;
+  
   /**
    * Creates a new FailEvent object.
-   *
-   * @param source DOCUMENT ME!
-   * @param digit DOCUMENT ME!
-   * @param failCount DOCUMENT ME!
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param failCount the amount of times the <code>Subject</code> has pressed an
+   * option that is not in the menu.
    */
-  public FailEvent(Object source, String digit, int failCount) {
-    super(source, digit);
+  public FailEvent(final Object source, final String digits, final int failCount) {
+    super(source, digits);
     this.failCount = failCount;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the fail count.
+   * 
+   * @return the amount of times the <code>Subject</code> has pressed an
+   * option that is not in the menu.
    */
   public int getFailCount() {
     return failCount;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param failCount DOCUMENT ME!
-   */
-  public void setFailCount(int failCount) {
-    this.failCount = failCount;
   }
 }

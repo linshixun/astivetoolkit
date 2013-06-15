@@ -20,14 +20,17 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link FailEvent}.
+ * 
  * @since 1.0.0
  * @see FailEvent
  */
 public interface FailListener {
   /**
-   *
-   * @param evt
+   * Callback triggered when the digits pressed are not part of the 
+   * {@link Menu}.
+   * 
+   * @param evt the event submitted.
    */
   abstract void failurePerform(FailEvent evt);
 }

@@ -18,48 +18,37 @@
  */
 package org.astivetoolkit.menu.event;
 
+import java.util.EventObject;
 import org.astivetoolkit.menu.Authenticator;
 
 /**
- *
+ * An AuthenticationEvent is trigger with each attempt to access an restricted
+ * menu area.
+ * 
  * @since 1.0.0
  * @see AuthenticationListener
  */
-public class AuthenticationEvent {
+public class AuthenticationEvent extends EventObject {
   private Authenticator authenticator;
-  private Object source;
 
-  /** <p>Creates a new instance of AuthenticationEvent</p> */
-  public AuthenticationEvent(Object source, Authenticator authenticator) {
+  /**
+   * Create a new AuthenticationEvent.
+   * 
+   * @param source the object that originated the event.
+   * @param authenticator contains the authenticator mechanism.
+   */
+  public AuthenticationEvent(final Object source, final Authenticator authenticator) {
+    super(source);
     this.authenticator = authenticator;
     this.source = source;
   }
 
   /**
-   * @return the authenticator
+   * Returns the {@link Authenticator} mechanism.
+   * 
+   * @return the authenticator object.
    */
   public Authenticator getAuthenticator() {
     return authenticator;
-  }
-
-  /**
-   * @return the source
-   */
-  public Object getSource() {
-    return source;
-  }
-
-  /**
-   * @param authenticator the authenticator to set
-   */
-  public void setAuthenticator(Authenticator authenticator) {
-    this.authenticator = authenticator;
-  }
-
-  /**
-   * @param source the source to set
-   */
-  public void setSource(Object source) {
-    this.source = source;
   }
 }

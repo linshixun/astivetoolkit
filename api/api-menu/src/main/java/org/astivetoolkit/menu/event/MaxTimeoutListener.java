@@ -20,14 +20,17 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link MaxTimeoutListener}.
+ * 
  * @since 1.0.0
  * @see MaxTimeoutEvent
  */
 public interface MaxTimeoutListener {
-  /**
-   *
-   * @param evt
-   */
-  abstract void maxTimeoutPerform(MaxTimeoutEvent evt);
+   /**
+    * Callback triggered when the maximum amount of time(as define in {@link Menu})
+    * of timeout is reached.
+    * 
+    * @param evt the event submitted.
+    */
+    abstract void maxTimeoutPerform(MaxTimeoutEvent evt);
 }

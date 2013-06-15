@@ -20,14 +20,16 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link DigitsEvent}.
+ * 
  * @since 1.0.0
  * @see DigitsEvent
  */
 public interface DigitsListener {
   /**
-   *
-   * @param evt
+   * Callback triggered when digits are pressed.
+   * 
+   * @param evt the event submitted.
    */
   abstract void digitsEnter(DigitsEvent evt);
 }

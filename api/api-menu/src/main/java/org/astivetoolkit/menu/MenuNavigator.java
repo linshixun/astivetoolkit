@@ -63,13 +63,12 @@ public class MenuNavigator {
     if (item.getMustAuthenticate()) {
       if (!item.getAuthenticator().isAuthenticated()) {
         AuthenticationEvent evt = new AuthenticationEvent(item, item.getAuthenticator());
-        item.fireAuthenticationEvent_tryingToAuthenticate(evt);
         item.getAuthenticator().signIn();
 
         if (item.getAuthenticator().isAuthenticated()) {
-          item.fireAuthenticationEvent_authenticationSuccess(null);
+          item.fireAuthenticationEvent_onSuccess(null);
         } else {
-          item.fireAuthenticationEventAuthenticationFail(evt);
+          item.fireAuthenticationEvent_onFailure(evt);
         }
       }
     }
@@ -90,7 +89,7 @@ public class MenuNavigator {
   private boolean checkMaxTimeout(Menu menu, String opt) {
     if (menu.getTimeoutCount() >= menu.getMaxTimeouts()) {
       MaxTimeoutEvent event = new MaxTimeoutEvent(menu, opt, menu.getMaxTimeouts());
-      menu.fireMaxTimeoutEventMaxTimeoutPerform(event);
+      menu.fireMaxTimeoutEvent_maxTimeoutPerform(event);
 
       // do break the flow
       return true;
@@ -334,7 +333,7 @@ public class MenuNavigator {
         }
 
         PositionChangeEvent evt = new PositionChangeEvent(oldOption, option, pos - 1);
-        menu.firePositionChangeEventPositionChange(evt);
+        menu.firePositionChangeEvent_positionChange(evt);
         pos++;
 
         if (LOG.isDebugEnabled()) {
@@ -361,7 +360,7 @@ public class MenuNavigator {
       // signo de número.            
       if (digits == null) {
         FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
-        menu.fireFailListenerFailurePerform(evt);
+        menu.fireFailListener_failurePerform(evt);
       } else if (digits.equals("(timeout)")) {
         // WARNNING:
         //menu.fireTimeoutListener_timeoutPerform(null);
@@ -405,7 +404,7 @@ public class MenuNavigator {
       }
 
       ActionEvent evt = new ActionEvent(selectedOption, digits);
-      selectedOption.fireActionEventActionPerformed(evt);
+      selectedOption.fireActionEvent_processAction(evt);
 
       if (selectedOption instanceof Menu) {
         run((Menu) selectedOption);

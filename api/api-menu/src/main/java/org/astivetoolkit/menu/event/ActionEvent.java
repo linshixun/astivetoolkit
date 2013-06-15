@@ -7,7 +7,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *
+ *  
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
@@ -18,50 +18,39 @@
  */
 package org.astivetoolkit.menu.event;
 
+import java.util.EventObject;
+
 
 /**
- *
+ * An ActionEvent is triggered when a {@link MenuItem} or {@link Menu} is
+ * selected into a IVR.
+ * 
  * @since 1.0.0
  * @see Action
  * @see ActionListener
  */
-public class ActionEvent {
-  private Object source;
+public class ActionEvent extends EventObject {
   private String digits;
 
   /**
-   * Creates a new ActionEvent object.
+   * Create a new ActionEvent object, using a {@link MenuItem} or {@link Menu}
+   * as event source. 
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
    */
-  public ActionEvent(Object source, String digits) {
+  public ActionEvent(final Object source, final String digits) {
+    super(source);
     this.source = source;
     this.digits = digits;
   }
 
   /**
-   * @return the digits
+   * Returns the digits of source that trigger this event.
+   * 
+   * @return the digits is unique per menu.
    */
   public String getDigits() {
     return digits;
-  }
-
-  /**
-   * @return the source
-   */
-  public Object getSource() {
-    return source;
-  }
-
-  /**
-   * @param digits the digits to set
-   */
-  public void setDigits(String digits) {
-    this.digits = digits;
-  }
-
-  /**
-   * @param source the source to set
-   */
-  public void setSource(Object source) {
-    this.source = source;
   }
 }

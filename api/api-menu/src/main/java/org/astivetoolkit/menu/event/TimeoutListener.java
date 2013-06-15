@@ -20,14 +20,16 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link TimeoutListener}.
+ * 
  * @since 1.0.0
  * @see TimeoutEvent
  */
 public interface TimeoutListener {
   /**
-   *
-   * @param evt
+   * Callback triggered when the maximum time to press the digits is reached.   
+   * 
+   * @param evt the event submitted.
    */
-  abstract void timeoutPerform(TimeoutEvent evt);
+    abstract void timeoutPerform(TimeoutEvent evt);
 }

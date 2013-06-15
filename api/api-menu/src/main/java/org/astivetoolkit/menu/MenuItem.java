@@ -18,17 +18,17 @@
  */
 package org.astivetoolkit.menu;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.astivetoolkit.menu.event.ActionEvent;
 import org.astivetoolkit.menu.event.AuthenticationListener;
 import org.astivetoolkit.menu.event.KeyListener;
 import org.astivetoolkit.menu.event.ActionListener;
 import org.astivetoolkit.menu.event.DigitsListener;
 import org.astivetoolkit.menu.event.AuthenticationEvent;
 import org.astivetoolkit.menu.event.KeyEvent;
-import org.astivetoolkit.menu.event.ActionEvent;
 import org.astivetoolkit.menu.event.DigitsEvent;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import org.astivetoolkit.menu.action.Action;
 
 /**
@@ -94,42 +94,6 @@ public class MenuItem {
 
   public void addVoiceComposition(VoiceComposition voiceComposition) {
     voiceCompositionList.add(voiceComposition);
-  }
-
-  protected void fireActionEventActionPerformed(ActionEvent evt) {
-    for (ActionListener listener : actionListenerList) {
-      listener.processAction(evt);
-    }
-  }
-
-  protected void fireAuthenticationEventAuthenticationFail(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.authenticationFail(evt);
-    }
-  }
-
-  protected void fireAuthenticationEvent_authenticationSuccess(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.authenticationSuccess(evt);
-    }
-  }
-
-  protected void fireAuthenticationEvent_tryingToAuthenticate(AuthenticationEvent evt) {
-    for (AuthenticationListener listener : authenticationListenerList) {
-      listener.tryingToAuthenticate(evt);
-    }
-  }
-
-  protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
-    for (DigitsListener listener : digitsListenerList) {
-      listener.digitsEnter(evt);
-    }
-  }
-
-  protected void fireKeyEvent_keyTyped(KeyEvent evt) {
-    for (KeyListener listener : keyListenerList) {
-      listener.keyTyped(evt);
-    }
   }
 
   public Action getAction() {
@@ -219,4 +183,34 @@ public class MenuItem {
   public void setPriority(int priority) {
     this.priority = priority;
   }
+  
+  protected void fireActionEvent_processAction(ActionEvent evt) {
+    for (ActionListener listener : actionListenerList) {
+      listener.processAction(evt);
+    }
+  }
+
+  protected void fireAuthenticationEvent_onFailure(AuthenticationEvent evt) {
+    for (AuthenticationListener listener : authenticationListenerList) {
+      listener.onFailure(evt);
+    }
+  }
+
+  protected void fireAuthenticationEvent_onSuccess(AuthenticationEvent evt) {
+    for (AuthenticationListener listener : authenticationListenerList) {
+      listener.onSuccess(evt);
+    }
+  }
+
+  protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
+    for (DigitsListener listener : digitsListenerList) {
+      listener.digitsEnter(evt);
+    }
+  }
+
+  protected void fireKeyEvent_keyTyped(KeyEvent evt) {
+    for (KeyListener listener : keyListenerList) {
+      listener.keyTyped(evt);
+    }
+  }  
 }

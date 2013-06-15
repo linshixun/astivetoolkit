@@ -20,38 +20,34 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * A MaxFailerEvent is triggered when the maximum attempts to pick an menu 
+ * option is reached.
+ * 
  * @since 1.0.0
  * @see MaxFailureListener
  * @see DigitsEvent
  */
-public class MaxFailureEvent extends DigitsEvent {
+public class MaxFailureEvent extends DigitsEvent {  
+  private int maxFailure;
+  
   /**
-   * DOCUMENT ME!
+   * Create a new MaxFailureEvent object.
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param maxFailure the maximum attempts admitted by the menu.
    */
-  protected int maxFailure;
-
-  /** <p>Creates a new instance of MaxFailureEvent</p> */
-  public MaxFailureEvent(Object source, String digit, int maxFailure) {
-    super(source, digit);
+  public MaxFailureEvent(final Object source, final String digits, final int maxFailure) {
+    super(source, digits);
     this.maxFailure = maxFailure;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the amount(the maximum) of attempts.
+   * 
+   * @return the maximum amount of attempts.
    */
   public int getMaxFailure() {
     return maxFailure;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param maxFailure DOCUMENT ME!
-   */
-  public void setMaxFailure(int maxFailure) {
-    this.maxFailure = maxFailure;
   }
 }

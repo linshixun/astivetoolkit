@@ -20,15 +20,17 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link PositionChangeEvent}.
+ * 
  * @since 1.0.0
- * @version $id$
  * @see PositionChangeEvent
  */
 public interface PositionChangeListener {
   /**
-   *
-   * @param evt
+   * Callback triggered when the {@link MenuNavigator} move from one 
+   * {@link MenuItem} to another.
+   * 
+   * @param evt the event submitted.
    */
   abstract void positionChange(PositionChangeEvent evt);
 }

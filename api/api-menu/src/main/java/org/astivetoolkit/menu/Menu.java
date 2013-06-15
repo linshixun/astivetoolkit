@@ -58,9 +58,7 @@ public class Menu extends MenuItem {
   private int lastDigitsTimeout = 1500;
   private int maxDigits = 1;
   private int maxFailures = 3;
-  private int maxTimeouts = 3;
-
-  //private int timeout;
+  private int maxTimeouts = 3;  
   private int timeoutCount;
 
   public Menu() {
@@ -116,7 +114,7 @@ public class Menu extends MenuItem {
     }
   }
 
-  protected void fireFailListenerFailurePerform(FailEvent evt) {
+  protected void fireFailListener_failurePerform(FailEvent evt) {
     for (FailListener listener : failListenerList) {
       listener.failurePerform(evt);
     }
@@ -134,19 +132,19 @@ public class Menu extends MenuItem {
     }
   }
 
-  protected void fireMaxTimeoutEventMaxTimeoutPerform(MaxTimeoutEvent evt) {
+  protected void fireMaxTimeoutEvent_maxTimeoutPerform(MaxTimeoutEvent evt) {
     for (MaxTimeoutListener listener : maxTimeoutListenerList) {
       listener.maxTimeoutPerform(evt);
     }
   }
  
-  protected void firePositionChangeEventPositionChange(PositionChangeEvent evt) {
+  protected void firePositionChangeEvent_positionChange(PositionChangeEvent evt) {
     for (PositionChangeListener listener : positionChangeListenerList) {
       listener.positionChange(evt);
     }
   }
 
-  protected void fireTimeoutListenerTimeoutPerform(TimeoutEvent evt) {
+  protected void fireTimeoutListener_timeoutPerform(TimeoutEvent evt) {
     for (TimeoutListener listener : timeoutListenerList) {
       listener.timeoutPerform(evt);
     }
