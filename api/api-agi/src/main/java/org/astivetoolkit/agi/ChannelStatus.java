@@ -75,7 +75,7 @@ public enum ChannelStatus {
   }
 
   /**
-   * Return enumerator for channel status code.
+   * Returns enumerator for channel status code.
    *
    * @param code channel status code
    * @return ChannelStatus enumerator

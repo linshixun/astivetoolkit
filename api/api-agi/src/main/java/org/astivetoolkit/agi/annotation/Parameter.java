@@ -46,7 +46,7 @@ public @interface Parameter {
    */
   public String prefix() default "";
   /**
-   * Return whether or not a parameter is optional.
+   * Returns whether or not a parameter is optional.
    *
    * @return true if parameter is option or false otherwise.
    */

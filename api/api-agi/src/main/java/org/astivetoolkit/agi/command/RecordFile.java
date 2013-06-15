@@ -216,7 +216,7 @@ public class RecordFile implements Serializable {
   }
 
   /**
-   * Return <code>true</code> if beep should be played before recording.
+   * Returns <code>true</code> if beep should be played before recording.
    *
    * @return true for beep before recording, or false otherwise.
    */

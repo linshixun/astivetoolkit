@@ -84,7 +84,7 @@ public class SetMusic implements Serializable {
   }
 
   /**
-   * Return whether music on hold is enable or disable.
+   * Returns whether music on hold is enable or disable.
    *
    * @return <code>true</code> if music on hold is on, or <code>false</code>
    * if is off.

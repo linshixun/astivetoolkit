@@ -195,7 +195,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return a parameter by using a parameter name. Particularly use for
+   * Returns a parameter by using a parameter name. Particularly use for
    * new parameters that don't have a getter.
    * 
    * @param parameter parameter name.
@@ -225,7 +225,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return the ID of the origin caller.
+   * Returns the ID of the origin caller.
    * 
    * @return the caller ID number (or "unknown").
    */
@@ -302,7 +302,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return the <code>context</code> that was use to place the call.
+   * Returns the <code>context</code> that was use to place the call.
    * 
    * @return current context.
    */
@@ -311,7 +311,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return Dialed Number Identifier(DnId).
+   * Returns Dialed Number Identifier(DnId).
    * 
    * @return the dialed number id.
    */
@@ -320,7 +320,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return the called number, found in <code>extension.conf</code>.
+   * Returns the called number, found in <code>extension.conf</code>.
    * 
    * @return the called number.
    */
@@ -347,7 +347,7 @@ public class AgiRequest {
   }
  
   /**
-   * Return the Redirected Dial Number ID Service(RDNIS).
+   * Returns the Redirected Dial Number ID Service(RDNIS).
    * 
    * @return the referring DNIS number.
    */
@@ -365,7 +365,7 @@ public class AgiRequest {
   }
   
   /**
-   * Return the name remote AGI script.
+   * Returns the name remote AGI script.
    * 
    * @return the name of the fastagi script.
    */
@@ -383,7 +383,7 @@ public class AgiRequest {
   }
 
   /**
-   * Return the version of Asterisk (since Asterisk 1.6).
+   * Returns the version of Asterisk (since Asterisk 1.6).
    * 
    * @return the asterisk version.
    */
@@ -410,7 +410,7 @@ public class AgiRequest {
   }
   
   /**
-   * Return and string with all elements key/value separated by a change of line.
+   * Returns and string with all elements key/value separated by a change of line.
    *
    * @return key/value elements aseparated by a change of line.
    */
