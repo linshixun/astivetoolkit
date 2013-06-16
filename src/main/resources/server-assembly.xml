@@ -18,13 +18,10 @@
         <fileSet>
             <directory>src/main/resources/conf</directory>
             <outputDirectory>/${project.artifactId}-server-${project.version}/conf</outputDirectory>
-            <excludes>
-                <exclude>ami.properties</exclude>
-                <exclude>cxf.properties</exclude>
-            </excludes>
         </fileSet>
         <fileSet>
-            <fileMode>761</fileMode>
+            <fileMode>0761</fileMode>
+            <directoryMode>0761</directoryMode>
             <directory>src/main/resources/bin</directory>
             <outputDirectory>/${project.artifactId}-server-${project.version}/bin</outputDirectory>
             <excludes>

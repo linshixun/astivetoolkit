@@ -35,7 +35,7 @@ public class ReceiveText implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x2c84005f3e094b88L;
+  private static final long serialVersionUID = 3207689243657325448L;
 
   /**
    * Time in milliseconds to wait for text.
@@ -47,7 +47,7 @@ public class ReceiveText implements Serializable {
    * Create a new ReceiveText object.
    */
   public ReceiveText() {
-    timeout = 0x0;
+    timeout = 0;
   }
 
   /**

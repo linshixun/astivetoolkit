@@ -18,33 +18,35 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SayTime;
 import java.util.Date;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SayTime;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SayTime}.
+ * 
+ * @since 1.0.0
  */
 public class SayTimeTest extends TestCase {
   /**
    * Creates a new SayTimeTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SayTimeTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     Date date = new Date();
-    long seconds = (date).getTime() / 0x3e8;
+    long seconds = (date).getTime() / 1000;
     String escapeDigits = "";
 
     // Testing first constructor

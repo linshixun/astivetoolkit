@@ -18,33 +18,35 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.GetData;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.GetData;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.GetData}.
+ * 
+ * @since 1.0.0
  */
 public class GetDataTest extends TestCase {
   /**
    * Creates a new GetDataTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public GetDataTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String file = "tt-monkeys";
-    int timeout = 0x0;
-    int maxDigits = 0x400;
+    int timeout = 0;
+    int maxDigits = 1024;
 
     // Test first constructor
     StringBuilder b = new StringBuilder("GET DATA");

@@ -36,7 +36,7 @@ public class DatabaseDelTree implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xa1f5e4eeaf7df841L;
+  private static final long serialVersionUID = -6776258350511425471L;
 
   /**
    * Database family.
@@ -47,7 +47,7 @@ public class DatabaseDelTree implements Serializable {
   /**
    * Keytree within family.
    */
-  @Parameter(position = 0x1)
+  @Parameter(position = 1)
   private String keyTree;
 
   /**

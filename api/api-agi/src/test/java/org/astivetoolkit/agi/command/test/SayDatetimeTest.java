@@ -18,34 +18,36 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SayDatetime;
 import java.util.Date;
 import java.util.TimeZone;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SayDatetime;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SayDatetime}.
+ * 
+ * @since 1.0.0
  */
 public class SayDatetimeTest extends TestCase {
   /**
    * Creates a new SayDatetimeTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SayDatetimeTest(String testName) {
     super(testName);
   }
 
-  /**
-   * DOCUMENT ME!
+    /**
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     Date date = new Date();
-    long seconds = (date).getTime() / 0x3e8;
+    long seconds = (date).getTime() / 1000;
     String escapeDigits;
     String format = SayDatetime.DEFAULT_FORMAT;
     TimeZone tz = TimeZone.getDefault();

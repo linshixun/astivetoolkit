@@ -67,16 +67,6 @@ public class AstiveServer extends AbstractAstiveServer {
     DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");
   }
 
-  /**
-   * Creates a new AstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AstiveServer(int port, int backlog, InetAddress bindAddr)
                throws SystemException, IOException {
     super(port, backlog, bindAddr);
@@ -123,13 +113,6 @@ public class AstiveServer extends AbstractAstiveServer {
     executorService.execute(monitor);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param args DOCUMENT ME!
-   *
-   * @throws Exception DOCUMENT ME!
-   */
   public static void main(String[] args) throws Exception {
     astivedSP = getServiceProperties(ASTIVED_PROPERTIES, "astived");
     adminDaemonSP = getServiceProperties(ADMIN_DAEMON_PROPERTIES, "admin thread");

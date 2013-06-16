@@ -32,7 +32,7 @@ public class SetContext implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xf8cc7767896c4b01L;
+  private static final long serialVersionUID = -518908570483537151L;
 
   /**
    * Desired context for channel.

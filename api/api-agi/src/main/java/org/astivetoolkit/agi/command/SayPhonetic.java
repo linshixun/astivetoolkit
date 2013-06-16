@@ -36,12 +36,12 @@ public class SayPhonetic implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xb0b517aa25938669L;
+  private static final long serialVersionUID = -5713634532707301783L;
 
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**

@@ -18,31 +18,33 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SetAutoHangup;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SetAutoHangup;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SetAutoHangup}.
+ * 
+ * @since 1.0.0
  */
 public class SetAutoHangupTest extends TestCase {
   /**
    * Creates a new SetAutoHangupTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SetAutoHangupTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
-    int time = 0x1900;
+    int time = 6400;
     StringBuilder b = new StringBuilder("SET AUTOHANGUP");
     b.append(" ");
     b.append(time);

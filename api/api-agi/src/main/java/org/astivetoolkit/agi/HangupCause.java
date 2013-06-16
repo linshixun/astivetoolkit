@@ -25,7 +25,7 @@ package org.astivetoolkit.agi;
  * @since 1.0.0
  */
 public enum HangupCause { // TODO: Define all enum elements below this comment.
-  UNKNOWN(0xffffffff);
+  UNKNOWN(-1);
 
   /**
    * Int value of this type.

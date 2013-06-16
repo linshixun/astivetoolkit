@@ -32,7 +32,7 @@ public class SpeechActivateGrammar implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xdf3c031a2f874390L;
+  private static final long serialVersionUID = -2361008693647555696L;
 
   /**
    * Grammar name.

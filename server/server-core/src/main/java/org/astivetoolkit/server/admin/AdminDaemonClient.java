@@ -33,14 +33,6 @@ public class AdminDaemonClient extends Socket {
   private BufferedReader reader;
   private PrintWriter writer;
 
-  /**
-   * Creates a new AdminDaemonClient object.
-   *
-   * @param addr DOCUMENT ME!
-   * @param port DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public AdminDaemonClient(InetAddress addr, int port)
                     throws IOException {
     super(addr, port);
@@ -48,13 +40,6 @@ public class AdminDaemonClient extends Socket {
     writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void deploy(String app) throws IOException {
     send(AdminCommand.DEPLOY, app);
   }
@@ -85,22 +70,10 @@ public class AdminDaemonClient extends Socket {
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void stop() throws IOException {
     send(AdminCommand.STOP, null);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void undeploy(String app) throws IOException {
     send(AdminCommand.UNDEPLOY, app);
   }

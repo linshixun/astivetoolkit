@@ -34,29 +34,29 @@ public class GetData implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xa857a610017b3676L;
+  private static final long serialVersionUID = -6316397364689291658L;
 
   /**
    * Default max digits.
    */
-  private static final int DEFAULT_MAX_DIGITS = 0x400;
+  private static final int DEFAULT_MAX_DIGITS = 1024;
 
   /**
    * Default max timeout.
    */
-  private static final int DEFAULT_TIMEOUT = 0x0;
+  private static final int DEFAULT_TIMEOUT = 0;
 
   /**
    * Max digits to enter.
    */
-  @Parameter(position = 0x2)
+  @Parameter(position = 2)
   private Integer maxDigits;
 
   /**
    * Time in milliseconds to wait for DTMF. If a digit is pressed the wait
    * time is reset. <p>With timeout set to -1 this command wait forever.
    */
-  @Parameter(position = 0x1)
+  @Parameter(position = 1)
   private Integer timeout;
 
   /**

@@ -32,7 +32,7 @@ public class SetExtension implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x966dff0bd7e9464dL;
+  private static final long serialVersionUID = -7607143769226787251L;
 
   /**
    * New extension.

@@ -36,12 +36,12 @@ public class SayAlpha implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xdd5ba21a052144aeL;
+  private static final long serialVersionUID = -2496223335807892306L;
 
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**

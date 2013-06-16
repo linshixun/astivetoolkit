@@ -42,12 +42,12 @@ public class RecordFile implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x9ebf75ed7d724e7dL;
+  private static final long serialVersionUID = -7007752832292860291L;
 
   /**
    * Whether a beep should be played before recording.
    */
-  @Parameter(position = 0x5)
+  @Parameter(position = 5)
   @ParamConverter
   @BooleanChoose(valueOnTrue = "BEEP", valueOnFalse = "")
   private Boolean beep;
@@ -56,25 +56,25 @@ public class RecordFile implements Serializable {
    * The amount of silence (in seconds) to allow before returning despite the
    * lack of DTMF digits or reaching timeout.
    */
-  @Parameter(position = 0x6, prefix = "s=")
+  @Parameter(position = 6, prefix = "s=")
   private Integer maxSilence;
 
   /**
    * The offset samples to skip.
    */
-  @Parameter(position = 0x4)
+  @Parameter(position = 4)
   private Integer offset;
 
   /**
    * Maximum record time in milliseconds. Use -1 for no timeout.
    */
-  @Parameter(position = 0x3, optional = false)
+  @Parameter(position = 3, optional = false)
   private Integer timeout;
 
   /**
    * Can be use to the interrupt the audio recording.
    */
-  @Parameter(position = 0x2, optional = false)
+  @Parameter(position = 2, optional = false)
   private String escapeDigits;
 
   /**
@@ -86,7 +86,7 @@ public class RecordFile implements Serializable {
   /**
    * Format for the new audio.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String format;
 
   /**
@@ -99,7 +99,7 @@ public class RecordFile implements Serializable {
     this.file = file;
     this.format = format;
     this.escapeDigits = "";
-    this.timeout = 0xffffffff;
+    this.timeout = -1;
   }
 
   /**
@@ -113,10 +113,10 @@ public class RecordFile implements Serializable {
     this.file = file;
     this.format = format;
     this.escapeDigits = escapeDigits;
-    this.timeout = 0xffffffff;
-    this.offset = 0x0;
+    this.timeout = -1;
+    this.offset = 0;
     this.beep = false;
-    this.maxSilence = 0x0;
+    this.maxSilence = 0;
   }
 
   /**
@@ -132,9 +132,9 @@ public class RecordFile implements Serializable {
     this.format = format;
     this.escapeDigits = escapeDigits;
     this.timeout = timeout;
-    this.offset = 0x0;
+    this.offset = 0;
     this.beep = false;
-    this.maxSilence = 0x0;
+    this.maxSilence = 0;
   }
 
   /**

@@ -27,33 +27,8 @@ import org.astivetoolkit.agi.Connection;
  * @since 1.0.0
  */
 public interface ConnectionManager {
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   */
   public void add(Connection conn);
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public ArrayList<Connection> connections();
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void remove(Connection conn) throws IOException;
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void removeAll() throws IOException;
 }

@@ -27,17 +27,10 @@ import java.util.ArrayList;
  * @since 1.0.0
  */
 public class ReadUtil {
-  ArrayList<String> lines = new ArrayList<String>();
+  ArrayList<String> lines = new ArrayList<>();
 
-  /**
-   * Creates a new ReadUtil object.
-   *
-   * @param reader DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public ReadUtil(BufferedReader reader) throws IOException {
-    String s = null;
+    String s;
     lines.add(reader.readLine());
 
     while (true) {
@@ -49,11 +42,6 @@ public class ReadUtil {
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public ArrayList<String> getLines() {
     return lines;
   }

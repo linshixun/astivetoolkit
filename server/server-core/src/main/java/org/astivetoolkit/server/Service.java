@@ -24,24 +24,7 @@ package org.astivetoolkit.server;
  * @since 1.0.0
  */
 public interface Service {
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   boolean isRunning();
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   void start() throws SystemException;
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   void stop() throws SystemException;
 }

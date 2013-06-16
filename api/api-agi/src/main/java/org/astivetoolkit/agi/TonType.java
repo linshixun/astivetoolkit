@@ -24,13 +24,13 @@ package org.astivetoolkit.agi;
  *
  * @since 1.0.0
  */
-public enum TonType {UNKNOWN(0x0, "Unknown", "Unknown"),
-  INTERNATIONAL(0x1, "International", "International"),
-  NATIONAL(0x2, "National", "National"),
-  NETWORK_SPECIFIC(0x3, "NetworkSpecific", "Network specific"),
-  SUBSCRIBER_NUMBER(0x4, "SubscriberNumber", "Subscriber number"),
-  ALPHA_NUMERIC(0x5, "AlphaNumberic", "Alpha numeric"),
-  ABBREVIATED(0x6, "Abbreviated", "Abbreviated");
+public enum TonType {UNKNOWN(0, "Unknown", "Unknown"),
+  INTERNATIONAL(1, "International", "International"),
+  NATIONAL(2, "National", "National"),
+  NETWORK_SPECIFIC(3, "NetworkSpecific", "Network specific"),
+  SUBSCRIBER_NUMBER(4, "SubscriberNumber", "Subscriber number"),
+  ALPHA_NUMERIC(5, "AlphaNumberic", "Alpha numeric"),
+  ABBREVIATED(6, "Abbreviated", "Abbreviated");
 
   private int value;
   private String name;

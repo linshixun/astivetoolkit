@@ -18,20 +18,20 @@
  */
 package org.astivetoolkit.agi.test;
 
-import org.astivetoolkit.agi.AgiRequest;
-import org.astivetoolkit.agi.AgiException;
-import org.astivetoolkit.agi.ChannelType;
 import java.util.ArrayList;
 import junit.framework.TestCase;
+import org.astivetoolkit.agi.AgiException;
+import org.astivetoolkit.agi.AgiRequest;
+import org.astivetoolkit.agi.ChannelType;
 
 /**
- * DOCUMENT ME
+ * Test case for {@link org.astivetoolkit.agi.AgiRequest}.
  */
 public class AgiRequestTest extends TestCase {
   /**
    * Create a new AgiRequestTest object with the name of the test.
    *
-   * @param testName name of the test.
+   * @param testName {@inheritDoc}.
    */
   public AgiRequestTest(String testName) {
     super(testName);
@@ -80,10 +80,10 @@ public class AgiRequestTest extends TestCase {
     assertEquals(ar.getCallId(), "1325988028.2");
     assertEquals(ar.getCallerId(), "john");
     assertEquals(ar.getCallerIdName(), "John Doe");
-    assertEquals(ar.getCallingPres(), 0x0);
-    assertEquals(ar.getCallingAni2(), 0x0);
-    assertEquals(ar.getCallingTon(), 0x0);
-    assertEquals(ar.getCallingTns(), 0x0);
+    assertEquals(ar.getCallingPres(), 0);
+    assertEquals(ar.getCallingAni2(), 0);
+    assertEquals(ar.getCallingTon(), 0);
+    assertEquals(ar.getCallingTns(), 0);
     assertEquals(ar.getDnId(), "101");
     assertEquals(ar.getRdNis(), "unknown");
     assertEquals(ar.getContext(), "my-context");

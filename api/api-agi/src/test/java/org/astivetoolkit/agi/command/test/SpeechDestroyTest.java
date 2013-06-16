@@ -18,29 +18,31 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SpeechDestroy;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SpeechDestroy;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SpeechDestroy}.
+ * 
+ * @since 1.0.0
  */
 public class SpeechDestroyTest extends TestCase {
   /**
    * Creates a new SpeechDestroyTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SpeechDestroyTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
-   */
+   * @throws AgiException if command is malformed.
+   */  
   public void testCommand() throws AgiException {
     SpeechDestroy command = new SpeechDestroy();
     assertEquals("SPEECH DESTROY", CommandProcessor.buildCommand(command));

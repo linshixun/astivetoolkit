@@ -33,7 +33,7 @@ public class SetPriority implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x91fa8992e58a2c8fL;
+  private static final long serialVersionUID = -7927872930023068529L;
 
   /**
    * The priority or label for continuation upon exiting the application.

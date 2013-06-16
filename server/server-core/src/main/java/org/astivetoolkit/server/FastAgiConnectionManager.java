@@ -26,7 +26,8 @@ import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- *
+ * Connection manager for fast agi connections.
+ * 
  * @since 1.0.0
  * @see ConnectionManager
  */
@@ -39,13 +40,11 @@ public class FastAgiConnectionManager implements ConnectionManager {
    * Creates a new FastAgiConnectionManager object.
    */
   public FastAgiConnectionManager() {
-    conns = new ArrayList<Connection>();
+    conns = new ArrayList<>();
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
+   * {@inheritDoc}   
    */
   @Override
   public void add(Connection conn) {
@@ -57,9 +56,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * {@inheritDoc}   
    */
   @Override
   public ArrayList<Connection> connections() {
@@ -67,11 +64,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
+   * {@inheritDoc}   
    */
   @Override
   public void remove(Connection conn) throws IOException {
@@ -91,9 +84,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
+   * {@inheritDoc}   
    */
   @Override
   public void removeAll() throws IOException {

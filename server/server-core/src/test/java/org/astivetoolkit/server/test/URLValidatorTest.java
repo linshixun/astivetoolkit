@@ -22,21 +22,20 @@ import junit.framework.TestCase;
 import org.astivetoolkit.util.URLValidator;
 
 /**
- *
- * @since 1.0.0
+ * Test case for URLValidator. 
  */
 public class URLValidatorTest extends TestCase {
   /**
    * Creates a new URLValidatorTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public URLValidatorTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    */
   public void testValidateURLs() {
     assertTrue(URLValidator.isValidURL("/"));

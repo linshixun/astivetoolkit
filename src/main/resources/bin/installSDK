@@ -1,6 +1,6 @@
 mvn install:install-file \
-    -Dfile=astive-archetype-${project.version}.jar \
+    -Dfile=archetype-${project.version}.jar \
     -DgroupId=org.astivetoolkit \
-    -DartifactId=astive-archetype \
+    -DartifactId=archetype \
     -Dversion=${project.version} \
     -Dpackaging=jar

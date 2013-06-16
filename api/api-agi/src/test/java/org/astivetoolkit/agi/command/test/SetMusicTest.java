@@ -18,28 +18,30 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SetMusic;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SetMusic;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SetMusic}.
+ * 
+ * @since 1.0.0
  */
 public class SetMusicTest extends TestCase {
   /**
    * Creates a new SetMusicTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SetMusicTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     Boolean on = true;

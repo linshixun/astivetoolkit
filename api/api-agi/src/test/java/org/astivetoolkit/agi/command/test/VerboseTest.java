@@ -18,32 +18,34 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.Verbose;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.Verbose;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.Verbose}.
+ * 
+ * @since 1.0.0
  */
 public class VerboseTest extends TestCase {
   /**
    * Creates a new VerboseTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public VerboseTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String message = "This is a message";
-    int level = 0x2;
+    int level = 2;
 
     StringBuilder b = new StringBuilder("VERBOSE");
     b.append(" ");

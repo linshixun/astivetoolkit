@@ -40,12 +40,6 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
   private int port;
   private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);  
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer() throws SystemException, IOException {
     // Using the default agi asterisk port
     super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
@@ -66,29 +60,10 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port, int backlog) throws SystemException, IOException {
     super(port, backlog, InetAddress.getLocalHost());
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port, int backlog, InetAddress bindAddr)
                        throws SystemException, IOException {
     super(port, backlog, bindAddr);

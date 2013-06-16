@@ -39,7 +39,7 @@ public class SayDatetime implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xaa7d6b297594165L;
+  private static final long serialVersionUID = 767818324021690725L;
 
   /**
    * Default format.
@@ -56,20 +56,20 @@ public class SayDatetime implements Serializable {
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**
    * Can be used to define an specific format. The default format is defined
    * by the constant DEFAULT_FORMAT.
    */
-  @Parameter(position = 0x2)
+  @Parameter(position = 2)
   private String format;
 
   /**
    * Timezone by default is current tz of Asterisk.
    */
-  @Parameter(position = 0x3)
+  @Parameter(position = 3)
   @ParamConverter
   private TimeZone timeZone;
 

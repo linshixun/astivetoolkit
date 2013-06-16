@@ -18,22 +18,22 @@
  */
 package org.astivetoolkit.server.appmanager;
 
-import org.astivetoolkit.server.AstDB;
-import org.astivetoolkit.server.AbstractAstiveServer;
-import org.astivetoolkit.server.MyAstDB;
-import org.astivetoolkit.server.AstObj;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.astivetoolkit.AstiveException;
+import org.astivetoolkit.astivlet.Astivlet;
+import org.astivetoolkit.server.AbstractAstiveServer;
+import org.astivetoolkit.server.AstDB;
+import org.astivetoolkit.server.AstObj;
+import org.astivetoolkit.server.MyAstDB;
+import org.astivetoolkit.util.AppLocale;
+import org.astivetoolkit.util.CopyFile;
 import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
-import org.astivetoolkit.AstiveException;
-import org.astivetoolkit.astivlet.Astivlet;
-import org.astivetoolkit.util.CopyFile;
-import org.astivetoolkit.util.AppLocale;
 
 /**
  * Final implementation of interface {@link Deployer}.
@@ -119,14 +119,10 @@ public final class DeployerManager implements Deployer, AstDB {
         LOG.info(AppLocale.getI18n("cli.deploy.appDeployed",
                                    new Object[] { app.getInfo().getName() }));
       }
-    } catch (FileNotFoundException ex) {        
+    } catch (FileNotFoundException | JclException | AstiveException ex) {        
       LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
     } catch (IOException ex) {
       LOG.warn(AppLocale.getI18n("cli.deploy.cantCopy"));
-    } catch (JclException ex) {        
-      LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
-    } catch (AstiveException ex) {        
-      LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
     }
   }
 
@@ -238,9 +234,7 @@ public final class DeployerManager implements Deployer, AstDB {
       } else {
         LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
       }
-    } catch (org.xeustechnologies.jcl.exception.JclException ex) {
-      LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
-    } catch (AstiveException ex) {
+    } catch (org.xeustechnologies.jcl.exception.JclException | AstiveException ex) {
       LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
     }
   }

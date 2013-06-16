@@ -27,6 +27,7 @@ import org.astivetoolkit.server.appmanager.DeployerManager;
 import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 
 /**
+ * Test case for {@link DeployerManager}.
  *
  * @since 1.0.0
  */
@@ -38,9 +39,7 @@ public class DeployerManagerTest extends TestCase {
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * Test method.
    */
   public void testDeployerManager() throws AstiveException {
     File file = MavenTestingUtils.getProjectFile("/src/test/resources/helloworld.jar");

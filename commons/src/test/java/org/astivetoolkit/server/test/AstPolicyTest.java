@@ -19,9 +19,9 @@
 package org.astivetoolkit.server.test;
 
 import java.net.SocketPermission;
+import junit.framework.TestCase;
 import org.astivetoolkit.server.security.AstPolicy;
 import org.astivetoolkit.server.security.AstPolicyUtil;
-import junit.framework.TestCase;
 
 /**
  * This test attempts to validate the security manager implemented by {@link Service}

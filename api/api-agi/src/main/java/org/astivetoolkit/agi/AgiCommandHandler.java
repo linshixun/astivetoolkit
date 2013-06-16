@@ -29,11 +29,10 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class AgiCommandHandler {
-  private AgiRequest agiRequest;
   private Connection conn;
 
   /**
-   * Construct a new handler to manage communication with Asterisk, in the
+   * Construct a new handler to manage communication with Asterisk, at the
    * lowest level.
    *
    * @param conn an object that implement {@link Connection} interface.
@@ -50,11 +49,7 @@ public class AgiCommandHandler {
    * @throws AgiException if is unable to perform I/O with Asterisk.
    */
   public AgiRequest getAgiRequest() throws AgiException {
-    if (agiRequest != null) {
-      return agiRequest;
-    }
-
-    ArrayList<String> lines = new ArrayList<String>();
+    ArrayList<String> lines = new ArrayList<>();
     String line;
 
     try {
@@ -66,7 +61,7 @@ public class AgiCommandHandler {
                                                new Object[] { ex.getMessage() }));
     }
 
-    return (agiRequest = new AgiRequest(lines));
+    return (new AgiRequest(lines));
   }
 
   /**
@@ -80,7 +75,7 @@ public class AgiCommandHandler {
     List<String> lines;
     String line = null;
 
-    lines = new ArrayList<String>();
+    lines = new ArrayList<>();
 
     try {
       line = conn.readLine();

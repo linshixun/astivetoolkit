@@ -34,7 +34,7 @@ public class SetAutoHangup implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xb5d7bdb9d2897cd8L;
+  private static final long serialVersionUID = -5343593827052978984L;
 
   /**
    * Time in seconds to automatically hangup channel.

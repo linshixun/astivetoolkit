@@ -32,7 +32,7 @@ public class SetCallerId implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xf339e45ad21d4cc8L;
+  private static final long serialVersionUID = -920453570097230648L;
 
   /**
    * Caller Id.

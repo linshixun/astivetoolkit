@@ -30,7 +30,7 @@
                 <unpack>false</unpack>
             </binaries>
             <includes>                
-                <include>org.astivetoolkit:astive-archetype</include>
+                <include>org.astivetoolkit:archetype</include>
             </includes>
         </moduleSet>       
     </moduleSets>

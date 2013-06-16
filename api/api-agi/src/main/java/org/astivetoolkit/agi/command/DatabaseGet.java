@@ -38,7 +38,7 @@ public class DatabaseGet implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x5265e4918f644119L;
+  private static final long serialVersionUID = 5937402997584970009L;
 
   /**
    * Database family.
@@ -49,7 +49,7 @@ public class DatabaseGet implements Serializable {
   /**
    * Family element.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String key;
 
   /**

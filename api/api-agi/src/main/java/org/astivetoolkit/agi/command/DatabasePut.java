@@ -36,7 +36,7 @@ public class DatabasePut implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x89873e11c73d4155L;
+  private static final long serialVersionUID = -8536786322579439275L;
 
   /**
    * Database family.
@@ -47,13 +47,13 @@ public class DatabasePut implements Serializable {
   /**
    * Family element.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String key;
 
   /**
    * Family element value.
    */
-  @Parameter(position = 0x2, optional = false)
+  @Parameter(position = 2, optional = false)
   private String value;
 
   /**

@@ -32,19 +32,19 @@ public class GetOption implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xafac61aee3ea8592L;
+  private static final long serialVersionUID = -5788144017301928558L;
 
   /**
    * Time in milliseconds to wait for DTMF.
    * <p>With timeout set to -1 this command wait forever.
    */
-  @Parameter(position = 0x2)
+  @Parameter(position = 2)
   private Integer timeout;
 
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**
@@ -63,7 +63,7 @@ public class GetOption implements Serializable {
   public GetOption(String file, String escapeDigits) {
     this.file = file;
     this.escapeDigits = escapeDigits;
-    this.timeout = 0xffffffff;
+    this.timeout = -1;
   }
 
   /**

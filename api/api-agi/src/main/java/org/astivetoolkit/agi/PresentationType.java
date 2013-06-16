@@ -20,33 +20,25 @@ package org.astivetoolkit.agi;
 
 
 /**
- * Enum that map the presentation type for the callerId (@link AgiRequest).
+ * Enumerator that map the presentation type for the callerId (@link AgiRequest).
  *
  * @since 1.0.0
  */
-public enum PresentationType {ALLOWED(0x0, "allowed", "allowed"),
-  ALLOWED_NOT_SCREENED(0x1, "allowed_not_screened", "allowed not screened"),
-  ALLOWED_PASSED_SCREEN(0x2, "allowed_passed_screen", "allowed passed screen"),
-  ALLOWED_FAILED_SCREEN(0x3, "allowed_failed_screen", "allowed failed screen"),
-  PROHIB_NOT_SCREENED(0x4, "prohib_not_screened", "prohib not screened"),
-  PROHIB_PASSED_SCREEN(0x5, "prohib_passed_screen", "prohib passed screen"),
-  PROHIB_FAILED_SCREEN(0x6, "prohib_failed_screen", "prohib failed screen"),
-  PROHIB(0x7, "prohib", "prohib"),
-  UNAVAILABLE(0x8, "unavailable", "unavailable");
-
-  /**
-   * PresentationType value.
-   */
+public enum PresentationType {ALLOWED(0, "allowed", "allowed"),
+  ALLOWED_NOT_SCREENED(1, "allowed_not_screened", "allowed not screened"),
+  ALLOWED_PASSED_SCREEN(2, "allowed_passed_screen", "allowed passed screen"),
+  ALLOWED_FAILED_SCREEN(3, "allowed_failed_screen", "allowed failed screen"),
+  PROHIB_NOT_SCREENED(4, "prohib_not_screened", "prohib not screened"),
+  PROHIB_PASSED_SCREEN(5, "prohib_passed_screen", "prohib passed screen"),
+  PROHIB_FAILED_SCREEN(6, "prohib_failed_screen", "prohib failed screen"),
+  PROHIB(7, "prohib", "prohib"),
+  UNAVAILABLE(8, "unavailable", "unavailable");
+  
+  // PresentationType value.
   private int value;
-
-  /**
-   * PresentationType name
-   */
-  private String name;
-
-  /**
-   * PresentationType description.
-   */
+  // PresentationType name   
+  private String name; 
+  // PresentationType description.   
   private String literal;
 
   /**ADOC_COMME */
@@ -56,51 +48,22 @@ public enum PresentationType {ALLOWED(0x0, "allowed", "allowed"),
     this.literal = literal;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param value DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static PresentationType get(final int value) {
     return null;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param name DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static PresentationType get(final String name) {
     return null;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getLiteral() {
     return literal;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getName() {
     return name;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public int getValue() {
     return value;
   }

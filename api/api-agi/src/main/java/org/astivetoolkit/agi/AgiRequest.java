@@ -96,7 +96,7 @@ public class AgiRequest {
   public AgiRequest(final ArrayList<String> lines) {
     this.lines = lines;
 
-    fieldsMap = new HashMap<String, String>();
+    fieldsMap = new HashMap<>();
 
     for (String line : lines) {
       if (line.split(":").length < 2) {
@@ -116,14 +116,13 @@ public class AgiRequest {
     try {
       fillFields();
     } catch (IllegalArgumentException | IllegalAccessException ex) {
-        ex.printStackTrace();
       LOG.warn(ex.getMessage());
     }
 
     // Get parameters.
     // Note: The URL needs to be validated prior to do the next process.
     // TODO: Improve this by using regex        
-    parameters = new HashMap<String, String>();
+    parameters = new HashMap<>();
 
     String params = null;
 

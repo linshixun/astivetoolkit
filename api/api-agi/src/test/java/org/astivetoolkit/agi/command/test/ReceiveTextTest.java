@@ -18,31 +18,33 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.ReceiveText;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.ReceiveText;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.ReceiveText}.
+ * 
+ * @since 1.0.0
  */
 public class ReceiveTextTest extends TestCase {
   /**
    * Creates a new ReceiveTextTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public ReceiveTextTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
-    int timeout = 0x3e8;
+    int timeout = 1000;
 
     StringBuilder b = new StringBuilder("RECEIVE TEXT");
     b.append(" ");

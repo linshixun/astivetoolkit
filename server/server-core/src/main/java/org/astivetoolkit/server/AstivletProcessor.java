@@ -37,28 +37,19 @@ public class AstivletProcessor {
   private AstivletProcessor() {
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param appName DOCUMENT ME!
-   * @param request DOCUMENT ME!
-   * @param response DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
-   */
   public static void invokeAstivlet(final AstivletRequest request, final AstivletResponse response)
                              throws AstiveException {
     try {
       AstDB astDB = MyAstDB.getInstance();
       String script = "/" + request.getScript();
 
-      if (script.split("\\?").length > 0x1) {
-        script = script.split("\\?")[0x0];
+      if (script.split("\\?").length > 1) {
+        script = script.split("\\?")[0];
       }
 
       Astivlet astivlet = astDB.getAstivlet(script);
 
-      Class[] classParamTypes = new Class[0x2];
+      Class[] classParamTypes = new Class[2];
       classParamTypes[0x0] = AstivletRequest.class;
       classParamTypes[0x1] = AstivletResponse.class;
 
@@ -68,31 +59,14 @@ public class AstivletProcessor {
       m = c.getDeclaredMethod("service", classParamTypes);
       m.setAccessible(true);
       m.invoke(astivlet, new Object[] { request, response });
-    } catch (NoSuchMethodException ex) {
-      LOG.error(ex.getMessage());
-    } catch (SecurityException ex) {
-      LOG.error(ex.getMessage());
-    } catch (IllegalAccessException ex) {
-      LOG.error(ex.getMessage());
-    } catch (IllegalArgumentException ex) {
-      LOG.error(ex.getMessage());
-    } catch (InvocationTargetException ex) {
+    } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
       LOG.error(ex.getMessage());
     } catch (NullPointerException ex) {
       throw new AstiveException(AppLocale.getI18n("resourceNotExist",
                                                   new Object[] { "/" + request.getScript() }));
     }
   }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param entryPoint DOCUMENT ME!
-   * @param request DOCUMENT ME!
-   * @param response DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
-   */
+ 
   public static void invokeAstivlet(Astivlet astivlet, AstivletRequest request,
                                     AstivletResponse response)
                              throws AstiveException {
@@ -107,15 +81,7 @@ public class AstivletProcessor {
       m = c.getDeclaredMethod("service", classParamTypes);
       m.setAccessible(true);
       m.invoke(astivlet, new Object[] { request, response });
-    } catch (NoSuchMethodException ex) {
-      LOG.error(AppLocale.getI18n(ex.getMessage()));
-    } catch (SecurityException ex) {
-      LOG.error(AppLocale.getI18n(ex.getMessage()));
-    } catch (IllegalAccessException ex) {
-      LOG.error(AppLocale.getI18n(ex.getMessage()));
-    } catch (IllegalArgumentException ex) {
-      LOG.error(AppLocale.getI18n(ex.getMessage()));
-    } catch (InvocationTargetException ex) {
+    } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
       LOG.error(AppLocale.getI18n(ex.getMessage()));
     }
   }

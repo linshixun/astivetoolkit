@@ -32,7 +32,7 @@ public class SpeechUnloadGrammar implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xc1f97d3a440e4c38L;
+  private static final long serialVersionUID = -4469403465985143752L;
 
   /**
    * Grammar name.

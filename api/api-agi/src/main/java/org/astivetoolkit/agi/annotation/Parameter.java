@@ -38,7 +38,7 @@ public @interface Parameter {
    *
    * @return position of this parameter in a command. Default position is 0.
    */
-  public int position() default 0x0;
+  public int position() default 0;
   /**
    * Get the prefix of the parameter or and empty string is none is defined.
    *

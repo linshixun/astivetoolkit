@@ -25,7 +25,7 @@ import org.astivetoolkit.agi.command.*;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- * Final implementation of {@link AgiResponse} use for Fastagi servers.
+ * Final implementation of {@link AgiResponse} use for fast agi servers.
  *
  * @since 1.0.0
  * @see AgiResponse
@@ -684,7 +684,7 @@ public class FastAgiResponse implements AgiResponse {
     SpeechCreate command = new SpeechCreate(engine);
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
-    if (acr.getResultCode() != 0x1) {
+    if (acr.getResultCode() != 1) {
       if ((engine == null) || "".equals(engine)) {
         throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObjectForDefaultEngine"));
       } else {

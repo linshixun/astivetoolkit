@@ -32,12 +32,12 @@ public class SetVariable implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xa3ec74c9fd284a9bL;
+  private static final long serialVersionUID = -6634799740139058533L;
 
   /**
    * Variable value.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String value;
 
   /**

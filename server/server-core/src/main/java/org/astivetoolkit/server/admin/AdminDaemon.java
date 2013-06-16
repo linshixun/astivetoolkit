@@ -48,16 +48,6 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
   private int backlog;
   private int port;
 
-  /**
-   * Creates a new AdminDaemon object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   * @param server DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public AdminDaemon(int port, int backlog, InetAddress bindAddr, AbstractAstiveServer server)
               throws IOException {
     super();
