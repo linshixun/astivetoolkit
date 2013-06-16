@@ -18,12 +18,18 @@
  */
 package org.astivetoolkit.examples.speechrecognition;
 
+import static java.lang.System.out;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.SpeechRecognitionResult;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.astivlet.AstivletRequest;
 import org.astivetoolkit.astivlet.AstivletResponse;
 
+/**
+ * Speech Recognition example
+ * 
+ * @since 1.0.0
+ */
 public class App extends Astivlet {
 
     @Override
@@ -34,12 +40,13 @@ public class App extends Astivlet {
             response.speechCreate();
             response.speechLoadGrammar("digits", "");
             response.speechActivateGrammar("digits");
-            SpeechRecognitionResult srr  = response.speechRecognize("hello-world", 12);            
+            SpeechRecognitionResult srr  = response.speechRecognize("hello-world", 12);
+            
             response.speechDeactivateGrammar("digits");
             
             response.hangup();
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            out.print(ex.getMessage());
         }
     }
 }
