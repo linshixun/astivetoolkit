@@ -60,7 +60,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
    * Create a new TelnetServer with port, backlog and bindAddr.
    *
    * @param port port to where the service should bound.
-   * @param backlog maximun connections in queue. After that all connections
+   * @param backlog maximum connections in queue. After that all connections
    * will be dropped.
    * @param bindAddr address to where the service should be bound.
    * @throws IOException when unable to perform IO operations.
@@ -74,14 +74,14 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
   }
 
   /**
-   * Return a list with all applications deployed into the server.
+   * Returns a list with all applications deployed into the server.
    *
    * @return a list of string with the applications running into the server.
    */
   public abstract List<String> lookup();
 
   /**
-   * DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void run() {
@@ -182,8 +182,11 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
               }
             }
 
-            // TODO: Print a message if is empty?
-            writer.println(sb.toString());
+            if(sb.toString().isEmpty()) {
+                writer.println(AppLocale.getI18n("telnetEmptyResults"));                
+            } else {
+                writer.println(sb.toString());
+            }
             writer.print(promptSymbol);
             writer.flush();
 
@@ -222,7 +225,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
   public abstract String system();
 
   /**
-   * Return the version of the running server.
+   * Returns the version of the running server.
    *
    * @return server instance version.
    */

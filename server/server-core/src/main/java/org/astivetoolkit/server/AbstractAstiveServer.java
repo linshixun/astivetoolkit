@@ -32,28 +32,13 @@ import org.astivetoolkit.util.AppLocale;
  * @see AstiveServer
  * @see SimpleAstiveServer
  */
-public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {
-  /**
-   *
-   */
-  private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);
+public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {  
   public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
   public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") + "/apps/";
-
-  /**
-   *
-   */
   private InetAddress bindAddr;
-
-  /**
-   *
-   */
   private int backlog;
-
-  /**
-   *
-   */
   private int port;
+  private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);  
 
   /**
    * Creates a new AbstractAstiveServer object.
@@ -134,7 +119,6 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
   }
 
   /**
-   *
    * @return App version.
    */
   public String getVersion() {
@@ -145,16 +129,8 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     return sb.toString();
   }
 
-  /**
-   * DOCUMENT ME!
-   */
   protected abstract void launchConnectionMonitor();
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   @Override
   public void start() throws SystemException {
     if (LOG.isInfoEnabled()) {
@@ -164,11 +140,6 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     super.start();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   @Override
   public void stop() throws SystemException {
     if (LOG.isInfoEnabled()) {

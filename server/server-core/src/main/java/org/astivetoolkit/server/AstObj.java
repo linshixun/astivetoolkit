@@ -26,6 +26,7 @@ import noNamespace.AppDocument;
 import noNamespace.AppType;
 import noNamespace.AstivletMappingType;
 import noNamespace.AstivletType;
+import org.apache.xmlbeans.XmlException;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.util.AppLocale;
@@ -108,7 +109,7 @@ public final class AstObj {
           astivlets.put(url, getAstivletByClass(at.getClass1()));
         }
       }
-    } catch (Exception ex) {
+    } catch (XmlException | AstiveException ex) {
       throw new AstiveException(ex);
     }
   }
@@ -161,7 +162,7 @@ public final class AstObj {
   }
 
   /**
-   * Return meta data related to de app.
+   * Returns meta data related to de app.
    *
    * @return app meta-data.
    */

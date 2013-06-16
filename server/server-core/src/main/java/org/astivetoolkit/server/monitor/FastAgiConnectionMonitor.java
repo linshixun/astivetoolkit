@@ -56,8 +56,8 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
   /**
    * Creates a new FastAgiConnectionMonitor object.
    *
-   * @param server DOCUMENT ME!
-   * @param threads DOCUMENT ME!
+   * @param server the server to monitor.
+   * @param threads maximum threads allow for the server.
    */
   public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
     if (LOG.isDebugEnabled()) {
@@ -66,23 +66,19 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
 
     this.server = server;
     manager = new FastAgiConnectionManager();
-
-    // TODO: This should be a parameter
+    
     int corePoolSize = threads;
     int maxPoolSize = threads;
+    // TODO: This should be a parameter
     long keepAliveTime = 0x1388;
 
-    threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
-                                                TimeUnit.MILLISECONDS,
-                                                new LinkedBlockingQueue<Runnable>());
+    threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 
+            keepAliveTime, TimeUnit.MILLISECONDS, 
+                new LinkedBlockingQueue<Runnable>());
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void processConnection(final Connection conn)
@@ -128,8 +124,8 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
   }
 
   /**
-   * DOCUMENT ME!
-   */
+   * {@inheritDoc}
+   */   
   @Override
   public void run() {
     while (true) {

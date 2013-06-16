@@ -55,8 +55,8 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
   /**
    * Creates a new SimpleConnectionMonitor object.
    *
-   * @param server DOCUMENT ME!
-   * @param astivlet DOCUMENT ME!
+   * @param server the server.
+   * @param astivlet the application.
    */
   public SimpleConnectionMonitor(FastAgiServerSocket server, Astivlet astivlet) {
     if (LOG.isDebugEnabled()) {
@@ -69,39 +69,8 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
     executorService = Executors.newFixedThreadPool(maxThreads);
   }
 
-  // TODO: This should be generalized. For example, I can create an interface ConectionMonitorMappStrategy
-  // indicating how to mapp the apps for this server. Then create a SimpleMappingStrategy or some like that
-  @Deprecated
-  private static String getAppName(Astivlet astivlet) {
-    /*
-     * try { InputStream is = astivlet.getClass().getResourceAsStream("/" +
-     * AbstractAstiveServer.ASTIVE_DEPLOYMENT_DESCRIPTOR); int c = -1;
-     * StringBuilder sBuilder = new StringBuilder();
-     *
-     * while ((c = is.read()) != -1) { sBuilder.append((char) c); }
-     *
-     * // WARNING: Uncomment this //return
-     * Utils.getAppName(sBuilder.toString()); } catch (FileNotFoundException
-     * ex) { } catch (IOException ex) { }
-     */
-    return null;
-  }
-
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Astivlet getAstivlet() {
-    return astivlet;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void processConnection(final Connection conn)
@@ -133,7 +102,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
   }
 
   /**
-   * DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void run() {
@@ -166,11 +135,39 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
   }
 
   /**
-   * DOCUMENT ME!
+   * Set the {@link org.astivetoolkit.astivlet.Astivlet} that will be performed.
    *
-   * @param astivlet DOCUMENT ME!
+   * @param astivlet the astivlet to perform.
    */
   public void setAstivlet(Astivlet astivlet) {
     this.astivlet = astivlet;
   }
+  
+  /**
+   * Returns the {@link org.astivetoolkit.astivlet.Astivlet} that will be performed.
+   *
+   * @returns the astivlet to perform.
+   */
+  public Astivlet getAstivlet() {
+    return astivlet;
+  }  
+  
+  // TODO: This should be generalized. For instance, creating an interface 
+  // ConectionMonitorMappStrategy indicating how to mapp the apps for this 
+  // server. Then create a SimpleMappingStrategy or some like that
+  @Deprecated
+  private static String getAppName(Astivlet astivlet) {
+    /*
+     * try { InputStream is = astivlet.getClass().getResourceAsStream("/" +
+     * AbstractAstiveServer.ASTIVE_DEPLOYMENT_DESCRIPTOR); int c = -1;
+     * StringBuilder sBuilder = new StringBuilder();
+     *
+     * while ((c = is.read()) != -1) { sBuilder.append((char) c); }
+     *
+     * // WARNING: Uncomment this //return
+     * Utils.getAppName(sBuilder.toString()); } catch (FileNotFoundException
+     * ex) { } catch (IOException ex) { }
+     */
+    return null;
+  }  
 }
