@@ -9,11 +9,6 @@ developing, maintaining, and deploying telephony applications.
 Build high-quality products over Asterisk® PBX with the Astive developer 
 solutions.
 
-LEGAL
-
-Astive is subject to the terms detailed in the license agreement
-accompanying it.
-
 GETTING Astive
 
 Please look into http://astive.phonytive.com/documentation/tutorials
@@ -23,3 +18,8 @@ SYSTEM REQUIREMENTS
 
 Astive needs a Java Virtual Machine of at least version 1.6
 (Java SE 6.0).
+
+LEGAL
+
+Astive is subject to the terms detailed in the license agreement
+accompanying it.
