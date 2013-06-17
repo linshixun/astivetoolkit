@@ -19,7 +19,14 @@
             <filtered>true</filtered>
         </fileSet>
         <fileSet>
-            <directory>src/main/resources/basedir</directory>
+            <fileMode>644</fileMode>
+            <directoryMode>751</directoryMode>
+            <directory>${basedir}</directory>
+            <includes>
+                <include>README.txt</include>
+                <include>NOTICE</include>
+                <include>LICENSE</include>                
+            </includes>
             <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
         </fileSet>
     </fileSets>
