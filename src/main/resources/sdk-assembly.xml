@@ -8,7 +8,8 @@
     </formats>
     <fileSets>
         <fileSet>
-            <fileMode>761</fileMode>
+            <fileMode>751</fileMode>
+            <directoryMode>751</directoryMode>
             <directory>src/main/resources/bin</directory>
             <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
             <excludes>
@@ -23,15 +24,17 @@
         </fileSet>
     </fileSets>
     <includeBaseDirectory>false</includeBaseDirectory>
-    <moduleSets>        
+    <moduleSets>
         <moduleSet>
             <binaries>
+                <fileMode>644</fileMode>
+                <directoryMode>751</directoryMode>                
                 <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
                 <unpack>false</unpack>
             </binaries>
-            <includes>                
+            <includes>
                 <include>org.astivetoolkit:archetype</include>
             </includes>
-        </moduleSet>       
+        </moduleSet>
     </moduleSets>
 </assembly>

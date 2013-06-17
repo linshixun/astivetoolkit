@@ -9,19 +9,31 @@
     <fileSets>
         <!--Create an empty folder-->
         <fileSet>
-            <directory>src/main/resources/conf</directory>
+            <directoryMode>751</directoryMode>
+            <directory>./</directory>
             <outputDirectory>/${project.artifactId}-server-${project.version}/apps</outputDirectory>
             <excludes>
-                <exclude>*</exclude>
+                <exclude>*/**</exclude>
             </excludes>
         </fileSet>
+        <!--Workaround to bug in permissions(in moduleSet)-->
         <fileSet>
+            <directoryMode>751</directoryMode>
+            <directory>./</directory>
+            <outputDirectory>/${project.artifactId}-server-${project.version}/lib</outputDirectory>
+            <excludes>
+                <exclude>*/**</exclude>
+            </excludes>
+        </fileSet>        
+        <fileSet>
+            <fileMode>644</fileMode>
+            <directoryMode>751</directoryMode>
             <directory>src/main/resources/conf</directory>
             <outputDirectory>/${project.artifactId}-server-${project.version}/conf</outputDirectory>
         </fileSet>
         <fileSet>
-            <fileMode>0761</fileMode>
-            <directoryMode>0761</directoryMode>
+            <fileMode>751</fileMode>
+            <directoryMode>751</directoryMode>
             <directory>src/main/resources/bin</directory>
             <outputDirectory>/${project.artifactId}-server-${project.version}/bin</outputDirectory>
             <excludes>
@@ -31,7 +43,14 @@
             </excludes>
         </fileSet>
         <fileSet>
-            <directory>src/main/resources/basedir</directory>
+            <fileMode>644</fileMode>
+            <directoryMode>751</directoryMode>
+            <directory>${basedir}</directory>
+            <includes>
+                <include>README.txt</include>
+                <include>NOTICE</include>
+                <include>LICENSE</include>                
+            </includes>
             <outputDirectory>/${project.artifactId}-server-${project.version}</outputDirectory>
         </fileSet>
     </fileSets>
@@ -40,13 +59,17 @@
         <moduleSet>
             <includeSubModules>true</includeSubModules>
             <binaries>
+                <fileMode>644</fileMode>
+                <directoryMode>751</directoryMode>
                 <outputDirectory>/${project.artifactId}-server-${project.version}/lib</outputDirectory>
-                <unpack>false</unpack>                
+                <unpack>false</unpack>
                 <dependencySets>
                     <dependencySet>
                         <unpack>false</unpack>
                         <scope>compile</scope>
                         <outputDirectory>/${project.artifactId}-server-${project.version}/lib</outputDirectory>
+                        <fileMode>644</fileMode>
+                        <directoryMode>751</directoryMode>                      
                     </dependencySet>
                 </dependencySets>
             </binaries>
