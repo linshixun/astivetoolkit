@@ -38,7 +38,7 @@ public class App extends Astivlet {
     @Override
     public void service(AstivletRequest request, AstivletResponse response) {
         
-        MenuItem menuItemA = new MenuItem("1", "menu-item-b-sound");
+        MenuItem menuItemA = new MenuItem("1", "menu-item-a-sound");
         menuItemA.addActionListener(new ActionListener() {
 
             @Override
