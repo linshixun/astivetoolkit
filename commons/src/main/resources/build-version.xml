@@ -8,6 +8,11 @@ package org.astivetoolkit;
 public class Version {
     public static final String VERSION = "${version}";
     public static final String BUILD_TIME = "${build}";
+    
+    // Used by version.sh script.
+    static public void main(String... args) {
+        System.out.println(VERSION);
+    }    
 }
         </echo>
     </target>
