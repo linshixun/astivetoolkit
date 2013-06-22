@@ -19,7 +19,7 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 * Open Source
 * Well documented.
 
-## Getting ATK
+## Getting Ative
 
 A pre-assembled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from sorce as follows:
 
