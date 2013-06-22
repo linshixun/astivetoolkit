@@ -99,7 +99,7 @@ public class MenuNavigator {
   }
 
   private ArrayList<String> getChildsKeys(ArrayList<MenuItem> menuChilds) {
-    ArrayList<String> result = new ArrayList<String>();
+    ArrayList<String> result = new ArrayList<>();
 
     for (MenuItem child : menuChilds) {
       final String digits = ((MenuItem) child).getDigits();
