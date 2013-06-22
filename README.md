@@ -1,25 +1,64 @@
-README for Astive Toolkit
-===========================
+# Astive Toolkit
 
-INTRODUCTION
+Astive is a toolkit and server for Java, with an extensible architecture for developing, maintaining, and deploying voice applications. Build high-quality products over Asterisk® PBX with the Astive developer solutions.
 
-Astive is a toolkit and server for Java, with an extensible architecture for 
-developing, maintaining, and deploying telecom applications.
+## Requirements
 
-Build high-quality products over Asterisk® PBX with the Astive developer 
-solutions.
+* Java 1.6+
+* Maven 3.x.x+
+* Asterisk 1.8+
 
-GETTING Astive
+## Features 
 
-Please look into http://astivetoolkit.org/documentation/tutorials
-for more info on how to get Astive up and running.
+* Multi-IVR applications.
+* Asterisk 1.8 >
+* Application-Server like operations(start, stop, undeploy, deploy...)
+* Advanced API's for IVR creation
+* Event-driven architecture.
+* Support for FastAGI (AMI on the way).
+* Open Source
+* Well documented.
 
-SYSTEM REQUIREMENTS
+## Getting ATK
 
-Astive needs a Java Virtual Machine of at least version 1.6
-(Java SE 6.0).
+A pre-assembled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from sorce as follows:
 
-LEGAL
+```bash
+git clone https://github.com/psanders/astivetoolkit.git
+cd astivetoolkit
+./assembly
+```
 
-Astive is subject to the terms detailed in the license agreement
-accompanying it.
+## Example
+
+A simple application:
+
+```java
+public class App extends Astivlet {
+    @Override
+    public void service(AstivletRequest request, AstivletResponse response) {
+        try {
+            response.answer();
+            response.streamFile("tt-monkeys");
+            response.hangup();
+        } catch (AgiException ex) {
+            out.print(ex.getMessage());
+        }
+    }
+}
+```
+
+Looking for something more advanced? check out the examples in [the website](http://astivetoolkit.org/downloads).
+
+## Author
+
+Core team:
+
+* [Pedro Sanders](https://github.com/psanders)
+* [Eudris Cabrera](https://github.com/ecabrerar)
+
+Contributors: https://github.com/psanders/astivetoolkit/contributors
+
+### Copyright
+
+Copyright (C) 2010-2013 by [PhonyTive LLC](http://phonytive.com). Apache License, Version 2.0 (see LICENSE for details).
