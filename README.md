@@ -13,10 +13,10 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 * Multi-IVR applications.
 * Asterisk 1.8 >
 * Application-Server like operations(start, stop, undeploy, deploy...)
-* Advanced API's for IVR creation
+* Advanced API's for IVR creation.
 * Event-driven architecture.
 * Support for FastAGI (AMI on the way).
-* Open Source
+* Open Source.
 * Well documented.
 
 ## Getting Ative
