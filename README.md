@@ -12,14 +12,14 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 
 * Multi-IVR applications.
 * Asterisk 1.8 >
-* Application-Server like operations(start, stop, undeploy, deploy...)
+* Application-Server like operations(start, stop, undeploy, deploy...).
 * Advanced API's for IVR creation.
 * Event-driven architecture.
 * Support for FastAGI (AMI on the way).
 * Open Source.
 * Well documented.
 
-## Getting Ative
+## Getting Astive
 
 A pre-assembled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from sorce as follows:
 
