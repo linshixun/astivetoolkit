@@ -20,32 +20,22 @@
         </layout>
     </appender>
     <logger name="org.astivetoolkit.server">
-        <level value="trace"/>
-        <appender-ref ref="consoleAppender" />
-        <appender-ref ref="fileAppender" />
-    </logger>
-   <logger name="org.astivetoolkit.server.admin">
-        <level value="trace"/>
+        <level value="info"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
    <logger name="org.astivetoolkit.agi">
-        <level value="trace"/>
-        <appender-ref ref="consoleAppender" />
-        <appender-ref ref="fileAppender" />
-    </logger>
-   <logger name="org.astivetoolkit.ami">
-        <level value="trace"/>
+        <level value="info"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
    <logger name="org.astivetoolkit.agi.command">
-        <level value="trace"/>
+        <level value="info"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
    <logger name="org.astivetoolkit.agi.fastagi">
-        <level value="trace"/>
+        <level value="info"/>
         <appender-ref ref="consoleAppender" />
         <appender-ref ref="fileAppender" />
     </logger>
