@@ -23,4 +23,7 @@
 export ASTIVE_HOME=`dirname "$0"`/..
 export ASTIVE_APPS="$ASTIVE_HOME/apps"
 
-java -Duser.country=US -Duser.language=en -classpath $ASTIVE_HOME/lib/*:$ASTIVE_HOME/conf/log4j.xml org.astivetoolkit.server.AstiveServer "$@"
+# Remove this comment for other than english
+#OPTIONS="-Duser.language=es -Duser.country=DO"
+
+java $OPTIONS -classpath $ASTIVE_HOME/lib/*:$ASTIVE_HOME/conf/log4j.xml org.astivetoolkit.server.AstiveServer "$@"
