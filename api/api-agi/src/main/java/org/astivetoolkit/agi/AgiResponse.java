@@ -302,7 +302,8 @@ public interface AgiResponse {
   void noop() throws AgiException;  
 
   /**
-   * Receives one character from channels supporting it.
+   * Receives a character of text on a <code>channel</code>. Most channels do
+   * not support the reception of text.
    *
    * @return the character if one is received.
    * @throws AgiException if channel doesn't support this operation.
