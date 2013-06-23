@@ -79,7 +79,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
     conns.remove(conn);
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
   }
 
@@ -101,7 +101,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
     conns.clear();
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
   }
 }

@@ -69,7 +69,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
     try {
       setBindAddr(InetAddress.getByName(properties.get("bind").toString().trim()));
     } catch (UnknownHostException ex) {
-      throw new SystemException(AppLocale.getI18n("unknownHost",
+      throw new SystemException(AppLocale.getI18n("errorUnknownHost",
                                                   new Object[] {
                                                     properties.get("bind").toString().trim()
                                                   }));
@@ -79,14 +79,14 @@ public final class ServicePropertiesImpl implements ServiceProperties {
    final   List<InetAddress> onlyFromList = new ArrayList<InetAddress>();
     final  String[] l = properties.get("onlyFrom").toString().split(",");
 
-      for (int i = 0x0; l.length > i; i++) {
+      for (int i = 0; l.length > i; i++) {
        final   InetAddress id = InetAddress.getByName(l[i].trim());
         onlyFromList.add(id);
       }
 
       setOnlyFrom(onlyFromList);
     } catch (UnknownHostException ex) {
-      throw new SystemException(AppLocale.getI18n("unknownHost",
+      throw new SystemException(AppLocale.getI18n("errorUnknownHost",
                                                   new Object[] {
                                                     properties.get("onlyFrom").toString().trim()
                                                   }));

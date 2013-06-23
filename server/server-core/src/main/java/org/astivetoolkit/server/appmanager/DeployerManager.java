@@ -56,7 +56,7 @@ public final class DeployerManager implements Deployer, AstDB {
     try {
       deployApps();
     } catch (AstiveException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 
@@ -66,13 +66,13 @@ public final class DeployerManager implements Deployer, AstDB {
   @Override
   public void addApp(AstObj astObj) throws AstiveException {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("addingApp", new Object[] { astObj.getDeploymentId() }));
+      LOG.debug(AppLocale.getI18n("messageAddingApp", new Object[] { astObj.getDeploymentId() }));
     }
 
     astDB.addApp(astObj);
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
   }
 
@@ -91,7 +91,7 @@ public final class DeployerManager implements Deployer, AstDB {
   public void deploy(String appPath) throws AstiveException {
     try {
       if (LOG.isInfoEnabled()) {
-        LOG.info(AppLocale.getI18n("cli.deploy.deployingApp", new Object[] { appPath }));
+        LOG.info(AppLocale.getI18n("messageDeployingApp", new Object[] { appPath }));
       }
 
       File srcFile = new File(appPath);
@@ -108,7 +108,7 @@ public final class DeployerManager implements Deployer, AstDB {
         }
       } else {
         if (LOG.isInfoEnabled()) {
-          LOG.warn(AppLocale.getI18n("cli.deploy.appExist",
+          LOG.warn(AppLocale.getI18n("errorAppAlreadyExist",
                                      new Object[] { appPath, AbstractAstiveServer.ASTIVE_APPS }));
         }
 
@@ -116,13 +116,11 @@ public final class DeployerManager implements Deployer, AstDB {
       }
 
       if (LOG.isInfoEnabled()) {
-        LOG.info(AppLocale.getI18n("cli.deploy.appDeployed",
+        LOG.info(AppLocale.getI18n("messageAppDeployed",
                                    new Object[] { app.getInfo().getName() }));
       }
-    } catch (FileNotFoundException | JclException | AstiveException ex) {        
-      LOG.warn(AppLocale.getI18n("cli.deploy.cantReadFile", new Object[] { appPath }));
-    } catch (IOException ex) {
-      LOG.warn(AppLocale.getI18n("cli.deploy.cantCopy"));
+    } catch (IOException | JclException | AstiveException ex) {
+        throw new AstiveException(ex);
     }
   }
 
@@ -131,7 +129,7 @@ public final class DeployerManager implements Deployer, AstDB {
    */
   public void deployApps() throws AstiveException {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("deployingApps", new Object[] { AbstractAstiveServer.ASTIVE_APPS }));
+      LOG.debug(AppLocale.getI18n("messageDeployingApps", new Object[] { AbstractAstiveServer.ASTIVE_APPS }));
     }
 
     //String apps = ASTIVE_APPS;
@@ -140,17 +138,17 @@ public final class DeployerManager implements Deployer, AstDB {
     if (f.isDirectory()) {
       File[] files = f.listFiles();
 
-      for (int i = 0x0; i < files.length; i++) {
+      for (int i = 0; i < files.length; i++) {
         String file = files[i].getAbsolutePath();
 
         if (file.toLowerCase().endsWith(".jar")) {
           deploy(file);
         } else {
-          LOG.warn(AppLocale.getI18n("isNotValidApp", new Object[] { file }));
+          LOG.warn(AppLocale.getI18n("errorInvalidApp", new Object[] { file }));
         }
       }
     } else {
-      LOG.error(AppLocale.getI18n("unexpectedError",
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure",
                                   new Object[] { AbstractAstiveServer.ASTIVE_APPS }));
     }
   }
@@ -210,7 +208,7 @@ public final class DeployerManager implements Deployer, AstDB {
   @Override
   public void undeploy(String app) throws AstiveException {
     if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("cli.undeploy.undeployingApp", new Object[] { app }));
+      LOG.info(AppLocale.getI18n("messageUndeployingApp", new Object[] { app }));
     }
 
     try {
@@ -226,16 +224,17 @@ public final class DeployerManager implements Deployer, AstDB {
           f.delete();
 
           if (LOG.isInfoEnabled()) {
-            LOG.info(AppLocale.getI18n("cli.undeploy.appUndeployed", new Object[] { app }));
+            LOG.info(AppLocale.getI18n("messageAppUndeployed", new Object[] { app }));
           }
         } else {
-          LOG.warn(AppLocale.getI18n("cli.deploy.appFileNotExist", new Object[] { app }));
+          LOG.warn(AppLocale.getI18n("errorAppFileNotExist", new Object[] { app }));
         }
       } else {
-        LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
+        LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[] { app }));
       }
     } catch (org.xeustechnologies.jcl.exception.JclException | AstiveException ex) {
-      LOG.warn(AppLocale.getI18n("cli.deploy.appNotExist", new Object[] { app }));
+      LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[] { app }));
+      throw new AstiveException(ex);
     }
   }
 }

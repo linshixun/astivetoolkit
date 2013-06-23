@@ -48,14 +48,6 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port) throws SystemException, IOException {
     super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
   }
@@ -98,7 +90,7 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
    */
   public String getVersion() {
     StringBuilder sb =
-      new StringBuilder(AppLocale.getI18n("appVersion",
+      new StringBuilder(AppLocale.getI18n("astivedVersion",
                                           new String[] { Version.VERSION, Version.BUILD_TIME }));
 
     return sb.toString();
@@ -108,8 +100,8 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
 
   @Override
   public void start() throws SystemException {
-    if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("starting"));
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("messageStarting"));
     }
 
     super.start();
@@ -117,16 +109,16 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
 
   @Override
   public void stop() throws SystemException {
-    if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("stopping"));
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("messageStopping"));
     }
 
     try {
       super.stop();
-      System.exit(0x0);
+      System.exit(0);
     } catch (Exception ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
-      System.exit(0x1);
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
+      System.exit(1);
     }
   }
 }

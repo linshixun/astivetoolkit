@@ -260,7 +260,7 @@ public class AgiCommandReply {
 
     boolean inKey = true;
     boolean inQuotes = false;
-    char previousChar = 0x0;
+    char previousChar = 0;
 
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);

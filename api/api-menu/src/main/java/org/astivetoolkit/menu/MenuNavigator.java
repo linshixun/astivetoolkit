@@ -126,11 +126,11 @@ public class MenuNavigator {
     }
 
     // Has not press any key
-    if (c == 0x0) {
+    if (c == 0) {
       // WARNING: Not sure about using all keys...
       c = agiResponse.streamFile(file, "0123456789*#");
 
-      if (c == 0x0 /*
+      if (c == 0 /*
         * && milliSecondsWatting == 0
         */) {
         try {
@@ -148,7 +148,7 @@ public class MenuNavigator {
 
     KeyEvent evt;
 
-    if (c != 0x0) {
+    if (c != 0) {
       evt = new KeyEvent(item, Digit.getDigit(c));
       item.fireKeyEvent_keyTyped(evt);
       result += ("" + c);
@@ -161,7 +161,7 @@ public class MenuNavigator {
 
       c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
 
-      if (c != 0x0) {
+      if (c != 0) {
         result += ("" + c);
         evt = new KeyEvent(item, Digit.getDigit(c));
         item.fireKeyEvent_keyTyped(evt);
@@ -263,7 +263,7 @@ public class MenuNavigator {
         LOG.debug("Playing menu intro: " + menu.getGreetingsFile());
       }
 
-      char c = 0x0;
+      char c = 0;
       digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu, c);
       menu.setGreetingsPlayed(true);
     }
@@ -282,7 +282,7 @@ public class MenuNavigator {
           String cmd = CommandProcessor.buildCommand(o);
           c = agiResponse.sendAgiCommand(cmd).getResultCodeAsChar();
 
-          if (c != 0x0) {
+          if (c != 0) {
             KeyEvent evt = new KeyEvent(menu, Digit.getDigit(c));
             menu.fireKeyEvent_keyTyped(evt);
 
@@ -292,7 +292,7 @@ public class MenuNavigator {
           }
         }
 
-        if (c != 0x0) {
+        if (c != 0) {
           break;
         }
       }
@@ -321,7 +321,7 @@ public class MenuNavigator {
           msw = millisecondsWatting;
 
           if ((option.getFile() != null) && !option.getFile().isEmpty()) {
-            char c = 0x0;
+            char c = 0;
             digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse, menu, c);
           }
         }

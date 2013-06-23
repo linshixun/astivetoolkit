@@ -52,7 +52,7 @@ public class SpeechRecognitionResult {
   public char getDigit() {
     final String digit = AgiCommandReply.getAttribute("digit");
  
-    return ((digit == null) || (digit.length() == 0) ? 0x0 :digit.charAt(0));
+    return ((digit == null) || (digit.length() == 0) ? 0 :digit.charAt(0));
   }
 
   public int getEndpos() {

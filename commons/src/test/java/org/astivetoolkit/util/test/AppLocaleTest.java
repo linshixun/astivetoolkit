@@ -37,6 +37,6 @@ public class AppLocaleTest extends TestCase {
    * Test method.
    */
   public void testAppLocale() {
-    assertEquals(AppLocale.getI18n("test", new Object[] { "test" }), "This is a test.");
+    assertEquals(AppLocale.getI18n("messageTest", new Object[] { "test" }), "This is a test.");
   }
 }

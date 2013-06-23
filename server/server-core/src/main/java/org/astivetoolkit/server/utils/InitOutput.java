@@ -41,7 +41,7 @@ public class InitOutput {
   public static void printInit(ArrayList<ServiceProperties> properties) {
     // TODO: Programmatically include the build and the version
     StringBuilder sb =
-      new StringBuilder(AppLocale.getI18n("init.header",
+      new StringBuilder(AppLocale.getI18n("astivedInitHeader",
                                           new String[] { Version.VERSION, Version.BUILD_TIME }));
 
     for (ServiceProperties param : properties) {
@@ -62,7 +62,7 @@ public class InitOutput {
       sb.append("\t");
 
       if (param.isUnableToOpen()) {
-        sb.append(AppLocale.getI18n("unableToOpen"));
+        sb.append(AppLocale.getI18n("errorUnableToOpen"));
       } else {
         sb.append(param.getPort());
       }
@@ -70,7 +70,7 @@ public class InitOutput {
       sb.append("\n");
     }
 
-    sb.append(AppLocale.getI18n("init.footer"));
+    sb.append(AppLocale.getI18n("astivedInitFooter"));
     out.println(sb.toString());
   }
 }

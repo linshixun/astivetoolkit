@@ -57,7 +57,7 @@ public class AgiCommandHandler {
         lines.add(line);
       }
     } catch (IOException ex) {
-      throw new AgiException(AppLocale.getI18n("unableToPerformIOWithAsterisk",
+      throw new AgiException(AppLocale.getI18n("unableToCommunicateWithAsteriskError",
                                                new Object[] { ex.getMessage() }));
     }
 
@@ -80,7 +80,7 @@ public class AgiCommandHandler {
     try {
       line = conn.readLine();
     } catch (IOException e) {
-      throw new AgiException(AppLocale.getI18n("theConnectionHasBeenClosed"));
+      throw new AgiException(AppLocale.getI18n("errorConnectionClosed"));
     }
 
     if (line == null) {
@@ -107,7 +107,7 @@ public class AgiCommandHandler {
           }
         }
       } catch (IOException ex) {
-        throw new AgiException(AppLocale.getI18n("unableToReadReplyFromAsterisk"));
+        throw new AgiException(AppLocale.getI18n("errorUnableToCommunicateWithAsterisk"));
       }
     }
 

@@ -50,8 +50,8 @@ public class AstivletProcessor {
       Astivlet astivlet = astDB.getAstivlet(script);
 
       Class[] classParamTypes = new Class[2];
-      classParamTypes[0x0] = AstivletRequest.class;
-      classParamTypes[0x1] = AstivletResponse.class;
+      classParamTypes[0] = AstivletRequest.class;
+      classParamTypes[1] = AstivletResponse.class;
 
       Class c = Astivlet.class;
 
@@ -62,7 +62,7 @@ public class AstivletProcessor {
     } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
       LOG.error(ex.getMessage());
     } catch (NullPointerException ex) {
-      throw new AstiveException(AppLocale.getI18n("resourceNotExist",
+      throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
                                                   new Object[] { "/" + request.getScript() }));
     }
   }
@@ -71,9 +71,9 @@ public class AstivletProcessor {
                                     AstivletResponse response)
                              throws AstiveException {
     try {
-      Class[] classParamTypes = new Class[0x2];
-      classParamTypes[0x0] = AstivletRequest.class;
-      classParamTypes[0x1] = AstivletResponse.class;
+      Class[] classParamTypes = new Class[2];
+      classParamTypes[0] = AstivletRequest.class;
+      classParamTypes[1] = AstivletResponse.class;
 
       Class c = Astivlet.class;
       Method m;

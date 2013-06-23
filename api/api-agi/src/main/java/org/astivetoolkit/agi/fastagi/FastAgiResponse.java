@@ -686,9 +686,9 @@ public class FastAgiResponse implements AgiResponse {
 
     if (acr.getResultCode() != 1) {
       if ((engine == null) || "".equals(engine)) {
-        throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObjectForDefaultEngine"));
+        throw new AgiException(AppLocale.getI18n("errorCantCreateSpeechObjectForDefaultEngine"));
       } else {
-        throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObject", new Object[] { engine }));
+        throw new AgiException(AppLocale.getI18n("errorCantCreateSpeechObject", new Object[] { engine }));
       }
     }
   }

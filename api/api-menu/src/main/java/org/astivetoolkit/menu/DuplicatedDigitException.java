@@ -29,7 +29,7 @@ import org.astivetoolkit.util.AppLocale;
 public class DuplicatedDigitException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     private static final String MSG = AppLocale
-                    .getI18n("exeption.DuplicatedKeyInMenuException");
+                    .getI18n("errorDuplicatedKeyInMenu");
 
     /**
      * Creates a new instance of DuplicatedDigitException.

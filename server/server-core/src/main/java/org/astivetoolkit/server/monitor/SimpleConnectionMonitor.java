@@ -50,7 +50,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
   private ConnectionManager manager;
   private ExecutorService executorService;
   private FastAgiServerSocket server;
-  private int maxThreads = 0xa;
+  private int maxThreads = 10;
 
   /**
    * Creates a new SimpleConnectionMonitor object.
@@ -60,7 +60,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
    */
   public SimpleConnectionMonitor(FastAgiServerSocket server, Astivlet astivlet) {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
+      LOG.debug(AppLocale.getI18n("messageStartingConnectionMonitor"));
     }
 
     this.server = server;
@@ -76,7 +76,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
   public void processConnection(final Connection conn)
                          throws AstiveException {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("processingCall"));
+      LOG.debug(AppLocale.getI18n("messageProcessingCall"));
     }
 
     try {
@@ -88,16 +88,16 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
       String requestAppName = aRequest.getRequestURL();
 
       if (LOG.isDebugEnabled()) {
-        LOG.debug(AppLocale.getI18n("execApp", new Object[] { requestAppName }));
+        LOG.debug(AppLocale.getI18n("messageExecApp", new Object[] { requestAppName }));
       }
 
       AstivletProcessor.invokeAstivlet(getAstivlet(), aRequest, aResponse);
 
       if (LOG.isDebugEnabled()) {
-        LOG.debug(AppLocale.getI18n("done"));
+        LOG.debug(AppLocale.getI18n("messageDone"));
       }
     } catch (AgiException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 
@@ -123,13 +123,13 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
               try {
                 manager.remove(conn);
               } catch (IOException ex) {
-                LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
+                LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                             new Object[] { ex.getMessage() }));
               }
             }
           });
       } catch (IOException ex) {
-        LOG.error(AppLocale.getI18n("unableToPerformIOOperations", new Object[] { ex.getMessage() }));
+        LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[] { ex.getMessage() }));
       }
     }
   }

@@ -257,7 +257,7 @@ public class VoiceComposer {
   }
   
   private static boolean hasEscapeDigits() {
-    return (escapeDigits != null) && (escapeDigits.length() != 0x0);
+    return (escapeDigits != null) && (escapeDigits.length() != 0);
   }
 
   private static boolean hasFormat() {

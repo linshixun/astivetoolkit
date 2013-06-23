@@ -85,19 +85,20 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   @Override
   public void start() throws SystemException {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("startingFastAgiServerSocket"));
+      LOG.debug(AppLocale.getI18n("messageStartingFastAgiServerSocket"));
     }
 
     try {
       InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
       bind(inet, backlog);
     } catch (IOException ex) {
-      throw new SystemException(AppLocale.getI18n("cantStartFastAgiServerSocket",
-                                                  new Object[] { bindAddr.getHostAddress(), port }));
+      throw new SystemException(
+              AppLocale.getI18n("errorCantStartFastAgiServerSocket",
+                new Object[] { bindAddr.getHostAddress(), port }));
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
   }
 
@@ -107,18 +108,18 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   @Override
   public void stop() throws SystemException {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("stoppingFastAgiServerSocket"));
+      LOG.debug(AppLocale.getI18n("messageStoppingFastAgiServerSocket"));
     }
 
     try {
       close();
     } catch (IOException ex) {
-      throw new SystemException(AppLocale.getI18n("cantStopFastAgiServerSocket",
+      throw new SystemException(AppLocale.getI18n("errorCantStopFastAgiServerSocket",
                                                   new Object[] { ex.getMessage() }));
     }
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
   }
 }

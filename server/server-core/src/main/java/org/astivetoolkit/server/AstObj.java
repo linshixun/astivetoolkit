@@ -75,11 +75,11 @@ public final class AstObj {
       JarResources jar = new JarResources();
       jar.loadJar(jarFile);
 
-      byte[] appxml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
-      AppDocument doc = AppDocument.Factory.parse(new String(appxml));
+      byte[] appXml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
+      AppDocument doc = AppDocument.Factory.parse(new String(appXml));
 
       if (doc.validate() == false) {
-        throw new AstiveException(AppLocale.getI18n("invalidDescriptor"));
+        throw new AstiveException(AppLocale.getI18n("errorInvalidDescriptor"));
       }
 
       app = doc.getApp();
@@ -109,7 +109,9 @@ public final class AstObj {
           astivlets.put(url, getAstivletByClass(at.getClass1()));
         }
       }
-    } catch (XmlException | AstiveException ex) {
+    } catch (XmlException ex) {
+      throw new AstiveException(ex);
+    } catch(Exception ex){
       throw new AstiveException(ex);
     }
   }

@@ -61,7 +61,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
    */
   public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
+      LOG.debug(AppLocale.getI18n("messageStartingConnectionMonitor"));
     }
 
     this.server = server;
@@ -70,7 +70,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
     int corePoolSize = threads;
     int maxPoolSize = threads;
     // TODO: This should be a parameter
-    long keepAliveTime = 0x1388;
+    long keepAliveTime = 5000;
 
     threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 
             keepAliveTime, TimeUnit.MILLISECONDS, 
@@ -85,7 +85,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                          throws AstiveException {
     try {
       if (LOG.isDebugEnabled()) {
-        LOG.debug(AppLocale.getI18n("processingCall"));
+        LOG.debug(AppLocale.getI18n("messageProcessingCall"));
       }
 
       FastAgiConnection fastConn = (FastAgiConnection) conn;
@@ -107,10 +107,10 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
         if (LOG.isDebugEnabled()) {
-          LOG.debug("done.");
+          LOG.debug("messageDone.");
         }
       } else {
-        LOG.error(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
+        LOG.error(AppLocale.getI18n("errorUnableToPlaceCallCheckNetPermissions"));
 
         try {
           fastConn.getSocket().close();
@@ -119,7 +119,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         }
       }
     } catch (AgiException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 
@@ -155,13 +155,13 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
               try {
                 manager.remove(conn);
               } catch (IOException ex) {
-                LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
+                LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                             new Object[] { ex.getMessage() }));
               }
             }
           });
       } catch (IOException ex) {
-        LOG.error(AppLocale.getI18n("unableToPerformIOOperations", new Object[] { ex.getMessage() }));
+        LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[] { ex.getMessage() }));
       }
     }
   }
