@@ -44,7 +44,7 @@ public class AgiException extends Exception {
   /**
    * Creates a new AgiException object.
    *
-   * @param e DOCUMENT ME!
+   * @param e original exception.
    */
   public AgiException(Exception e) {
     super(e);

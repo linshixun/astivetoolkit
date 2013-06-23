@@ -31,7 +31,7 @@ public class Noop implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x8c1ee759b542229dL;
+  private static final long serialVersionUID = -8349982286619204963L;
 
   /**
    * Create a new Noop object.

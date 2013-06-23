@@ -16,18 +16,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.menu.event;
+package org.astivetoolkit.menu;
 
+import org.astivetoolkit.util.AppLocale;
 
 /**
- *
+ * This exception is trigger when user attempts to insert more than one menu or
+ * menu item into the same menu level using the same </code>Digit</code>.
+ * 
  * @since 1.0.0
- * @see FailEvent
  */
-public interface FailListener {
-  /**
-   *
-   * @param evt
-   */
-  abstract void failurePerform(FailEvent evt);
+public class DuplicatedDigitException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+    private static final String MSG = AppLocale
+                    .getI18n("errorDuplicatedKeyInMenu");
+
+    /**
+     * Creates a new instance of DuplicatedDigitException.
+     */
+    public DuplicatedDigitException() {
+        super(DuplicatedDigitException.MSG);
+    }
 }
+ 

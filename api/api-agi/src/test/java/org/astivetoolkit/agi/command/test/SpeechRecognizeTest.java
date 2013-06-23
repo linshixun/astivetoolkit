@@ -18,33 +18,35 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SpeechRecognize;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SpeechRecognize;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SpeechRecognize}.
+ * 
+ * @since 1.0.0
  */
 public class SpeechRecognizeTest extends TestCase {
   /**
    * Creates a new SpeechRecognizeTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SpeechRecognizeTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String prompt = "Something to speech";
-    int timeout = 0x3e8;
-    int offset = 0x258;
+    int timeout = 1000;
+    int offset = 600;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("SPEECH RECOGNIZE");

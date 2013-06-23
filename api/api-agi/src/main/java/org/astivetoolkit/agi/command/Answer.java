@@ -28,10 +28,5 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
  */
 @AgiCommand(command = "ANSWER")
 public class Answer implements Serializable {
-  /**
-   * Serial version identifier.
-   */
-  private static final long serialVersionUID = 0xbb739b18b5e94c7eL;
-
-  
+  private static final long serialVersionUID = -4939433835861816194L;  
 }

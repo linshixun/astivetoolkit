@@ -41,7 +41,7 @@
                         <include>**/*.java</include>
                     </includes>
                     <excludes>
-                        <exclude>astive-archetype/**</exclude>
+                        <exclude>archetype/**</exclude>
                     </excludes>                    
                     <headerDefinitions>
                         <headerDefinition>${basedir}/src/main/resources/license-headerstyle.xml</headerDefinition>
@@ -56,12 +56,12 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
-            </plugin>            
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

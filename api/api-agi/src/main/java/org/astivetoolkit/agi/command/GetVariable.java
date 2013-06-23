@@ -37,7 +37,7 @@ public class GetVariable implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xcf16444fd1474312L;
+  private static final long serialVersionUID = -3524554548766620910L;
 
   /**
    * Variable name.

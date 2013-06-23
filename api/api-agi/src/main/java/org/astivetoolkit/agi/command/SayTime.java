@@ -38,7 +38,7 @@ public class SayTime implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x9ac51056f87cfc28L;
+  private static final long serialVersionUID = -7294406055734477784L;
 
   /**
    * Time to say.
@@ -50,7 +50,7 @@ public class SayTime implements Serializable {
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**

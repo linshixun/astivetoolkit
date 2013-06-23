@@ -36,7 +36,7 @@ public class SayNumber implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xb22adc1c8796438fL;
+  private static final long serialVersionUID = -5608428370844564593L;
 
   /**
    * Number to say.
@@ -47,7 +47,7 @@ public class SayNumber implements Serializable {
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**

@@ -20,7 +20,7 @@ package org.astivetoolkit.agi;
 
 
 /**
- * Enum that handle the status of a <code>channel</code>.
+ * Enumerator that handle the status of a <code>channel</code>.
  *
  * @since 1.0.0
  */
@@ -28,39 +28,39 @@ public enum ChannelStatus {
   /**
    * Channel is in an unknown status.
    */
-  UNKNOWN_STATUS(0xffffffff),
+  UNKNOWN_STATUS(-1),
   /**
    * Channel is down and available.
    */
-  CHANNEL_IS_DOWN_AND_AVAILABLE(0x0),
+  CHANNEL_IS_DOWN_AND_AVAILABLE(0),
   /**
    * Channel is down but reserved.
    */
-  CHANNEL_IS_DOWN_BUT_RESERVED(0x1),
+  CHANNEL_IS_DOWN_BUT_RESERVED(1),
   /**
    * Channel is off hook.
    */
-  CHANNEL_IS_OFF_HOOK(0x2),
+  CHANNEL_IS_OFF_HOOK(2),
   /**
    * Digits have been dialed.
    */
-  DIGITS_HAVE_BEEN_DIALED(0x3),
+  DIGITS_HAVE_BEEN_DIALED(3),
   /**
    * Line is ringing.
    */
-  LINE_IS_RINGING(0x4),
+  LINE_IS_RINGING(4),
   /**
    * Remote end is ringing.
    */
-  REMOTE_END_IS_RINGING(0x5),
+  REMOTE_END_IS_RINGING(5),
   /**
    * Line is up.
    */
-  LINE_IS_UP(0x6),
+  LINE_IS_UP(6),
   /**
    * Line is busy
    */
-  LINE_IS_BUSY(0x7);
+  LINE_IS_BUSY(7);
   /**
    * Int value of this type.
    */
@@ -68,17 +68,17 @@ public enum ChannelStatus {
 
   /**
    * Create a new ChannelStatus object with status code as parameter. This
-   * class is an enum, therefore can't be instantiated directly.
+   * class is an enumerator, therefore can't be instantiated directly.
    */
   private ChannelStatus(int code) {
     this.code = code;
   }
 
   /**
-   * Return enum for channel status code.
+   * Returns enumerator for channel status code.
    *
    * @param code channel status code
-   * @return ChannelStatus enum
+   * @return ChannelStatus enumerator
    */
   public static ChannelStatus get(int code) {
     for (ChannelStatus cs : ChannelStatus.values()) {
@@ -93,7 +93,7 @@ public enum ChannelStatus {
   /**
    * Get the int value of this type.
    *
-   * @return value for the enum element.
+   * @return value for the enumerator element.
    */
   public int getCode() {
     return code;

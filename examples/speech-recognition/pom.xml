@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
+            <artifactId>server-client</artifactId>
             <version>1.0.0-M4</version>
         </dependency>
     </dependencies>

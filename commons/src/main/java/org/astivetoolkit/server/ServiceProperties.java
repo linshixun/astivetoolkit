@@ -30,57 +30,22 @@ import java.util.List;
  */
 public interface ServiceProperties {
   /**
-   * Return the maximum queue length for incoming connection indications.
+   * Returns the maximum queue length for incoming connection indications.
    *
    * @return maximum number of pending connections on the socket.
    */
   int getBacklog();
 
   /**
-   * Return the address to where the <code>service</code> is bound, if any.
+   * Returns the address to where the <code>service</code> is bound, if any.
    *
-   * @return the local address the <code>service</code> is bound to, or <code>null</code> for the
-   * <code>anyLocal</code> address.
+   * @return the local address the <code>service</code> is bound to, or 
+   * <code>null</code> for the <code>anyLocal</code> address.
    */
   InetAddress getBindAddr();
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-
-  /**
-   * Return the address list from where connections are accept.
+   * Returns the address list from where connections are accept.
    *
    * @return by default <code>service</code> accept connections only from the <code>local</code>
    * machine.
@@ -88,14 +53,14 @@ public interface ServiceProperties {
   List<InetAddress> getOnlyFrom();
 
   /**
-   * Return the <code>service</code> port.
+   * Returns the <code>service</code> port.
    *
    * @return port to where <code>service</code> is bound.
    */
   int getPort();
 
   /**
-   * Return fully qualified class name for the final implementation of
+   * Returns the fully qualified class name for the final implementation of
    * {@link Service}.
    *
    * @return the final implementation of a particular <code>service</code>.
@@ -103,7 +68,7 @@ public interface ServiceProperties {
   String getServer();
 
   /**
-   * Return the name of <code>service</code>.
+   * Returns the name of <code>service</code>.
    *
    * @return a descriptive name for a <code>service</code> (ex.: Telnet, Admin)...
    */

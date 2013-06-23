@@ -26,12 +26,5 @@ import org.astivetoolkit.agi.Connection;
  * @since 1.0.0
  */
 public interface ConnectionMonitor extends Runnable {
-  /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
-   */
   void processConnection(Connection conn) throws AstiveException;
 }

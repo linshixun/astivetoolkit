@@ -19,14 +19,17 @@
 package org.astivetoolkit.menu.event;
 
 /**
- *
+ * The listener interface for receiving {@link MaxFailureEvent}.
+ * 
  * @since 1.0.0
  * @see MaxFailureEvent
  */
-public interface MaxFailureListener /*extends DigitsListener*/ {
-    /**
-     *
-     * @param evt
-     */
-     abstract void maxFailurePerform(MaxFailureEvent evt);
+public interface MaxFailureListener {
+   /**
+    * Callback triggered when maximum attempts is reached by a 
+    * <code>Subject</code>.
+    * 
+    * @param evt the event submitted.
+    */
+    abstract void maxFailurePerform(MaxFailureEvent evt);
 }

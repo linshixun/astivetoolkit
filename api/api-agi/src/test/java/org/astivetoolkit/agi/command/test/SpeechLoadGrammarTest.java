@@ -18,31 +18,30 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SpeechLoadGrammar;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SpeechLoadGrammar;
 
 /**
- * DOCUMENT ME!
- *
- * @author $author$
- * @version $Revision$
+ * Test case for command {@link org.astivetoolkit.agi.command.SpeechUnloadGrammar}.
+ * 
+ * @since 1.0.0
  */
 public class SpeechLoadGrammarTest extends TestCase {
   /**
    * Creates a new SpeechLoadGrammarTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public SpeechLoadGrammarTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String name = "myGrammar";

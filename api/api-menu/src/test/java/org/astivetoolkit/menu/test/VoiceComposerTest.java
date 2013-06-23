@@ -38,11 +38,11 @@ public class VoiceComposerTest extends TestCase {
   public void testVoiceComposer() throws AgiException {
     VoiceComposition vc =
       VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())
-       .streamFile("file1").addSilence(0x1).withEscapeDigits("").sayAlpha("abcd").create();
+       .streamFile("file1").addSilence(1).withEscapeDigits("").sayAlpha("abcd").create();
     assertEquals("STREAM FILE \"file1\" \"12345\" 0",
-                 CommandProcessor.buildCommand(vc.getCommands().get(0x0)));
+                 CommandProcessor.buildCommand(vc.getCommands().get(0)));
     assertEquals("STREAM FILE \"silence/1\" \"12345\" 0",
-                 CommandProcessor.buildCommand(vc.getCommands().get(0x1)));
-    assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(0x2)));
+                 CommandProcessor.buildCommand(vc.getCommands().get(1)));
+    assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(2)));
   }
 }

@@ -35,7 +35,7 @@ public class GoSub implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x804d1554ba24fc6dL;
+  private static final long serialVersionUID = -9201675010003633043L;
 
   /**
    * The context of the called subroutine.
@@ -46,19 +46,19 @@ public class GoSub implements Serializable {
   /**
    * The extension in the called context.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String extension;
 
   /**
    * The priority of the called extension.
    */
-  @Parameter(position = 0x2, optional = false)
+  @Parameter(position = 2, optional = false)
   private String priority;
 
   /**
    * An optional list of arguments to be passed to the subroutine.
    */
-  @Parameter(position = 0x3)
+  @Parameter(position = 3)
   @ParamConverter
   @Separator
   private String[] arguments;

@@ -24,13 +24,12 @@ import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.astivlet.AstivletRequest;
 import org.astivetoolkit.astivlet.AstivletResponse;
 import org.astivetoolkit.menu.Menu;
-import org.astivetoolkit.menu.MenuException;
 import org.astivetoolkit.menu.MenuItem;
 import org.astivetoolkit.menu.MenuNavigator;
 import org.astivetoolkit.menu.event.*;
 
 /**
- * Handling events sample.
+ * Handling events example.
  *
  * @since 1.0.0
  */
@@ -39,7 +38,7 @@ public class App extends Astivlet {
     @Override
     public void service(AstivletRequest request, AstivletResponse response) {
         
-        MenuItem menuItemA = new MenuItem("1", "menu-item-b-sound");
+        MenuItem menuItemA = new MenuItem("1", "menu-item-a-sound");
         menuItemA.addActionListener(new ActionListener() {
 
             @Override
@@ -97,7 +96,7 @@ public class App extends Astivlet {
 
         try {
             e.run(root);
-        } catch (MenuException | AgiException ex) {
+        } catch (AgiException ex) {
             out.println(ex.getMessage());
         }
     }

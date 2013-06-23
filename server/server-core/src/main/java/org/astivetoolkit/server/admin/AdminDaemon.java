@@ -18,10 +18,9 @@
  */
 package org.astivetoolkit.server.admin;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.server.AbstractAstiveServer;
@@ -48,16 +47,6 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
   private int backlog;
   private int port;
 
-  /**
-   * Creates a new AdminDaemon object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   * @param server DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public AdminDaemon(int port, int backlog, InetAddress bindAddr, AbstractAstiveServer server)
               throws IOException {
     super();
@@ -71,7 +60,7 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
    * {@inheritDoc}
    */
   @Override
-  public void deploy(String app) throws AstiveException {
+  public void deploy(String app) throws AstiveException { 
     DeployerManager.getInstance().deploy(app);
   }
 
@@ -79,10 +68,18 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
    * {@inheritDoc}
    */
   @Override
+  public void undeploy(String app) throws AstiveException {
+    DeployerManager.getInstance().undeploy(app);
+  }  
+  
+  /**
+   * {@inheritDoc}
+   */
+  @Override
   public void run() {
     try {
       if (!NetUtil.isPortAvailable(port)) {
-        throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[] { port }));
+        throw new RuntimeException(AppLocale.getI18n("unableToOpenPortError", new Object[] { port }));
       }
 
       InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
@@ -105,6 +102,8 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
         }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        PrintWriter writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
+        
         String commandStr = reader.readLine();
 
         AdminCommand command = AdminCommand.valueOf(commandStr);
@@ -115,22 +114,40 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
         }
 
         if (command.equals(AdminCommand.DEPLOY)) {
-          deploy(arg);
-
-          continue;
+            try{
+                deploy(arg);
+                writer.println(AppLocale.getI18n("messageDone"));
+                LOG.info(AppLocale.getI18n("messageDone"));
+            } catch(AstiveException ex) {                
+                writer.println(AppLocale.getI18n("errorUnableToDeployApp"));
+                LOG.error(AppLocale.getI18n("errorUnableToDeployApp"));
+            }
+         
+            writer.flush();
+          
+            continue;
         }
 
         if (command.equals(AdminCommand.UNDEPLOY)) {
-          undeploy(arg);
-
-          continue;
+            try {
+                undeploy(arg);
+                writer.println(AppLocale.getI18n("messageDone"));
+                LOG.info(AppLocale.getI18n("messageDone"));
+            } catch (AstiveException ex) {
+                writer.println(AppLocale.getI18n("errorUnableToDeployApp"));
+                LOG.error(AppLocale.getI18n("errorUnableToDeployApp"));
+            }
+            
+            writer.flush();
+          
+            continue;
         }
 
         if (command.equals(AdminCommand.STOP)) {
           try {
             server.stop();
           } catch (SystemException ex) {
-            LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+            LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
           }
 
           break;
@@ -149,18 +166,8 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
         client.close();
       }
     } catch (IOException ex) {
-      LOG.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
+      LOG.error(AppLocale.getI18n("errorUnableToCommunicateWithAdminDaemon",
                                   new Object[] { ex.getMessage() }));
-    } catch (AstiveException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
     }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void undeploy(String app) throws AstiveException {
-    DeployerManager.getInstance().undeploy(app);
   }
 }

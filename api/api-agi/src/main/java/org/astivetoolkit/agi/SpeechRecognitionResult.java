@@ -30,25 +30,15 @@ import java.util.List;
 public class SpeechRecognitionResult {
   private final AgiCommandReply AgiCommandReply;
 
-  /**
-   * Creates a new SpeechRecognitionResult object.
-   *
-   * @param AgiCommandReply DOCUMENT ME!
-   */
   public SpeechRecognitionResult(final AgiCommandReply AgiCommandReply) {
     this.AgiCommandReply = AgiCommandReply;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public List<SpeechResult> getAllResults() {
     final int numberOfResults = getNumberOfResults();
-    final List<SpeechResult> results = new ArrayList<SpeechResult>(numberOfResults);
+    final List<SpeechResult> results = new ArrayList<>(numberOfResults);
 
-    for (int i = 0x0; i < numberOfResults; i++) {
+    for (int i = 0; i < numberOfResults; i++) {
     final  SpeechResult result =
         new SpeechResult(Integer.valueOf(AgiCommandReply.getAttribute("score" + i)),
                          AgiCommandReply.getAttribute("text" + i),
@@ -59,98 +49,48 @@ public class SpeechRecognitionResult {
     return results;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public char getDigit() {
     final String digit = AgiCommandReply.getAttribute("digit");
  
-    return ((digit == null) || (digit.length() == 0x0) ? 0 :digit.charAt(0x0));
+    return ((digit == null) || (digit.length() == 0) ? 0 :digit.charAt(0));
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public int getEndpos() {
     return Integer.valueOf(AgiCommandReply.getAttribute("endpos"));
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getGrammar() {
     return AgiCommandReply.getAttribute("grammar0");
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public int getNumberOfResults() {
     final String numberOfResults = AgiCommandReply.getAttribute("results");
 
-    return (numberOfResults == null) ? 0x0 : Integer.valueOf(numberOfResults);
+    return (numberOfResults == null) ? 0 : Integer.valueOf(numberOfResults);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public int getScore() {
     final String score0 = AgiCommandReply.getAttribute("score0");
 
-    return (score0 == null) ? 0x0 : Integer.valueOf(score0);
+    return (score0 == null) ? 0 : Integer.valueOf(score0);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getText() {
     return AgiCommandReply.getAttribute("text0");
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public boolean isDtmf() {
     return "digit".equals(AgiCommandReply.getExtra());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public boolean isSpeech() {
     return "speech".equals(AgiCommandReply.getExtra());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public boolean isTimeout() {
     return "timeout".equals(AgiCommandReply.getExtra());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder(65);
@@ -173,7 +113,7 @@ public class SpeechRecognitionResult {
       sb.append("timeout=true,");
     }
 
-    if (getNumberOfResults() > 0x1) {
+    if (getNumberOfResults() > 1) {
       sb.append("numberOfResults=").append(getNumberOfResults()).append(",");
       sb.append("allResults=").append(getAllResults()).append(",");
     }
@@ -184,7 +124,7 @@ public class SpeechRecognitionResult {
   }
 
   public static class SpeechResult implements Serializable {
-    private static final long serialVersionUID = 0x0L;
+    private static final long serialVersionUID = 0L;
     private final String grammar;
     private final String text;
     private final int score;

@@ -37,12 +37,12 @@ public class GetFullVariable implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x89475b375dc3e426L;
+  private static final long serialVersionUID = -8554768673812519898L;
 
   /**
    * Channel name.
    */
-  @Parameter(position = 0x1)
+  @Parameter(position = 1)
   private String channel;
 
   /**

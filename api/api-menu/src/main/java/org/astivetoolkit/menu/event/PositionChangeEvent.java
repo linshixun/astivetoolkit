@@ -21,63 +21,46 @@ package org.astivetoolkit.menu.event;
 import org.astivetoolkit.menu.MenuItem;
 
 /**
- *
+ * A PositionChangeEvent is triggered when the {@link MenuNavigator} move from
+ * one {@link MenuItem} to another.
+ * 
  * @since 1.0.0
  * @see DigitsEvent
  * @see PositionChangeListener
  */
-public class PositionChangeEvent extends DigitsEvent {
+public class PositionChangeEvent extends DigitsEvent {  
+  private Object newObject;
+  private int position;
+  
   /**
-   * DOCUMENT ME!
+   * Create new PositionChangeEvent.
+   * 
+   * @param source the object that originated the event.
+   * @param newObject then new {@link MenuItem}.
+   * @param position the position of the new option in the menu.
    */
-  protected Object newObject;
-
-  /**
-   * DOCUMENT ME!
-   */
-  protected int position;
-
-  /** <p>Creates a new instance of PositionChangeEvent</p> */
-  public PositionChangeEvent(Object source, Object newObject, int position) {
+  public PositionChangeEvent(final Object source, final Object newObject, 
+          final int position) {
     super(source, ((MenuItem) source).getDigits());
-
     this.newObject = newObject;
     this.position = position;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the current {@link MenuItem}.
+   * 
+   * @return the new menu item.
    */
   public Object getNewObject() {
     return newObject;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the new position.
+   * 
+   * @return the position of the new option in the menu.
    */
   public int getPosition() {
     return position;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param newObject DOCUMENT ME!
-   */
-  public void setNewObject(Object newObject) {
-    this.newObject = newObject;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param position DOCUMENT ME!
-   */
-  public void setPosition(int position) {
-    this.position = position;
   }
 }

@@ -35,7 +35,9 @@ import org.astivetoolkit.agi.CommandProcessor;
 import org.astivetoolkit.menu.action.Action;
 
 /**
- *
+ * Is the heart/engine of Menu API. It eliminate the necessity of loops commonly
+ * needed by AGI to create user iteration.
+ * 
  * @since 1.0.0
  */
 public class MenuNavigator {
@@ -47,23 +49,13 @@ public class MenuNavigator {
   private boolean autoAnswer;
 
   /**
-   * Creates a new instance of MenuNavigator
+   * Creates a new instance of MenuNavigator.
+   * 
+   * @param agiResponse allows user iteration with telephony system.
    */
   public MenuNavigator(AgiResponse agiResponse) {
-    this.agiResponse = agiResponse;
+    this.agiResponse = agiResponse;    
     autoAnswer = true;
-    answered = false;
-  }
-
-  /**
-   * Creates a new MenuNavigator object.
-   *
-   * @param agiResponse
-   * @param autoAnswer
-   */
-  public MenuNavigator(AgiResponse agiResponse, boolean autoAnswer) {
-    this.agiResponse = agiResponse;
-    this.autoAnswer = autoAnswer;
     answered = false;
   }
 
@@ -71,13 +63,12 @@ public class MenuNavigator {
     if (item.getMustAuthenticate()) {
       if (!item.getAuthenticator().isAuthenticated()) {
         AuthenticationEvent evt = new AuthenticationEvent(item, item.getAuthenticator());
-        item.fireAuthenticationEvent_tryingToAuthenticate(evt);
         item.getAuthenticator().signIn();
 
         if (item.getAuthenticator().isAuthenticated()) {
-          item.fireAuthenticationEvent_authenticationSuccess(null);
+          item.fireAuthenticationEvent_onSuccess(null);
         } else {
-          item.fireAuthenticationEventAuthenticationFail(evt);
+          item.fireAuthenticationEvent_onFailure(evt);
         }
       }
     }
@@ -98,7 +89,7 @@ public class MenuNavigator {
   private boolean checkMaxTimeout(Menu menu, String opt) {
     if (menu.getTimeoutCount() >= menu.getMaxTimeouts()) {
       MaxTimeoutEvent event = new MaxTimeoutEvent(menu, opt, menu.getMaxTimeouts());
-      menu.fireMaxTimeoutEventMaxTimeoutPerform(event);
+      menu.fireMaxTimeoutEvent_maxTimeoutPerform(event);
 
       // do break the flow
       return true;
@@ -108,7 +99,7 @@ public class MenuNavigator {
   }
 
   private ArrayList<String> getChildsKeys(ArrayList<MenuItem> menuChilds) {
-    ArrayList<String> result = new ArrayList<String>();
+    ArrayList<String> result = new ArrayList<>();
 
     for (MenuItem child : menuChilds) {
       final String digits = ((MenuItem) child).getDigits();
@@ -124,7 +115,7 @@ public class MenuNavigator {
 
   private String getData(String file, int milliSecondsWatting, int maxDigits,
                          AgiResponse agiResponse, MenuItem item, char c)
-                  throws MenuException, AgiException {
+                  throws AgiException {
     Menu menu;
     String result = new String();
 
@@ -135,11 +126,11 @@ public class MenuNavigator {
     }
 
     // Has not press any key
-    if (c == 0x0) {
+    if (c == 0) {
       // WARNING: Not sure about using all keys...
       c = agiResponse.streamFile(file, "0123456789*#");
 
-      if (c == 0x0 /*
+      if (c == 0 /*
         * && milliSecondsWatting == 0
         */) {
         try {
@@ -157,7 +148,7 @@ public class MenuNavigator {
 
     KeyEvent evt;
 
-    if (c != 0x0) {
+    if (c != 0) {
       evt = new KeyEvent(item, Digit.getDigit(c));
       item.fireKeyEvent_keyTyped(evt);
       result += ("" + c);
@@ -170,7 +161,7 @@ public class MenuNavigator {
 
       c = agiResponse.waitForDigit(menu.getInterDigitsTimeout());
 
-      if (c != 0x0) {
+      if (c != 0) {
         result += ("" + c);
         evt = new KeyEvent(item, Digit.getDigit(c));
         item.fireKeyEvent_keyTyped(evt);
@@ -238,15 +229,16 @@ public class MenuNavigator {
    *
    * @param menu and object containing all menu and menu items.
    */
-  public void run(Menu menu) throws MenuException, AgiException {
+  public void run(Menu menu) throws AgiException {
     String digits = null;
     setCurrentMenu(menu);
 
-    // For example if channel is closed by customer the player must be auto-halt.    
+    // If channel is closed by customer the player must be auto-halt.    
     if (agiResponse.getChannelStatus().getCode() == -1) {
       return;
     }
 
+    // WARNING: To be reviewed
     if ((answered == false) && (isAutoAnswer() == true)) {
       agiResponse.answer();
       answered = true;
@@ -271,7 +263,7 @@ public class MenuNavigator {
         LOG.debug("Playing menu intro: " + menu.getGreetingsFile());
       }
 
-      char c = 0x0;
+      char c = 0;
       digits = getData(menu.getGreetingsFile(), 0, menu.getMaxDigits(), agiResponse, menu, c);
       menu.setGreetingsPlayed(true);
     }
@@ -290,7 +282,7 @@ public class MenuNavigator {
           String cmd = CommandProcessor.buildCommand(o);
           c = agiResponse.sendAgiCommand(cmd).getResultCodeAsChar();
 
-          if (c != 0x0) {
+          if (c != 0) {
             KeyEvent evt = new KeyEvent(menu, Digit.getDigit(c));
             menu.fireKeyEvent_keyTyped(evt);
 
@@ -300,7 +292,7 @@ public class MenuNavigator {
           }
         }
 
-        if (c != 0x0) {
+        if (c != 0) {
           break;
         }
       }
@@ -329,7 +321,7 @@ public class MenuNavigator {
           msw = millisecondsWatting;
 
           if ((option.getFile() != null) && !option.getFile().isEmpty()) {
-            char c = 0x0;
+            char c = 0;
             digits = getData(option.getFile(), msw, menu.getMaxDigits(), agiResponse, menu, c);
           }
         }
@@ -341,7 +333,7 @@ public class MenuNavigator {
         }
 
         PositionChangeEvent evt = new PositionChangeEvent(oldOption, option, pos - 1);
-        menu.firePositionChangeEventPositionChange(evt);
+        menu.firePositionChangeEvent_positionChange(evt);
         pos++;
 
         if (LOG.isDebugEnabled()) {
@@ -356,7 +348,7 @@ public class MenuNavigator {
         LOG.debug("Enter digits is: " + digits);
       }
 
-      // WARNING: This event should be only at Menu level?
+      // WARNING: Should this event be only at Menu level?
       DigitsEvent evt = new DigitsEvent((Object) menu, digits);
       menu.fireDigitsEvent_digitsEnter(evt);
     }
@@ -368,7 +360,7 @@ public class MenuNavigator {
       // signo de número.            
       if (digits == null) {
         FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
-        menu.fireFailListenerFailurePerform(evt);
+        menu.fireFailureListener_failurePerform(evt);
       } else if (digits.equals("(timeout)")) {
         // WARNNING:
         //menu.fireTimeoutListener_timeoutPerform(null);
@@ -412,7 +404,7 @@ public class MenuNavigator {
       }
 
       ActionEvent evt = new ActionEvent(selectedOption, digits);
-      selectedOption.fireActionEventActionPerformed(evt);
+      selectedOption.fireActionEvent_processAction(evt);
 
       if (selectedOption instanceof Menu) {
         run((Menu) selectedOption);
@@ -423,8 +415,8 @@ public class MenuNavigator {
       return;
     } else {
       // Invalid option
-      if ((menu.getInvalidDigitFile() != null) && !menu.getInvalidDigitFile().isEmpty()) {
-        agiResponse.streamFile(menu.getInvalidDigitFile());
+      if ((menu.getInvalidDigitsFile() != null) && !menu.getInvalidDigitsFile().isEmpty()) {
+        agiResponse.streamFile(menu.getInvalidDigitsFile());
       }
 
       menu.incrementFailuresCount();
@@ -441,10 +433,6 @@ public class MenuNavigator {
 
       return;
     }
-  }
-  
-  public void setAutoAnswer(boolean autoAnswer) {
-    this.autoAnswer = autoAnswer;
   }
 
   private void setCurrentMenu(Menu currentMenu) {

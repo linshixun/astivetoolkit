@@ -33,12 +33,12 @@ public class Verbose implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x47dfb2d79b894cecL;
+  private static final long serialVersionUID = 5179054735596539116L;
 
   /**
    * Verbosity level(1-4).
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private Integer level;
 
   /**

@@ -36,7 +36,7 @@ public class SendText implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xfb835223893846d2L;
+  private static final long serialVersionUID = -323324435661044014L;
 
   /**
    * Text to send to channel.

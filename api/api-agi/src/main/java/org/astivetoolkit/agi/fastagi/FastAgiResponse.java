@@ -25,17 +25,13 @@ import org.astivetoolkit.agi.command.*;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- * Final implementation of {@link AgiResponse} use for Fastagi servers.
+ * Final implementation of {@link AgiResponse} use for fast agi servers.
  *
  * @since 1.0.0
  * @see AgiResponse
  * @see AstivletResponse
  */
 public class FastAgiResponse implements AgiResponse {
-  /**
-   * Handle communication with Asterisk, in the lowest level. Full info in
-   * {@link AgiCommandHandler}.
-   */
   private AgiCommandHandler cHandler;
 
   /**
@@ -318,7 +314,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on) throws AgiException {
+  public void musicOnHold(boolean on) throws AgiException {
     SetMusic command = new SetMusic(on);
     cHandler.sendAgiCommand(command);
   }
@@ -327,7 +323,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on, String musicClass)
+  public void musicOnHold(boolean on, String musicClass)
                    throws AgiException {
     SetMusic command = new SetMusic(on, musicClass);
     cHandler.sendAgiCommand(command);
@@ -658,7 +654,7 @@ public class FastAgiResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void setTddMode(Boolean on) throws AgiException {
+  public void setTddMode(boolean on) throws AgiException {
     TddMode command = new TddMode(on);
     cHandler.sendAgiCommand(command);
   }
@@ -688,11 +684,11 @@ public class FastAgiResponse implements AgiResponse {
     SpeechCreate command = new SpeechCreate(engine);
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
-    if (acr.getResultCode() != 0x1) {
+    if (acr.getResultCode() != 1) {
       if ((engine == null) || "".equals(engine)) {
-        throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObjectForDefaultEngine"));
+        throw new AgiException(AppLocale.getI18n("errorCantCreateSpeechObjectForDefaultEngine"));
       } else {
-        throw new AgiException(AppLocale.getI18n("cannotCreateSpeechObject", new Object[] { engine }));
+        throw new AgiException(AppLocale.getI18n("errorCantCreateSpeechObject", new Object[] { engine }));
       }
     }
   }
@@ -808,5 +804,23 @@ public class FastAgiResponse implements AgiResponse {
     WaitForDigit command = new WaitForDigit(interDigitsTimeout);
 
     return cHandler.sendAgiCommand(command).getResultCodeAsChar();
+  }
+
+  /**
+   * {@inheritDoc}
+   */  
+  @Override
+  public void hangup(String channel) throws AgiException {
+    Hangup command = new Hangup(channel);
+    cHandler.sendAgiCommand(command);
+  }
+
+  /**
+   * {@inheritDoc}
+   */  
+  @Override
+  public void setVar(String variable, String value) throws AgiException {
+    SetVariable command = new SetVariable(variable, value);
+    cHandler.sendAgiCommand(command);
   }
 }

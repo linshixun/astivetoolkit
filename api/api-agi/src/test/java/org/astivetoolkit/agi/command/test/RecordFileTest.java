@@ -18,37 +18,39 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.RecordFile;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.RecordFile;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.RecordFile}.
+ * 
+ * @since 1.0.0
  */
 public class RecordFileTest extends TestCase {
   /**
    * Creates a new RecordFileTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public RecordFileTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String filename = "abc";
     String format = "mp3";
     String escapeDigits = "";
-    int timeout = 0xffffffff;
-    int offset = 0x0;
+    int timeout = -1;
+    int offset = 0;
     String beep = "BEEP";
-    int silence = 0x0;
+    int silence = 0;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("RECORD FILE");

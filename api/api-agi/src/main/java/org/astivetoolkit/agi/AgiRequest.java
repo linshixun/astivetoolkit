@@ -26,8 +26,8 @@ import org.apache.log4j.Logger;
 import org.astivetoolkit.agi.annotation.RequestField;
 
 /**
- * Contain information about the channel the script is invoked on.
- * This is the first package sent by a <code>channel</code> in AGI protocol.
+ * This includes information about the channel the script is invoked on and
+ * parameters passed from the dialplan.
  *
  * @since 1.0.0
  */
@@ -35,156 +35,56 @@ public class AgiRequest {
   // A usual logging class
   private static final Logger LOG = Logger.getLogger(AgiRequest.class);
   private static Map<String, String> parameters;
-
-  /**
-   * Collection of a pair key/value element with information about
-   * the <code>channel</code>.
-   */
+  // Use to map Agi field with AgiRequest variables.   
+  private HashMap<String, String> fieldsMap;
+  // Collection of a pair key/value element with information about
+  // the <code>channel</code>.  
   private ArrayList<String> lines;
-
-  /**
-   * Whether this Agi is passed audio (EAGI - Enhanced AGI).
-   */
+  
   @RequestField("agi_enhanced")
-  private Boolean enhanced;
-
-  /**
-   * Whether or not this lines was sent throw a network(fastagi).
-   */
+  private boolean enhanced;
   @RequestField("agi_network")
-  private Boolean network;
-
-  /**
-   * Channel type(e.g. ZAP, SIP, H323, IAX...).
-   */
+  private boolean network;
   @RequestField("agi_type")
   private ChannelType channelType;
-
-  /**
-   * Use to map Agi field with AgiRequest variables.
-   */
-  private HashMap<String, String> fieldsMap;
-
-  /**
-   * ANI2 (Info digits) also called Originating line information or OLI.
-   * Possible codes are listed can be founded at:
-   *
-   * <br>http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
-   */
   @RequestField("agi_callingani2")
-  private Integer callingAni2;
-
-  /**
-   * Caller ID presentation for incoming calls (PRI channels).
-   * Class {@link PresentationType} can be use to decode this value.
-   */
+  private int callingAni2;
   @RequestField("agi_callingpres")
-  private Integer callingPres;
-
-  /**
-   * Transit Network Selector (PRI channels).
-   * Note: Will be a great contribution if you send us a link or document
-   * with an in deep explanation about this parameter.
-   */
+  private int callingPres;
   @RequestField("agi_callingtns")
-  private Integer callingTns;
-
-  /**
-   * Caller Type of Number (PRI channels).
-   * Class {@link TonType} can be use to decode this value.
-   */
+  private int callingTns;
   @RequestField("agi_callington")
-  private Integer callingTon;
-
-  /**
-   * Account code (if specified).
-   */
+  private int callingTon;    
   @RequestField("agi_accountcode")
   private String accountCode;
-
-  /**
-   * Current call unique identifier
-   */
   @RequestField("agi_uniqueid")
   private String callId;
-
-  /**
-   * Caller Id Number only(e.g. "123").
-   */
   @RequestField("agi_callerid")
   private String callerId;
-
-  /**
-   * Caller Id Name only(e.g. "John Doe")
-   */
   @RequestField("agi_calleridname")
-  private String callerIdName;
-
-  /**
-   * Current channel name.
-   */
+  private String callerIdName;    
   @RequestField("agi_channel")
-  private String channel;
-
-  /**
-   * Current context.
-   */
+  private String channel;    
   @RequestField("agi_context")
   private String context;
-
-  /**
-   * Dialed Number Identifier.
-   */
   @RequestField("agi_dnid")
   private String dnId;
-
-  /**
-   * Extension that was called (e.g. 300).
-   */
   @RequestField("agi_extension")
-  private String extension;
-
-  /**
-   * Current language. Language for the current <code>channel</code>.
-   */
+  private String extension;    
   @RequestField("agi_language")
   private String language;
-
-  /**
-   * Current priority in the dialplan.
-   */
   @RequestField("agi_priority")
-  private String priority;
-
-  /**
-   * Redirected Dial Number ID Service.
-   */
+  private String priority;    
   @RequestField("agi_rdnis")
   private String rdNis;
-
-  /**
-   * Name of the Agi script that is being called.
-   */
   @RequestField("agi_request")
-  private String requestURL;
-
-  /**
-   * Remote Agi script(fastagi script).
-   */
+  private String requestURL;    
   @RequestField("agi_network_script")
   private String script;
-
-  /**
-   *
-   */
   @RequestField("agi_threadid")
-  private String threadId;
-
-  /**
-   * Version of the AGI version(Asterisk Version).
-   */
+  private String threadId;    
   @RequestField("agi_version")
-  private String version; // TODO: Investigate, how to get asterisk version...
+  private String version;
 
   /**
    * Create a new AgiRequest object with the info sent by a new
@@ -196,14 +96,13 @@ public class AgiRequest {
   public AgiRequest(final ArrayList<String> lines) {
     this.lines = lines;
 
-    fieldsMap = new HashMap<String, String>();
+    fieldsMap = new HashMap<>();
 
     for (String line : lines) {
       if (line.split(":").length < 2) {
         continue;
       }
 
-      // WARNING: Ensure it work for the parameter agi_request
       String key = line.split(":")[0].trim();
       String value = line.split(":")[1].trim();
 
@@ -216,16 +115,14 @@ public class AgiRequest {
 
     try {
       fillFields();
-    } catch (IllegalArgumentException ex) {
-      LOG.warn(ex.getMessage());
-    } catch (IllegalAccessException ex) {
+    } catch (IllegalArgumentException | IllegalAccessException ex) {
       LOG.warn(ex.getMessage());
     }
 
     // Get parameters.
     // Note: The URL needs to be validated prior to do the next process.
     // TODO: Improve this by using regex        
-    parameters = new HashMap<String, String>();
+    parameters = new HashMap<>();
 
     String params = null;
 
@@ -233,7 +130,6 @@ public class AgiRequest {
       params = script.split("\\?")[1];
     }
  
-
     if (params != null) {
       if (params.split("&").length > 1) {
         String[] p = params.split("&");
@@ -248,8 +144,15 @@ public class AgiRequest {
   }
 
   /**
-   * Set a variables by using reflection.
+   * Returns an array with all the parameters.
+   * 
+   * @return the array with all parameters that conform this request.
    */
+  public ArrayList<String> getLines() {
+      return lines;
+  }
+  
+  // Set a variables by using reflection.
   private void fillFields() throws IllegalArgumentException, IllegalAccessException {
     for (String af : fieldsMap.keySet()) {
       for (Field f : AgiRequest.class.getDeclaredFields()) {
@@ -284,7 +187,7 @@ public class AgiRequest {
             f.set(this, ChannelType.get(fieldsMap.get(af)));
 
             break;
-          } else if (f.getType().equals(Integer.class)) {
+          } else if (f.getType().equals(int.class)) {
             f.set(this, Integer.valueOf(fieldsMap.get(af)));
 
             break;
@@ -299,225 +202,224 @@ public class AgiRequest {
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns a parameter by parameter name. Useful for new parameters without 
+   * equivalent getter.
+   * 
+   * @param parameter parameter name.
+   * @return the value of the parameter.
+   */
+  public String getParameter(String parameter) {
+    return parameters.get(parameter);
+  }  
+  
+  /**
+   * Get the identifier for the origin<code>channel</code>.
+   * 
+   * @return account code of the origin channel.
    */
   public String getAccountCode() {
     return accountCode;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * An ID that help identify a particular call in the telephone system
+   * and later in the database(Call Detail Record).
+   *    
+   * @return a unique ID for the call.
    */
   public String getCallId() {
     return callId;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the ID of the origin caller.
+   * 
+   * @return the caller ID number (or "unknown").
    */
   public String getCallerId() {
     return callerId;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Caller Id Name only(for example: "John Doe")
+   * 
+   * @return the caller Id Name (or "unknown").
    */
   public String getCallerIdName() {
     return callerIdName;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * ANI2 (Info digits) also called Originating line information or OLI.
+   * <p>Possible codes are listed can be founded at:
+   * http://www.nanpa.com/number_resource_info/ani_ii_assignments.html
+   * 
+   * @return a code with information about the line.
    */
   public int getCallingAni2() {
-    return callingAni2.intValue();
+    return callingAni2;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+  /**   
+   * Caller ID presentation for incoming calls (PRI channels).    
+   * 
+   * @return a number that can decode using the enumerator
+   * {@link PresentationType}.
    */
   public int getCallingPres() {
-    return callingPres.intValue();
+    return callingPres;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+  /**      
+   * An optional 4 digit number (Transit Network Selector) used in PRI Channels.
+   * <p>
+   * See http://www.voip-info.org/wiki/view/Asterisk+Detailed+Variable+List
+   * 
+   * @return a code with the TNS (transit network selector).
    */
   public int getCallingTns() {
-    return callingTns.intValue();
+    return callingTns;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Caller Type of Number (PRI channels).
+   * 
+   * @return a number that can be decode using the enumerator (@link TonType).
    */
   public int getCallingTon() {
-    return callingTon.intValue();
+    return callingTon;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * The originating channel (your phone).
+   * 
+   * @return calling phone.
    */
   public String getChannel() {
     return channel;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Helps identify the type of channel(define in @link ChannelType).
+   * 
+   * @return channel type (for instance ZAP, SIP, H323, IAX).
    */
   public ChannelType getChannelType() {
     return channelType;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the <code>context</code> that was use to place the call.
+   * 
+   * @return current context.
    */
   public String getContext() {
     return context;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns Dialed Number Identifier(DnId).
+   * 
+   * @return the dialed number id.
    */
   public String getDnId() {
     return dnId;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the called number, found in <code>extension.conf</code>.
+   * 
+   * @return the called number.
    */
   public String getExtension() {
     return extension;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Language for the current <code>channel</code>.
+   * 
+   * @return the language code(for example 'en').
    */
   public String getLanguage() {
     return language;
   }
 
   /**
-   * Get a list with the requestURL parameters.
-   */
-  public ArrayList<String> getLines() {
-    return lines;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param parameter DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public String getParameter(String parameter) {
-    return parameters.get(parameter);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * The priority it was executed as in the dialplan.
+   * 
+   * @return current priority in the dialplan.
    */
   public String getPriority() {
     return priority;
   }
-
+ 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the Redirected Dial Number ID Service(RDNIS).
+   * 
+   * @return the referring DNIS number.
    */
   public String getRdNis() {
     return rdNis;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Name of the AGI script that is being called.  
+   * 
+   * @return the script file name.
    */
   public String getRequestURL() {
     return requestURL;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the name remote AGI script.
+   * 
+   * @return the name of the fastagi script.
    */
   public String getScript() {
     return script;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Thread ID of the AGI script (since Asterisk 1.6)
+   * 
+   * @return 
    */
   public String getThreadId() {
     return threadId;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the version of Asterisk (since Asterisk 1.6).
+   * 
+   * @return the asterisk version.
    */
   public String getVersion() {
     return version;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Whether this AGI is passed audio (EAGI - Enhanced AGI).
+   * 
+   * @return true if started as an EAGI script, false otherwise.
    */
-  public Boolean isEnhanced() {
+  public boolean isEnhanced() {
     return enhanced;
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Whether or not this lines was sent through a network.
+   * 
+   * @return true only when using fastagi.
    */
-  public Boolean isNetwork() {
+  public boolean isNetwork() {
     return network;
   }
-
+  
   /**
-   * Return all elements key/value of this lines.
+   * Returns and string with all elements key/value separated by a change of line.
    *
-   * @return all elements key/value of this lines.
+   * @return key/value elements aseparated by a change of line.
    */
   @Override
   public String toString() {

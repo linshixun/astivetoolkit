@@ -20,15 +20,20 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link MenuItem} selections.
+ * 
+ * The listener object created is registered with a using the component's 
+ * addActionListener method.
+ * 
  * @since 1.0.0
  * @see ActionEvent
  */
 public interface ActionListener {
   /**
-   * The action to be performed
-   *
-   * @param evt fired event
+   * Callback triggered when a {@link Menu} or {@MenuItem} is selected by
+   * a Subject.
+   * 
+   * @param evt the event submitted.
    */
   abstract void processAction(ActionEvent evt);
 }

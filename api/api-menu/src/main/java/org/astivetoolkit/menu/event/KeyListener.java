@@ -20,14 +20,16 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
- * @since 1.0
+ * The listener interface for receiving {@link KeyEvent}.
+ * 
+ * @since 1.0.0
  * @see KeyEvent
  */
 public interface KeyListener {
   /**
-   *
-   * @param evt
+   * Callback triggered for every key pressed by a <code>Subject</code>.   
+   * 
+   * @param evt the event submitted.
    */
   abstract void keyTyped(KeyEvent evt);
 }

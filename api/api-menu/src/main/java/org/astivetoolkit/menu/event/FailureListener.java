@@ -20,39 +20,17 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link FailEvent}.
+ * 
  * @since 1.0.0
+ * @see FailEvent
  */
-public class Event {
+public interface FailureListener {
   /**
-   * DOCUMENT ME!
+   * Callback triggered when the digits pressed are not part of the 
+   * {@link Menu}.
+   * 
+   * @param evt the event submitted.
    */
-  protected Object source;
-
-  /**
-   * Creates a new Event object.
-   *
-   * @param source DOCUMENT ME!
-   */
-  public Event(Object source) {
-    this.source = source;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Object getSource() {
-    return source;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param source DOCUMENT ME!
-   */
-  public void setSource(Object source) {
-    this.source = source;
-  }
+  abstract void failurePerform(FailEvent evt);
 }

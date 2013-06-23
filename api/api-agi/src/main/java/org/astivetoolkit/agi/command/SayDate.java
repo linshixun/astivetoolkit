@@ -38,7 +38,7 @@ public class SayDate implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x8e677590f8ee0ff9L;
+  private static final long serialVersionUID = -8185444532210495495L;
 
   /**
    * Date to say.
@@ -50,7 +50,7 @@ public class SayDate implements Serializable {
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**

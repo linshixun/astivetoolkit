@@ -40,8 +40,8 @@ public class AstivletRequest extends AgiRequest {
     /**
      * Creates a new AstivletRequest object.
      *
-     * @param lines use to construct client request.
-     * @param client object representing client connection.
+     * @param lines to construct client request.
+     * @param client represent client connection.
      */
     public AstivletRequest(ArrayList<String> lines, FastAgiConnection client) {
         super(lines);
@@ -52,8 +52,8 @@ public class AstivletRequest extends AgiRequest {
     }
 
     /**
-     * Returns the Internet Protocol (IP) address of the interface on which the
-     * request was received.
+     * Returns the Internet Protocol (IP) address for the server receiving the
+     * request.
      *
      * @return a
      * <code>InetAddress</code> containing the IP address on which the request
@@ -64,10 +64,10 @@ public class AstivletRequest extends AgiRequest {
     }
 
     /**
-     * Returns the Internet Protocol (IP) port number of the interface on which
-     * the request was received.
+     * Returns the Internet Protocol (IP) port number for the server/service
+     * receiving the request.
      *
-     * @return an int specifying the port number.
+     * @return the service port number.
      */
     public int getLocalPort() {
         return localPort;
@@ -77,9 +77,9 @@ public class AstivletRequest extends AgiRequest {
      * Returns the Internet Protocol (IP) address of the client or last proxy
      * that sent the request.
      *
-     * @return a
+     * @return an
      * <code>InetAddress</code> containing the IP address of the client that
-     * sent the request
+     * sent the request.
      */
     public InetAddress getRemoteAddress() {
         return remoteAddress;
@@ -89,7 +89,7 @@ public class AstivletRequest extends AgiRequest {
      * Returns the Internet Protocol (IP) source port of the client or last
      * proxy that sent the request.
      *
-     * @return an integer specifying the port number
+     * @return port number on remote client or last proxy.
      */
     public int getRemotePort() {
         return remotePort;

@@ -39,7 +39,7 @@ public class WaitForDigit implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x11aec99baeae4872L;
+  private static final long serialVersionUID = 1274177415080200306L;
 
   /**
    * Timeout in milliseconds.

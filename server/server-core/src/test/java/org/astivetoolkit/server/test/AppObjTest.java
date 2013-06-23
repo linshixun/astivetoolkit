@@ -26,23 +26,22 @@ import org.astivetoolkit.server.AstObj;
 import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 
 /**
- *
+ * Test case for {@link org.astivetoolkit.server.AstObj}.
+ * 
  * @since 1.0.0
  */
 public class AppObjTest extends TestCase {
   /**
    * Creates a new AppObjTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public AppObjTest(String testName) {
     super(testName);
   }
-
+  
   /**
-   * DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * Test method.   
    */
   public void testAppObj() throws AstiveException {
     File file = MavenTestingUtils.getProjectFile("/src/test/resources/helloworld.jar");

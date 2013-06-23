@@ -18,32 +18,34 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.SayDigits;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.SayDigits;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.SayDigits}.
+ * 
+ * @since 1.0.0
  */
 public class SayDigitsTest extends TestCase {
   /**
    * Creates a new SayDigitsTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}
    */
   public SayDigitsTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
-   */
+   * @throws AgiException if command is malformed.
+   */  
   public void testCommand() throws AgiException {
     String digits = "123";
-    String escapeDigits = "";
+    String escapeDigits;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("SAY DIGITS");

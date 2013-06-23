@@ -30,8 +30,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.commons.cli.*;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.astivetoolkit.AstiveException;
+import org.astivetoolkit.Version;
 import org.astivetoolkit.server.admin.AdminCommand;
 import org.astivetoolkit.server.admin.AdminDaemon;
 import org.astivetoolkit.server.admin.AdminDaemonClient;
@@ -45,7 +45,8 @@ import org.astivetoolkit.util.AppLocale;
 import org.astivetoolkit.util.NetUtil;
 
 /**
- *
+ * Final implementation for {@link AbstractAstiveServer}.
+ * 
  * @since 1.0.0
  * @see AbstractAstiveServer
  */
@@ -63,55 +64,9 @@ public class AstiveServer extends AbstractAstiveServer {
     AbstractAstiveServer.ASTIVE_HOME + "/conf/telned.properties";
   private ExecutorService executorService;
 
-  {
-    DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");
-  }
-
-  /**
-   * Creates a new AstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AstiveServer(int port, int backlog, InetAddress bindAddr)
                throws SystemException, IOException {
     super(port, backlog, bindAddr);
-  }
-
-  private static ServiceProperties getServiceProperties(String propPath, String serviceName)
-                                                 throws SystemException, IOException {
-    Properties prop = new Properties();
-
-    try {
-      prop.load(new FileInputStream(propPath));
-
-      return new ServicePropertiesImpl(prop, serviceName);
-    } catch (FileNotFoundException ex) {
-      throw new SystemException(AppLocale.getI18n("unableToReadFile",
-                                                  new Object[] { propPath, ex.getMessage() }));
-    }
-  }
-
-  private static boolean isCommand(String cmd) {
-    AdminCommand ac = AdminCommand.get(cmd);
-
-    if (ac == null) {
-      return false;
-    }
-
-    return true;
-  }
-
-  private static boolean isFileJar(String file) {
-    if (file.endsWith(".jar")) {
-      return true;
-    }
-
-    return false;
   }
 
   /**
@@ -123,13 +78,6 @@ public class AstiveServer extends AbstractAstiveServer {
     executorService.execute(monitor);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param args DOCUMENT ME!
-   *
-   * @throws Exception DOCUMENT ME!
-   */
   public static void main(String[] args) throws Exception {
     astivedSP = getServiceProperties(ASTIVED_PROPERTIES, "astived");
     adminDaemonSP = getServiceProperties(ADMIN_DAEMON_PROPERTIES, "admin thread");
@@ -138,7 +86,7 @@ public class AstiveServer extends AbstractAstiveServer {
     ArrayList<ServiceProperties> serviceProperties = new ArrayList();
     serviceProperties.add(astivedSP);
 
-    // Adding security measure !
+    // Adding security measure
     AstPolicy ap = AstPolicy.getInstance();
     ap.addPermissions(astivedSP);
     ap.addPermissions(adminDaemonSP);
@@ -156,60 +104,66 @@ public class AstiveServer extends AbstractAstiveServer {
       printUsage();
       System.exit(1);
     }
-
+    
     // Create a Parser
     CommandLineParser parser = new BasicParser();
 
     Options start = new Options();
-    start.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
-    start.addOption("v", "version", false, "Prints the Astive Server version and exits.");
-    start.addOption("d", "debug", false, AppLocale.getI18n("cli.option.debug"));
-    start.addOption("q", "quiet", false, AppLocale.getI18n("cli.option.daemonMode"));
-    start.addOption(OptionBuilder.hasArg(true).withArgName("host").withLongOpt("admin-bind")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.bind",
-                                                            new Object[] { "admin" })).create());
-    start.addOption(OptionBuilder.hasArg(true).withArgName("port").withLongOpt("admin-port")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.port",
-                                                            new Object[] { "admin" })).create());
-    start.addOption(OptionBuilder.hasArg(true).withArgName("port").withLongOpt("astived-port")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.port",
-                                                            new Object[] { "astived" })).create());
+    
+    start.addOption("h", "help", false, AppLocale.getI18n("optionHelp"));
+    start.addOption("v", "version", false, AppLocale.getI18n("optionVersion"));
+    start.addOption("d", "debug", false, AppLocale.getI18n("optionDebug"));
+    start.addOption("q", "quiet", false, AppLocale.getI18n("optionDaemonMode"));
+    
+    start.addOption(OptionBuilder.hasArg(true).withArgName("host")
+            .withLongOpt("admin-bind")
+                .withDescription(AppLocale.getI18n("optionBind",
+                    new Object[] { "admin" })).create());
+    
+    start.addOption(OptionBuilder.hasArg(true).withArgName("port")
+            .withLongOpt("admin-port")
+                .withDescription(AppLocale.getI18n("optionPort",
+                    new Object[] { "admin" })).create());
 
-    start.addOption(OptionBuilder.hasArg(true).withArgName("host").withLongOpt("astived-host")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.bind",
-                                                            new Object[] { "astived" })).create());
-    start.addOption(OptionBuilder.hasArg(true).withArgName("port").withLongOpt("telned-port")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.port",
-                                                            new Object[] { "telned" })).create());
+    start.addOption(OptionBuilder.hasArg(true).withArgName("port")
+            .withLongOpt("astived-port")
+                .withDescription(AppLocale.getI18n("optionPort",
+                    new Object[] { "astived" })).create());
 
-    start.addOption(OptionBuilder.hasArg(true).withArgName("host").withLongOpt("telned-host")
-                     .withDescription(""
-                                       + AppLocale.getI18n("cli.option.host",
-                                                            new Object[] { "telned" })).create());
+    start.addOption(OptionBuilder.hasArg(true).withArgName("host")
+            .withLongOpt("astived-host")
+                .withDescription(AppLocale.getI18n("optionBind", 
+                    new Object[] { "astived" })).create());
+    
+    start.addOption(OptionBuilder.hasArg(true).withArgName("port")
+            .withLongOpt("telned-port")
+                .withDescription(AppLocale.getI18n("optionPort",
+                    new Object[] { "telned" })).create());
+
+    start.addOption(OptionBuilder.hasArg(true).withArgName("host")
+            .withLongOpt("telned-host")
+                .withDescription(AppLocale.getI18n("optionBind",
+                    new Object[] { "telned" })).create());
 
     Options stop = new Options();
-    stop.addOption(OptionBuilder.withLongOpt("--help")
-                    .withDescription("" + AppLocale.getI18n("cli.option.printUsage")).create());
+    stop.addOption(OptionBuilder.hasArg(true).withArgName("host")
+            .withLongOpt("host")
+            .withDescription(AppLocale.getI18n("optionHelp")).create());
 
     stop.addOption("h", "host", false,
-                   AppLocale.getI18n("cli.option.stop.host",
-                                     new Object[] { DEFAULT_AGI_SERVER_BIND_ADDR }));
+            AppLocale.getI18n("optionStopHost",
+                new Object[] { DEFAULT_AGI_SERVER_BIND_ADDR }));
 
     stop.addOption("p", "port", false,
-                   AppLocale.getI18n("cli.option.stop.port",
-                                     new Object[] { DEFAULT_AGI_SERVER_PORT }));
+            AppLocale.getI18n("optionStopPort",
+                new Object[] { DEFAULT_AGI_SERVER_PORT }));
 
     Options deploy = new Options();
-    deploy.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
+    deploy.addOption("h", "help", false, AppLocale.getI18n("optionHelp"));
 
     Options undeploy = new Options();
-    undeploy.addOption("h", "help", false, AppLocale.getI18n("cli.option.printUsage"));
-
+    undeploy.addOption("h", "help", false, AppLocale.getI18n("optionHelp"));
+    
     if (args.length == 0) {
       printUsage();
       System.exit(1);
@@ -219,21 +173,11 @@ public class AstiveServer extends AbstractAstiveServer {
     }
 
     AdminCommand cmd = AdminCommand.get(args[0]);
-
-    if (cmd.equals(AdminCommand.DEPLOY) && ((args.length < 2))) {
-      LOG.error(AppLocale.getI18n("cli.invalid.app"));
-      printUsage(AdminCommand.DEPLOY, deploy);
-      System.exit(1);
-    }
-
-    if (cmd.equals(AdminCommand.UNDEPLOY) && ((args.length < 2))) {
-      printUsage(AdminCommand.UNDEPLOY, undeploy);
-      System.exit(1);
-    }
-
+    
     // Parse the program arguments
     try {
       if (cmd.equals(AdminCommand.START)) {
+          
         CommandLine commandLine = parser.parse(start, args);
 
         if (commandLine.hasOption('h')) {
@@ -242,7 +186,9 @@ public class AstiveServer extends AbstractAstiveServer {
         }
 
         if (commandLine.hasOption('v')) {
-          // Them start the server without noise
+            out.println(AppLocale.getI18n("astivedVersion", new String[] {
+                Version.VERSION, Version.BUILD_TIME }));
+            System.exit(0);
         }
 
         if (commandLine.hasOption("astived-bind")) {
@@ -260,21 +206,19 @@ public class AstiveServer extends AbstractAstiveServer {
         if (commandLine.hasOption("admin-port")) {
           adminDaemonSP.setPort(Integer.parseInt(commandLine.getOptionValue("admin-port")));
         }
-
+        
         if (commandLine.hasOption("telned-bind")) {
           telnedSP.setBindAddr(InetAddress.getByName(commandLine.getOptionValue("telned-bind")));
         }
-
-        if (commandLine.hasOption("telned-port")) {
-          adminDaemonSP.setPort(Integer.parseInt(commandLine.getOptionValue("telned-port")));
+        
+        if (commandLine.hasOption("telned-port")) {          
+          telnedSP.setPort(Integer.parseInt(commandLine.getOptionValue("telned-port")));
         }
 
-        if (!NetUtil.isPortAvailable(astivedSP.getPort())) {
-          out.println(AppLocale.getI18n("cantStartFastAgiServerSocket",
-                                        new Object[] {
-                                          astivedSP.getBindAddr().getHostAddress(),
-                                          astivedSP.getPort()
-                                        }));
+        if (!NetUtil.isPortAvailable(astivedSP.getPort())) {                    
+          out.println(AppLocale.getI18n("errorCantStartFastAgiServerSocket",
+            new Object[] {astivedSP.getBindAddr().getHostAddress(),
+                astivedSP.getPort()}));
           System.exit(-1);
         }
 
@@ -294,7 +238,7 @@ public class AstiveServer extends AbstractAstiveServer {
       }
 
       if (!cmd.equals(AdminCommand.START) && adminDaemonSP.isDisabled()) {
-        LOG.warn("unableToAccessAdminDaemon");
+        LOG.warn("errorUnableToAccessAdminDaemon");
       }
 
       if (cmd.equals(AdminCommand.STOP)) {
@@ -323,51 +267,107 @@ public class AstiveServer extends AbstractAstiveServer {
           astivedSP.setPort(Integer.parseInt(commandLine.getOptionValue('p')));
         }
 
-        AdminDaemonClient adClient =
-          new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
+        AdminDaemonClient adClient = new AdminDaemonClient(
+                adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
         adClient.stop();
       }
 
       // TODO: This needs to be researched before a full implementation.
       // for now is only possible to do deployments into a local server.
       if (cmd.equals(AdminCommand.DEPLOY)) {
-        AdminDaemonClient adClient =
-          new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
+          CommandLine commandLine = parser.parse(deploy, args);            
+          
+          if (args.length < 2) {
+            printUsage(cmd, deploy);
+            System.exit(1);
+          } else if (commandLine.hasOption('h')) {
+            printUsage(cmd, deploy);
+            System.exit(0);
+          } 
+          
+        AdminDaemonClient adClient = new AdminDaemonClient(
+                adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
         adClient.deploy(args[1]);
       }
 
       if (cmd.equals(AdminCommand.UNDEPLOY)) {
-        AdminDaemonClient adClient =
+
+          CommandLine commandLine = parser.parse(undeploy, args);  
+          
+          if (args.length < 2) {
+            printUsage(cmd, undeploy);
+            System.exit(1);
+          } else if (commandLine.hasOption('h')) {
+            printUsage(cmd, undeploy);
+            System.exit(0);
+          } 
+          
+          AdminDaemonClient adClient =
           new AdminDaemonClient(adminDaemonSP.getBindAddr(), adminDaemonSP.getPort());
-        adClient.undeploy(args[1]);
+          adClient.undeploy(args[1]);
       }
     } catch (java.net.ConnectException ex) {
-      LOG.error(AppLocale.getI18n("serverNotRunning"));
+      LOG.error(AppLocale.getI18n("errorServerNotRunning"));
     } catch (Exception ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 
   // <editor-fold defaultstate="collapsed" desc="Support methods">
+  
+  private static ServiceProperties getServiceProperties(String propPath, String serviceName)
+                                                 throws SystemException, IOException {
+    Properties prop = new Properties();
+
+    try {
+      prop.load(new FileInputStream(propPath));
+
+      return new ServicePropertiesImpl(prop, serviceName);
+    } catch (FileNotFoundException ex) {
+      throw new SystemException(AppLocale.getI18n("errorUnableToReadFile",
+                                                  new Object[] { propPath, ex.getMessage() }));
+    }
+  }
+
+  private static boolean isCommand(String cmd) {
+    AdminCommand ac = AdminCommand.get(cmd);
+
+    if (ac == null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  private static boolean isFileJar(String file) {
+    if (file.endsWith(".jar")) {
+      return true;
+    }
+
+    return false;
+  }  
+  
   private static void printUnavailableCmd(String cmd) {
-    out.println(AppLocale.getI18n("cli.unavailableCommand", new Object[] { cmd }));
-    out.println(AppLocale.getI18n("cli.availableCommands"));
+    out.println(AppLocale.getI18n("errorUnavailableCommand", new Object[] { cmd }));
+    out.println(AppLocale.getI18n("astivedCommands"));
   }
 
   private static void printUsage() {
-    out.println(AppLocale.getI18n("cli.usage"));
-    out.println(AppLocale.getI18n("cli.availableCommands"));
-    out.println(AppLocale.getI18n("cli.help"));
-    out.println(AppLocale.getI18n("cli.footer"));
+    out.println(AppLocale.getI18n("astivedUsage"));
+    out.println(AppLocale.getI18n("astivedCommands"));
+    out.println(AppLocale.getI18n("cliHelp"));
+    out.println(AppLocale.getI18n("cliFooter"));
   }
 
   private static void printUsage(AdminCommand ac, Options options) {
     String command = ac.getCommand();
+    // capitalize command
+    command = Character.toUpperCase(command.charAt(0)) + command.substring(1);
     HelpFormatter helpFormatter = new HelpFormatter();
     helpFormatter.setWidth(80);
-    helpFormatter.printHelp(AppLocale.getI18n("cli." + command + ".usage"),
-                            AppLocale.getI18n("cli.header"), options,
-                            AppLocale.getI18n("cli.footer"));
+    helpFormatter.printHelp(AppLocale.getI18n("command" + command + "Usage"),
+                            AppLocale.getI18n("cliHeader"), options,
+                            AppLocale.getI18n("cliFooter"));
   }
 
   /**
@@ -409,7 +409,7 @@ public class AstiveServer extends AbstractAstiveServer {
               try {
                 server.stop();
               } catch (SystemException ex) {
-                LOG.error(AppLocale.getI18n("unexpectedError", new String[] { ex.getMessage() }));
+                LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new String[] { ex.getMessage() }));
               }
             }
 
@@ -428,7 +428,7 @@ public class AstiveServer extends AbstractAstiveServer {
                   apps.add(sb.toString());
                 }
               } catch (AstiveException ex) {
-                LOG.error(AppLocale.getI18n("unexpectedError", new String[] { ex.getMessage() }));
+                LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new String[] { ex.getMessage() }));
               }
 
               return apps;
@@ -448,7 +448,7 @@ public class AstiveServer extends AbstractAstiveServer {
         executorService.execute(ts);
       }
     } catch (IOException ex) {
-      LOG.warn(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.warn(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 

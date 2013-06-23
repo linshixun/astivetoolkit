@@ -20,85 +20,44 @@ package org.astivetoolkit.agi;
 
 
 /**
- * Enum that map the ton type for an incoming call.
+ * Enumerator that map the ton type for an incoming call.
  *
  * @since 1.0.0
  */
-public enum TonType {UNKNOWN(0x0, "Unknown", "Unknown"),
-  INTERNATIONAL(0x1, "International", "International"),
-  NATIONAL(0x2, "National", "National"),
-  NETWORK_SPECIFIC(0x3, "NetworkSpecific", "Network specific"),
-  SUBSCRIBER_NUMBER(0x4, "SubscriberNumber", "Subscriber number"),
-  ALPHA_NUMERIC(0x5, "AlphaNumberic", "Alpha numeric"),
-  ABBREVIATED(0x6, "Abbreviated", "Abbreviated");
+public enum TonType {UNKNOWN(0, "Unknown", "Unknown"),
+  INTERNATIONAL(1, "International", "International"),
+  NATIONAL(2, "National", "National"),
+  NETWORK_SPECIFIC(3, "NetworkSpecific", "Network specific"),
+  SUBSCRIBER_NUMBER(4, "SubscriberNumber", "Subscriber number"),
+  ALPHA_NUMERIC(5, "AlphaNumberic", "Alpha numeric"),
+  ABBREVIATED(6, "Abbreviated", "Abbreviated");
 
-  /**
-   * PresentationType value.
-   */
   private int value;
-
-  /**
-   * PresentationType name
-   */
   private String name;
-
-  /**
-   * PresentationType description.
-   */
   private String literal;
-
-  /**ADOC_COMME */
+  
   private TonType(final int value, final String name, final String literal) {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param value DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static TonType get(final int value) {
     return null;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param name DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static TonType getByName(final String name) {
     return null;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getLiteral() {
     return literal;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getName() {
     return name;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public int getValue() {
     return value;
   }

@@ -45,7 +45,7 @@ public class GetChannelStatus implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xf49cb707210542c5L;
+  private static final long serialVersionUID = -820579790841625915L;
 
   /**
    * Channel name, or null for current channel.

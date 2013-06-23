@@ -22,20 +22,33 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Use to add together multiple commands that will be sent in sequence. This
+ * class is to be use in conjuction with {@link Menu}.
  *
  * @since 1.0.0
  */
 public class VoiceComposition {
   private List<Object> commands;
 
+  /**
+   * Create a new VoiceComposition object.
+   * 
+   * @param commands to be execute in sequence.
+   */
   public VoiceComposition(List<Object> commands) {
     this.commands = commands;
   }
 
+  /**
+   * @return a sequence of commands to be executed.
+   */
   public List<Object> getCommands() {
     return Collections.unmodifiableList(commands);
   }
-
+  
+  /**      
+   * @param commands to be sent in sequence to the client.
+   */
   public void setCommands(List<Object> commands) {
     this.commands = commands;
   }

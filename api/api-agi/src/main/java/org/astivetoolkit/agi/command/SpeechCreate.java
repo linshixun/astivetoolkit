@@ -33,7 +33,7 @@ public class SpeechCreate implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x8c366ec054ed1a06L;
+  private static final long serialVersionUID = -8343359487319664122L;
 
   /**
    * The name of the speech engine to use for subsequent Speech AGI commands.

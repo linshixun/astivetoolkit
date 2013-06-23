@@ -20,38 +20,37 @@ package org.astivetoolkit.menu.event;
 
 
 /**
+ * A MaxTimeoutEvent is triggered if the <code>Subject</code> skip iteration
+ * with the {@link Menu} as many time as {@link Menu#getMaxTimeout()}.
  *
  * @since 1.0.0
  * @see MaxTimeoutListener
  * @see DigitsEvent
  */
 public class MaxTimeoutEvent extends DigitsEvent {
+  private int maxTimeout;
+  
   /**
-   * DOCUMENT ME!
+   * Create a new MaxTimeoutEvent object.
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param maxTimeout maximum time that the <code>Subject</code> is allow
+   * to skip menu iteration.
    */
-  protected int maxTimeout;
-
-  /** <p>Creates a new instance of MaxTimeoutEvent</p> */
-  public MaxTimeoutEvent(Object source, String digit, int maxTimeout) {
-    super(source, digit);
+  public MaxTimeoutEvent(final Object source, final String digits, 
+          final int maxTimeout) {
+    super(source, digits);
     this.maxTimeout = maxTimeout;
   }
-
+ 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the maximum time that User's can skip iteration with the menu.
+   * 
+   * @return the maximum time that the menu allows the <code>Subject</code>
+   * to avoid iteration.
    */
   public int getMaxTimeout() {
     return maxTimeout;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param maxTimeout DOCUMENT ME!
-   */
-  public void setMaxTimeout(int maxTimeout) {
-    this.maxTimeout = maxTimeout;
   }
 }

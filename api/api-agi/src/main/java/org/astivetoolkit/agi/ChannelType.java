@@ -59,7 +59,7 @@ public enum ChannelType {
   }
 
   /**
-   * Return enum for channel status code.
+   * Returns enum for channel status code.
    *
    * @param code channel status code
    * @return ChannelStatus enum

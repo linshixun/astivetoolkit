@@ -56,40 +56,36 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
   /**
    * Creates a new FastAgiConnectionMonitor object.
    *
-   * @param server DOCUMENT ME!
-   * @param threads DOCUMENT ME!
+   * @param server the server to monitor.
+   * @param threads maximum threads allow for the server.
    */
   public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("startingConnectionMonitor"));
+      LOG.debug(AppLocale.getI18n("messageStartingConnectionMonitor"));
     }
 
     this.server = server;
     manager = new FastAgiConnectionManager();
-
-    // TODO: This should be a parameter
+    
     int corePoolSize = threads;
     int maxPoolSize = threads;
-    long keepAliveTime = 0x1388;
+    // TODO: This should be a parameter
+    long keepAliveTime = 5000;
 
-    threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, keepAliveTime,
-                                                TimeUnit.MILLISECONDS,
-                                                new LinkedBlockingQueue<Runnable>());
+    threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 
+            keepAliveTime, TimeUnit.MILLISECONDS, 
+                new LinkedBlockingQueue<Runnable>());
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @param conn DOCUMENT ME!
-   *
-   * @throws AstiveException DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void processConnection(final Connection conn)
                          throws AstiveException {
     try {
       if (LOG.isDebugEnabled()) {
-        LOG.debug(AppLocale.getI18n("processingCall"));
+        LOG.debug(AppLocale.getI18n("messageProcessingCall"));
       }
 
       FastAgiConnection fastConn = (FastAgiConnection) conn;
@@ -111,10 +107,10 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
         if (LOG.isDebugEnabled()) {
-          LOG.debug("done.");
+          LOG.debug("messageDone.");
         }
       } else {
-        LOG.error(AppLocale.getI18n("unableToPlaceCallCheckNetPermissions"));
+        LOG.error(AppLocale.getI18n("errorUnableToPlaceCallCheckNetPermissions"));
 
         try {
           fastConn.getSocket().close();
@@ -123,13 +119,13 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         }
       }
     } catch (AgiException ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
     }
   }
 
   /**
-   * DOCUMENT ME!
-   */
+   * {@inheritDoc}
+   */   
   @Override
   public void run() {
     while (true) {
@@ -159,13 +155,13 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
               try {
                 manager.remove(conn);
               } catch (IOException ex) {
-                LOG.error(AppLocale.getI18n("unableToPerformIOOperations",
+                LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                             new Object[] { ex.getMessage() }));
               }
             }
           });
       } catch (IOException ex) {
-        LOG.error(AppLocale.getI18n("unableToPerformIOOperations", new Object[] { ex.getMessage() }));
+        LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[] { ex.getMessage() }));
       }
     }
   }

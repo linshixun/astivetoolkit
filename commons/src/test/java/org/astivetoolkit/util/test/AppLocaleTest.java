@@ -22,7 +22,8 @@ import junit.framework.TestCase;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- *
+ * Test case for {@link org.astivetoolkit.util.AppLocale}.
+ * 
  * @since 1.0.0
  */
 public class AppLocaleTest extends TestCase {
@@ -33,9 +34,9 @@ public class AppLocaleTest extends TestCase {
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    */
   public void testAppLocale() {
-    assertEquals(AppLocale.getI18n("test", new Object[] { "test" }), "This is a test.");
+    assertEquals(AppLocale.getI18n("messageTest", new Object[] { "test" }), "This is a test.");
   }
 }

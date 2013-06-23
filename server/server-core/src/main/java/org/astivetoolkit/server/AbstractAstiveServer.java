@@ -32,35 +32,14 @@ import org.astivetoolkit.util.AppLocale;
  * @see AstiveServer
  * @see SimpleAstiveServer
  */
-public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {
-  /**
-   *
-   */
-  private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);
+public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {  
   public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
   public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") + "/apps/";
-
-  /**
-   *
-   */
   private InetAddress bindAddr;
-
-  /**
-   *
-   */
   private int backlog;
-
-  /**
-   *
-   */
   private int port;
+  private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);  
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer() throws SystemException, IOException {
     // Using the default agi asterisk port
     super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
@@ -69,41 +48,14 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port) throws SystemException, IOException {
     super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port, int backlog) throws SystemException, IOException {
     super(port, backlog, InetAddress.getLocalHost());
   }
 
-  /**
-   * Creates a new AbstractAstiveServer object.
-   *
-   * @param port DOCUMENT ME!
-   * @param backlog DOCUMENT ME!
-   * @param bindAddr DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   * @throws IOException DOCUMENT ME!
-   */
   public AbstractAstiveServer(int port, int backlog, InetAddress bindAddr)
                        throws SystemException, IOException {
     super(port, backlog, bindAddr);
@@ -134,53 +86,39 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
   }
 
   /**
-   *
    * @return App version.
    */
   public String getVersion() {
     StringBuilder sb =
-      new StringBuilder(AppLocale.getI18n("appVersion",
+      new StringBuilder(AppLocale.getI18n("astivedVersion",
                                           new String[] { Version.VERSION, Version.BUILD_TIME }));
 
     return sb.toString();
   }
 
-  /**
-   * DOCUMENT ME!
-   */
   protected abstract void launchConnectionMonitor();
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   @Override
   public void start() throws SystemException {
-    if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("starting"));
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("messageStarting"));
     }
 
     super.start();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws SystemException DOCUMENT ME!
-   */
   @Override
   public void stop() throws SystemException {
-    if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("stopping"));
+    if (LOG.isDebugEnabled()) {
+      LOG.debug(AppLocale.getI18n("messageStopping"));
     }
 
     try {
       super.stop();
-      System.exit(0x0);
+      System.exit(0);
     } catch (Exception ex) {
-      LOG.error(AppLocale.getI18n("unexpectedError", new Object[] { ex.getMessage() }));
-      System.exit(0x1);
+      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
+      System.exit(1);
     }
   }
 }

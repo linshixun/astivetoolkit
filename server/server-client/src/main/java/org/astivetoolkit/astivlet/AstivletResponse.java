@@ -23,8 +23,8 @@ import java.util.TimeZone;
 import org.astivetoolkit.agi.*;
 
 /**
- * Extends the {@link AgiResponse} interface to provide astivlets functionality
- * in sending a response.
+ * Extends the {@link AgiResponse} interface to provide astivlets, with
+ * the capability of response to client requests.
  *
  * @since 1.0.0
  * @see AstivletRequest
@@ -275,7 +275,7 @@ public class AstivletResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on) throws AgiException {
+  public void musicOnHold(boolean on) throws AgiException {
     response.musicOnHold(on);
   }
 
@@ -283,7 +283,7 @@ public class AstivletResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void musicOnHold(Boolean on, String musicClass)
+  public void musicOnHold(boolean on, String musicClass)
                    throws AgiException {
     response.musicOnHold(on, musicClass);
   }
@@ -567,7 +567,7 @@ public class AstivletResponse implements AgiResponse {
    * {@inheritDoc}
    */
   @Override
-  public void setTddMode(Boolean on) throws AgiException {
+  public void setTddMode(boolean on) throws AgiException {
     response.setTddMode(on);
   }
 
@@ -686,4 +686,20 @@ public class AstivletResponse implements AgiResponse {
   public char waitForDigit(int interDigitsTimeout) throws AgiException {
     return response.waitForDigit(interDigitsTimeout);
   }
+
+  /**
+   * {@inheritDoc}
+   */  
+   @Override
+   public void hangup(String channel) throws AgiException {
+       response.hangup(channel);
+   }
+
+  /**
+   * {@inheritDoc}
+   */    
+   @Override
+   public void setVar(String variable, String value) throws AgiException {
+       response.setVar(variable, value);
+   }
 }

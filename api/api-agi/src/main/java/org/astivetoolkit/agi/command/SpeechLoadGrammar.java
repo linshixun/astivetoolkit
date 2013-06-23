@@ -33,7 +33,7 @@ public class SpeechLoadGrammar implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0x77d81cb1529e48b3L;
+  private static final long serialVersionUID = 8635683833403820211L;
 
   /**
    * Grammar name.
@@ -44,7 +44,7 @@ public class SpeechLoadGrammar implements Serializable {
   /**
    * Path to grammar.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String path;
 
   /**

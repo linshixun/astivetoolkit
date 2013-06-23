@@ -42,7 +42,7 @@ public class DatabaseDel implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xa2a28d494ab2c757L;
+  private static final long serialVersionUID = -6727659547412740265L;
 
   /**
    * Arbitrary name use to group a collection of values defined by a key.
@@ -53,7 +53,7 @@ public class DatabaseDel implements Serializable {
   /**
    * Element of database.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String key;
 
   /**

@@ -18,31 +18,33 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.WaitForDigit;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.WaitForDigit;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.WaitForDigit}.
+ * 
+ * @since 1.0.0
  */
 public class WaitForDigitTest extends TestCase {
   /**
    * Creates a new WaitForDigitTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public WaitForDigitTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
-    int timeout = 0xfa0;
+    int timeout = 4000;
     StringBuilder b = new StringBuilder("WAIT FOR DIGIT");
     b.append(" ");
     b.append(timeout);

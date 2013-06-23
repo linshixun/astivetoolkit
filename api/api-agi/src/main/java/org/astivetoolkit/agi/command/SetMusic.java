@@ -36,7 +36,7 @@ public class SetMusic implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xb45a299cab9f4762L;
+  private static final long serialVersionUID = -5450998646107584670L;
 
   /**
    * Set musiconhold on or off.
@@ -49,7 +49,7 @@ public class SetMusic implements Serializable {
   /**
    * MusicOnHold class, or null for default.
    */
-  @Parameter(position = 0x1)
+  @Parameter(position = 1)
   private String classStr;
 
   /**
@@ -84,7 +84,7 @@ public class SetMusic implements Serializable {
   }
 
   /**
-   * Return whether music on hold is enable or disable.
+   * Returns whether music on hold is enable or disable.
    *
    * @return <code>true</code> if music on hold is on, or <code>false</code>
    * if is off.

@@ -18,10 +18,13 @@
  */
 package org.astivetoolkit.server.admin;
 
+import static java.lang.System.out;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
+import org.astivetoolkit.server.AbstractAstiveServer;
 import org.astivetoolkit.util.AppLocale;
 
 /**
@@ -33,14 +36,10 @@ public class AdminDaemonClient extends Socket {
   private BufferedReader reader;
   private PrintWriter writer;
 
-  /**
-   * Creates a new AdminDaemonClient object.
-   *
-   * @param addr DOCUMENT ME!
-   * @param port DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
+  {
+    DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");
+  }
+  
   public AdminDaemonClient(InetAddress addr, int port)
                     throws IOException {
     super(addr, port);
@@ -48,25 +47,25 @@ public class AdminDaemonClient extends Socket {
     writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
   public void deploy(String app) throws IOException {
-    send(AdminCommand.DEPLOY, app);
+    send(AdminCommand.DEPLOY, app);    
+    // Server response
+    out.println(getReader().readLine());
   }
 
-  private BufferedReader getReader() throws IOException {
-    return reader;
+  public void undeploy(String app) throws IOException {   
+    send(AdminCommand.UNDEPLOY, app);
+    // Server response
+    out.println(getReader().readLine());
   }
-
-  private PrintWriter getWriter() throws IOException {
-    return writer;
+  
+  public void stop() throws IOException {
+    send(AdminCommand.STOP, null);
+    if (LOG.isInfoEnabled()) {
+        LOG.info(AppLocale.getI18n("messageDone"));    
+    }
   }
-
+  
   private void send(AdminCommand cmd, String arg) throws IOException {
     if (LOG.isDebugEnabled()) {
       LOG.debug(AppLocale.getI18n("sendingCmd", new Object[] { cmd, arg }));
@@ -81,27 +80,15 @@ public class AdminDaemonClient extends Socket {
     getWriter().flush();
 
     if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("done"));
+      LOG.debug(AppLocale.getI18n("messageDone"));
     }
+  }  
+  
+  private BufferedReader getReader() throws IOException {
+    return reader;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public void stop() throws IOException {
-    send(AdminCommand.STOP, null);
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param app DOCUMENT ME!
-   *
-   * @throws IOException DOCUMENT ME!
-   */
-  public void undeploy(String app) throws IOException {
-    send(AdminCommand.UNDEPLOY, app);
-  }
+  private PrintWriter getWriter() throws IOException {
+    return writer;
+  }  
 }

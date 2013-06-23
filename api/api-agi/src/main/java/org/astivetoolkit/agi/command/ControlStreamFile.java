@@ -35,22 +35,19 @@ import org.astivetoolkit.agi.annotation.Parameter;
  */
 @AgiCommand(command = "CONTROL STREAM FILE")
 public class ControlStreamFile implements Serializable {
-  /**
-   * Serial version identifier.
-   */
-  private static final long serialVersionUID = 0x2c457b4779424a41L;
+  private static final long serialVersionUID = 3190091457969146433L;
 
   /**
    * Silence time in milliseconds after audio finished. The default value
    * is '0' (no silence).
    */
-  @Parameter(position = 0x2, optional = false)
+  @Parameter(position = 2, optional = false)
   private Integer offset;
 
   /**
    * Can be use to the interrupt the audio on a channel.
    */
-  @Parameter(position = 0x1, optional = false)
+  @Parameter(position = 1, optional = false)
   private String escapeDigits;
 
   /**
@@ -62,19 +59,19 @@ public class ControlStreamFile implements Serializable {
   /**
    * Digit used to move audio forward.
    */
-  @Parameter(position = 0x3)
+  @Parameter(position = 3)
   private char forwardDigit;
 
   /**
    * Digit used to pause audio.
    */
-  @Parameter(position = 0x5)
+  @Parameter(position = 5)
   private char pauseDigit;
 
   /**
    * Digit used to rewind audio.
    */
-  @Parameter(position = 0x4)
+  @Parameter(position = 4)
   private char rewindDigit;
 
   /**

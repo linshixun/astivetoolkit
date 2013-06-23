@@ -18,33 +18,35 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import org.astivetoolkit.agi.command.GetOption;
+import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
-import junit.framework.TestCase;
+import org.astivetoolkit.agi.command.GetOption;
 
 /**
- * DOCUMENT ME
+ * Test case for command {@link org.astivetoolkit.agi.command.GetOption}.
+ * 
+ * @since 1.0.0
  */
 public class GetOptionTest extends TestCase {
   /**
    * Creates a new GetOptionTest object.
    *
-   * @param testName DOCUMENT ME!
+   * @param testName {@inheritDoc}.
    */
   public GetOptionTest(String testName) {
     super(testName);
   }
 
   /**
-   * DOCUMENT ME!
+   * Test method.
    *
-   * @throws AgiException DOCUMENT ME!
+   * @throws AgiException if command is malformed.
    */
   public void testCommand() throws AgiException {
     String file = "tt-monkeys";
     String escapeDigits = "12";
-    int timeout = 0xffffffff;
+    int timeout = -1;
 
     // Test first constructor
     StringBuilder b = new StringBuilder("GET OPTION");

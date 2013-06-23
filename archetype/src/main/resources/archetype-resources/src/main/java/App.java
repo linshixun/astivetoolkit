@@ -31,7 +31,7 @@ public class App extends Astivlet {
             response.streamFile("tt-monkeys");
             response.hangup();
         } catch (AgiException ex) {
-            // TODO: Do something intersting here !
+            // Do something intersting here !
         }
     }
 }

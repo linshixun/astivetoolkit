@@ -60,7 +60,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
    * Create a new TelnetServer with port, backlog and bindAddr.
    *
    * @param port port to where the service should bound.
-   * @param backlog maximun connections in queue. After that all connections
+   * @param backlog maximum connections in queue. After that all connections
    * will be dropped.
    * @param bindAddr address to where the service should be bound.
    * @throws IOException when unable to perform IO operations.
@@ -74,20 +74,20 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
   }
 
   /**
-   * Return a list with all applications deployed into the server.
+   * Returns a list with all applications deployed into the server.
    *
    * @return a list of string with the applications running into the server.
    */
   public abstract List<String> lookup();
 
   /**
-   * DOCUMENT ME!
+   * {@inheritDoc}
    */
   @Override
   public void run() {
     try {
       if (!NetUtil.isPortAvailable(port)) {
-        throw new RuntimeException(AppLocale.getI18n("unableToOpenPort", new Object[] { port }));
+        throw new RuntimeException(AppLocale.getI18n("unableToOpenPortError", new Object[] { port }));
       }
 
       InetSocketAddress inet = new InetSocketAddress(bindAddr, port);
@@ -112,8 +112,8 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
         BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
         PrintWriter writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()));
 
-        writer.println(AppLocale.getI18n("telnetIntro"));
-        writer.println(AppLocale.getI18n("telnetHelp"));
+        writer.println(AppLocale.getI18n("messageTelnetIntro"));
+        writer.println(AppLocale.getI18n("messageTelnetHelp"));
         writer.print(promptSymbol);
         writer.flush();
 
@@ -123,7 +123,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
           TelnetCommand command = TelnetCommand.get(commandStr);
 
           if (command == null) {
-            writer.println(AppLocale.getI18n("telnetCommandNotFound"));
+            writer.println(AppLocale.getI18n("messageTelnetCommandNotFound"));
             writer.print(promptSymbol);
             writer.flush();
 
@@ -137,7 +137,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
           }
 
           if (command.equals(TelnetCommand.SYSTEM)) {
-            writer.println(AppLocale.getI18n("telnetCommandNotImpl"));
+            writer.println(AppLocale.getI18n("messageTelnetCommandNotImpl"));
             writer.print(promptSymbol);
             writer.flush();
 
@@ -182,8 +182,11 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
               }
             }
 
-            // TODO: Print a message if is empty?
-            writer.println(sb.toString());
+            if(sb.toString().isEmpty()) {
+                writer.println(AppLocale.getI18n("messageTelnetEmptyResults"));                
+            } else {
+                writer.println(sb.toString());
+            }
             writer.print(promptSymbol);
             writer.flush();
 
@@ -206,7 +209,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
         }
       }
     } catch (IOException ex) {
-      LOG.error(AppLocale.getI18n("unableToPerformIOWithAdminDaemon",
+      LOG.error(AppLocale.getI18n("errorUnableToCommunicateWithAdminDaemon",
                                   new Object[] { ex.getMessage() }));
     }
   }
@@ -222,7 +225,7 @@ public abstract class TelnetServer extends ServerSocket implements Runnable {
   public abstract String system();
 
   /**
-   * Return the version of the running server.
+   * Returns the version of the running server.
    *
    * @return server instance version.
    */

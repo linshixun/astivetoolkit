@@ -20,14 +20,16 @@ package org.astivetoolkit.menu.event;
 
 
 /**
- *
+ * The listener interface for receiving {@link InterDigitsTimeoutEvent}.
+ * 
  * @since 1.0.0
  * @see InterDigitsTimeoutEvent
  */
 public interface InterDigitsTimeoutListener {
   /**
-   *
-   * @param evt
+   * Callback triggered when the maximum time between digits is passed.
+   * 
+   * @param evt the event submitted.
    */
   abstract void timeoutPerform(InterDigitsTimeoutEvent evt);
 }

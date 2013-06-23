@@ -37,7 +37,7 @@ public class SendImage implements Serializable {
   /**
    * Serial version identifier.
    */
-  private static final long serialVersionUID = 0xd4847997739b48c6L;
+  private static final long serialVersionUID = -3133245749356443450L;
 
   /**
    * Image to sent to channel.

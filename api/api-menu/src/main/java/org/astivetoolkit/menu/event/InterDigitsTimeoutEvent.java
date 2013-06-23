@@ -20,44 +20,36 @@ package org.astivetoolkit.menu.event;
 
 
 /**
+ * The InterDigitsTimeoutEvent is triggered when the <code>Subject</code>
+ * fails to press the next key on time.
  *
  * @since 1.0.0
  * @see InterDigitsTimeoutListener
  * @see DigitsEvent
  */
-public class InterDigitsTimeoutEvent extends DigitsEvent {
+public class InterDigitsTimeoutEvent extends DigitsEvent {  
+  private int timeout;
+  
   /**
-   * DOCUMENT ME!
+   * Create a new InterDigitsTimeoutEvent object.
+   * 
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param timeout to prevent this event the <code>Subject</code>(user)'s 
+   * should press the next digit quickly.
    */
-  protected int timeout;
-
-  /**
-   * Creates a new InterDigitsTimeoutEvent object.
-   *
-   * @param source DOCUMENT ME!
-   * @param digit DOCUMENT ME!
-   * @param timeout DOCUMENT ME!
-   */
-  public InterDigitsTimeoutEvent(Object source, String digit, int timeout) {
+  public InterDigitsTimeoutEvent(final Object source,final String digit,final int timeout) {
     super(source, digit);
     this.timeout = timeout;
   }
 
   /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
+   * Returns the timeout
+   * 
+   * @return to prevent this event the <code>Subject</code>(user)'s should press 
+   * the next digit quickly.
    */
   public int getTimeout() {
     return timeout;
-  }
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param timeout DOCUMENT ME!
-   */
-  public void setTimeout(int timeout) {
-    this.timeout = timeout;
   }
 }

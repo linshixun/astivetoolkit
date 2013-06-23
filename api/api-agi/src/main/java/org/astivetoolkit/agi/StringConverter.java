@@ -36,10 +36,10 @@ public class StringConverter implements Converter {
   public String fromArrayString(final String[] a, final String separator) {
     StringBuilder b = new StringBuilder(30);
 
-    for (int i = 0x0; i < a.length; i++) {
+    for (int i = 0; i < a.length; i++) {
       b.append(a[i]);
 
-      if (i < (a.length - 0x1)) {
+      if (i < (a.length - 1)) {
         b.append(separator);
       }
     }

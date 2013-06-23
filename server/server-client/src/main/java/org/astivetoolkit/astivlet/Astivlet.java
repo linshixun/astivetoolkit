@@ -22,8 +22,8 @@ package org.astivetoolkit.astivlet;
 /**
  * Defines methods that all astivle's must implement.
  *
- * <p>A astivlet is a small Java program that runs within a Astive Server.
- * Astivlets receive and respond to requests from Telephone systems like
+ * A astivlet is a small Java program that runs within an Astive Server.
+ * Astivlets receive and respond to requests from telephone systems like
  * Asterisk.
  *
  * @see AstivletRequest
@@ -34,8 +34,8 @@ public abstract class Astivlet {
   /**
    * Called by Astive Server to allow the astivlet to respond to a request.
    *
-   * @param request object that contains the client's request
-   * @param response object that contains the astivle's response
+   * @param request with the client channel information.
+   * @param response with actions to be executed by the client.
    */
   abstract protected void service(AstivletRequest request, AstivletResponse response);
 }

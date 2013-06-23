@@ -38,7 +38,7 @@ public @interface Parameter {
    *
    * @return position of this parameter in a command. Default position is 0.
    */
-  public int position() default 0x0;
+  public int position() default 0;
   /**
    * Get the prefix of the parameter or and empty string is none is defined.
    *
@@ -46,7 +46,7 @@ public @interface Parameter {
    */
   public String prefix() default "";
   /**
-   * Return whether or not a parameter is optional.
+   * Returns whether or not a parameter is optional.
    *
    * @return true if parameter is option or false otherwise.
    */

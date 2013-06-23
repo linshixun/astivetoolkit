@@ -26,6 +26,7 @@ import noNamespace.AppDocument;
 import noNamespace.AppType;
 import noNamespace.AstivletMappingType;
 import noNamespace.AstivletType;
+import org.apache.xmlbeans.XmlException;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.util.AppLocale;
@@ -74,11 +75,11 @@ public final class AstObj {
       JarResources jar = new JarResources();
       jar.loadJar(jarFile);
 
-      byte[] appxml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
-      AppDocument doc = AppDocument.Factory.parse(new String(appxml));
+      byte[] appXml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
+      AppDocument doc = AppDocument.Factory.parse(new String(appXml));
 
       if (doc.validate() == false) {
-        throw new AstiveException(AppLocale.getI18n("invalidDescriptor"));
+        throw new AstiveException(AppLocale.getI18n("errorInvalidDescriptor"));
       }
 
       app = doc.getApp();
@@ -108,7 +109,9 @@ public final class AstObj {
           astivlets.put(url, getAstivletByClass(at.getClass1()));
         }
       }
-    } catch (Exception ex) {
+    } catch (XmlException ex) {
+      throw new AstiveException(ex);
+    } catch(Exception ex){
       throw new AstiveException(ex);
     }
   }
@@ -161,7 +164,7 @@ public final class AstObj {
   }
 
   /**
-   * Return meta data related to de app.
+   * Returns meta data related to de app.
    *
    * @return app meta-data.
    */

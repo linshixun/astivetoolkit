@@ -96,7 +96,7 @@ public final class AstPolicy extends Policy {
   }
 
   /**
-   * Return the only instance of AstPolicy.
+   * Returns the only instance of AstPolicy.
    *
    * @return the only instance of AstPolicy.
    */
@@ -105,7 +105,7 @@ public final class AstPolicy extends Policy {
   }
 
   /**
-   * Return the collection of permissions to be applied by the
+   * Returns the collection of permissions to be applied by the
    * Security Manager.
    *
    * @return all permissions previously added.

@@ -20,11 +20,11 @@ package org.astivetoolkit.menu;
 
 
 /**
- * 
+ * WARNING: At the time of the last revision, I found this class unnecessary.
  * 
  * @since 1.0.0
- * @see Application
  */
+@Deprecated
 public class MenuException extends Exception {
     private static final long serialVersionUID = 1L;
 
