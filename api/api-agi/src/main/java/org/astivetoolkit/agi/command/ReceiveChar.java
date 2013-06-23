@@ -34,14 +34,9 @@ import org.astivetoolkit.agi.annotation.Parameter;
  */
 @AgiCommand(command = "RECEIVE CHAR")
 public class ReceiveChar implements Serializable {
-  /**
-   * Serial version identifier.
-   */
-  private static final long serialVersionUID = -4988177721603502302L;
-
-  /**
-   * Time in milliseconds to wait for char.
-   */
+  // Serial version identifier.   
+  private static final long serialVersionUID = -4988177721603502302L; 
+  // Time in milliseconds to wait for char.   
   @Parameter
   private Integer timeout;
 
