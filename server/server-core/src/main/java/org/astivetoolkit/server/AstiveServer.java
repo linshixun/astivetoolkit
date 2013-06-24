@@ -24,12 +24,16 @@ import java.io.IOException;
 import static java.lang.System.out;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
+
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.commons.cli.*;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.Category;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.Version;
 import org.astivetoolkit.server.admin.AdminCommand;
@@ -180,6 +184,25 @@ public class AstiveServer extends AbstractAstiveServer {
           
         CommandLine commandLine = parser.parse(start, args);
 
+        Logger root = Logger.getRootLogger();
+        Enumeration allLoggers = root.getLoggerRepository().getCurrentCategories();        
+        
+        if (commandLine.hasOption('q')) {            
+            root.setLevel(Level.FATAL);
+            while (allLoggers.hasMoreElements()){                
+                Category tmpLogger = (Category) allLoggers.nextElement();
+                tmpLogger.setLevel(Level.FATAL);
+            }
+        }
+
+        if (commandLine.hasOption('d')) {
+            root.setLevel(Level.DEBUG);
+            while (allLoggers.hasMoreElements()){
+                Category tmpLogger = (Category) allLoggers.nextElement();
+                tmpLogger.setLevel(Level.DEBUG);
+            }            
+        }        
+        
         if (commandLine.hasOption('h')) {
           printUsage(cmd, start);
           System.exit(0);
@@ -230,10 +253,13 @@ public class AstiveServer extends AbstractAstiveServer {
           telnedSP.setUnableToOpen(true);
         }
 
-        new InitOutput().printInit(serviceProperties);
+        if (!commandLine.hasOption('q')) {
+            Logger.getRootLogger().removeAllAppenders();
+            new InitOutput().printInit(serviceProperties);
+        }
 
         AstiveServer server =
-          new AstiveServer(astivedSP.getPort(), astivedSP.getBacklog(), astivedSP.getBindAddr());
+            new AstiveServer(astivedSP.getPort(), astivedSP.getBacklog(), astivedSP.getBindAddr());
         server.start();
       }
 

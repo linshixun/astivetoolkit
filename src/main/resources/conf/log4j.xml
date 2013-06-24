@@ -19,6 +19,15 @@
             <param name="ConversionPattern" value="[%-5p] %m%n" />
         </layout>
     </appender>
+    <appender name="serverHeaderAppender" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">            
+            <param name="ConversionPattern" value="%m%n" />
+        </layout>
+    </appender>
+    <logger name="org.astivetoolkit.server.utils.InitOutput" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="serverHeaderAppender"/>        
+    </logger>
     <logger name="org.astivetoolkit.server">
         <level value="info"/>
         <appender-ref ref="consoleAppender" />
