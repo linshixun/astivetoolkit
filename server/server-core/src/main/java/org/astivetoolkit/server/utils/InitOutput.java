@@ -18,8 +18,8 @@
  */
 package org.astivetoolkit.server.utils;
 
-import static java.lang.System.out;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 import org.astivetoolkit.Version;
 import org.astivetoolkit.server.ServiceProperties;
 import org.astivetoolkit.util.AppLocale;
@@ -30,16 +30,14 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class InitOutput {
-  private InitOutput() {
-  }
-
+  private static final Logger LOG = Logger.getLogger(InitOutput.class);
+  
   /**
    * Print the start info.
    *
    * @param properties info to be printed.
    */
-  public static void printInit(ArrayList<ServiceProperties> properties) {
-    // TODO: Programmatically include the build and the version
+  public void printInit(ArrayList<ServiceProperties> properties) {
     StringBuilder sb =
       new StringBuilder(AppLocale.getI18n("astivedInitHeader",
                                           new String[] { Version.VERSION, Version.BUILD_TIME }));
@@ -71,6 +69,6 @@ public class InitOutput {
     }
 
     sb.append(AppLocale.getI18n("astivedInitFooter"));
-    out.println(sb.toString());
+    LOG.info(sb.toString());
   }
 }
