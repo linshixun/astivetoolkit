@@ -230,7 +230,7 @@ public class AstiveServer extends AbstractAstiveServer {
           telnedSP.setUnableToOpen(true);
         }
 
-        InitOutput.printInit(serviceProperties);
+        new InitOutput().printInit(serviceProperties);
 
         AstiveServer server =
           new AstiveServer(astivedSP.getPort(), astivedSP.getBacklog(), astivedSP.getBindAddr());
