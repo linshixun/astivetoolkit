@@ -113,7 +113,7 @@ public class AstiveServer extends AbstractAstiveServer {
     start.addOption("h", "help", false, AppLocale.getI18n("optionHelp"));
     start.addOption("v", "version", false, AppLocale.getI18n("optionVersion"));
     start.addOption("d", "debug", false, AppLocale.getI18n("optionDebug"));
-    start.addOption("q", "quiet", false, AppLocale.getI18n("optionDaemonMode"));
+    start.addOption("q", "quiet", false, AppLocale.getI18n("optionQuiet"));
     
     start.addOption(OptionBuilder.hasArg(true).withArgName("host")
             .withLongOpt("admin-bind")
