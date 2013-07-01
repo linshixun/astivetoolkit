@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -43,167 +43,167 @@ import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
  * @since 1.0.0
  */
 public final class AstObj {
-  private static final String ASTIVE_DEPLOYMENT_DESCRIPTOR = "app.xml";
-  private AppType app;
-  private JarClassLoader jcl;
-  private JclObjectFactory factory;
-  private Map<String, Astivlet> astivlets;
 
-  /**
-   * Application identifier.
-   */
-  private String deploymentId;
+    private static final String ASTIVE_DEPLOYMENT_DESCRIPTOR = "app.xml";
+    private AppType app;
+    private JarClassLoader jcl;
+    private JclObjectFactory factory;
+    private Map<String, Astivlet> astivlets;
+    /**
+     * Application identifier.
+     */
+    private String deploymentId;
 
-  /**
-   * Creates a new AstObj object.
-   *
-   * @param getDeploymentId application identifier.
-   */
-  public AstObj(String deploymentId, String jarFile) throws AstiveException {
-    this.deploymentId = deploymentId;
-    astivlets = new HashMap();
+    /**
+     * Creates a new AstObj object.
+     *
+     * @param getDeploymentId application identifier.
+     */
+    public AstObj(String deploymentId, String jarFile) throws AstiveException {
+        this.deploymentId = deploymentId;
+        astivlets = new HashMap();
 
-    try {
-      // Should be in AstiveServer class
-      ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
-      // Creating a class loader for this app obj.
-      jcl = new JarClassLoader();
-      jcl.add(jarFile);
-      factory = JclObjectFactory.getInstance(true);
+        try {
+            // Should be in AstiveServer class
+            ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
+            // Creating a class loader for this app obj.
+            jcl = new JarClassLoader();
+            jcl.add(jarFile);
+            factory = JclObjectFactory.getInstance(true);
 
-      // Getting the descriptor
-      JarResources jar = new JarResources();
-      jar.loadJar(jarFile);
+            // Getting the descriptor
+            JarResources jar = new JarResources();
+            jar.loadJar(jarFile);
 
-      byte[] appXml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
-      AppDocument doc = AppDocument.Factory.parse(new String(appXml));
+            byte[] appXml = jar.getResource(ASTIVE_DEPLOYMENT_DESCRIPTOR);
+            AppDocument doc = AppDocument.Factory.parse(new String(appXml));
 
-      if (doc.validate() == false) {
-        throw new AstiveException(AppLocale.getI18n("errorInvalidDescriptor"));
-      }
+            if (doc.validate() == false) {
+                throw new AstiveException(AppLocale.getI18n("errorInvalidDescriptor"));
+            }
 
-      app = doc.getApp();
+            app = doc.getApp();
 
-      AstivletType[] ats = app.getAstivletArray();
+            AstivletType[] ats = app.getAstivletArray();
 
-      // Validate URL's patterns            
-      for (AstivletType at : ats) {
-        List<String> urls = getURLs(at.getAstivletId());
+            // Validate URL's patterns
+            for (AstivletType at : ats) {
+                List<String> urls = getURLs(at.getAstivletId());
 
-        // Ignore the Astivlet
-        if (urls.isEmpty()) {
-          continue;
+                // Ignore the Astivlet
+                if (urls.isEmpty()) {
+                    continue;
+                }
+
+                for (String url : urls) {
+                    if (!URLValidator.isValidURL(url)) {
+                        throw new AstiveException(AppLocale.getI18n("invalidURL"));
+                    }
+
+                    Astivlet ast = getAstivletByURLPattern(url);
+
+                    if (ast != null) { // URL Pattern already exist
+                        throw new AstiveException(AppLocale.getI18n("patternAlreadyDefine"));
+                    }
+
+                    astivlets.put(url, getAstivletByClass(at.getClass1()));
+                }
+            }
+        } catch (XmlException ex) {
+            throw new AstiveException(ex);
+        } catch (Exception ex) {
+            throw new AstiveException(ex);
+        }
+    }
+
+    /**
+     * Get an instance of the class in the class loader.
+     *
+     * @param clazz class to return
+     * @return an instance of requested class.
+     */
+    public Astivlet getAstivletByClass(String clazz) {
+        return (Astivlet) factory.create(jcl, clazz);
+    }
+
+    /**
+     * Get an instance of the class in the class loader.
+     *
+     * @param astivletId
+     * @return an instance of the class loaded class.
+     */
+    public Astivlet getAstivletById(String astivletId) {
+        AstivletType[] ats = app.getAstivletArray();
+
+        for (AstivletType at : ats) {
+            if (at.getAstivletId().equals(astivletId)) {
+                return getAstivletByClass(at.getClass1());
+            }
         }
 
-        for (String url : urls) {
-          if (!URLValidator.isValidURL(url)) {
-            throw new AstiveException(AppLocale.getI18n("invalidURL"));
-          }
+        return null;
+    }
 
-          Astivlet ast = getAstivletByURLPattern(url);
+    /**
+     * Get an instance of the class in the class loader.
+     *
+     * @param urlPattern find the Astivlet matching with this pattern.
+     * @return an instance of the class loaded class.
+     */
+    public Astivlet getAstivletByURLPattern(String urlPattern) {
+        return astivlets.get(urlPattern);
+    }
 
-          if (ast != null) { // URL Pattern already exist
-            throw new AstiveException(AppLocale.getI18n("patternAlreadyDefine"));
-          }
+    /**
+     * Get application identifier.
+     *
+     * @return application identifier.
+     */
+    public String getDeploymentId() {
+        return deploymentId;
+    }
 
-          astivlets.put(url, getAstivletByClass(at.getClass1()));
+    /**
+     * Returns meta data related to de app.
+     *
+     * @return app meta-data.
+     */
+    public AppType getInfo() {
+        return app;
+    }
+
+    /**
+     * Get all URL for this app.
+     *
+     * @return a list with all URL's patterns in this object instance.
+     */
+    public List<String> getURLPatterns() {
+        AstivletMappingType[] amts = app.getAstivletMappingArray();
+        ArrayList<String> amtList = new ArrayList();
+
+        for (AstivletMappingType amt : amts) {
+            amtList.add(amt.getUrlPattern());
         }
-      }
-    } catch (XmlException ex) {
-      throw new AstiveException(ex);
-    } catch(Exception ex){
-      throw new AstiveException(ex);
-    }
-  }
 
-  /**
-   * Get an instance of the class in the class loader.
-   *
-   * @param clazz class to return
-   * @return an instance of requested class.
-   */
-  public Astivlet getAstivletByClass(String clazz) {
-    return (Astivlet) factory.create(jcl, clazz);
-  }
-
-  /**
-   * Get an instance of the class in the class loader.
-   *
-   * @param astivletId
-   * @return an instance of the class loaded class.
-   */
-  public Astivlet getAstivletById(String astivletId) {
-    AstivletType[] ats = app.getAstivletArray();
-
-    for (AstivletType at : ats) {
-      if (at.getAstivletId().equals(astivletId)) {
-        return getAstivletByClass(at.getClass1());
-      }
+        return amtList;
     }
 
-    return null;
-  }
+    /**
+     * Get URL.
+     *
+     * @param astivletId astivlet identifier.
+     * @return an url.
+     */
+    private List getURLs(String astivletId) {
+        List<String> urlList = new ArrayList();
+        AstivletMappingType[] amts = app.getAstivletMappingArray();
 
-  /**
-   * Get an instance of the class in the class loader.
-   *
-   * @param urlPattern find the Astivlet matching with this pattern.
-   * @return an instance of the class loaded class.
-   */
-  public Astivlet getAstivletByURLPattern(String urlPattern) {
-    return astivlets.get(urlPattern);
-  }
+        for (AstivletMappingType amt : amts) {
+            if (amt.getAstivletId().equals(astivletId)) {
+                urlList.add(amt.getUrlPattern());
+            }
+        }
 
-  /**
-   * Get application identifier.
-   *
-   * @return application identifier.
-   */
-  public String getDeploymentId() {
-    return deploymentId;
-  }
-
-  /**
-   * Returns meta data related to de app.
-   *
-   * @return app meta-data.
-   */
-  public AppType getInfo() {
-    return app;
-  }
-
-  /**
-   * Get all URL for this app.
-   *
-   * @return a list with all URL's patterns in this object instance.
-   */
-  public List<String> getURLPatterns() {
-    AstivletMappingType[] amts = app.getAstivletMappingArray();
-    ArrayList<String> amtList = new ArrayList();
-
-    for (AstivletMappingType amt : amts) {
-      amtList.add(amt.getUrlPattern());
+        return urlList;
     }
-
-    return amtList;
-  }
-
-  /**
-   * Get URL.
-   *
-   * @param astivletId astivlet identifier.
-   * @return an url.
-   */
-  private List getURLs(String astivletId) {
-    List<String> urlList = new ArrayList();
-    AstivletMappingType[] amts = app.getAstivletMappingArray();
-
-    for (AstivletMappingType amt : amts) {
-      if (amt.getAstivletId().equals(astivletId)) {
-        urlList.add(amt.getUrlPattern());
-      }
-    }
-
-    return urlList;
-  }
 }

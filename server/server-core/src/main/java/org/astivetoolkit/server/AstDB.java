@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -28,55 +28,56 @@ import org.astivetoolkit.astivlet.Astivlet;
  * @since 1.0.0
  */
 public interface AstDB {
-  /**
-   * Use to add apps to the database index. The final implementation must
-   * ensure that a new app don't override old app URL's.
-   *
-   * @param astObj object to add.
-   */
-  public void addApp(AstObj astObj) throws AstiveException;
 
-  /**
-   *
-   * @param deploymentId
-   * @return
-   */
-  public Boolean appExist(String deploymentId);
+    /**
+     * Use to add apps to the database index. The final implementation must
+     * ensure that a new app don't override old app URL's.
+     *
+     * @param astObj object to add.
+     */
+    public void addApp(AstObj astObj) throws AstiveException;
 
-  /**
-   * Get an Astive app object.
-   *
-   * @return Astive app object
-   */
-  public AstObj getApp(String deploymentId) throws AstiveException;
+    /**
+     *
+     * @param deploymentId
+     * @return
+     */
+    public Boolean appExist(String deploymentId);
 
-  /**
-   * List apps in the db index.
-   *
-   * @return app list.
-   */
-  public List<AstObj> getApps() throws AstiveException;
+    /**
+     * Get an Astive app object.
+     *
+     * @return Astive app object
+     */
+    public AstObj getApp(String deploymentId) throws AstiveException;
 
-  /**
-   * Get astivlet by using it url.
-   *
-   * @param urlStr url of requested astivlet.
-   * @return requested astivlet.
-   */
-  public Astivlet getAstivlet(String urlStr) throws AstiveException;
+    /**
+     * List apps in the db index.
+     *
+     * @return app list.
+     */
+    public List<AstObj> getApps() throws AstiveException;
 
-  /**
-   * Get a list the URL's index.
-   *
-   * @return URL's index list.
-   */
-  public String[] getAstivletsURLs() throws AstiveException;
+    /**
+     * Get astivlet by using it url.
+     *
+     * @param urlStr url of requested astivlet.
+     * @return requested astivlet.
+     */
+    public Astivlet getAstivlet(String urlStr) throws AstiveException;
 
-  /**
-   * Remove app from index. The final implementation must ensure remove
-   * astivlets from de index of apps.
-   *
-   * @param astObj app to remove.
-   */
-  public void removeApp(AstObj astObj) throws AstiveException;
+    /**
+     * Get a list the URL's index.
+     *
+     * @return URL's index list.
+     */
+    public String[] getAstivletsURLs() throws AstiveException;
+
+    /**
+     * Remove app from index. The final implementation must ensure remove
+     * astivlets from de index of apps.
+     *
+     * @param astObj app to remove.
+     */
+    public void removeApp(AstObj astObj) throws AstiveException;
 }

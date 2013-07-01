@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -32,57 +32,58 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class AstivletProcessor {
-  private static final Logger LOG = Logger.getLogger(AstivletProcessor.class);
 
-  private AstivletProcessor() {
-  }
+    private static final Logger LOG = Logger.getLogger(AstivletProcessor.class);
 
-  public static void invokeAstivlet(final AstivletRequest request, final AstivletResponse response)
-                             throws AstiveException {
-    try {
-      AstDB astDB = MyAstDB.getInstance();
-      String script = "/" + request.getScript();
-
-      if (script.split("\\?").length > 1) {
-        script = script.split("\\?")[0];
-      }
-
-      Astivlet astivlet = astDB.getAstivlet(script);
-
-      Class[] classParamTypes = new Class[2];
-      classParamTypes[0] = AstivletRequest.class;
-      classParamTypes[1] = AstivletResponse.class;
-
-      Class c = Astivlet.class;
-
-      Method m;
-      m = c.getDeclaredMethod("service", classParamTypes);
-      m.setAccessible(true);
-      m.invoke(astivlet, new Object[] { request, response });
-    } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-      LOG.error(ex.getMessage());
-    } catch (NullPointerException ex) {
-      throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
-                                                  new Object[] { "/" + request.getScript() }));
+    private AstivletProcessor() {
     }
-  }
- 
-  public static void invokeAstivlet(Astivlet astivlet, AstivletRequest request,
-                                    AstivletResponse response)
-                             throws AstiveException {
-    try {
-      Class[] classParamTypes = new Class[2];
-      classParamTypes[0] = AstivletRequest.class;
-      classParamTypes[1] = AstivletResponse.class;
 
-      Class c = Astivlet.class;
-      Method m;
+    public static void invokeAstivlet(final AstivletRequest request, final AstivletResponse response)
+            throws AstiveException {
+        try {
+            AstDB astDB = MyAstDB.getInstance();
+            String script = "/" + request.getScript();
 
-      m = c.getDeclaredMethod("service", classParamTypes);
-      m.setAccessible(true);
-      m.invoke(astivlet, new Object[] { request, response });
-    } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-      LOG.error(AppLocale.getI18n(ex.getMessage()));
+            if (script.split("\\?").length > 1) {
+                script = script.split("\\?")[0];
+            }
+
+            Astivlet astivlet = astDB.getAstivlet(script);
+
+            Class[] classParamTypes = new Class[2];
+            classParamTypes[0] = AstivletRequest.class;
+            classParamTypes[1] = AstivletResponse.class;
+
+            Class c = Astivlet.class;
+
+            Method m;
+            m = c.getDeclaredMethod("service", classParamTypes);
+            m.setAccessible(true);
+            m.invoke(astivlet, new Object[]{request, response});
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            LOG.error(ex.getMessage());
+        } catch (NullPointerException ex) {
+            throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
+                    new Object[]{"/" + request.getScript()}));
+        }
     }
-  }
+
+    public static void invokeAstivlet(Astivlet astivlet, AstivletRequest request,
+            AstivletResponse response)
+            throws AstiveException {
+        try {
+            Class[] classParamTypes = new Class[2];
+            classParamTypes[0] = AstivletRequest.class;
+            classParamTypes[1] = AstivletResponse.class;
+
+            Class c = Astivlet.class;
+            Method m;
+
+            m = c.getDeclaredMethod("service", classParamTypes);
+            m.setAccessible(true);
+            m.invoke(astivlet, new Object[]{request, response});
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            LOG.error(AppLocale.getI18n(ex.getMessage()));
+        }
+    }
 }

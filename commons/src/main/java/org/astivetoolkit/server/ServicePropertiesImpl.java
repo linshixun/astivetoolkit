@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -33,208 +33,210 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public final class ServicePropertiesImpl implements ServiceProperties {
-  private InetAddress bindAddr;
-  private List<InetAddress> onlyFrom;
-  private Properties properties;
-  private String server;
-  private String serviceName;
-  private boolean disabled;
-  private boolean unableToOpen;
-  private int backlog;
-  private int port;
 
-  /**
-   * Creates a new ServicePropertiesImpl object.
-   */
-  public ServicePropertiesImpl() {
-  }
+    private InetAddress bindAddr;
+    private List<InetAddress> onlyFrom;
+    private Properties properties;
+    private String server;
+    private String serviceName;
+    private boolean disabled;
+    private boolean unableToOpen;
+    private int backlog;
+    private int port;
 
-  /**
-   * Creates a new ServicePropertiesImpl object with the parameters indicated
-   * in properties and the name of service.
-   *
-   * @param properties represent the properties file for a particular service.
-   * @param serviceName the name to be displayed by the server.
-   *
-   * @throws SystemException if the service cannot be binded to the bind address.
-   */
-  public ServicePropertiesImpl(final Properties properties, final String serviceName)
-                        throws SystemException {
-    this.properties = properties;
-
-    setDisabled(Boolean.parseBoolean(properties.get("disabled").toString().trim()));
-    setPort(Integer.valueOf(properties.get("port").toString()));
-    setBacklog(Integer.valueOf(properties.get("threads").toString().trim()));
-
-    try {
-      setBindAddr(InetAddress.getByName(properties.get("bind").toString().trim()));
-    } catch (UnknownHostException ex) {
-      throw new SystemException(AppLocale.getI18n("errorUnknownHost",
-                                                  new Object[] {
-                                                    properties.get("bind").toString().trim()
-                                                  }));
+    /**
+     * Creates a new ServicePropertiesImpl object.
+     */
+    public ServicePropertiesImpl() {
     }
 
-    try {
-   final   List<InetAddress> onlyFromList = new ArrayList<>();
-    final  String[] l = properties.get("onlyFrom").toString().split(",");
+    /**
+     * Creates a new ServicePropertiesImpl object with the parameters indicated
+     * in properties and the name of service.
+     *
+     * @param properties represent the properties file for a particular service.
+     * @param serviceName the name to be displayed by the server.
+     *
+     * @throws SystemException if the service cannot be binded to the bind
+     * address.
+     */
+    public ServicePropertiesImpl(final Properties properties, final String serviceName)
+            throws SystemException {
+        this.properties = properties;
 
-      for (int i = 0; l.length > i; i++) {
-       final   InetAddress id = InetAddress.getByName(l[i].trim());
-        onlyFromList.add(id);
-      }
+        setDisabled(Boolean.parseBoolean(properties.get("disabled").toString().trim()));
+        setPort(Integer.valueOf(properties.get("port").toString()));
+        setBacklog(Integer.valueOf(properties.get("threads").toString().trim()));
 
-      setOnlyFrom(onlyFromList);
-    } catch (UnknownHostException ex) {
-      throw new SystemException(AppLocale.getI18n("errorUnknownHost",
-                                                  new Object[] {
-                                                    properties.get("onlyFrom").toString().trim()
-                                                  }));
-    } catch (NullPointerException ex) {
+        try {
+            setBindAddr(InetAddress.getByName(properties.get("bind").toString().trim()));
+        } catch (UnknownHostException ex) {
+            throw new SystemException(AppLocale.getI18n("errorUnknownHost",
+                    new Object[]{
+                properties.get("bind").toString().trim()
+            }));
+        }
+
+        try {
+            final List<InetAddress> onlyFromList = new ArrayList<>();
+            final String[] l = properties.get("onlyFrom").toString().split(",");
+
+            for (int i = 0; l.length > i; i++) {
+                final InetAddress id = InetAddress.getByName(l[i].trim());
+                onlyFromList.add(id);
+            }
+
+            setOnlyFrom(onlyFromList);
+        } catch (UnknownHostException ex) {
+            throw new SystemException(AppLocale.getI18n("errorUnknownHost",
+                    new Object[]{
+                properties.get("onlyFrom").toString().trim()
+            }));
+        } catch (NullPointerException ex) {
+        }
+
+        setServer((String) properties.get("server"));
+        setServiceName(serviceName);
     }
 
-    setServer((String) properties.get("server"));
-    setServiceName(serviceName);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int getBacklog() {
-    return backlog;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public InetAddress getBindAddr() {
-    return bindAddr;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<InetAddress> getOnlyFrom() {
-    return Collections.unmodifiableList(onlyFrom);
-  }
-
-  /**
-   * Use to return arbitrary parameters.
-   *
-   * @return a parameter present in the properties file, or null if none.
-   */
-  public String getPameter(final String parameter) {
-    try {
-      return properties.get(parameter).toString().trim();
-    } catch (NullPointerException ex) {
-      return null;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getBacklog() {
+        return backlog;
     }
-  }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int getPort() {
-    return port;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public InetAddress getBindAddr() {
+        return bindAddr;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String getServer() {
-    return server;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<InetAddress> getOnlyFrom() {
+        return Collections.unmodifiableList(onlyFrom);
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String getServiceName() {
-    return serviceName;
-  }
+    /**
+     * Use to return arbitrary parameters.
+     *
+     * @return a parameter present in the properties file, or null if none.
+     */
+    public String getPameter(final String parameter) {
+        try {
+            return properties.get(parameter).toString().trim();
+        } catch (NullPointerException ex) {
+            return null;
+        }
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isDisabled() {
-    return disabled;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getPort() {
+        return port;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public boolean isUnableToOpen() {
-    return unableToOpen;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getServer() {
+        return server;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setBacklog(final int backlog) {
-    this.backlog = backlog;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getServiceName() {
+        return serviceName;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setBindAddr(final InetAddress bindAddr) {
-    this.bindAddr = bindAddr;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isDisabled() {
+        return disabled;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setDisabled(final boolean disabled) {
-    this.disabled = disabled;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isUnableToOpen() {
+        return unableToOpen;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setOnlyFrom(final List<InetAddress> onlyFrom) {
-    this.onlyFrom = onlyFrom;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setBacklog(final int backlog) {
+        this.backlog = backlog;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setPort(final int port) {
-    this.port = port;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setBindAddr(final InetAddress bindAddr) {
+        this.bindAddr = bindAddr;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setServer(final String server) {
-    this.server = server;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setDisabled(final boolean disabled) {
+        this.disabled = disabled;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setServiceName(final String serviceName) {
-    this.serviceName = serviceName;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setOnlyFrom(final List<InetAddress> onlyFrom) {
+        this.onlyFrom = onlyFrom;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void setUnableToOpen(final boolean unableToOpen) {
-    this.unableToOpen = unableToOpen;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPort(final int port) {
+        this.port = port;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setServer(final String server) {
+        this.server = server;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setServiceName(final String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setUnableToOpen(final boolean unableToOpen) {
+        this.unableToOpen = unableToOpen;
+    }
 }

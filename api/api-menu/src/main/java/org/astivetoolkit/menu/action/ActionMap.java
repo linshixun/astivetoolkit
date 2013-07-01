@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -27,53 +27,55 @@ import java.util.HashMap;
  * @see Action
  */
 public class ActionMap {
-  private ActionMap parent;
-  private HashMap actions;
 
-  /**
-   * Creates a new ActionMap object.
-   */
-  public ActionMap() {
-    actions = new HashMap();
-  }
+    private ActionMap parent;
+    private HashMap actions;
 
-  /**
-   * @return Returns an array of the keys defined in this ActionMap and its parent.
-   */
-  public Object[] allKeys() {
-    // to be implemented
-    return null;
-  }
+    /**
+     * Creates a new ActionMap object.
+     */
+    public ActionMap() {
+        actions = new HashMap();
+    }
 
-  public void clear() {
-    actions.clear();
-  }
+    /**
+     * @return Returns an array of the keys defined in this ActionMap and its
+     * parent.
+     */
+    public Object[] allKeys() {
+        // to be implemented
+        return null;
+    }
 
-  public Action get(Object key) {
-    return (Action) actions.get(key);
-  }
+    public void clear() {
+        actions.clear();
+    }
 
-  public ActionMap getParent() {
-    return parent;
-  }
+    public Action get(Object key) {
+        return (Action) actions.get(key);
+    }
 
-  public Object[] keys() {
-    return actions.entrySet().toArray();
-  }
+    public ActionMap getParent() {
+        return parent;
+    }
 
-  public void put(Object key, Action action) {
-    actions.put(key, action);
-  }
+    public Object[] keys() {
+        return actions.entrySet().toArray();
+    }
 
-  public void remove(Object key) {
-    actions.remove(key);
-  }
+    public void put(Object key, Action action) {
+        actions.put(key, action);
+    }
 
-  public void setParent(ActionMap map) {
-    parent = map;
-  }
+    public void remove(Object key) {
+        actions.remove(key);
+    }
 
-  public int size() {
-    return actions.size();
-  }
+    public void setParent(ActionMap map) {
+        parent = map;
+    }
+
+    public int size() {
+        return actions.size();
+    }
 }

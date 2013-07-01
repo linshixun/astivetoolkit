@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -7,7 +7,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *  
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
@@ -20,37 +20,37 @@ package org.astivetoolkit.menu.event;
 
 import java.util.EventObject;
 
-
 /**
  * An ActionEvent is triggered when a {@link MenuItem} or {@link Menu} is
  * selected into a IVR.
- * 
+ *
  * @since 1.0.0
  * @see Action
  * @see ActionListener
  */
 public class ActionEvent extends EventObject {
-  private String digits;
 
-  /**
-   * Create a new ActionEvent object, using a {@link MenuItem} or {@link Menu}
-   * as event source. 
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   */
-  public ActionEvent(final Object source, final String digits) {
-    super(source);
-    this.source = source;
-    this.digits = digits;
-  }
+    private String digits;
 
-  /**
-   * Returns the digits of source that trigger this event.
-   * 
-   * @return the digits is unique per menu.
-   */
-  public String getDigits() {
-    return digits;
-  }
+    /**
+     * Create a new ActionEvent object, using a {@link MenuItem} or {@link Menu}
+     * as event source.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     */
+    public ActionEvent(final Object source, final String digits) {
+        super(source);
+        this.source = source;
+        this.digits = digits;
+    }
+
+    /**
+     * Returns the digits of source that trigger this event.
+     *
+     * @return the digits is unique per menu.
+     */
+    public String getDigits() {
+        return digits;
+    }
 }

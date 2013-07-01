@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,30 +18,29 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
  * The listener interface for receiving authentication attempts.
- * 
+ *
  * @since 1.0.0
  * @see AuthenticationEvent
  */
 public interface AuthenticationListener {
-    
-  /**
-   * Callback triggered when an authentication attempt for a <code>Subject</code>
-   * has failed.
-   * 
-   * @param evt the event submitted during <code>Subject</code>(user)'s 
-   * authentication attempt.
-   */
-  abstract void onFailure(AuthenticationEvent evt);
 
-  /**
-   * Callback triggered when an authentication attempt for a <code>Subject</code>
-   * has succeeded.
-   * 
-   * @param evt the event submitted during <code>Subject</code>(user)'s 
-   * authentication attempt.
-   */
-  abstract void onSuccess(AuthenticationEvent evt);
+    /**
+     * Callback triggered when an authentication attempt for a
+     * <code>Subject</code> has failed.
+     *
+     * @param evt the event submitted during <code>Subject</code>(user)'s
+     * authentication attempt.
+     */
+    abstract void onFailure(AuthenticationEvent evt);
+
+    /**
+     * Callback triggered when an authentication attempt for a
+     * <code>Subject</code> has succeeded.
+     *
+     * @param evt the event submitted during <code>Subject</code>(user)'s
+     * authentication attempt.
+     */
+    abstract void onSuccess(AuthenticationEvent evt);
 }

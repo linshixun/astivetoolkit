@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,19 +18,19 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
  * The listener interface for receiving {@link MaxTimeoutListener}.
- * 
+ *
  * @since 1.0.0
  * @see MaxTimeoutEvent
  */
 public interface MaxTimeoutListener {
-   /**
-    * Callback triggered when the maximum amount of time(as define in {@link Menu})
-    * of timeout is reached.
-    * 
-    * @param evt the event submitted.
-    */
+
+    /**
+     * Callback triggered when the maximum amount of time(as define in
+     * {@link Menu}) of timeout is reached.
+     *
+     * @param evt the event submitted.
+     */
     abstract void maxTimeoutPerform(MaxTimeoutEvent evt);
 }

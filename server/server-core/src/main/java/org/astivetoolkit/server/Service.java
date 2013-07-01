@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,13 +18,15 @@
  */
 package org.astivetoolkit.server;
 
-
 /**
  *
  * @since 1.0.0
  */
 public interface Service {
-  boolean isRunning();
-  void start() throws SystemException;
-  void stop() throws SystemException;
+
+    boolean isRunning();
+
+    void start() throws SystemException;
+
+    void stop() throws SystemException;
 }

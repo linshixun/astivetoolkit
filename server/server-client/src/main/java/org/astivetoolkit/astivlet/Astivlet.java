@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,7 +18,6 @@
  */
 package org.astivetoolkit.astivlet;
 
-
 /**
  * Defines methods that all astivle's must implement.
  *
@@ -31,11 +30,12 @@ package org.astivetoolkit.astivlet;
  * @since 1.0.0
  */
 public abstract class Astivlet {
-  /**
-   * Called by Astive Server to allow the astivlet to respond to a request.
-   *
-   * @param request with the client channel information.
-   * @param response with actions to be executed by the client.
-   */
-  abstract protected void service(AstivletRequest request, AstivletResponse response);
+
+    /**
+     * Called by Astive Server to allow the astivlet to respond to a request.
+     *
+     * @param request with the client channel information.
+     * @param response with actions to be executed by the client.
+     */
+    abstract protected void service(AstivletRequest request, AstivletResponse response);
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -48,16 +48,15 @@ public class AstivletRequest extends AgiRequest {
         localAddress = client.getSocket().getLocalAddress();
         remoteAddress = client.getSocket().getLocalAddress();
         localPort = client.getSocket().getLocalPort();
-        remotePort = client.getSocket().getPort();          
+        remotePort = client.getSocket().getPort();
     }
 
     /**
      * Returns the Internet Protocol (IP) address for the server receiving the
      * request.
      *
-     * @return a
-     * <code>InetAddress</code> containing the IP address on which the request
-     * was received.
+     * @return a <code>InetAddress</code> containing the IP address on which the
+     * request was received.
      */
     public InetAddress getLocalAddress() {
         return localAddress;
@@ -77,9 +76,8 @@ public class AstivletRequest extends AgiRequest {
      * Returns the Internet Protocol (IP) address of the client or last proxy
      * that sent the request.
      *
-     * @return an
-     * <code>InetAddress</code> containing the IP address of the client that
-     * sent the request.
+     * @return an <code>InetAddress</code> containing the IP address of the
+     * client that sent the request.
      */
     public InetAddress getRemoteAddress() {
         return remoteAddress;

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -31,18 +31,18 @@ import org.astivetoolkit.menu.VoiceComposition;
  */
 public class VoiceComposerTest extends TestCase {
 
-  public VoiceComposerTest(String testName) {
-    super(testName);
-  }
+    public VoiceComposerTest(String testName) {
+        super(testName);
+    }
 
-  public void testVoiceComposer() throws AgiException {
-    VoiceComposition vc =
-      VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())
-       .streamFile("file1").addSilence(1).withEscapeDigits("").sayAlpha("abcd").create();
-    assertEquals("STREAM FILE \"file1\" \"12345\" 0",
-                 CommandProcessor.buildCommand(vc.getCommands().get(0)));
-    assertEquals("STREAM FILE \"silence/1\" \"12345\" 0",
-                 CommandProcessor.buildCommand(vc.getCommands().get(1)));
-    assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(2)));
-  }
+    public void testVoiceComposer() throws AgiException {
+        VoiceComposition vc =
+                VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())
+                .streamFile("file1").addSilence(1).withEscapeDigits("").sayAlpha("abcd").create();
+        assertEquals("STREAM FILE \"file1\" \"12345\" 0",
+                CommandProcessor.buildCommand(vc.getCommands().get(0)));
+        assertEquals("STREAM FILE \"silence/1\" \"12345\" 0",
+                CommandProcessor.buildCommand(vc.getCommands().get(1)));
+        assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(2)));
+    }
 }

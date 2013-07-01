@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -27,8 +27,12 @@ import org.astivetoolkit.agi.Connection;
  * @since 1.0.0
  */
 public interface ConnectionManager {
-  public void add(Connection conn);
-  public ArrayList<Connection> connections();
-  public void remove(Connection conn) throws IOException;
-  public void removeAll() throws IOException;
+
+    public void add(Connection conn);
+
+    public ArrayList<Connection> connections();
+
+    public void remove(Connection conn) throws IOException;
+
+    public void removeAll() throws IOException;
 }

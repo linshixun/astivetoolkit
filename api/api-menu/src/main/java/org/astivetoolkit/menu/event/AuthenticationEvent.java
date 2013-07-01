@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -24,31 +24,32 @@ import org.astivetoolkit.menu.Authenticator;
 /**
  * An AuthenticationEvent is trigger with each attempt to access an restricted
  * menu area.
- * 
+ *
  * @since 1.0.0
  * @see AuthenticationListener
  */
 public class AuthenticationEvent extends EventObject {
-  private Authenticator authenticator;
 
-  /**
-   * Create a new AuthenticationEvent.
-   * 
-   * @param source the object that originated the event.
-   * @param authenticator contains the authenticator mechanism.
-   */
-  public AuthenticationEvent(final Object source, final Authenticator authenticator) {
-    super(source);
-    this.authenticator = authenticator;
-    this.source = source;
-  }
+    private Authenticator authenticator;
 
-  /**
-   * Returns the {@link Authenticator} mechanism.
-   * 
-   * @return the authenticator object.
-   */
-  public Authenticator getAuthenticator() {
-    return authenticator;
-  }
+    /**
+     * Create a new AuthenticationEvent.
+     *
+     * @param source the object that originated the event.
+     * @param authenticator contains the authenticator mechanism.
+     */
+    public AuthenticationEvent(final Object source, final Authenticator authenticator) {
+        super(source);
+        this.authenticator = authenticator;
+        this.source = source;
+    }
+
+    /**
+     * Returns the {@link Authenticator} mechanism.
+     *
+     * @return the authenticator object.
+     */
+    public Authenticator getAuthenticator() {
+        return authenticator;
+    }
 }

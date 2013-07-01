@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,15 +18,15 @@
  */
 package org.astivetoolkit.menu.action;
 
-
 /**
  *
  * @since 1.0.0
  * @see ActionEvent
  */
 public interface Action {
-  /**
-   * Action to be executed.
-   */
-  abstract void doAction();
+
+    /**
+     * Action to be executed.
+     */
+    abstract void doAction();
 }

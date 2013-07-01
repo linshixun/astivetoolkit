@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,18 +18,18 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
  * The listener interface for receiving {@link DigitsEvent}.
- * 
+ *
  * @since 1.0.0
  * @see DigitsEvent
  */
 public interface DigitsListener {
-  /**
-   * Callback triggered when digits are pressed.
-   * 
-   * @param evt the event submitted.
-   */
-  abstract void digitsEnter(DigitsEvent evt);
+
+    /**
+     * Callback triggered when digits are pressed.
+     *
+     * @param evt the event submitted.
+     */
+    abstract void digitsEnter(DigitsEvent evt);
 }

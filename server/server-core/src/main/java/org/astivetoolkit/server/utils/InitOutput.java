@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -30,45 +30,46 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class InitOutput {
-  private static final Logger LOG = Logger.getLogger(InitOutput.class);
-  
-  /**
-   * Print the start info.
-   *
-   * @param properties info to be printed.
-   */
-  public void printInit(ArrayList<ServiceProperties> properties) {
-    StringBuilder sb =
-      new StringBuilder(AppLocale.getI18n("astivedInitHeader",
-                                          new String[] { Version.VERSION, Version.BUILD_TIME }));
 
-    for (ServiceProperties param : properties) {
-      if (param.isDisabled()) {
-        continue;
-      }
+    private static final Logger LOG = Logger.getLogger(InitOutput.class);
 
-      // This is not elegant but work !
-      if (param.getServiceName().length() > 7) {
-        sb.append(param.getServiceName());
-        sb.append("\t");
-      } else {
-        sb.append(param.getServiceName());
-        sb.append("\t\t");
-      }
+    /**
+     * Print the start info.
+     *
+     * @param properties info to be printed.
+     */
+    public void printInit(ArrayList<ServiceProperties> properties) {
+        StringBuilder sb =
+                new StringBuilder(AppLocale.getI18n("astivedInitHeader",
+                new String[]{Version.VERSION, Version.BUILD_TIME}));
 
-      sb.append(param.getBindAddr().getHostAddress());
-      sb.append("\t");
+        for (ServiceProperties param : properties) {
+            if (param.isDisabled()) {
+                continue;
+            }
 
-      if (param.isUnableToOpen()) {
-        sb.append(AppLocale.getI18n("errorUnableToOpen"));
-      } else {
-        sb.append(param.getPort());
-      }
+            // This is not elegant but work !
+            if (param.getServiceName().length() > 7) {
+                sb.append(param.getServiceName());
+                sb.append("\t");
+            } else {
+                sb.append(param.getServiceName());
+                sb.append("\t\t");
+            }
 
-      sb.append("\n");
+            sb.append(param.getBindAddr().getHostAddress());
+            sb.append("\t");
+
+            if (param.isUnableToOpen()) {
+                sb.append(AppLocale.getI18n("errorUnableToOpen"));
+            } else {
+                sb.append(param.getPort());
+            }
+
+            sb.append("\n");
+        }
+
+        sb.append(AppLocale.getI18n("astivedInitFooter"));
+        LOG.info(sb.toString());
     }
-
-    sb.append(AppLocale.getI18n("astivedInitFooter"));
-    LOG.info(sb.toString());
-  }
 }

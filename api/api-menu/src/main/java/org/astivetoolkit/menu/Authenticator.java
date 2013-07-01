@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,70 +18,70 @@
  */
 package org.astivetoolkit.menu;
 
-
 /**
  * Allowed or denied access to client to enter restricted menus.
- * 
+ *
  * @since 1.0.0
  */
 public abstract class Authenticator {
-  private boolean authenticated = false;
-  private int maxAuth = 3;
 
-  /**
-   * Creates a new Authenticator object.
-   */
-  public Authenticator() {
-  }
+    private boolean authenticated = false;
+    private int maxAuth = 3;
 
-  /**
-   * Use by {@link Menu} to obtain the maximum amount of authentication attempts 
-   * before call is close.
-   * 
-   * @return max amount of authentication attempts before call is hangup.
-   */
-  public int getMaxAuth() {
-    return maxAuth;
-  }
-  
-  /**
-   * Helps check whether client is authenticated or not.
-   * 
-   * @return true if authentication was successful false otherwise.
-   */
-  public boolean isAuthenticated() {
-    return authenticated;
-  }
+    /**
+     * Creates a new Authenticator object.
+     */
+    public Authenticator() {
+    }
 
-  /**
-   * Force authentication to be true or false.
-   * 
-   * @param authenticated set to true to allow client to enter restricted menus, 
-   * or false to denied access.
-   */
-  public void setAuthenticated(boolean authenticated) {
-    this.authenticated = authenticated;
-  }
+    /**
+     * Use by {@link Menu} to obtain the maximum amount of authentication
+     * attempts before call is close.
+     *
+     * @return max amount of authentication attempts before call is hangup.
+     */
+    public int getMaxAuth() {
+        return maxAuth;
+    }
 
-  /**
-   * Overwrites the default maximum attempts to authenticate.
-   * 
-   * @param maxAuth new maximum attempts to authenticate.
-   */
-  public void setMaxAuth(int maxAuth) {
-    this.maxAuth = maxAuth;
-  }
+    /**
+     * Helps check whether client is authenticated or not.
+     *
+     * @return true if authentication was successful false otherwise.
+     */
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
 
-  /**
-   * Use by final implementation to set the variable <code>authenticated</code> 
-   * to true.
-   */
-  public abstract void signIn();
+    /**
+     * Force authentication to be true or false.
+     *
+     * @param authenticated set to true to allow client to enter restricted
+     * menus, or false to denied access.
+     */
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
 
-  /**
-   * Set's the variable authenticated to false.
-   */
-  public void signOut() {
-    setAuthenticated(false);
-  }
+    /**
+     * Overwrites the default maximum attempts to authenticate.
+     *
+     * @param maxAuth new maximum attempts to authenticate.
+     */
+    public void setMaxAuth(int maxAuth) {
+        this.maxAuth = maxAuth;
+    }
+
+    /**
+     * Use by final implementation to set the variable
+     * <code>authenticated</code> to true.
+     */
+    public abstract void signIn();
+
+    /**
+     * Set's the variable authenticated to false.
+     */
+    public void signOut() {
+        setAuthenticated(false);
+    }
 }

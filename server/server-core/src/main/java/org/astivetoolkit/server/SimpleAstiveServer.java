@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -26,71 +26,72 @@ import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
 
 /**
  * Simple and convenient {@link AstiveServer}, useful for testing.
- * 
+ *
  * @since 1.0.0
  * @see Service
  * @see AbstractAstiveServer
  * @see AstiveServer
  */
 public class SimpleAstiveServer extends AbstractAstiveServer {
-  private Astivlet astivlet;
-  private ExecutorService executorService;
-  private int port;
 
-  public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
-    super();
-    this.port = DEFAULT_AGI_SERVER_PORT;
-    this.astivlet = astivlet;
-  }
+    private Astivlet astivlet;
+    private ExecutorService executorService;
+    private int port;
 
-  public SimpleAstiveServer(Astivlet astivlet, int port)
-                     throws SystemException, IOException {
-    super(port);
-    this.port = port;
-    this.astivlet = astivlet;
-  }
+    public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
+        super();
+        this.port = DEFAULT_AGI_SERVER_PORT;
+        this.astivlet = astivlet;
+    }
 
-  public Astivlet getAstivlet() {
-    return astivlet;
-  }
+    public SimpleAstiveServer(Astivlet astivlet, int port)
+            throws SystemException, IOException {
+        super(port);
+        this.port = port;
+        this.astivlet = astivlet;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public int getPort() {
-    return port;
-  }
+    public Astivlet getAstivlet() {
+        return astivlet;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  protected void launchConnectionMonitor() {
-    SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
-    monitor.run();
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getPort() {
+        return port;
+    }
 
-  public void setAstivlet(Astivlet astivlet) {
-    this.astivlet = astivlet;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void launchConnectionMonitor() {
+        SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
+        monitor.run();
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void start() throws SystemException {
-    super.start();
-    executorService = Executors.newSingleThreadExecutor();
-    launchConnectionMonitor();
-  }
+    public void setAstivlet(Astivlet astivlet) {
+        this.astivlet = astivlet;
+    }
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void stop() throws SystemException {
-    executorService.shutdown();
-    super.stop();
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void start() throws SystemException {
+        super.start();
+        executorService = Executors.newSingleThreadExecutor();
+        launchConnectionMonitor();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void stop() throws SystemException {
+        executorService.shutdown();
+        super.stop();
+    }
 }

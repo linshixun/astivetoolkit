@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -21,32 +21,33 @@ package org.astivetoolkit.menu.event;
 import java.util.EventObject;
 
 /**
- * A DigitsEvent is triggered when an user press the digits of a {@link MenuItem}
- * or {@link Menu}.
- * 
+ * A DigitsEvent is triggered when an user press the digits of a
+ * {@link MenuItem} or {@link Menu}.
+ *
  * @since 1.0.0
  * @see DigitsListener
  */
 public class DigitsEvent extends EventObject {
-  private String digits;
 
-  /**
-   * Creates a new DigitsEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   */
-  public DigitsEvent(final Object source, final String digits) {
-    super(source);
-    this.digits = digits;
-  }
+    private String digits;
 
-  /**
-   * Returns the digits pressed.
-   * 
-   * @return the digits pressed by the user.
-   */
-  public String getDigits() {
-    return digits;
-  }
+    /**
+     * Creates a new DigitsEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     */
+    public DigitsEvent(final Object source, final String digits) {
+        super(source);
+        this.digits = digits;
+    }
+
+    /**
+     * Returns the digits pressed.
+     *
+     * @return the digits pressed by the user.
+     */
+    public String getDigits() {
+        return digits;
+    }
 }

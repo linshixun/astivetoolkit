@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,7 +18,12 @@
  */
 package org.astivetoolkit.server;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
@@ -31,159 +36,160 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class MyAstDB implements AstDB {
-  // A usual logging class
-  private static final Logger LOG = Logger.getLogger(MyAstDB.class);
-  private static final MyAstDB INSTANCE = new MyAstDB();
-  private static Map<String, AstObj> apps;
-  private static Map<String, Astivlet> astivletIndex;
+    // A usual logging class
 
-  /**
-   * Creates a new MyAstDB object.
-   */
-  private MyAstDB() {
-    apps = Collections.synchronizedMap(new HashMap<String, AstObj>());
-    astivletIndex = Collections.synchronizedMap(new HashMap<String, Astivlet>());
-  }
+    private static final Logger LOG = Logger.getLogger(MyAstDB.class);
+    private static final MyAstDB INSTANCE = new MyAstDB();
+    private static Map<String, AstObj> apps;
+    private static Map<String, Astivlet> astivletIndex;
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void addApp(AstObj astObj) throws AstiveException {
-    // Ensure astObj url's are not in astivletIndex
-    for (String urls : astObj.getURLPatterns()) {
-      if (urlExist(urls)) {
-        throw new AstiveException(AppLocale.getI18n("url already exist"));
-      }
+    /**
+     * Creates a new MyAstDB object.
+     */
+    private MyAstDB() {
+        apps = Collections.synchronizedMap(new HashMap<String, AstObj>());
+        astivletIndex = Collections.synchronizedMap(new HashMap<String, Astivlet>());
     }
 
-    // everithing is good then add the app.
-    apps.put(astObj.getDeploymentId(), astObj);
-
-    // add astivlets to the db index.
-    for (String url : astObj.getURLPatterns()) {
-      if (LOG.isDebugEnabled()) {
-        LOG.debug("Adding url = " + url + " class = " + astObj.getAstivletByURLPattern(url));
-      }
-
-      astivletIndex.put(url, astObj.getAstivletByURLPattern(url));
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Boolean appExist(String deploymentId) {
-    if (getApp(deploymentId) != null) {
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public AstObj getApp(String deploymentId) {
-    return apps.get(deploymentId);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<AstObj> getApps() {
-    ArrayList a = new ArrayList();
-
-    for (AstObj ao : apps.values()) {
-      a.add(ao);
-    }
-
-    return a;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Astivlet getAstivlet(String urlStr) {
-    // Check for specific url
-    Astivlet ast;
-
-    if ((ast = astivletIndex.get(urlStr)) != null) {
-      return ast;
-    }
-
-    // Match parent paths and extentions
-    int lCnt = 0;
-    String bestMatch = null;
-
-    for (String url : astivletIndex.keySet()) {
-      Pattern curPattern = Pattern.compile(url);
-      Boolean match = curPattern.matcher(urlStr).find();
-
-      if (match) {
-        if (url.length() > lCnt) {
-          bestMatch = url;
-          lCnt = url.length();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addApp(AstObj astObj) throws AstiveException {
+        // Ensure astObj url's are not in astivletIndex
+        for (String urls : astObj.getURLPatterns()) {
+            if (urlExist(urls)) {
+                throw new AstiveException(AppLocale.getI18n("url already exist"));
+            }
         }
-      }
+
+        // everithing is good then add the app.
+        apps.put(astObj.getDeploymentId(), astObj);
+
+        // add astivlets to the db index.
+        for (String url : astObj.getURLPatterns()) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Adding url = " + url + " class = " + astObj.getAstivletByURLPattern(url));
+            }
+
+            astivletIndex.put(url, astObj.getAstivletByURLPattern(url));
+        }
     }
 
-    if (bestMatch != null) {
-      if ((ast = astivletIndex.get(bestMatch)) != null) {
-        return ast;
-      }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean appExist(String deploymentId) {
+        if (getApp(deploymentId) != null) {
+            return true;
+        }
+
+        return false;
     }
 
-    return null;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String[] getAstivletsURLs() {
-    return (String[]) astivletIndex.keySet().toArray();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public static AstDB getInstance() {
-    return INSTANCE;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void removeApp(AstObj astObj) {
-    // Ensure to remove astivlets from the index.
-    for (String url : astObj.getURLPatterns()) {
-      astivletIndex.remove(url);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AstObj getApp(String deploymentId) {
+        return apps.get(deploymentId);
     }
 
-    apps.remove(astObj.getDeploymentId());
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<AstObj> getApps() {
+        ArrayList a = new ArrayList();
 
-  /**
-   * Check if URL already exist.
-   *
-   * @param url URL to check
-   * @return true if URL already exist or false otherwise.
-   */
-  private Boolean urlExist(String url) {
-    Set<String> urls = astivletIndex.keySet();
+        for (AstObj ao : apps.values()) {
+            a.add(ao);
+        }
 
-    for (String curUrl : urls) {
-      if (curUrl.equals(url)) {
-        return true;
-      }
+        return a;
     }
 
-    return false;
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Astivlet getAstivlet(String urlStr) {
+        // Check for specific url
+        Astivlet ast;
+
+        if ((ast = astivletIndex.get(urlStr)) != null) {
+            return ast;
+        }
+
+        // Match parent paths and extentions
+        int lCnt = 0;
+        String bestMatch = null;
+
+        for (String url : astivletIndex.keySet()) {
+            Pattern curPattern = Pattern.compile(url);
+            Boolean match = curPattern.matcher(urlStr).find();
+
+            if (match) {
+                if (url.length() > lCnt) {
+                    bestMatch = url;
+                    lCnt = url.length();
+                }
+            }
+        }
+
+        if (bestMatch != null) {
+            if ((ast = astivletIndex.get(bestMatch)) != null) {
+                return ast;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String[] getAstivletsURLs() {
+        return (String[]) astivletIndex.keySet().toArray();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static AstDB getInstance() {
+        return INSTANCE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeApp(AstObj astObj) {
+        // Ensure to remove astivlets from the index.
+        for (String url : astObj.getURLPatterns()) {
+            astivletIndex.remove(url);
+        }
+
+        apps.remove(astObj.getDeploymentId());
+    }
+
+    /**
+     * Check if URL already exist.
+     *
+     * @param url URL to check
+     * @return true if URL already exist or false otherwise.
+     */
+    private Boolean urlExist(String url) {
+        Set<String> urls = astivletIndex.keySet();
+
+        for (String curUrl : urls) {
+            if (curUrl.equals(url)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

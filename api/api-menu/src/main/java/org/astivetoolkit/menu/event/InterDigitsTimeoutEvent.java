@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,38 +18,38 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
- * The InterDigitsTimeoutEvent is triggered when the <code>Subject</code>
- * fails to press the next key on time.
+ * The InterDigitsTimeoutEvent is triggered when the
+ * <code>Subject</code> fails to press the next key on time.
  *
  * @since 1.0.0
  * @see InterDigitsTimeoutListener
  * @see DigitsEvent
  */
-public class InterDigitsTimeoutEvent extends DigitsEvent {  
-  private int timeout;
-  
-  /**
-   * Create a new InterDigitsTimeoutEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   * @param timeout to prevent this event the <code>Subject</code>(user)'s 
-   * should press the next digit quickly.
-   */
-  public InterDigitsTimeoutEvent(final Object source,final String digit,final int timeout) {
-    super(source, digit);
-    this.timeout = timeout;
-  }
+public class InterDigitsTimeoutEvent extends DigitsEvent {
 
-  /**
-   * Returns the timeout
-   * 
-   * @return to prevent this event the <code>Subject</code>(user)'s should press 
-   * the next digit quickly.
-   */
-  public int getTimeout() {
-    return timeout;
-  }
+    private int timeout;
+
+    /**
+     * Create a new InterDigitsTimeoutEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     * @param timeout to prevent this event the <code>Subject</code>(user)'s
+     * should press the next digit quickly.
+     */
+    public InterDigitsTimeoutEvent(final Object source, final String digit, final int timeout) {
+        super(source, digit);
+        this.timeout = timeout;
+    }
+
+    /**
+     * Returns the timeout
+     *
+     * @return to prevent this event the <code>Subject</code>(user)'s should
+     * press the next digit quickly.
+     */
+    public int getTimeout() {
+        return timeout;
+    }
 }

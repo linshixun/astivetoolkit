@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,7 +18,11 @@
  */
 package org.astivetoolkit.server.admin;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -32,63 +36,64 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0.0
  */
 public class AdminDaemonClient extends Socket {
-  private static final Logger LOG = Logger.getLogger(AdminDaemonClient.class);
-  private BufferedReader reader;
-  private PrintWriter writer;
 
-  {
-    DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");
-  }
-  
-  public AdminDaemonClient(InetAddress addr, int port)
-                    throws IOException {
-    super(addr, port);
-    reader = new BufferedReader(new InputStreamReader(getInputStream()));
-    writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
-  }
+    private static final Logger LOG = Logger.getLogger(AdminDaemonClient.class);
+    private BufferedReader reader;
+    private PrintWriter writer;
 
-  public void deploy(String app) throws IOException {
-    send(AdminCommand.DEPLOY, app);    
-    // Server response
-    out.println(getReader().readLine());
-  }
-
-  public void undeploy(String app) throws IOException {   
-    send(AdminCommand.UNDEPLOY, app);
-    // Server response
-    out.println(getReader().readLine());
-  }
-  
-  public void stop() throws IOException {
-    send(AdminCommand.STOP, null);
-    if (LOG.isInfoEnabled()) {
-        LOG.info(AppLocale.getI18n("messageDone"));    
-    }
-  }
-  
-  private void send(AdminCommand cmd, String arg) throws IOException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("sendingCmd", new Object[] { cmd, arg }));
+    {
+        DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");
     }
 
-    getWriter().println(cmd.toString());
-
-    if ((arg != null) && !arg.isEmpty()) {
-      getWriter().println(arg);
+    public AdminDaemonClient(InetAddress addr, int port)
+            throws IOException {
+        super(addr, port);
+        reader = new BufferedReader(new InputStreamReader(getInputStream()));
+        writer = new PrintWriter(new OutputStreamWriter(getOutputStream()));
     }
 
-    getWriter().flush();
-
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageDone"));
+    public void deploy(String app) throws IOException {
+        send(AdminCommand.DEPLOY, app);
+        // Server response
+        out.println(getReader().readLine());
     }
-  }  
-  
-  private BufferedReader getReader() throws IOException {
-    return reader;
-  }
 
-  private PrintWriter getWriter() throws IOException {
-    return writer;
-  }  
+    public void undeploy(String app) throws IOException {
+        send(AdminCommand.UNDEPLOY, app);
+        // Server response
+        out.println(getReader().readLine());
+    }
+
+    public void stop() throws IOException {
+        send(AdminCommand.STOP, null);
+        if (LOG.isInfoEnabled()) {
+            LOG.info(AppLocale.getI18n("messageDone"));
+        }
+    }
+
+    private void send(AdminCommand cmd, String arg) throws IOException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("sendingCmd", new Object[]{cmd, arg}));
+        }
+
+        getWriter().println(cmd.toString());
+
+        if ((arg != null) && !arg.isEmpty()) {
+            getWriter().println(arg);
+        }
+
+        getWriter().flush();
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageDone"));
+        }
+    }
+
+    private BufferedReader getReader() throws IOException {
+        return reader;
+    }
+
+    private PrintWriter getWriter() throws IOException {
+        return writer;
+    }
 }

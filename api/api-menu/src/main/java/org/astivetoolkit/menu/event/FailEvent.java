@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,38 +18,38 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
- * A FailEvent is triggered when a <code>Subject</code> attempts to enter an
- * option that is not part a menu.
- * 
+ * A FailEvent is triggered when a
+ * <code>Subject</code> attempts to enter an option that is not part a menu.
+ *
  * @since 1.0.0
  * @see FailListener
  * @see DigitsEvent
  */
 public class FailEvent extends DigitsEvent {
-  private int failCount;
-  
-  /**
-   * Creates a new FailEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   * @param failCount the amount of times the <code>Subject</code> has pressed an
-   * option that is not in the menu.
-   */
-  public FailEvent(final Object source, final String digits, final int failCount) {
-    super(source, digits);
-    this.failCount = failCount;
-  }
 
-  /**
-   * Returns the fail count.
-   * 
-   * @return the amount of times the <code>Subject</code> has pressed an
-   * option that is not in the menu.
-   */
-  public int getFailCount() {
-    return failCount;
-  }
+    private int failCount;
+
+    /**
+     * Creates a new FailEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     * @param failCount the amount of times the <code>Subject</code> has pressed
+     * an option that is not in the menu.
+     */
+    public FailEvent(final Object source, final String digits, final int failCount) {
+        super(source, digits);
+        this.failCount = failCount;
+    }
+
+    /**
+     * Returns the fail count.
+     *
+     * @return the amount of times the <code>Subject</code> has pressed an
+     * option that is not in the menu.
+     */
+    public int getFailCount() {
+        return failCount;
+    }
 }

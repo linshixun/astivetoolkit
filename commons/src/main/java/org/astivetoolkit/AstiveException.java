@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,39 +18,39 @@
  */
 package org.astivetoolkit;
 
-
 /**
  *
  * @since 1.0.0
  * @see AgiException
  */
 public class AstiveException extends Exception {
-  
-	private static final long serialVersionUID = 1L;
 
-/**
-   * Creates a new AstiveException object with the original exception as
-   * parameter to be nested as part of this exception.
-   *
-   * @param exception used to provide further info about the original exception.
-   */
-  public AstiveException(final Exception exception) {
-    super(exception);
-  }
+    private static final long serialVersionUID = 1L;
 
-  /**
-   * Creates a new AstiveException object.
-   *
-   * @param msg further info about the exception.
-   */
-  public AstiveException(final String msg) {
-    super(msg);
-  }
+    /**
+     * Creates a new AstiveException object with the original exception as
+     * parameter to be nested as part of this exception.
+     *
+     * @param exception used to provide further info about the original
+     * exception.
+     */
+    public AstiveException(final Exception exception) {
+        super(exception);
+    }
 
-  /**
-   * Creates a new AstiveException object.
-   */
-  public AstiveException() {
-	  super();
-  }
+    /**
+     * Creates a new AstiveException object.
+     *
+     * @param msg further info about the exception.
+     */
+    public AstiveException(final String msg) {
+        super(msg);
+    }
+
+    /**
+     * Creates a new AstiveException object.
+     */
+    public AstiveException() {
+        super();
+    }
 }

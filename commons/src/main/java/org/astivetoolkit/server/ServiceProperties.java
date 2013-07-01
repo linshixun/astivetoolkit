@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -22,128 +22,140 @@ import java.net.InetAddress;
 import java.util.List;
 
 /**
- * Contains all parameters needed by a final implementation of
- * {@link Service}.
+ * Contains all parameters needed by a final implementation of {@link Service}.
  *
  * @see Service
  * @since 1.0.0
  */
 public interface ServiceProperties {
-  /**
-   * Returns the maximum queue length for incoming connection indications.
-   *
-   * @return maximum number of pending connections on the socket.
-   */
-  int getBacklog();
 
-  /**
-   * Returns the address to where the <code>service</code> is bound, if any.
-   *
-   * @return the local address the <code>service</code> is bound to, or 
-   * <code>null</code> for the <code>anyLocal</code> address.
-   */
-  InetAddress getBindAddr();
+    /**
+     * Returns the maximum queue length for incoming connection indications.
+     *
+     * @return maximum number of pending connections on the socket.
+     */
+    int getBacklog();
 
-  /**
-   * Returns the address list from where connections are accept.
-   *
-   * @return by default <code>service</code> accept connections only from the <code>local</code>
-   * machine.
-   */
-  List<InetAddress> getOnlyFrom();
+    /**
+     * Returns the address to where the
+     * <code>service</code> is bound, if any.
+     *
+     * @return the local address the <code>service</code> is bound to, or
+     * <code>null</code> for the <code>anyLocal</code> address.
+     */
+    InetAddress getBindAddr();
 
-  /**
-   * Returns the <code>service</code> port.
-   *
-   * @return port to where <code>service</code> is bound.
-   */
-  int getPort();
+    /**
+     * Returns the address list from where connections are accept.
+     *
+     * @return by default <code>service</code> accept connections only from *
+     * the <code>local</code> machine.
+     */
+    List<InetAddress> getOnlyFrom();
 
-  /**
-   * Returns the fully qualified class name for the final implementation of
-   * {@link Service}.
-   *
-   * @return the final implementation of a particular <code>service</code>.
-   */
-  String getServer();
+    /**
+     * Returns the
+     * <code>service</code> port.
+     *
+     * @return port to where <code>service</code> is bound.
+     */
+    int getPort();
 
-  /**
-   * Returns the name of <code>service</code>.
-   *
-   * @return a descriptive name for a <code>service</code> (ex.: Telnet, Admin)...
-   */
-  String getServiceName();
+    /**
+     * Returns the fully qualified class name for the final implementation of
+     * {@link Service}.
+     *
+     * @return the final implementation of a particular <code>service</code>.
+     */
+    String getServer();
 
-  /**
-   * Indicates whether or not the <code>service</code> is disabled.
-   *
-   * @return true if <code>service</code> is disabled or true otherwise.
-   */
-  boolean isDisabled();
+    /**
+     * Returns the name of
+     * <code>service</code>.
+     *
+     * @return a descriptive name for a <code>service</code> (ex.: Telnet,
+     * Admin)...
+     */
+    String getServiceName();
 
-  /**
-   * Indicates whether or not the <code>service</code> was bound to a IP/Port.
-   *
-   * @return true if <code>service</code> can't be bound to a port(ex.: port occupied by another
-   * process).
-   */
-  boolean isUnableToOpen();
+    /**
+     * Indicates whether or not the
+     * <code>service</code> is disabled.
+     *
+     * @return true if <code>service</code> is disabled or true otherwise.
+     */
+    boolean isDisabled();
 
-  /**
-   * Define the maximum queue length for incoming connection indications.
-   *
-   * @param backlog provided should be greater than 0.
-   * @see ServerSocket
-   */
-  void setBacklog(int backlog);
+    /**
+     * Indicates whether or not the
+     * <code>service</code> was bound to a IP/Port.
+     *
+     * @return true if <code>service</code> can't be bound to a port(ex.: port
+     * occupied by another process).
+     */
+    boolean isUnableToOpen();
 
-  /**
-   * Address to where the <code>service</code> should be bound.
-   *
-   * @param bindAddr should be a valid address where the code>service</code> is running.
-   */
-  void setBindAddr(InetAddress bindAddr);
+    /**
+     * Define the maximum queue length for incoming connection indications.
+     *
+     * @param backlog provided should be greater than 0.
+     * @see ServerSocket
+     */
+    void setBacklog(int backlog);
 
-  /**
-   * Set this parameter to <code>true</code> to indicate
-   *
-   * @param disabled useful for services no mandatory(ex.:Telnet)
-   */
-  void setDisabled(boolean disabled);
+    /**
+     * Address to where the
+     * <code>service</code> should be bound.
+     *
+     * @param bindAddr should be a valid address where the code>service</code>
+     * is running.
+     */
+    void setBindAddr(InetAddress bindAddr);
 
-  /**
-   * Used to indicate the list of address from where the service can be accessed.
-   *
-   * @param onlyFrom by default a service can only be accessed from the
-   * local machine.
-   */
-  void setOnlyFrom(List<InetAddress> onlyFrom);
+    /**
+     * Set this parameter to
+     * <code>true</code> to indicate
+     *
+     * @param disabled useful for services no mandatory(ex.:Telnet)
+     */
+    void setDisabled(boolean disabled);
 
-  /**
-   * A valid port to where the service is bound.
-   *
-   * @param port is valid if is in the range in between 0 and 65535, inclusive.
-   */
-  void setPort(int port);
+    /**
+     * Used to indicate the list of address from where the service can be
+     * accessed.
+     *
+     * @param onlyFrom by default a service can only be accessed from the local
+     * machine.
+     */
+    void setOnlyFrom(List<InetAddress> onlyFrom);
 
-  /**
-   * Use to define the final implementation of the service.
-   *
-   * @param server has to be a fully qualified name class.
-   */
-  void setServer(String server);
+    /**
+     * A valid port to where the service is bound.
+     *
+     * @param port is valid if is in the range in between 0 and 65535,
+     * inclusive.
+     */
+    void setPort(int port);
 
-  /**
-   * Define the name for a particular service, for display purposes.
-   *
-   * @param serviceName useful to describe the function of the service.
-   */
-  void setServiceName(String serviceName);
+    /**
+     * Use to define the final implementation of the service.
+     *
+     * @param server has to be a fully qualified name class.
+     */
+    void setServer(String server);
 
-  /**
-   * Set to true if can't bound <code>service</code> to a particular IP/Port.
-   *
-   * @param unableToOpen is set to false if bound process ends normally.
-   */
-  void setUnableToOpen(boolean unableToOpen);
+    /**
+     * Define the name for a particular service, for display purposes.
+     *
+     * @param serviceName useful to describe the function of the service.
+     */
+    void setServiceName(String serviceName);
+
+    /**
+     * Set to true if can't bound
+     * <code>service</code> to a particular IP/Port.
+     *
+     * @param unableToOpen is set to false if bound process ends normally.
+     */
+    void setUnableToOpen(boolean unableToOpen);
 }

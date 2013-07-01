@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -27,22 +27,23 @@ import java.util.ArrayList;
  * @since 1.0.0
  */
 public class ReadUtil {
-  ArrayList<String> lines = new ArrayList<>();
 
-  public ReadUtil(BufferedReader reader) throws IOException {
-    String s;
-    lines.add(reader.readLine());
+    ArrayList<String> lines = new ArrayList<>();
 
-    while (true) {
-      if ((s = reader.readLine()).isEmpty()) {
-        break;
-      }
+    public ReadUtil(BufferedReader reader) throws IOException {
+        String s;
+        lines.add(reader.readLine());
 
-      lines.add(s);
+        while (true) {
+            if ((s = reader.readLine()).isEmpty()) {
+                break;
+            }
+
+            lines.add(s);
+        }
     }
-  }
 
-  public ArrayList<String> getLines() {
-    return lines;
-  }
+    public ArrayList<String> getLines() {
+        return lines;
+    }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -22,33 +22,34 @@ import junit.framework.TestCase;
 import org.astivetoolkit.util.URLValidator;
 
 /**
- * Test case for URLValidator. 
+ * Test case for URLValidator.
  */
 public class URLValidatorTest extends TestCase {
-  /**
-   * Creates a new URLValidatorTest object.
-   *
-   * @param testName {@inheritDoc}.
-   */
-  public URLValidatorTest(String testName) {
-    super(testName);
-  }
 
-  /**
-   * Test method.
-   */
-  public void testValidateURLs() {
-    assertTrue(URLValidator.isValidURL("/"));
-    assertFalse(URLValidator.isValidURL("/*"));
-    assertFalse(URLValidator.isValidURL("/2"));
-    assertTrue(URLValidator.isValidURL("/myproject"));
-    assertFalse(URLValidator.isValidURL("/_abc"));
-    assertTrue(URLValidator.isValidURL("/myproject/"));
-    assertTrue(URLValidator.isValidURL("/myproject/*"));
-    assertTrue(URLValidator.isValidURL("/myproject/myAstivlet"));
-    assertTrue(URLValidator.isValidURL("*.ast"));
-    assertTrue(URLValidator.isValidURL("*.ast2"));
-    assertTrue(URLValidator.isValidURL("*.ast?%$"));
-    assertFalse(URLValidator.isValidURL("abc.ast?%$"));
-  }
+    /**
+     * Creates a new URLValidatorTest object.
+     *
+     * @param testName {@inheritDoc}.
+     */
+    public URLValidatorTest(String testName) {
+        super(testName);
+    }
+
+    /**
+     * Test method.
+     */
+    public void testValidateURLs() {
+        assertTrue(URLValidator.isValidURL("/"));
+        assertFalse(URLValidator.isValidURL("/*"));
+        assertFalse(URLValidator.isValidURL("/2"));
+        assertTrue(URLValidator.isValidURL("/myproject"));
+        assertFalse(URLValidator.isValidURL("/_abc"));
+        assertTrue(URLValidator.isValidURL("/myproject/"));
+        assertTrue(URLValidator.isValidURL("/myproject/*"));
+        assertTrue(URLValidator.isValidURL("/myproject/myAstivlet"));
+        assertTrue(URLValidator.isValidURL("*.ast"));
+        assertTrue(URLValidator.isValidURL("*.ast2"));
+        assertTrue(URLValidator.isValidURL("*.ast?%$"));
+        assertFalse(URLValidator.isValidURL("abc.ast?%$"));
+    }
 }

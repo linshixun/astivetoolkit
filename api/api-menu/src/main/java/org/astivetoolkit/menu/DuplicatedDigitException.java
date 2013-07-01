@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -23,13 +23,14 @@ import org.astivetoolkit.util.AppLocale;
 /**
  * This exception is trigger when user attempts to insert more than one menu or
  * menu item into the same menu level using the same </code>Digit</code>.
- * 
+ *
  * @since 1.0.0
  */
 public class DuplicatedDigitException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
     private static final String MSG = AppLocale
-                    .getI18n("errorDuplicatedKeyInMenu");
+            .getI18n("errorDuplicatedKeyInMenu");
 
     /**
      * Creates a new instance of DuplicatedDigitException.
@@ -38,4 +39,3 @@ public class DuplicatedDigitException extends RuntimeException {
         super(DuplicatedDigitException.MSG);
     }
 }
- 

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -22,33 +22,35 @@ import java.util.EventObject;
 import org.astivetoolkit.menu.Digit;
 
 /**
- * A KeyEvent is triggered for every key pressed by a <code>Subject</code>.
- * 
+ * A KeyEvent is triggered for every key pressed by a
+ * <code>Subject</code>.
+ *
  * @since 1.0.0
  * @see KeyListener
  * @see DigitsEvent
  */
 public class KeyEvent extends EventObject {
-  private Digit key;
 
-  /**
-   * Creates a new KeyEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param key the key pressed by a <code>Subject</code>.
-   */
-  public KeyEvent(final Object source,final Digit key) {
-    super(source);
-    this.source = source;
-    this.key = key;
-  }
+    private Digit key;
 
-  /**
-   * Returns the key pressed by the User's.
-   * 
-   * @return the key pressed by a <code>Subject</code>.
-   */
-  public Digit getKey() {
-    return key;
-  }
+    /**
+     * Creates a new KeyEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param key the key pressed by a <code>Subject</code>.
+     */
+    public KeyEvent(final Object source, final Digit key) {
+        super(source);
+        this.source = source;
+        this.key = key;
+    }
+
+    /**
+     * Returns the key pressed by the User's.
+     *
+     * @return the key pressed by a <code>Subject</code>.
+     */
+    public Digit getKey() {
+        return key;
+    }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -32,93 +32,94 @@ import org.astivetoolkit.util.AppLocale;
  * @see AstiveServer
  * @see SimpleAstiveServer
  */
-public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {  
-  public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
-  public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") + "/apps/";
-  private InetAddress bindAddr;
-  private int backlog;
-  private int port;
-  private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);  
+public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {
 
-  public AbstractAstiveServer() throws SystemException, IOException {
-    // Using the default agi asterisk port
-    super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
-          InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
-    this.port = DEFAULT_AGI_SERVER_PORT;
-    this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
-  }
+    public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
+    public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") + "/apps/";
+    private InetAddress bindAddr;
+    private int backlog;
+    private int port;
+    private static final Logger LOG = Logger.getLogger(AbstractAstiveServer.class);
 
-  public AbstractAstiveServer(int port) throws SystemException, IOException {
-    super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
-  }
-
-  public AbstractAstiveServer(int port, int backlog) throws SystemException, IOException {
-    super(port, backlog, InetAddress.getLocalHost());
-  }
-
-  public AbstractAstiveServer(int port, int backlog, InetAddress bindAddr)
-                       throws SystemException, IOException {
-    super(port, backlog, bindAddr);
-    this.bindAddr = bindAddr;
-    this.port = port;
-    this.backlog = backlog;
-  }
-
-  /**
-   * @return the backlog
-   */
-  public int getBacklog() {
-    return backlog;
-  }
-
-  /**
-   * @return the bindAddr
-   */
-  public InetAddress getBindAddr() {
-    return bindAddr;
-  }
-
-  /**
-   * @return the port
-   */
-  public int getPort() {
-    return port;
-  }
-
-  /**
-   * @return App version.
-   */
-  public String getVersion() {
-    StringBuilder sb =
-      new StringBuilder(AppLocale.getI18n("astivedVersion",
-                                          new String[] { Version.VERSION, Version.BUILD_TIME }));
-
-    return sb.toString();
-  }
-
-  protected abstract void launchConnectionMonitor();
-
-  @Override
-  public void start() throws SystemException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageStarting"));
+    public AbstractAstiveServer() throws SystemException, IOException {
+        // Using the default agi asterisk port
+        super(DEFAULT_AGI_SERVER_PORT, DEFAULT_AGI_SERVER_BACKLOG,
+                InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
+        this.port = DEFAULT_AGI_SERVER_PORT;
+        this.backlog = DEFAULT_AGI_SERVER_BACKLOG;
     }
 
-    super.start();
-  }
-
-  @Override
-  public void stop() throws SystemException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageStopping"));
+    public AbstractAstiveServer(int port) throws SystemException, IOException {
+        super(port, DEFAULT_AGI_SERVER_BACKLOG, InetAddress.getByName(DEFAULT_AGI_SERVER_BIND_ADDR));
     }
 
-    try {
-      super.stop();
-      System.exit(0);
-    } catch (Exception ex) {
-      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
-      System.exit(1);
+    public AbstractAstiveServer(int port, int backlog) throws SystemException, IOException {
+        super(port, backlog, InetAddress.getLocalHost());
     }
-  }
+
+    public AbstractAstiveServer(int port, int backlog, InetAddress bindAddr)
+            throws SystemException, IOException {
+        super(port, backlog, bindAddr);
+        this.bindAddr = bindAddr;
+        this.port = port;
+        this.backlog = backlog;
+    }
+
+    /**
+     * @return the backlog
+     */
+    public int getBacklog() {
+        return backlog;
+    }
+
+    /**
+     * @return the bindAddr
+     */
+    public InetAddress getBindAddr() {
+        return bindAddr;
+    }
+
+    /**
+     * @return the port
+     */
+    public int getPort() {
+        return port;
+    }
+
+    /**
+     * @return App version.
+     */
+    public String getVersion() {
+        StringBuilder sb =
+                new StringBuilder(AppLocale.getI18n("astivedVersion",
+                new String[]{Version.VERSION, Version.BUILD_TIME}));
+
+        return sb.toString();
+    }
+
+    protected abstract void launchConnectionMonitor();
+
+    @Override
+    public void start() throws SystemException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageStarting"));
+        }
+
+        super.start();
+    }
+
+    @Override
+    public void stop() throws SystemException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageStopping"));
+        }
+
+        try {
+            super.stop();
+            System.exit(0);
+        } catch (Exception ex) {
+            LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[]{ex.getMessage()}));
+            System.exit(1);
+        }
+    }
 }

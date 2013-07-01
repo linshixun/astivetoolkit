@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -26,44 +26,44 @@ import java.util.regex.Pattern;
  * @since 1.0.0
  */
 public final class URLValidator {
-  /**
-   * Use for exact match.
-   */
-  public static final Pattern SLASH_SLASH_ASTIVLET =
-    Pattern.compile("^\\/[-a-zA-Z0-9][-a-zA-Z0-9+&@#/%?=~_|!:,.;]");
 
-  /**
-   * Match an string starting with '/' and ending with '/*'.
-   */
-  public static final Pattern SLASH_SLASH_ASTERISK = Pattern.compile("^\\/[-a-zA-Z0-9_](\\/\\*)");
+    /**
+     * Use for exact match.
+     */
+    public static final Pattern SLASH_SLASH_ASTIVLET =
+            Pattern.compile("^\\/[-a-zA-Z0-9][-a-zA-Z0-9+&@#/%?=~_|!:,.;]");
+    /**
+     * Match an string starting with '/' and ending with '/*'.
+     */
+    public static final Pattern SLASH_SLASH_ASTERISK = Pattern.compile("^\\/[-a-zA-Z0-9_](\\/\\*)");
+    /**
+     * Match an string with form '*.extension'.
+     */
+    public static final Pattern ASTERISK_EXTENSION =
+            Pattern.compile("^\\*.[-a-zA-Z0-9+&@#/%?=~_|!:,.;]");
 
-  /**
-   * Match an string with form '*.extension'.
-   */
-  public static final Pattern ASTERISK_EXTENSION =
-    Pattern.compile("^\\*.[-a-zA-Z0-9+&@#/%?=~_|!:,.;]");
+    private URLValidator() {
+    }
 
-  private URLValidator() {
-  }
+    /**
+     * Check if an URL match with the following criteria.
+     *
+     * A string beginning with a ‘/’ character and ending with a ‘/*’ suffix is
+     * used for path mapping. A string beginning with a ‘*.’ prefix is used as
+     * an extension mapping. A string containing only the ’/’ character
+     * indicates the "default" servlet of the application. In this case the
+     * servlet path is the request URI minus the context path and the path info
+     * is null. All other strings are used for exact matches only.
+     *
+     * @param url URL to validate.
+     * @return if match with a valid pattern.
+     */
+    static public Boolean isValidURL(final String url) {
 
-  /**
-   * Check if an URL match with the following criteria.
-   *
-   * A string beginning with a ‘/’ character and ending with a ‘/*’ suffix is used for path mapping.
-   * A string beginning with a ‘*.’ prefix is used as an extension mapping.
-   * A string containing only the ’/’ character indicates the "default" servlet of the application. In this case the servlet path is the request URI minus the context path and the path info is null.
-   * All other strings are used for exact matches only.
-   *
-   * @param url URL to validate.
-   * @return if match with a valid pattern.
-   */
-  static public Boolean isValidURL(final String url) {
-       
-    return  (url.trim().equals("/") 
-    		|| SLASH_SLASH_ASTIVLET.matcher(url).find()
-    		|| SLASH_SLASH_ASTERISK.matcher(url).find()
-    		|| ASTERISK_EXTENSION.matcher(url).find());
-    		
-  }
-  
+        return (url.trim().equals("/")
+                || SLASH_SLASH_ASTIVLET.matcher(url).find()
+                || SLASH_SLASH_ASTERISK.matcher(url).find()
+                || ASTERISK_EXTENSION.matcher(url).find());
+
+    }
 }

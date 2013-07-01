@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,36 +18,36 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
- * A MaxFailerEvent is triggered when the maximum attempts to pick an menu 
+ * A MaxFailerEvent is triggered when the maximum attempts to pick an menu
  * option is reached.
- * 
+ *
  * @since 1.0.0
  * @see MaxFailureListener
  * @see DigitsEvent
  */
-public class MaxFailureEvent extends DigitsEvent {  
-  private int maxFailure;
-  
-  /**
-   * Create a new MaxFailureEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   * @param maxFailure the maximum attempts admitted by the menu.
-   */
-  public MaxFailureEvent(final Object source, final String digits, final int maxFailure) {
-    super(source, digits);
-    this.maxFailure = maxFailure;
-  }
-  
-  /**
-   * Returns the amount(the maximum) of attempts.
-   * 
-   * @return the maximum amount of attempts.
-   */
-  public int getMaxFailure() {
-    return maxFailure;
-  }
+public class MaxFailureEvent extends DigitsEvent {
+
+    private int maxFailure;
+
+    /**
+     * Create a new MaxFailureEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     * @param maxFailure the maximum attempts admitted by the menu.
+     */
+    public MaxFailureEvent(final Object source, final String digits, final int maxFailure) {
+        super(source, digits);
+        this.maxFailure = maxFailure;
+    }
+
+    /**
+     * Returns the amount(the maximum) of attempts.
+     *
+     * @return the maximum amount of attempts.
+     */
+    public int getMaxFailure() {
+        return maxFailure;
+    }
 }

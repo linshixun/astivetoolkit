@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,39 +18,40 @@
  */
 package org.astivetoolkit.menu.event;
 
-
 /**
- * A MaxTimeoutEvent is triggered if the <code>Subject</code> skip iteration
- * with the {@link Menu} as many time as {@link Menu#getMaxTimeout()}.
+ * A MaxTimeoutEvent is triggered if the
+ * <code>Subject</code> skip iteration with the {@link Menu} as many time as
+ * {@link Menu#getMaxTimeout()}.
  *
  * @since 1.0.0
  * @see MaxTimeoutListener
  * @see DigitsEvent
  */
 public class MaxTimeoutEvent extends DigitsEvent {
-  private int maxTimeout;
-  
-  /**
-   * Create a new MaxTimeoutEvent object.
-   * 
-   * @param source the object that originated the event.
-   * @param digits the digits pressed.
-   * @param maxTimeout maximum time that the <code>Subject</code> is allow
-   * to skip menu iteration.
-   */
-  public MaxTimeoutEvent(final Object source, final String digits, 
-          final int maxTimeout) {
-    super(source, digits);
-    this.maxTimeout = maxTimeout;
-  }
- 
-  /**
-   * Returns the maximum time that User's can skip iteration with the menu.
-   * 
-   * @return the maximum time that the menu allows the <code>Subject</code>
-   * to avoid iteration.
-   */
-  public int getMaxTimeout() {
-    return maxTimeout;
-  }
+
+    private int maxTimeout;
+
+    /**
+     * Create a new MaxTimeoutEvent object.
+     *
+     * @param source the object that originated the event.
+     * @param digits the digits pressed.
+     * @param maxTimeout maximum time that the <code>Subject</code> is allow to
+     * skip menu iteration.
+     */
+    public MaxTimeoutEvent(final Object source, final String digits,
+            final int maxTimeout) {
+        super(source, digits);
+        this.maxTimeout = maxTimeout;
+    }
+
+    /**
+     * Returns the maximum time that User's can skip iteration with the menu.
+     *
+     * @return the maximum time that the menu allows the <code>Subject</code> to
+     * avoid iteration.
+     */
+    public int getMaxTimeout() {
+        return maxTimeout;
+    }
 }

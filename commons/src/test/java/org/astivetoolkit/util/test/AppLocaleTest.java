@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -23,20 +23,21 @@ import org.astivetoolkit.util.AppLocale;
 
 /**
  * Test case for {@link org.astivetoolkit.util.AppLocale}.
- * 
+ *
  * @since 1.0.0
  */
 public class AppLocaleTest extends TestCase {
-  /**
-   * Creates a new AppLocaleTest object.
-   */
-  public AppLocaleTest() {
-  }
 
-  /**
-   * Test method.
-   */
-  public void testAppLocale() {
-    assertEquals(AppLocale.getI18n("messageTest", new Object[] { "test" }), "This is a test.");
-  }
+    /**
+     * Creates a new AppLocaleTest object.
+     */
+    public AppLocaleTest() {
+    }
+
+    /**
+     * Test method.
+     */
+    public void testAppLocale() {
+        assertEquals(AppLocale.getI18n("messageTest", new Object[]{"test"}), "This is a test.");
+    }
 }

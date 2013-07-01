@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -23,44 +23,45 @@ import org.astivetoolkit.menu.MenuItem;
 /**
  * A PositionChangeEvent is triggered when the {@link MenuNavigator} move from
  * one {@link MenuItem} to another.
- * 
+ *
  * @since 1.0.0
  * @see DigitsEvent
  * @see PositionChangeListener
  */
-public class PositionChangeEvent extends DigitsEvent {  
-  private Object newObject;
-  private int position;
-  
-  /**
-   * Create new PositionChangeEvent.
-   * 
-   * @param source the object that originated the event.
-   * @param newObject then new {@link MenuItem}.
-   * @param position the position of the new option in the menu.
-   */
-  public PositionChangeEvent(final Object source, final Object newObject, 
-          final int position) {
-    super(source, ((MenuItem) source).getDigits());
-    this.newObject = newObject;
-    this.position = position;
-  }
+public class PositionChangeEvent extends DigitsEvent {
 
-  /**
-   * Returns the current {@link MenuItem}.
-   * 
-   * @return the new menu item.
-   */
-  public Object getNewObject() {
-    return newObject;
-  }
+    private Object newObject;
+    private int position;
 
-  /**
-   * Returns the new position.
-   * 
-   * @return the position of the new option in the menu.
-   */
-  public int getPosition() {
-    return position;
-  }
+    /**
+     * Create new PositionChangeEvent.
+     *
+     * @param source the object that originated the event.
+     * @param newObject then new {@link MenuItem}.
+     * @param position the position of the new option in the menu.
+     */
+    public PositionChangeEvent(final Object source, final Object newObject,
+            final int position) {
+        super(source, ((MenuItem) source).getDigits());
+        this.newObject = newObject;
+        this.position = position;
+    }
+
+    /**
+     * Returns the current {@link MenuItem}.
+     *
+     * @return the new menu item.
+     */
+    public Object getNewObject() {
+        return newObject;
+    }
+
+    /**
+     * Returns the new position.
+     *
+     * @return the position of the new option in the menu.
+     */
+    public int getPosition() {
+        return position;
+    }
 }

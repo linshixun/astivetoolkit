@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -32,32 +32,33 @@ import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
  * @since 1.0.0
  */
 public class AppXmlTest extends TestCase {
-  /**
-   * Creates a new AppXmlTest object.
-   *
-   * @param testName {@inheritDoc}.
-   */
-  public AppXmlTest(String testName) {
-    super(testName);
-  }
 
-  /**
-   * Test method.
-   *
-   * @throws XmlException if malformed XML.
-   * @throws IOException
-   */
-  public void testHello() throws XmlException, IOException {
-    File file = MavenTestingUtils.getProjectFile("/src/test/resources/app_test.xml");
+    /**
+     * Creates a new AppXmlTest object.
+     *
+     * @param testName {@inheritDoc}.
+     */
+    public AppXmlTest(String testName) {
+        super(testName);
+    }
 
-    AppDocument doc = AppDocument.Factory.parse(file);
-    assertTrue(doc.validate());
+    /**
+     * Test method.
+     *
+     * @throws XmlException if malformed XML.
+     * @throws IOException
+     */
+    public void testHello() throws XmlException, IOException {
+        File file = MavenTestingUtils.getProjectFile("/src/test/resources/app_test.xml");
 
-    AppType app = doc.getApp();
-    assertFalse(app.getName().isEmpty());
-    assertFalse(app.getName().isEmpty());
-    assertFalse(app.getDescription().isEmpty());
-    assertEquals(app.getAstivletArray().length, 2);
-    assertEquals(app.getAstivletMappingArray().length, 2);
-  }
+        AppDocument doc = AppDocument.Factory.parse(file);
+        assertTrue(doc.validate());
+
+        AppType app = doc.getApp();
+        assertFalse(app.getName().isEmpty());
+        assertFalse(app.getName().isEmpty());
+        assertFalse(app.getDescription().isEmpty());
+        assertEquals(app.getAstivletArray().length, 2);
+        assertEquals(app.getAstivletMappingArray().length, 2);
+    }
 }

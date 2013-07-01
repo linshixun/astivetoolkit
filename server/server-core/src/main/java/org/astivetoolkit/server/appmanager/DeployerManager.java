@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -41,199 +41,200 @@ import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
  * @see Deployer
  */
 public final class DeployerManager implements Deployer, AstDB {
-  private static final Logger LOG = Logger.getLogger(DeployerManager.class);
-  private static final DeployerManager INSTANCE = new DeployerManager();
-  private static AstDB astDB;
 
-  /**
-   * Create a new DeployerManager object.
-   */
-  private DeployerManager() {
-    ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
-    astDB = MyAstDB.getInstance();
+    private static final Logger LOG = Logger.getLogger(DeployerManager.class);
+    private static final DeployerManager INSTANCE = new DeployerManager();
+    private static AstDB astDB;
 
-    try {
-      deployApps();
-    } catch (AstiveException ex) {
-      LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[] { ex.getMessage() }));
-    }
-  }
+    /**
+     * Create a new DeployerManager object.
+     */
+    private DeployerManager() {
+        ProxyProviderFactory.setDefaultProxyProvider(new CglibProxyProvider());
+        astDB = MyAstDB.getInstance();
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void addApp(AstObj astObj) throws AstiveException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageAddingApp", new Object[] { astObj.getDeploymentId() }));
-    }
-
-    astDB.addApp(astObj);
-
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageDone"));
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Boolean appExist(String deploymentId) {
-    return astDB.appExist(deploymentId);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void deploy(String appPath) throws AstiveException {
-    try {
-      if (LOG.isInfoEnabled()) {
-        LOG.info(AppLocale.getI18n("messageDeployingApp", new Object[] { appPath }));
-      }
-
-      File srcFile = new File(appPath);
-      String dstFileStr = AbstractAstiveServer.ASTIVE_APPS + srcFile.getName();
-
-      // The name of the file must be use also to undeploy the apps.
-      AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());
-
-      if (!appExist(app.getDeploymentId())) {
-        addApp(app);
-
-        if (!dstFileStr.equals(appPath)) {
-          CopyFile.copyfile(appPath, dstFileStr);
+        try {
+            deployApps();
+        } catch (AstiveException ex) {
+            LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[]{ex.getMessage()}));
         }
-      } else {
-        if (LOG.isInfoEnabled()) {
-          LOG.warn(AppLocale.getI18n("errorAppAlreadyExist",
-                                     new Object[] { appPath, AbstractAstiveServer.ASTIVE_APPS }));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addApp(AstObj astObj) throws AstiveException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageAddingApp", new Object[]{astObj.getDeploymentId()}));
         }
 
-        return;
-      }
+        astDB.addApp(astObj);
 
-      if (LOG.isInfoEnabled()) {
-        LOG.info(AppLocale.getI18n("messageAppDeployed",
-                                   new Object[] { app.getInfo().getName() }));
-      }
-    } catch (IOException | JclException | AstiveException ex) {
-        throw new AstiveException(ex);
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public void deployApps() throws AstiveException {
-    if (LOG.isDebugEnabled()) {
-      LOG.debug(AppLocale.getI18n("messageDeployingApps", new Object[] { AbstractAstiveServer.ASTIVE_APPS }));
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageDone"));
+        }
     }
 
-    //String apps = ASTIVE_APPS;
-    File f = new File(AbstractAstiveServer.ASTIVE_APPS);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean appExist(String deploymentId) {
+        return astDB.appExist(deploymentId);
+    }
 
-    if (f.isDirectory()) {
-      File[] files = f.listFiles();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deploy(String appPath) throws AstiveException {
+        try {
+            if (LOG.isInfoEnabled()) {
+                LOG.info(AppLocale.getI18n("messageDeployingApp", new Object[]{appPath}));
+            }
 
-      for (int i = 0; i < files.length; i++) {
-        String file = files[i].getAbsolutePath();
+            File srcFile = new File(appPath);
+            String dstFileStr = AbstractAstiveServer.ASTIVE_APPS + srcFile.getName();
 
-        if (file.toLowerCase().endsWith(".jar")) {
-          deploy(file);
+            // The name of the file must be use also to undeploy the apps.
+            AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());
+
+            if (!appExist(app.getDeploymentId())) {
+                addApp(app);
+
+                if (!dstFileStr.equals(appPath)) {
+                    CopyFile.copyfile(appPath, dstFileStr);
+                }
+            } else {
+                if (LOG.isInfoEnabled()) {
+                    LOG.warn(AppLocale.getI18n("errorAppAlreadyExist",
+                            new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
+                }
+
+                return;
+            }
+
+            if (LOG.isInfoEnabled()) {
+                LOG.info(AppLocale.getI18n("messageAppDeployed",
+                        new Object[]{app.getInfo().getName()}));
+            }
+        } catch (IOException | JclException | AstiveException ex) {
+            throw new AstiveException(ex);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void deployApps() throws AstiveException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageDeployingApps", new Object[]{AbstractAstiveServer.ASTIVE_APPS}));
+        }
+
+        //String apps = ASTIVE_APPS;
+        File f = new File(AbstractAstiveServer.ASTIVE_APPS);
+
+        if (f.isDirectory()) {
+            File[] files = f.listFiles();
+
+            for (int i = 0; i < files.length; i++) {
+                String file = files[i].getAbsolutePath();
+
+                if (file.toLowerCase().endsWith(".jar")) {
+                    deploy(file);
+                } else {
+                    LOG.warn(AppLocale.getI18n("errorInvalidApp", new Object[]{file}));
+                }
+            }
         } else {
-          LOG.warn(AppLocale.getI18n("errorInvalidApp", new Object[] { file }));
+            LOG.error(AppLocale.getI18n("errorUnexpectedFailure",
+                    new Object[]{AbstractAstiveServer.ASTIVE_APPS}));
         }
-      }
-    } else {
-      LOG.error(AppLocale.getI18n("errorUnexpectedFailure",
-                                  new Object[] { AbstractAstiveServer.ASTIVE_APPS }));
-    }
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public AstObj getApp(String deploymentId) throws AstiveException {
-    AstObj result = astDB.getApp(deploymentId);
-
-    return result;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public List<AstObj> getApps() throws AstiveException {
-    return astDB.getApps();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public Astivlet getAstivlet(String urlStr) throws AstiveException {
-    return astDB.getAstivlet(urlStr);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String[] getAstivletsURLs() throws AstiveException {
-    return astDB.getAstivletsURLs();
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public static DeployerManager getInstance() {
-    return INSTANCE;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void removeApp(AstObj astObj) throws AstiveException {
-    astDB.removeApp(astObj);
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public void undeploy(String app) throws AstiveException {
-    if (LOG.isInfoEnabled()) {
-      LOG.info(AppLocale.getI18n("messageUndeployingApp", new Object[] { app }));
     }
 
-    try {
-      File f = new File(AbstractAstiveServer.ASTIVE_APPS + app);
-      String file = AbstractAstiveServer.ASTIVE_APPS + app;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AstObj getApp(String deploymentId) throws AstiveException {
+        AstObj result = astDB.getApp(deploymentId);
 
-      AstObj astObj = new AstObj(app, file);
+        return result;
+    }
 
-      if (appExist(astObj.getDeploymentId())) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<AstObj> getApps() throws AstiveException {
+        return astDB.getApps();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Astivlet getAstivlet(String urlStr) throws AstiveException {
+        return astDB.getAstivlet(urlStr);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String[] getAstivletsURLs() throws AstiveException {
+        return astDB.getAstivletsURLs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static DeployerManager getInstance() {
+        return INSTANCE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeApp(AstObj astObj) throws AstiveException {
         astDB.removeApp(astObj);
-
-        if (f.exists()) {
-          f.delete();
-
-          if (LOG.isInfoEnabled()) {
-            LOG.info(AppLocale.getI18n("messageAppUndeployed", new Object[] { app }));
-          }
-        } else {
-          LOG.warn(AppLocale.getI18n("errorAppFileNotExist", new Object[] { app }));
-        }
-      } else {
-        LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[] { app }));
-      }
-    } catch (org.xeustechnologies.jcl.exception.JclException | AstiveException ex) {
-      LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[] { app }));
-      throw new AstiveException(ex);
     }
-  }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void undeploy(String app) throws AstiveException {
+        if (LOG.isInfoEnabled()) {
+            LOG.info(AppLocale.getI18n("messageUndeployingApp", new Object[]{app}));
+        }
+
+        try {
+            File f = new File(AbstractAstiveServer.ASTIVE_APPS + app);
+            String file = AbstractAstiveServer.ASTIVE_APPS + app;
+
+            AstObj astObj = new AstObj(app, file);
+
+            if (appExist(astObj.getDeploymentId())) {
+                astDB.removeApp(astObj);
+
+                if (f.exists()) {
+                    f.delete();
+
+                    if (LOG.isInfoEnabled()) {
+                        LOG.info(AppLocale.getI18n("messageAppUndeployed", new Object[]{app}));
+                    }
+                } else {
+                    LOG.warn(AppLocale.getI18n("errorAppFileNotExist", new Object[]{app}));
+                }
+            } else {
+                LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+            }
+        } catch (org.xeustechnologies.jcl.exception.JclException | AstiveException ex) {
+            LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+            throw new AstiveException(ex);
+        }
+    }
 }
