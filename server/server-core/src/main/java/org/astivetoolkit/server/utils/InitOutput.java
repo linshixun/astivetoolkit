@@ -20,9 +20,7 @@ package org.astivetoolkit.server.utils;
 
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.astivetoolkit.Version;
-import org.astivetoolkit.server.AbstractAstiveServer;
 import org.astivetoolkit.server.ServiceProperties;
 import org.astivetoolkit.util.AppLocale;
 
@@ -70,8 +68,6 @@ public class InitOutput {
       sb.append("\n");
     }
 
-    DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");    
-    
     sb.append(AppLocale.getI18n("astivedInitFooter"));
     LOG.info(sb.toString());
   }
