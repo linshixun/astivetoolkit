@@ -26,14 +26,12 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.commons.cli.*;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.Category;
+import org.apache.log4j.*;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.Version;
 import org.astivetoolkit.server.admin.AdminCommand;
@@ -67,10 +65,10 @@ public class AstiveServer extends AbstractAstiveServer {
   private static String TELNED_PROPERTIES =
     AbstractAstiveServer.ASTIVE_HOME + "/conf/telned.properties";
   private ExecutorService executorService;
-
+  
   public AstiveServer(int port, int backlog, InetAddress bindAddr)
                throws SystemException, IOException {
-    super(port, backlog, bindAddr);
+    super(port, backlog, bindAddr);    
   }
 
   /**
@@ -83,6 +81,9 @@ public class AstiveServer extends AbstractAstiveServer {
   }
 
   public static void main(String[] args) throws Exception {
+
+    DOMConfigurator.configure(AbstractAstiveServer.ASTIVE_HOME + "/conf/log4j.xml");  
+      
     astivedSP = getServiceProperties(ASTIVED_PROPERTIES, "astived");
     adminDaemonSP = getServiceProperties(ADMIN_DAEMON_PROPERTIES, "admin thread");
     telnedSP = getServiceProperties(TELNED_PROPERTIES, "telned");
@@ -181,28 +182,32 @@ public class AstiveServer extends AbstractAstiveServer {
     // Parse the program arguments
     try {
       if (cmd.equals(AdminCommand.START)) {
-          
+                            
         CommandLine commandLine = parser.parse(start, args);
 
-        Logger root = Logger.getRootLogger();
-        Enumeration allLoggers = root.getLoggerRepository().getCurrentCategories();        
-        
+        Logger root = LogManager.getRootLogger();        
+        Enumeration allLoggers = root.getLoggerRepository().getCurrentLoggers();
+
         if (commandLine.hasOption('q')) {            
-            root.setLevel(Level.FATAL);
+            root.setLevel(Level.ERROR);
             while (allLoggers.hasMoreElements()){                
                 Category tmpLogger = (Category) allLoggers.nextElement();
-                tmpLogger.setLevel(Level.FATAL);
+                tmpLogger.setLevel(Level.ERROR);
+            }
+        } else if (commandLine.hasOption('d')) {            
+            root.setLevel(Level.DEBUG);
+            while (allLoggers.hasMoreElements()){                
+                Category tmpLogger = (Category) allLoggers.nextElement();
+                tmpLogger.setLevel(Level.DEBUG);
+            }
+        } else {            
+            root.setLevel(Level.INFO);
+            while (allLoggers.hasMoreElements()){                
+                Category tmpLogger = (Category) allLoggers.nextElement();
+                tmpLogger.setLevel(Level.INFO);
             }
         }
 
-        if (commandLine.hasOption('d')) {
-            root.setLevel(Level.DEBUG);
-            while (allLoggers.hasMoreElements()){
-                Category tmpLogger = (Category) allLoggers.nextElement();
-                tmpLogger.setLevel(Level.DEBUG);
-            }            
-        }        
-        
         if (commandLine.hasOption('h')) {
           printUsage(cmd, start);
           System.exit(0);
@@ -252,11 +257,8 @@ public class AstiveServer extends AbstractAstiveServer {
         if (!NetUtil.isPortAvailable(telnedSP.getPort())) {
           telnedSP.setUnableToOpen(true);
         }
-
-        if (!commandLine.hasOption('q')) {
-            Logger.getRootLogger().removeAllAppenders();
-            new InitOutput().printInit(serviceProperties);
-        }
+        
+        new InitOutput().printInit(serviceProperties);
 
         AstiveServer server =
             new AstiveServer(astivedSP.getPort(), astivedSP.getBacklog(), astivedSP.getBindAddr());
