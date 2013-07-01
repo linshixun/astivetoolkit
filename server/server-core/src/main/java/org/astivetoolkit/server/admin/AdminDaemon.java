@@ -20,7 +20,6 @@ package org.astivetoolkit.server.admin;
 
 import java.io.*;
 import java.net.*;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.server.AbstractAstiveServer;
