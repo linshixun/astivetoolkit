@@ -18,8 +18,8 @@
  */
 package org.astivetoolkit.server.admin;
 
-import static java.lang.System.out;
 import java.io.*;
+import static java.lang.System.out;
 import java.net.InetAddress;
 import java.net.Socket;
 import org.apache.log4j.Logger;
