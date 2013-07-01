@@ -23,7 +23,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.astivetoolkit.agi.DefaultAgiServerSettings;
 import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.util.AppLocale;
@@ -38,10 +37,6 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
   private InetAddress bindAddr;
   private int backlog;
   private int port;
-
-  {
-    DOMConfigurator.configure("conf/log4j.xml");
-  }
 
   /**
    * Creates a new FastAgiServerSocket object.
