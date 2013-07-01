@@ -54,4 +54,12 @@ public class MaxTimeoutEvent extends DigitsEvent {
     public int getMaxTimeout() {
         return maxTimeout;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + ", maxTimeout = " + getMaxTimeout() + "]";
+    }
 }

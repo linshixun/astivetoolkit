@@ -52,4 +52,12 @@ public class FailEvent extends DigitsEvent {
     public int getFailCount() {
         return failCount;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + ", failCount = " + getFailCount() + "]";
+    }
 }

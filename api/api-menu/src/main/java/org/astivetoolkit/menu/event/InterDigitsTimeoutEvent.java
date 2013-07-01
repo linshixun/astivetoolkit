@@ -38,8 +38,8 @@ public class InterDigitsTimeoutEvent extends DigitsEvent {
      * @param timeout to prevent this event the <code>Subject</code>(user)'s
      * should press the next digit quickly.
      */
-    public InterDigitsTimeoutEvent(final Object source, final String digit, final int timeout) {
-        super(source, digit);
+    public InterDigitsTimeoutEvent(final Object source, final String digits, final int timeout) {
+        super(source, digits);
         this.timeout = timeout;
     }
 
@@ -51,5 +51,13 @@ public class InterDigitsTimeoutEvent extends DigitsEvent {
      */
     public int getTimeout() {
         return timeout;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + ", timeout = " + getTimeout() + "]";
     }
 }

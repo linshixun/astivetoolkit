@@ -36,8 +36,8 @@ public class TimeoutEvent extends DigitsEvent {
      * @param digits the digits pressed.
      * @param maxTimeout maximum time waiting for user iteration.
      */
-    public TimeoutEvent(final Object source, final String digit, final int timeout) {
-        super(source, digit);
+    public TimeoutEvent(final Object source, final String digits, final int timeout) {
+        super(source, digits);
         this.timeout = timeout;
     }
 
@@ -49,5 +49,13 @@ public class TimeoutEvent extends DigitsEvent {
      */
     public int getTimeout() {
         return timeout;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + ", timeout = " + getTimeout() +"]" ;
     }
 }

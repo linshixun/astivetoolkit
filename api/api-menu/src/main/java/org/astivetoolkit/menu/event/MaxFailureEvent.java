@@ -50,4 +50,12 @@ public class MaxFailureEvent extends DigitsEvent {
     public int getMaxFailure() {
         return maxFailure;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + ", maxFailure = " + getMaxFailure() + "]";
+    }
 }

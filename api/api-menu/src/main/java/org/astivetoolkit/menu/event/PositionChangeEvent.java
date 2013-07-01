@@ -64,4 +64,12 @@ public class PositionChangeEvent extends DigitsEvent {
     public int getPosition() {
         return position;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[position = " + getPosition() + "]";
+    }
 }

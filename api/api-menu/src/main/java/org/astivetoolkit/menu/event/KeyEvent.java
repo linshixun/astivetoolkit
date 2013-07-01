@@ -53,4 +53,12 @@ public class KeyEvent extends EventObject {
     public Digit getKey() {
         return key;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[key = " + getKey() + "]";
+    }
 }

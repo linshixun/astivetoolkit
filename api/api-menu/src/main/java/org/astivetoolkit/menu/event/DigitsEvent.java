@@ -50,4 +50,12 @@ public class DigitsEvent extends EventObject {
     public String getDigits() {
         return digits;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "[digits = " + getDigits() + "]";
+    }
 }
