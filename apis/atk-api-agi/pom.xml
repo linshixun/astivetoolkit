@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>atk-api-agi</artifactId>
-    <name>Astive Toolkit :: API's :: AGI</name>
+    <name>Astive Toolkit :: API :: AGI</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
