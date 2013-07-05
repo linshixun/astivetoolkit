@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
-        <version>1.0.0-M4</version>
-    </parent>       
+        <version>1.0.0-RC1</version>
+    </parent>
     <artifactId>apis</artifactId>
     <name>Astive Toolkit :: APIs</name>
     <packaging>pom</packaging>
     <modules>
 	<module>atk-api-agi</module>
-	<module>atk-api-menu</module>	
+	<module>atk-api-menu</module>
     </modules>
 </project>
