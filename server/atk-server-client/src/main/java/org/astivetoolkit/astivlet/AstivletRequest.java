@@ -55,7 +55,7 @@ public class AstivletRequest extends AgiRequest {
      * Returns the Internet Protocol (IP) address for the server receiving the
      * request.
      *
-     * @return a <code>InetAddress</code> containing the IP address on which the
+     * @return a <code>InetAddress</code> containing the IP address in which the
      * request was received.
      */
     public InetAddress getLocalAddress() {
