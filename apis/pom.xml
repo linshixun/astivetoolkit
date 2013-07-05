@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>apis</artifactId>
-    <name>Astive Toolkit :: APIs</name>
+    <name>Astive Toolkit :: API's</name>
     <packaging>pom</packaging>
     <modules>
 	<module>atk-api-agi</module>
