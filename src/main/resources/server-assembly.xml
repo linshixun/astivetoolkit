@@ -15,9 +15,6 @@
             <excludes>
                 <exclude>*/**</exclude>
             </excludes>
-            <includes>
-                <include>org.astivetoolkit.examples:helloworld</include>
-            </includes>
         </fileSet>
         <!--Workaround to bug in permissions(in moduleSet)-->
         <fileSet>
@@ -77,7 +74,8 @@
                 </dependencySets>
             </binaries>
             <excludes>
-                <exclude>org.astivetoolkit.archetypes:atk-archetype-simple-ivr</exclude>
+                <exclude>org.astivetoolkit.archetypes:*</exclude>
+                <exclude>org.astivetoolkit.examples:*</exclude>
             </excludes>
         </moduleSet>
     </moduleSets>
