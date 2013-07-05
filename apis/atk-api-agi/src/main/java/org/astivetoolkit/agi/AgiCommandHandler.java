@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -24,7 +24,7 @@ import java.util.List;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- * Handle communication with Asterisk, in the lowest level.
+ * Handle communication with Asterisk, at the lowest level.
  *
  * @since 1.0.0
  */
