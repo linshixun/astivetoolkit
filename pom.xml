@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-    <version>1.0.0-M4</version>
+    <version>1.0.0-RC1</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
     <description>Astive is a toolkit and server for Java that provides an extensible
@@ -20,7 +20,7 @@
 	<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.1</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
