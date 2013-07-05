@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>speech-recognition</artifactId>
-    <name>Astive Toolkit :: Examples :: Speech Recognition</name>
+    <name>Astive Toolkit :: Example :: Speech Recognition</name>
     <dependencies>
         <dependency>
             <groupId>org.astivetoolkit</groupId>

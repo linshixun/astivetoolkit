@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>voice-composer</artifactId>
-    <name>Astive Toolkit :: Examples :: Voice Composer</name>
+    <name>Astive Toolkit :: Example :: Voice Composer</name>
     <dependencies>
         <dependency>
             <groupId>org.astivetoolkit</groupId>

@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>yahoo-weather</artifactId>
-    <name>Astive Toolkit :: Examples :: Yahoo Weather</name>
+    <name>Astive Toolkit :: Example :: Yahoo Weather</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

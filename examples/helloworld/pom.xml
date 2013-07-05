@@ -8,7 +8,7 @@
         <version>1.0.0-RC1</version>
     </parent>
     <artifactId>helloworld</artifactId>
-    <name>Astive Toolkit :: Examples :: Hello, World!</name>
+    <name>Astive Toolkit :: Example :: Hello, World!</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
