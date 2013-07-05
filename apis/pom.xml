@@ -6,12 +6,12 @@
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
         <version>1.0.0-M4</version>
-    </parent> 
-    <artifactId>api</artifactId>
-    <name>Astive Toolkit :: API</name>
+    </parent>       
+    <artifactId>apis</artifactId>
+    <name>Astive Toolkit :: APIs</name>
     <packaging>pom</packaging>
     <modules>
-	<module>api-agi</module>
-	<module>api-menu</module>
+	<module>atk-api-agi</module>
+	<module>atk-api-menu</module>	
     </modules>
 </project>

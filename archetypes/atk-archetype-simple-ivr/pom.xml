@@ -3,18 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>server</artifactId>
         <groupId>org.astivetoolkit</groupId>
+        <artifactId>archetypes</artifactId>
         <version>1.0.0-M4</version>
     </parent>
-    <artifactId>server-client</artifactId>
-    <name>Server :: Client</name>
+    <artifactId>atk-archetypes-simple-ivr</artifactId>
+    <name>Astive Toolkit :: Archetypes :: Simple IVR</name>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>api-agi</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 </project>

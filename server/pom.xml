@@ -11,8 +11,8 @@
     <name>Astive Toolkit :: Server</name>
     <packaging>pom</packaging>
     <modules>
-        <module>server-client</module>
-        <module>server-telnet</module>
-	<module>server-core</module>
+        <module>atk-server-core</module>
+        <module>atk-server-client</module>
+        <module>atk-server-telnet</module>
     </modules>
 </project>

@@ -3,24 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.astivetoolkit</groupId>        
+        <groupId>org.astivetoolkit</groupId>
         <artifactId>server</artifactId>
         <version>1.0.0-M4</version>
     </parent>
-    <artifactId>server-telnet</artifactId>
-    <name>Server :: Telnet</name>
+    <artifactId>atk-server-telnet</artifactId>
+    <name>Astive Toolkit :: Server :: Telnet</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>atk-commons</artifactId>
             <version>${project.version}</version>
-            <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>         
     </dependencies>
 </project>
