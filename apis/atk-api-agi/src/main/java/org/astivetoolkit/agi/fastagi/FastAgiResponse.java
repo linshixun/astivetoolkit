@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -68,14 +68,14 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public void controlStreamFile(String file) throws AgiException {
     ControlStreamFile command = new ControlStreamFile(file);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorUnsupportedCommand"));
     } else if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }        
+    }
   }
 
   /**
@@ -87,11 +87,11 @@ public class FastAgiResponse implements AgiResponse {
     ControlStreamFile command = new ControlStreamFile(file);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -104,11 +104,11 @@ public class FastAgiResponse implements AgiResponse {
     ControlStreamFile command = new ControlStreamFile(file, escapeDigits, offset);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -123,11 +123,11 @@ public class FastAgiResponse implements AgiResponse {
       new ControlStreamFile(file, escapeDigits, offset, forwardDigit, rewindDigit, pauseDigit);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -137,9 +137,9 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public void databaseDel(String family, String key) throws AgiException {
     DatabaseDel command = new DatabaseDel(family, key);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
@@ -153,7 +153,7 @@ public class FastAgiResponse implements AgiResponse {
     DatabaseDelTree command = new DatabaseDelTree(family);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
@@ -166,9 +166,9 @@ public class FastAgiResponse implements AgiResponse {
   public void databaseDelTree(String family, String keyTree)
                        throws AgiException {
     DatabaseDelTree command = new DatabaseDelTree(family, keyTree);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
@@ -181,7 +181,7 @@ public class FastAgiResponse implements AgiResponse {
   public String databaseGet(String family, String key)
                      throws AgiException {
     DatabaseGet command = new DatabaseGet(family, key);
-    
+
     return cHandler.sendAgiCommand(command).getResult();
   }
 
@@ -194,7 +194,7 @@ public class FastAgiResponse implements AgiResponse {
     DatabasePut command = new DatabasePut(family, key, value);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
@@ -206,9 +206,9 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public void exec(String application) throws AgiException {
     Exec command = new Exec(application);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -2) {
         throw new AgiException(AppLocale.getI18n("errorFailureToFindApp"));
     }
@@ -223,10 +223,10 @@ public class FastAgiResponse implements AgiResponse {
     Exec command = new Exec(application, args);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -2) {
         throw new AgiException(AppLocale.getI18n("errorFailureToFindApp"));
-    }    
+    }
   }
 
   /**
@@ -312,12 +312,12 @@ public class FastAgiResponse implements AgiResponse {
                  throws AgiException {
     GetOption command = new GetOption(file, escapeDigits);
 
-    AgiCommandReply acr = cHandler.sendAgiCommand(command);    
+    AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }    
-    
+    }
+
     return acr.getResultCodeAsChar();
   }
 
@@ -329,12 +329,12 @@ public class FastAgiResponse implements AgiResponse {
                  throws AgiException {
     GetOption command = new GetOption(file, escapeDigits, timeout);
 
-    AgiCommandReply acr = cHandler.sendAgiCommand(command);    
+    AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }    
-    
+    }
+
     return acr.getResultCodeAsChar();
   }
 
@@ -412,7 +412,7 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public char receiveChar() throws AgiException {
     ReceiveChar command = new ReceiveChar();
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     if(acr.getResultCode() == 0) {
@@ -420,7 +420,7 @@ public class FastAgiResponse implements AgiResponse {
     } else if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -438,7 +438,7 @@ public class FastAgiResponse implements AgiResponse {
     } else if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -501,7 +501,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -518,7 +518,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -537,7 +537,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -568,7 +568,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -598,8 +598,8 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
-    return acr.getResultCodeAsChar();    
+
+    return acr.getResultCodeAsChar();
   }
 
   /**
@@ -613,7 +613,7 @@ public class FastAgiResponse implements AgiResponse {
 
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }            
+    }
   }
 
   /**
@@ -629,7 +629,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -646,7 +646,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -663,7 +663,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -673,12 +673,12 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public void sayDigits(String digits) throws AgiException {
     SayDigits command = new SayDigits(digits);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }            
+    }
   }
 
   /**
@@ -694,7 +694,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -725,7 +725,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -756,7 +756,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -786,7 +786,7 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -800,7 +800,7 @@ public class FastAgiResponse implements AgiResponse {
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     // This makes no sense:
-    // Returns 0 if image is sent, or if the channel does not support image 
+    // Returns 0 if image is sent, or if the channel does not support image
     // transmission(official documentation for command 'SEND IMAGE').
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorUnsupportedChannel"));
@@ -819,13 +819,13 @@ public class FastAgiResponse implements AgiResponse {
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
 
     // This makes no sense:
-    // Returns 0 if image is sent, or if the channel does not support image 
+    // Returns 0 if image is sent, or if the channel does not support image
     // transmission(official documentation for command 'SEND TEXT').
     if(acr.getResultCode() == 0) {
         throw new AgiException(AppLocale.getI18n("errorUnsupportedChannel"));
     } else if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }    
+    }
   }
 
   /**
@@ -881,10 +881,10 @@ public class FastAgiResponse implements AgiResponse {
     TddMode command = new TddMode(on);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelNotTddCapable"));
-    }    
+    }
   }
 
   /**
@@ -986,12 +986,12 @@ public class FastAgiResponse implements AgiResponse {
   @Override
   public void streamFile(String file) throws AgiException {
     StreamFile command = new StreamFile(file);
-    
+
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
-    }        
+    }
   }
 
   /**
@@ -1003,11 +1003,11 @@ public class FastAgiResponse implements AgiResponse {
     StreamFile command = new StreamFile(file, escapeDigits);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -1020,11 +1020,11 @@ public class FastAgiResponse implements AgiResponse {
     StreamFile command = new StreamFile(file, escapeDigits, offset);
 
     AgiCommandReply acr = cHandler.sendAgiCommand(command);
-    
+
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
@@ -1049,13 +1049,13 @@ public class FastAgiResponse implements AgiResponse {
     if(acr.getResultCode() == -1) {
         throw new AgiException(AppLocale.getI18n("errorChannelErrorOrDisconnected"));
     }
-    
+
     return acr.getResultCodeAsChar();
   }
 
   /**
    * {@inheritDoc}
-   */  
+   */
   @Override
   public void hangup(String channel) throws AgiException {
     Hangup command = new Hangup(channel);
@@ -1064,15 +1064,15 @@ public class FastAgiResponse implements AgiResponse {
 
   /**
    * {@inheritDoc}
-   */  
+   */
   @Override
   public void setVar(String variable, String value) throws AgiException {
     SetVariable command = new SetVariable(variable, value);
     cHandler.sendAgiCommand(command);
   }
-  
+
   @Override
   public AgiCommandReply sendAgiCommand(String cmd) throws AgiException {
     return cHandler.sendAgiCommand(cmd);
-  }  
+  }
 }
