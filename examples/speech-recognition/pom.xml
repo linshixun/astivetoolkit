@@ -3,20 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.astivetoolkit</groupId>
+        <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-M4</version>
-    </parent>    
-    <artifactId>speech-recognition</artifactId>  
-    <name>Examples :: Speech Recognition</name>
+        <version>1.0.0-RC1</version>
+    </parent>
+    <artifactId>speech-recognition</artifactId>
+    <name>Astive Toolkit :: Examples :: Speech Recognition</name>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>server-client</artifactId>
-            <version>1.0.0-M4</version>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-client</artifactId>
+            <version>1.0.0-RC1</version>
         </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
-    </build>   
+    </build>
 </project>

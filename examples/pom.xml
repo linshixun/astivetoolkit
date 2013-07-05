@@ -4,10 +4,11 @@
     <parent>
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
-        <version>1.0.0-M4</version>
+        <version>1.0.0-RC1</version>
     </parent>
+    <groupId>org.astivetoolkit.examples</groupId>
     <artifactId>examples</artifactId>
-    <name>Astive Toolkit :: Examples</name>    
+    <name>Astive Toolkit :: Examples</name>
     <packaging>pom</packaging>
     <modules>
         <module>helloworld</module>

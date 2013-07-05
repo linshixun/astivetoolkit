@@ -3,18 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.astivetoolkit</groupId>
+        <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-M4</version>
-    </parent>    
-    <artifactId>yahoo-weather</artifactId>    
+        <version>1.0.0-RC1</version>
+    </parent>
+    <artifactId>yahoo-weather</artifactId>
     <name>Astive Toolkit :: Examples :: Yahoo Weather</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
-            <version>1.0.0-M4</version>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-client</artifactId>
+            <version>1.0.0-RC1</version>
 	    <scope>provided</scope>
         </dependency>
         <dependency>
@@ -42,7 +42,7 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>        
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -52,7 +52,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.7.1</version>
                 <configuration>
-                    <finalName>uber-${artifactId}-${version}</finalName>                    
+                    <finalName>uber-${artifactId}-${version}</finalName>
                 </configuration>
                 <executions>
                     <execution>

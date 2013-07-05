@@ -2,33 +2,33 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.astivetoolkit</groupId>
+        <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-M4</version>
+        <version>1.0.0-RC1</version>
     </parent>
-    <artifactId>handling-events</artifactId>    
+    <artifactId>handling-events</artifactId>
     <name>Astive Toolkit :: Examples :: Handling Events</name>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>server-client</artifactId>
-            <version>[1.0.0-M4,)</version>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-client</artifactId>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>api-agi</artifactId>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-api-agi</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>api-menu</artifactId>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-api-menu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>server-core</artifactId>
-            <version>[1.0.0-M4,)</version>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-core</artifactId>
+            <version>[1.0.0-RC1,)</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -39,5 +39,5 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
-    </build>   
+    </build>
 </project>

@@ -15,6 +15,7 @@
         <module>apis</module>
         <module>server</module>
         <module>archetypes</module>
+        <module>examples</module>
     </modules>
     <dependencies>
 	<dependency>
