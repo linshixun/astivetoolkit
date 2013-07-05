@@ -21,7 +21,7 @@ package org.astivetoolkit.menu.event;
 /**
  * The listener interface for receiving {@link MenuItem} selections.
  *
- * The listener object created is registered with a using the component's
+ * The listener object created is registered by using the component's
  * addActionListener method.
  *
  * @since 1.0.0
@@ -30,9 +30,8 @@ package org.astivetoolkit.menu.event;
 public interface ActionListener {
 
     /**
-     * Callback triggered when a {@link Menu} or {
-     *
-     * @MenuItem} is selected by a Subject.
+     * Callback triggered when a {@link Menu} or {@link MenuItem} is selected
+     * by a Subject.
      *
      * @param evt the event submitted.
      */

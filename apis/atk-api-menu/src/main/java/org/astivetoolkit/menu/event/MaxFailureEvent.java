@@ -19,7 +19,7 @@
 package org.astivetoolkit.menu.event;
 
 /**
- * A MaxFailerEvent is triggered when the maximum attempts to pick an menu
+ * A MaxFailerEvent is triggered when the maximum attempts to pick a menu
  * option is reached.
  *
  * @since 1.0.0
@@ -43,7 +43,7 @@ public class MaxFailureEvent extends DigitsEvent {
     }
 
     /**
-     * Returns the amount(the maximum) of attempts.
+     * Returns the amount of attempts.
      *
      * @return the maximum amount of attempts.
      */

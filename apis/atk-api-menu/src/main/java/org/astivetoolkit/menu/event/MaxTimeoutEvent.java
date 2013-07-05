@@ -19,9 +19,8 @@
 package org.astivetoolkit.menu.event;
 
 /**
- * A MaxTimeoutEvent is triggered if the
- * <code>Subject</code> skip iteration with the {@link Menu} as many time as
- * {@link Menu#getMaxTimeout()}.
+ * A MaxTimeoutEvent is triggered if the <code>Subject</code> skip iteration
+ * with the {@link Menu} as many time as {@link Menu#getMaxTimeout()}.
  *
  * @since 1.0.0
  * @see MaxTimeoutListener
@@ -46,7 +45,8 @@ public class MaxTimeoutEvent extends DigitsEvent {
     }
 
     /**
-     * Returns the maximum time that User's can skip iteration with the menu.
+     * Returns the maximum time that <code>Subject</code> can skip iteration
+     * with the menu.
      *
      * @return the maximum time that the menu allows the <code>Subject</code> to
      * avoid iteration.

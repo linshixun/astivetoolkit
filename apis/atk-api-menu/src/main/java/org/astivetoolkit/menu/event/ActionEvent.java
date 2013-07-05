@@ -22,7 +22,7 @@ import java.util.EventObject;
 
 /**
  * An ActionEvent is triggered when a {@link MenuItem} or {@link Menu} is
- * selected into a IVR.
+ * selected.
  *
  * @since 1.0.0
  * @see Action
@@ -46,7 +46,7 @@ public class ActionEvent extends EventObject {
     }
 
     /**
-     * Returns the digits of source that trigger by this event.
+     * Returns the digits of the source that trigger this event.
      *
      * @return the digits is unique per menu.
      */

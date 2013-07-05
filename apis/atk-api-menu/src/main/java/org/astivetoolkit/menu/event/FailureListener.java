@@ -27,8 +27,8 @@ package org.astivetoolkit.menu.event;
 public interface FailureListener {
 
     /**
-     * Callback triggered when the digits pressed are not part of the
-     * {@link Menu}.
+     * Callback triggered when <code>Subject</code> pressed invalid menu
+     * options.
      *
      * @param evt the event submitted.
      */

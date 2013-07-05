@@ -27,8 +27,7 @@ package org.astivetoolkit.menu.event;
 public interface KeyListener {
 
     /**
-     * Callback triggered for every key pressed by a
-     * <code>Subject</code>.
+     * Callback triggered for every key pressed by <code>Subject</code>.
      *
      * @param evt the event submitted.
      */

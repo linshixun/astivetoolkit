@@ -22,8 +22,7 @@ import java.util.EventObject;
 import org.astivetoolkit.menu.Digit;
 
 /**
- * A KeyEvent is triggered for every key pressed by a
- * <code>Subject</code>.
+ * A KeyEvent is triggered for every key pressed by a <code>Subject</code>.
  *
  * @since 1.0.0
  * @see KeyListener
@@ -46,7 +45,7 @@ public class KeyEvent extends EventObject {
     }
 
     /**
-     * Returns the key pressed by the User's.
+     * Returns the key pressed by <code>Subject</code>.
      *
      * @return the key pressed by a <code>Subject</code>.
      */

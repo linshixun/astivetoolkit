@@ -22,7 +22,7 @@ import java.util.EventObject;
 import org.astivetoolkit.menu.Authenticator;
 
 /**
- * An AuthenticationEvent is trigger with each attempt to access an restricted
+ * An AuthenticationEvent is trigger with each attempt to access a restricted
  * menu area.
  *
  * @since 1.0.0

@@ -19,8 +19,8 @@
 package org.astivetoolkit.menu.event;
 
 /**
- * The InterDigitsTimeoutEvent is triggered when the
- * <code>Subject</code> fails to press the next key on time.
+ * The InterDigitsTimeoutEvent is triggered when the <code>Subject</code> fails
+ * to press the next key on time.
  *
  * @since 1.0.0
  * @see InterDigitsTimeoutListener
