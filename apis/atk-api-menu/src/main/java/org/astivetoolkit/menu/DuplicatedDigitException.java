@@ -22,7 +22,7 @@ import org.astivetoolkit.util.AppLocale;
 
 /**
  * This exception is trigger when user attempts to insert more than one menu or
- * menu item into the same menu level using the same </code>Digit</code>.
+ * menu item into the same menu level using the same </code>digit</code>.
  *
  * @since 1.0.0
  */

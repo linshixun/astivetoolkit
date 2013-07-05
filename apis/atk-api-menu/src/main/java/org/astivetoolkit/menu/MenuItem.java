@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -32,8 +32,8 @@ import org.astivetoolkit.menu.event.KeyEvent;
 import org.astivetoolkit.menu.event.KeyListener;
 
 /**
- * All items in a menu must belong to the class
- * <code>MenuItem</code>, or one of its subclasses.
+ * All items in a menu must belong to the class <code>MenuItem</code>, or one
+ * of its subclasses.
  *
  * <p>When a menu item is selected, ATK sends an action event to the menu item.
  * Since the event is an instance of ActionEvent, the method
@@ -70,8 +70,7 @@ public class MenuItem {
     }
 
     /**
-     * Creates a new MenuItem object with
-     * <code>digits</code> and
+     * Creates a new MenuItem object with <code>digits</code> and
      * <code>file</code> as parameters.
      *
      * @param digits digits must be unique per menu otherwise a
@@ -85,10 +84,8 @@ public class MenuItem {
     }
 
     /**
-     * Creates a new MenuItem object with
-     * <code>digits</code>,
-     * <code>file</code> and
-     * <code>action</code> as parameters.
+     * Creates a new MenuItem object with <code>digits</code>, <code>file</code>
+     * and <code>action</code> as parameters.
      *
      * @param digits digits must be unique per menu otherwise a
      * {@link DuplicateDigitException} will be perform.
@@ -103,11 +100,8 @@ public class MenuItem {
     }
 
     /**
-     * Creates a new MenuItem object with
-     * <code>digits</code>,
-     * <code>file</code>,
-     * <code>action</code> and
-     * <code>priority</code> as parameters.
+     * Creates a new MenuItem object with <code>digits</code>, <code>file</code>,
+     * <code>action</code> and <code>priority</code> as parameters.
      *
      * @param digits digits must be unique per menu otherwise a
      * {@link DuplicateDigitException} will be perform.
@@ -124,10 +118,9 @@ public class MenuItem {
     }
 
     /**
-     * Registers the specified action listener to receive action events from
-     * this menu item. If
-     * <code>listener</code> is null, no exception is thrown and no action is
-     * performed.
+     * Registers the specified <code>action listener</code> to receive action
+     * events from this menu item. If the <code>listener</code> is
+     * <code>null</code>, no exception is thrown and no action is performed.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -137,8 +130,8 @@ public class MenuItem {
     }
 
     /**
-     * Registers the specified authentication listener to receive authentication
-     * events from this menu item.
+     * Registers the specified <code>authentication listener</code> to receive
+     * authentication events from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -148,8 +141,8 @@ public class MenuItem {
     }
 
     /**
-     * Registers the specified digits listener to receive digits events from
-     * this menu item.
+     * Registers the specified <code>digits listener</code> to receive digits
+     * events from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -159,8 +152,8 @@ public class MenuItem {
     }
 
     /**
-     * Registers the specified key listener to receive key events from this menu
-     * item.
+     * Registers the specified <code>key listener</code> to receive key events
+     * from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -170,10 +163,9 @@ public class MenuItem {
     }
 
     /**
-     * Removes the specified action listener so it no longer receives action
-     * events from this menu item. If
-     * <code>listener</code> is null, no exception is thrown and no action is
-     * performed.
+     * Removes the specified <code>action listener</code> so it no longer
+     * receives action events from this menu item. If <code>listener</code>
+     * is <code>null</code>, no exception is thrown and no action is performed.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -183,8 +175,8 @@ public class MenuItem {
     }
 
     /**
-     * Removes the specified authentication listener to receive authentication
-     * events from this menu item.
+     * Removes the specified <code>authentication listener</code> to receive
+     * authentication events from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -194,8 +186,8 @@ public class MenuItem {
     }
 
     /**
-     * Removes the specified digits listener to receive digits events from this
-     * menu item.
+     * Removes the specified <code>digits listener</code> to receive digits
+     * events from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -205,8 +197,8 @@ public class MenuItem {
     }
 
     /**
-     * Removes the specified key listener to receive digits key events from this
-     * menu item.
+     * Removes the specified <code>key listener</code> to receive digits key
+     * events from this menu item.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -216,9 +208,8 @@ public class MenuItem {
     }
 
     /**
-     * Registers a voice composition. If
-     * <code>file</code> is not NULL, it takes precedence over the voice
-     * composition.
+     * Registers a voice composition. If <code>file</code> is not
+     * <code>null</code>, it takes precedence over the voice composition.
      *
      * @param voiceComposition a set of commands to be performed in sequence.
      */
@@ -283,8 +274,7 @@ public class MenuItem {
     }
 
     /**
-     * Returns the
-     * <code>parent</code> of this menu item.
+     * Returns the <code>parent</code> of this menu item.
      *
      * @return the parent.
      */
@@ -293,8 +283,7 @@ public class MenuItem {
     }
 
     /**
-     * Returns the position of this menu item in the
-     * <code>parent</code> menu.
+     * Returns the position of this menu item in the <code>parent</code> menu.
      *
      * @return the position in the <code>parent</code> menu.
      */
@@ -303,7 +292,7 @@ public class MenuItem {
     }
 
     /**
-     * Returns an array of all the voice compositions registered on this menu
+     * Returns an array with all the voice compositions registered on this menu
      * item.
      *
      * @return all of this menu item's voice compositions or an empty array if
@@ -314,7 +303,7 @@ public class MenuItem {
     }
 
     /**
-     * Removes the specified voice composition.
+     * Removes the specified <code>voice composition</code>.
      *
      * @param voiceComposition the voice composition to remove.
      */
@@ -323,7 +312,7 @@ public class MenuItem {
     }
 
     /**
-     * Default action to execute of this menu item is selected.
+     * Default action to be performed by this menu item if selected.
      *
      * @param action the action.
      */
@@ -350,8 +339,7 @@ public class MenuItem {
     }
 
     /**
-     * The
-     * <code>file</code> to play.
+     * The <code>file</code> to play.
      *
      * @param file the <code>file</code> extension must not be included in the
      * filename.
@@ -361,8 +349,8 @@ public class MenuItem {
     }
 
     /**
-     * Whether or not should forget authentication for a
-     * <code>Subject</code>.
+     * Whether or not should forget authentication for a <code>Subject</code>
+     * after hang up.
      *
      * @param forgetAuthOnLeave by default authentication is temporally save
      * base on callerId.
@@ -381,7 +369,7 @@ public class MenuItem {
     }
 
     /**
-     * Establish the priority of this menu item into the parent.
+     * Establish the priority of this menu item in the parent.
      *
      * @param priority the position into the parent menu.
      */
@@ -390,7 +378,7 @@ public class MenuItem {
     }
 
     /**
-     * Notifies action listeners about an action event.
+     * Notifies <code>action listeners</code> about an action event.
      *
      * @param evt the event.
      */
@@ -401,7 +389,8 @@ public class MenuItem {
     }
 
     /**
-     * Notifies authentication listeners about an authentication event.
+     * Notifies <code>authentication listeners</code> about an authentication
+     * event.
      *
      * @param evt the event.
      */
@@ -412,7 +401,7 @@ public class MenuItem {
     }
 
     /**
-     * Notifies authentication listeners about an authentication event.
+     * Notifies <code>authentication listeners</code> about an authentication event.
      *
      * @param evt the event.
      */
@@ -423,7 +412,7 @@ public class MenuItem {
     }
 
     /**
-     * Notifies digits listeners about a digits event.
+     * Notifies <code>digits listeners</code> about a digits event.
      *
      * @param evt the event.
      */
@@ -434,7 +423,7 @@ public class MenuItem {
     }
 
     /**
-     * Notifies key listeners about a key event.
+     * Notifies <code>key listeners</code> about a key event.
      *
      * @param evt the event.
      */

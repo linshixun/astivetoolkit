@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -92,7 +92,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers a new menu item to this menu.
+     * Registers a new menu item.
      *
      * @param item the new menu item.
      */
@@ -102,8 +102,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified fail listener to receive fail events from this
-     * <code>menu</code>.
+     * Registers the specified <code>fail listener</code> to receive fail events
+     * from this <code>menu</code>.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -113,8 +113,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified integer digit timeout listener to receive inter
-     * digits events from this menu.
+     * Registers the specified <code>integer digit timeout listener</code> to
+     * receive inter digits events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -124,8 +124,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified max failure listener to receive max failure
-     * events from this menu.
+     * Registers the specified <code>max failure listener</code> to receive max
+     * failure events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -135,8 +135,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified max timeout listener to receive max timeout
-     * events from this menu.
+     * Registers the specified <code>max timeout listener</code> to receive max
+     * timeout events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -146,8 +146,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified position change listener to receive position
-     * change events from this menu.
+     * Registers the specified <code>position change listener</code> to receive
+     * position change events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -157,8 +157,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Registers the specified timeout listener to receive position timeout
-     * events from this menu.
+     * Registers the specified <code>timeout listener</code> to receive position
+     * timeout events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -205,7 +205,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Returns the file the system stream if an invalid digits is typed.
+     * Returns the <code>invalid digits</code> file.
      *
      * @return the <code>file</code> to be streamed, without extension.
      */
@@ -216,8 +216,8 @@ public class Menu extends MenuItem {
     /**
      * Returns the maximum timeout for the last menu item in the menu.
      *
-     * @return the maximum time that a <code>Subject</code> have to press the
-     * digits, before the file for the last menu item finish.
+     * @return the maximum time that a <code>Subject</code> have, to press the
+     * digits before the file for the last menu item finish.
      */
     public int getLastDigitsTimeout() {
         return lastDigitsTimeout;
@@ -233,11 +233,10 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Returns the maximum failure that a
-     * <code>Subject</code> is allow to.
+     * Returns the maximum failure that a <code>Subject</code> is allow to.
      *
-     * @return the maximum time that a <code>Subject</code>(user) is allow to
-     * introduce wrong digits.
+     * @return the maximum attempts that a <code>Subject</code>(user) is allow
+     * to introduce invalid digits.
      */
     public int getMaxFailures() {
         return maxFailures;
@@ -263,7 +262,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Whether or not greetings will be played every time.
+     * Whether or not greetings will be played every cycle of the menu.
      *
      * @return true if greetings will be played every time.
      */
@@ -272,7 +271,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Indicates if child will be sort using the digits as criteria.
+     * Indicates if childs will be sort using the digits as criteria.
      *
      * @return true if menu items will be sorted.
      */
@@ -281,8 +280,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified inter digits listener so it no longer receives
-     * inter digits events from this menu.
+     * Removes the specified <code>inter digits listener</code> so it no longer
+     * receives inter digits events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -292,8 +291,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified max failure listener so it no longer receives max
-     * failure events from this menu.
+     * Removes the specified <code>max failure listener</code> so it no longer
+     * receives max failure events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -303,8 +302,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified max timeout listener so it no longer receives max
-     * timeout events from this menu.
+     * Removes the specified <code>max timeout listener</code> so it no longer
+     * receives max timeout events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -314,8 +313,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified max failure listener so it no longer receives max
-     * failure events from this menu.
+     * Removes the specified <code>max failure listener</code> so it no longer
+     * receives max failure events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -325,8 +324,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified timeout listener so it no longer receives timeout
-     * events from this menu.
+     * Removes the specified <code>timeout listener</code> so it no longer
+     * receives timeout events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -336,8 +335,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Removes the specified failure listener so it no longer receives failure
-     * events from this menu.
+     * Removes the specified <code>failure listener</code> so it no longer
+     * receives failure events from this menu.
      *
      * @param listener the object that receives a notification when an event of
      * the specified type occurs.
@@ -361,7 +360,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Establish whether or not the greetings maybe interrupt by user iteration.
+     * Establish whether or not the greetings can be interrupted by user
+     * iteration.
      *
      * @param canInterruptGreetings 'true' will allow users to skip the
      * greetings.
@@ -371,17 +371,16 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Register multiple menu items into a menu at the same time.
+     * Registers an array of menu items.
      *
-     * @param childs all of this menu child's or an empty array if no voice
-     * compositions are currently registered.
+     * @param childs an array of memu items.
      */
     public void setChilds(ArrayList<MenuItem> childs) {
         this.childs = childs;
     }
 
     /**
-     * Establish the goodbye sound.
+     * Sets the goodbye sound.
      *
      * @param exitFile the file extension must not be included in the filename.
      */
@@ -390,7 +389,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Establish the greetings sound.
+     * Sets the greetings sound.
      *
      * @param greetingsFile the file extension must not be included in the
      * filename.
@@ -400,7 +399,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Establish the maximum time allow in between digits.
+     * Sets the maximum time allow in between digits.
      *
      * @param interDigitsTimeout the maximum time allow in between digits.
      */
@@ -409,7 +408,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Establish the file to stream if invalid digits are introduce by a
+     * Sets the file to stream if invalid digits are introduce by a
      * <code>Subject</code>.
      *
      * @param greetingsFile the file extension must not be included in the
@@ -420,10 +419,10 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Establish maximum time waiting for user interaction.
+     * Sets maximum time waiting for user interaction.
      *
      * @param lastDigitsTimeout the maximum time waiting for user interaction
-     * after the audio of last menu item finish.
+     * after the audio of last menu item finished.
      */
     public void setLastDigitsTimeout(int lastDigitsTimeout) {
         this.lastDigitsTimeout = lastDigitsTimeout;
@@ -439,19 +438,19 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Defines the maximum amount failures that a
-     * <code>Subject</code> is allow.
+     * Defines the maximum amount failures that a <code>Subject</code> is allow
+     * to.
      *
-     * @param maxFailures the maximum amount of time that user is allow to
-     * select an option that is not part of this menu.
+     * @param maxFailures the maximum amount of attempts to select invalid
+     * options.
      */
     public void setMaxFailures(int maxFailures) {
         this.maxFailures = maxFailures;
     }
 
     /**
-     * Defines the maximum amount timeouts that a
-     * <code>Subject</code> is allow.
+     * Defines the maximum amount of timeouts that <code>Subject</code> is allow
+     * to.
      *
      * @param maxFailures the maximum amount of time that user is allow to skip
      * menu item selection.
@@ -461,7 +460,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Whether or not greetings will be played every time.
+     * Whether or not greetings will be played every menu cycle.
      *
      * @param playGreetingsAllways by default is set to false.
      */
@@ -470,7 +469,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Whether or not will sort menu items by its digits.
+     * Whether or not will sort menu items by digits.
      *
      * @param sortChildsByDigits is true by default.
      */
@@ -479,10 +478,10 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Returns the maximum timeout
+     * Returns the maximum timeout.
      *
      * @return the maximum consecutive timeouts that a <code>Subject</code> is
-     * allow.
+     * allow to.
      */
     public int getMaxTimeouts() {
         return maxTimeouts;
@@ -530,7 +529,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies failure listeners about a failure event.
+     * Notifies <code>failure listeners</code> about a <code>failure event</code>.
      *
      * @param evt the event.
      */
@@ -541,7 +540,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies inter digits timeout listeners about an inter digits timeout
+     * Notifies <code>inter digits timeout listeners</code> about an
+     * <code>inter digits timeout<code>.
      * event.
      *
      * @param evt the event.
@@ -553,8 +553,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies inter digits timeout listeners about an inter digits timeout
-     * event.
+     * Notifies <code>inter digits timeout listeners</code> about an
+     * <code>inter digits timeout event</code>.
      *
      * @param evt the event.
      */
@@ -565,7 +565,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies max timeout listeners about a max timeout event.
+     * Notifies <code>max timeout listeners</code> about a
+     * <code>max timeout event</code>.
      *
      * @param evt the event.
      */
@@ -576,7 +577,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies position change listeners about a position change event.
+     * Notifies <code>position change listeners</code> about a
+     * <code>position change event</code>.
      *
      * @param evt the event.
      */
@@ -587,7 +589,8 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Notifies timeout listeners about a timeout event.
+     * Notifies <code>timeout listeners</code> about a
+     * <code>timeout event</code>.
      *
      * @param evt the event.
      */
@@ -611,7 +614,7 @@ public class Menu extends MenuItem {
     }
 
     /**
-     * Sets the greetings played.
+     * Sets the <code>greetings played</code>.
      *
      * @param greetingsPlayed use by {@link MenuNavigator} to avoid greetings
      * repetition unless is the desire behavior.

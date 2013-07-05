@@ -46,7 +46,7 @@ public class ActionEvent extends EventObject {
     }
 
     /**
-     * Returns the digits of source that trigger this event.
+     * Returns the digits of source that trigger by this event.
      *
      * @return the digits is unique per menu.
      */

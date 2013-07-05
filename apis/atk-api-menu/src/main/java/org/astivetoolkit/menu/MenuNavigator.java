@@ -39,14 +39,14 @@ import org.astivetoolkit.menu.event.MaxTimeoutEvent;
 import org.astivetoolkit.menu.event.PositionChangeEvent;
 
 /**
- * Is the heart/engine of Menu API. It eliminate the necessity of loops commonly
- * needed by AGI to create user iteration.
+ * The engine of Menu API. It eliminate the necessity of the loops commonly
+ * needed by AGI, when creating user iteration/navigation.
  *
  * @since 1.0.0
  */
 public class MenuNavigator {
-    // A usual logging class
 
+    // A usual logging class
     private static final Logger LOG = Logger.getLogger(MenuNavigator.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;

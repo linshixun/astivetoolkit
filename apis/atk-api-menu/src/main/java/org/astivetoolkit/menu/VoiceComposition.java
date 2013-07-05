@@ -22,8 +22,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Use to add together multiple commands that will be sent in sequence. This
- * class is to be use in conjuction with {@link Menu}.
+ * Registers multiple commands that will be sent in sequence. This
+ * class needs to be use in conjuction with {@link Menu}.
  *
  * @since 1.0.0
  */

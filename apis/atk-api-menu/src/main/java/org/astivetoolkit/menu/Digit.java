@@ -19,7 +19,7 @@
 package org.astivetoolkit.menu;
 
 /**
- * Code or decode DTMF tone from or to the gateway.
+ * Code or decode DTMF tone.
  *
  * @since 1.0.0
  */
@@ -43,10 +43,9 @@ public enum Digit {
     NUMBER_KEY("#");
 
     /**
-     * Converts object
-     * <code>Digit</code> into its string representation.
+     * Converts object <code>Digit</code> to string format.
      *
-     * @param digit the DTMF tone object.
+     * @param digit the DTMF tone.
      * @return string formated value for the DTMF tone.
      */
     static public String getDigit(Digit digit) {
@@ -54,8 +53,7 @@ public enum Digit {
     }
 
     /**
-     * Returns an object
-     * <code>Digit</code>(DTMF tone) from a string.
+     * Returns an object <code>Digit</code>(DTMF tone) from a string.
      *
      * @param digit the string transform.
      * @return the digit object or null if number is an invalid DTMF
@@ -73,8 +71,7 @@ public enum Digit {
     }
 
     /**
-     * Returns an object
-     * <code>Digit</code>(DTMF tone) from a char.
+     * Returns an object <code>Digit</code>(DTMF tone) from a char.
      *
      * @param digit the char to convert
      * @return the digit object or null if number is an invalid DTMF
