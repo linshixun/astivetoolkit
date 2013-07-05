@@ -8,10 +8,9 @@
     <name>Astive App</name>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>astive-client</artifactId>
-            <groupId>${project.version}</groupId>
-            <type>jar</type>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-client</artifactId>
+            <version>1.0.0-RC1</version>
         </dependency>
     </dependencies>
 </project>
