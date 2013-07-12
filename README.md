@@ -10,7 +10,7 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 
 ## Communications diagram
 
-![Astive Communications Diagram](http://astivetoolkit.org/data/uploads/atk_network_diagram.png)
+![Astive Communications Diagram](http://astivetoolkit.org/data/uploads/astive_communications_diagram.png)
 
 ## Features 
 
