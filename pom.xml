@@ -3,24 +3,38 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-    <version>1.0.0-M4</version>
+    <version>1.0.0-RC1</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
+    <description>Astive is a toolkit and server for Java that provides an extensible
+        architecture for developing, maintaining, and deploying telephony applications.
+    </description>
     <url>http://astivetoolkit.org</url>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>mc-release</id>
-            <name>Local Maven repository of releases</name>
-            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <repositories>
-        <repository>
-            <id>jetty-releases</id>
-            <name>Jetty Releases</name>
-            <url>https://oss.sonatype.org/content/repositories/jetty-releases</url>
-        </repository>        
-    </repositories>
+    <modules>
+        <module>atk-commons</module>
+        <module>apis</module>
+        <module>server</module>
+        <module>archetypes</module>
+        <module>examples</module>
+    </modules>
+    <dependencies>
+	<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.toolchain</groupId>
+            <artifactId>jetty-test-helper</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -28,8 +42,8 @@
                 <groupId>com.google.code.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
                 <version>1.4.0</version>
-                <configuration>                    
-                    <header>${basedir}/src/main/resources/license-template.txt</header>                    
+                <configuration>
+                    <header>${basedir}/src/main/resources/license-template.txt</header>
                     <failIfMissing>true</failIfMissing>
                     <aggregate>true</aggregate>
                     <properties>
@@ -42,7 +56,7 @@
                     </includes>
                     <excludes>
                         <exclude>archetype/**</exclude>
-                    </excludes>                    
+                    </excludes>
                     <headerDefinitions>
                         <headerDefinition>${basedir}/src/main/resources/license-headerstyle.xml</headerDefinition>
                     </headerDefinitions>
@@ -92,24 +106,24 @@
                     <finalName>astivetoolkit</finalName>
                     <outputDirectory>dist</outputDirectory>
                     <workDirectory>target/assembly/astive-${project.version}</workDirectory>
-                </configuration> 
-            </plugin>            
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-    <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
-    <modules>
-        <module>commons</module>
-        <module>api</module>
-        <module>server</module>
-        <module>archetype</module>
-    </modules>    
     <scm>
         <connection>scm:git://github.com/psanders/astivetoolkit.git</connection>
         <url>scm:git://github.com/psanders/astivetoolkit.git</url>
         <developerConnection>scm:git://github.com/psanders/astivetoolkit.git</developerConnection>
     </scm>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mc-release</id>
+            <name>Local Maven repository of releases</name>
+            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
     <distributionManagement>
-		<!--site> <id>website</id> <url>scp://www.mycompany.com/www/docs/project/</url> 
+		<!--site> <id>website</id> <url>scp://www.mycompany.com/www/docs/project/</url>
 			</site -->
         <repository>
             <id>releases</id>

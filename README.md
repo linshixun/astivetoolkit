@@ -8,6 +8,10 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 * Maven 3.x.x+
 * Asterisk 1.8+
 
+## Communications diagram
+
+![Astive Communications Diagram](http://astivetoolkit.org/data/uploads/astive_communications_diagram.png)
+
 ## Features 
 
 * Multi-IVR applications.
