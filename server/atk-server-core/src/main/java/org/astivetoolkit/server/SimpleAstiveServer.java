@@ -19,6 +19,7 @@
 package org.astivetoolkit.server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.astivetoolkit.astivlet.Astivlet;
@@ -37,6 +38,8 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     private Astivlet astivlet;
     private ExecutorService executorService;
     private int port;
+    private int backlog;
+    private InetAddress bindAddr;
 
     public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
         super();
@@ -51,6 +54,22 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         this.astivlet = astivlet;
     }
 
+    public SimpleAstiveServer(Astivlet astivlet, int port, int backlog) throws SystemException, IOException {
+        super(port, backlog);
+        this.port = port;
+        this.backlog = backlog;
+        this.astivlet = astivlet;
+    }
+
+    public SimpleAstiveServer(Astivlet astivlet, int port, int backlog, InetAddress bindAddr)
+            throws SystemException, IOException {
+        super(port, backlog, bindAddr);
+        this.port = port;
+        this.backlog = backlog;
+        this.bindAddr = bindAddr;
+        this.astivlet = astivlet;
+    }
+
     public Astivlet getAstivlet() {
         return astivlet;
     }
@@ -61,6 +80,22 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     @Override
     public int getPort() {
         return port;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getBacklog() {
+        return backlog;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public InetAddress getBindAddr() {
+        return bindAddr;
     }
 
     /**
