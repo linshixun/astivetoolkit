@@ -76,6 +76,14 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
             </plugin>
+	    <plugin>
+	  	<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-javadoc-plugin</artifactId>
+		<version>2.9</version>
+                <configuration>
+                    <excludePackageNames>org.astivetoolkit.util:org.astivetoolkit.agi.annotations:org.astivetoolkit.examples:org.astivetoolkit.server:noNamespace:</excludePackageNames>
+                </configuration>
+	    </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
