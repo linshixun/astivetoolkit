@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.util.test;
 
+import java.util.Locale;
 import junit.framework.TestCase;
 import org.astivetoolkit.util.AppLocale;
 
@@ -38,6 +39,9 @@ public class AppLocaleTest extends TestCase {
      * Test method.
      */
     public void testAppLocale() {
-        assertEquals(AppLocale.getI18n("messageTest", new Object[]{"test"}), "This is a test.");
+        // This test only work if the Locale is English
+        if(Locale.getDefault() == Locale.ENGLISH) {
+            assertEquals(AppLocale.getI18n("messageTest", new Object[]{"test"}), "This is a test.");
+        }
     }
 }
