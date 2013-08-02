@@ -48,9 +48,9 @@ public final class URLValidator {
     /**
      * Check if an URL match with the following criteria.
      *
-     * A string beginning with a ‘/’ character and ending with a ‘/*’ suffix is
-     * used for path mapping. A string beginning with a ‘*.’ prefix is used as
-     * an extension mapping. A string containing only the ’/’ character
+     * A string beginning with a '/' character and ending with a '/*' suffix is
+     * used for path mapping. A string beginning with a '*.' prefix is used as
+     * an extension mapping. A string containing only the '/' character
      * indicates the "default" servlet of the application. In this case the
      * servlet path is the request URI minus the context path and the path info
      * is null. All other strings are used for exact matches only.
