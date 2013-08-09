@@ -32,7 +32,7 @@ package org.astivetoolkit.astivlet;
 public abstract class Astivlet {
 
     /**
-     * Used by the Astive Server to to respond to a telephone system request.
+     * Used by the Astive Server to respond to a telephone system request.
      *
      * @param request the <code>channel</code> information.
      * @param response the actions to be performed by the client.
