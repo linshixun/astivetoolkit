@@ -26,10 +26,11 @@ import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
 
 /**
- * Simple and convenient {@link AstiveServer}, useful for testing.
+ * SimpleAstiveServer is a convenient implementation of {@link AbstractAstiveServer}. 
+ * The SimpleAstiveServer is useful for testing purposes, and is not recommended 
+ * for production enviroments.
  *
  * @since 1.0.0
- * @see Service
  * @see AbstractAstiveServer
  * @see AstiveServer
  */
@@ -41,12 +42,23 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     private int backlog;
     private InetAddress bindAddr;
 
+   /**
+    * Creates a new SimpleAstiveServer object with {@link Astivlet} as only parameter.
+    * 
+    * @param astivlet the entry point to the application. 
+    */
     public SimpleAstiveServer(Astivlet astivlet) throws SystemException, IOException {
         super();
         this.port = DEFAULT_AGI_SERVER_PORT;
         this.astivlet = astivlet;
     }
 
+    /**
+     * Creates a new SimpleAstiveServer object with the specified port.
+     * 
+     * @param astivlet the entry point to the application.
+     * @param port must be positive integer from 1 to 65535.
+     */
     public SimpleAstiveServer(Astivlet astivlet, int port)
             throws SystemException, IOException {
         super(port);
@@ -54,6 +66,13 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         this.astivlet = astivlet;
     }
 
+    /**
+     *  Creates a new SimpleAstiveServer object with the specified port and listen backlog.
+     * 
+     *  @param astivlet the entry point to the application.
+     *  @param port must be positive integer from 1 to 65535.
+     *  @param backlog requested maximum length of the queue of incoming connections.
+     */
     public SimpleAstiveServer(Astivlet astivlet, int port, int backlog) throws SystemException, IOException {
         super(port, backlog);
         this.port = port;
@@ -61,6 +80,15 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         this.astivlet = astivlet;
     }
 
+    /**
+     * Creates a new SimpleAstiveServer object with the specified port, listen backlog, and 
+     * local IP address to bind to.
+     * 
+     * @param astivlet the entry point to the application.
+     * @param port must be positive integer from 1 to 65535.
+     * @param backlog requested maximum length of the queue of incoming connections.
+     * @param bindAddr the local InetAddress the server will bind to.
+     */
     public SimpleAstiveServer(Astivlet astivlet, int port, int backlog, InetAddress bindAddr)
             throws SystemException, IOException {
         super(port, backlog, bindAddr);
@@ -70,6 +98,20 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         this.astivlet = astivlet;
     }
 
+    /**
+     * Use to overwrite the Astivlet served by the SimpleAstiveServer.
+     * 
+     * @param astivlet the entry point the application.
+     */ 
+    public void setAstivlet(Astivlet astivlet) {
+        this.astivlet = astivlet;
+    }
+
+    /**
+     * Provide with access to the Astivlet served by the SimpleAstiveServer.
+     * 
+     * @return the entry point to the application.
+     */
     public Astivlet getAstivlet() {
         return astivlet;
     }
@@ -105,10 +147,6 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     protected void launchConnectionMonitor() {
         SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
         monitor.run();
-    }
-
-    public void setAstivlet(Astivlet astivlet) {
-        this.astivlet = astivlet;
     }
 
     /**
