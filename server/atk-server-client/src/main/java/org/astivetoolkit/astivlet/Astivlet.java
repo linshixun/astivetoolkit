@@ -19,7 +19,7 @@
 package org.astivetoolkit.astivlet;
 
 /**
- * Defines methods that all astivle's must implement.
+ * Defines methods that all astivles must implement.
  *
  * An astivlet is a small Java program that runs within an Astive Server.
  * Astivlets receive and respond to requests from telephone systems like
