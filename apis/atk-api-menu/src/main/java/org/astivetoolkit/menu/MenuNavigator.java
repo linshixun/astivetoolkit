@@ -360,9 +360,7 @@ public class MenuNavigator {
 
         // Selected none option
         if ((digits == null) || digits.equals("(timeout)")) {
-            // XXX: No necesariamente timeout, puede ser tambien que ingreso
-            // ???
-            // signo de número.
+            // XXX: Not only timeout, but also for # sign.
             if (digits == null) {
                 FailEvent evt = new FailEvent(menu, digits, menu.getFailuresCount());
                 menu.fireFailureListener_failurePerform(evt);
