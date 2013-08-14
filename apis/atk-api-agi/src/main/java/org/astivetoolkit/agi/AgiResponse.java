@@ -797,7 +797,7 @@ public interface AgiResponse {
      * @return the key press by the user if any.
      * @throws AgiException
      */
-    char waitForDigit(int timout) throws AgiException;
+    char waitForDigit(int timeout) throws AgiException;
 
     /**
      * Sends a command to asterisk and returns the corresponding reply.
