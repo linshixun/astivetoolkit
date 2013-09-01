@@ -221,7 +221,7 @@ public final class CommandProcessor {
                 // Ignore any other parameter, since it break the
                 // secuense. Also send an Error message to alert the
                 // developers about that issue.
-                LOG.error(AppLocale.getI18n("ignoringSubsequentParameters"));
+                LOG.error(AppLocale.getI18n("messageIgnoringSubsequentParameters"));
 
                 break;
             }

@@ -108,7 +108,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                 AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug("messageDone.");
+                    LOG.debug("messageDone");
                 }
             } else {
                 LOG.error(AppLocale.getI18n("errorUnableToPlaceCallCheckNetPermissions"));

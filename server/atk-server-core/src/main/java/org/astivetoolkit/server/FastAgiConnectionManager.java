@@ -50,7 +50,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
     @Override
     public void add(Connection conn) {
         if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("newConnectionAdded", new String[]{conn.toString()}));
+            LOG.debug(AppLocale.getI18n("messageNewConnectionAdded", new String[]{conn.toString()}));
         }
 
         conns.add(conn);
@@ -70,7 +70,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
     @Override
     public void remove(Connection conn) throws IOException {
         if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("removingConnection", new String[]{conn.toString()}));
+            LOG.debug(AppLocale.getI18n("messageRemovingConnection", new String[]{conn.toString()}));
         }
 
         if (!conn.isClosed()) {

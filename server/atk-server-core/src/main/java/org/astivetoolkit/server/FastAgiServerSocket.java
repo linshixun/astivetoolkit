@@ -53,9 +53,9 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
         super();
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("port = " + port);
-            LOG.debug("backlog = " + backlog);
-            LOG.debug("bindAddr = " + bindAddr);
+            LOG.debug(AppLocale.getI18n("port", new Object[]{port}));
+            LOG.debug(AppLocale.getI18n("backlog", new Object[]{backlog}));
+            LOG.debug(AppLocale.getI18n("bindAddr", new Object[]{bindAddr}));
         }
 
         this.port = port;

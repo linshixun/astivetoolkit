@@ -73,7 +73,7 @@ public class AdminDaemonClient extends Socket {
 
     private void send(AdminCommand cmd, String arg) throws IOException {
         if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("sendingCmd", new Object[]{cmd, arg}));
+            LOG.debug(AppLocale.getI18n("messageSendingCmd", new Object[]{cmd, arg}));
         }
 
         getWriter().println(cmd.toString());
