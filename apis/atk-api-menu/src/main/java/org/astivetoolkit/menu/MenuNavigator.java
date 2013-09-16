@@ -104,7 +104,7 @@ public class MenuNavigator {
     }
 
     private ArrayList<String> getChildsKeys(ArrayList<MenuItem> menuChilds) {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<String>();
 
         for (MenuItem child : menuChilds) {
             final String digits = ((MenuItem) child).getDigits();

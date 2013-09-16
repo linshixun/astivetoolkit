@@ -46,10 +46,10 @@ import org.astivetoolkit.menu.event.KeyListener;
 public class MenuItem {
 
     private Action action;
-    private ArrayList<ActionListener> actionListenerList = new ArrayList<>();
-    private ArrayList<AuthenticationListener> authenticationListenerList = new ArrayList<>();
-    private ArrayList<DigitsListener> digitsListenerList = new ArrayList<>();
-    private ArrayList<KeyListener> keyListenerList = new ArrayList<>();
+    private ArrayList<ActionListener> actionListenerList = new ArrayList<ActionListener>();
+    private ArrayList<AuthenticationListener> authenticationListenerList = new ArrayList<AuthenticationListener>();
+    private ArrayList<DigitsListener> digitsListenerList = new ArrayList<DigitsListener>();
+    private ArrayList<KeyListener> keyListenerList = new ArrayList<KeyListener>();
     private Authenticator authenticator;
     private List<VoiceComposition> voiceCompositionList;
     private String digits;
@@ -66,7 +66,7 @@ public class MenuItem {
      * Creates a new MenuItem object without parameters.
      */
     public MenuItem() {
-        voiceCompositionList = new ArrayList<>();
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -80,7 +80,7 @@ public class MenuItem {
     public MenuItem(String digits, String file) {
         this.digits = digits;
         this.file = file;
-        voiceCompositionList = new ArrayList<>();
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -96,7 +96,7 @@ public class MenuItem {
         this.digits = digits;
         this.file = file;
         this.action = action;
-        voiceCompositionList = new ArrayList<>();
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**
@@ -114,7 +114,7 @@ public class MenuItem {
         this.file = file;
         this.action = action;
         this.priority = priority;
-        voiceCompositionList = new ArrayList<>();
+        voiceCompositionList = new ArrayList<VoiceComposition>();
     }
 
     /**

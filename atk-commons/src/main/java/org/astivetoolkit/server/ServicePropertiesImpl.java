@@ -78,7 +78,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
         }
 
         try {
-            final List<InetAddress> onlyFromList = new ArrayList<>();
+            final List<InetAddress> onlyFromList = new ArrayList<InetAddress>();
             final String[] l = properties.get("onlyFrom").toString().split(",");
 
             for (int i = 0; l.length > i; i++) {

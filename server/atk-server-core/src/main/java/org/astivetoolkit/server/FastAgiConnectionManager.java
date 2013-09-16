@@ -41,7 +41,7 @@ public class FastAgiConnectionManager implements ConnectionManager {
      * Creates a new FastAgiConnectionManager object.
      */
     public FastAgiConnectionManager() {
-        conns = new ArrayList<>();
+        conns = new ArrayList<Connection>();
     }
 
     /**

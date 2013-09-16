@@ -267,12 +267,12 @@ public class VoiceComposer {
 
     private static void reset() {
         VoiceComposer.escapeDigits = "";
-        VoiceComposer.commands = new ArrayList<>();
+        VoiceComposer.commands = new ArrayList<Object>();
         VoiceComposer.format = "";
         VoiceComposer.timeZone = null;
     }
 
     private VoiceComposer() {
-        commands = new ArrayList<>();
+        commands = new ArrayList<Object>();
     }
 }

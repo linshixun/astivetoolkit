@@ -60,7 +60,15 @@ public class AstivletProcessor {
             m = c.getDeclaredMethod("service", classParamTypes);
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+        } catch (NoSuchMethodException ex) {
+            LOG.error(ex.getMessage());
+        } catch (SecurityException ex) {
+            LOG.error(ex.getMessage());
+        } catch (IllegalAccessException ex) {
+            LOG.error(ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            LOG.error(ex.getMessage());
+        } catch (InvocationTargetException ex) {
             LOG.error(ex.getMessage());
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
@@ -82,8 +90,16 @@ public class AstivletProcessor {
             m = c.getDeclaredMethod("service", classParamTypes);
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            LOG.error(AppLocale.getI18n(ex.getMessage()));
+        } catch (NoSuchMethodException ex ) {
+            LOG.error(ex.getMessage());
+        } catch (SecurityException ex ) {
+            LOG.error(ex.getMessage());
+        } catch (IllegalAccessException ex) {
+            LOG.error(ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            LOG.error(ex.getMessage());
+        } catch (InvocationTargetException ex) {
+            LOG.error(ex.getMessage());
         }
     }
 }

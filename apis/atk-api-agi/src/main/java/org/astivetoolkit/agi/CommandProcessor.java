@@ -74,7 +74,9 @@ public final class CommandProcessor {
 
             try {
                 param = field.get(o);
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
+            } catch (IllegalArgumentException ex) {
+                throw new AgiException(ex);
+            } catch (IllegalAccessException ex) {
                 throw new AgiException(ex);
             }
 
@@ -117,9 +119,12 @@ public final class CommandProcessor {
                     cmd.append("\"");
                     cmd.append(paramStr);
                     cmd.append("\"");
-                } catch (InstantiationException | IllegalAccessException ex) {
+                } catch (InstantiationException ex) {
+                    throw new AgiException(ex.getMessage());
+                } catch (IllegalAccessException ex) {
                     throw new AgiException(ex.getMessage());
                 }
+                
             } else if (param instanceof Boolean) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
                     throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
@@ -210,7 +215,9 @@ public final class CommandProcessor {
 
             try {
                 c = f.get(o);
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
+            } catch (IllegalArgumentException ex) {
+                throw new AgiException(ex);
+            } catch (IllegalAccessException ex) {
                 throw new AgiException(ex);
             }
 

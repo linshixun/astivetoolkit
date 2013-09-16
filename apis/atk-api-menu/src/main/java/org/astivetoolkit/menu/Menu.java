@@ -40,13 +40,13 @@ import org.astivetoolkit.menu.event.TimeoutListener;
  */
 public class Menu extends MenuItem {
 
-    private ArrayList<MenuItem> childs = new ArrayList<>();
-    private ArrayList<FailureListener> failListenerList = new ArrayList<>();
-    private ArrayList<InterDigitsTimeoutListener> interDigitsTimeoutListenerList = new ArrayList<>();
-    private ArrayList<MaxFailureListener> maxFailureListenerList = new ArrayList<>();
-    private ArrayList<MaxTimeoutListener> maxTimeoutListenerList = new ArrayList<>();
-    private ArrayList<PositionChangeListener> positionChangeListenerList = new ArrayList<>();
-    private ArrayList<TimeoutListener> timeoutListenerList = new ArrayList<>();
+    private ArrayList<MenuItem> childs = new ArrayList<MenuItem>();
+    private ArrayList<FailureListener> failListenerList = new ArrayList<FailureListener>();
+    private ArrayList<InterDigitsTimeoutListener> interDigitsTimeoutListenerList = new ArrayList<InterDigitsTimeoutListener>();
+    private ArrayList<MaxFailureListener> maxFailureListenerList = new ArrayList<MaxFailureListener>();
+    private ArrayList<MaxTimeoutListener> maxTimeoutListenerList = new ArrayList<MaxTimeoutListener>();
+    private ArrayList<PositionChangeListener> positionChangeListenerList = new ArrayList<PositionChangeListener>();
+    private ArrayList<TimeoutListener> timeoutListenerList = new ArrayList<TimeoutListener>();
     private String exitFile;
     private String greetingsFile;
     private String invalidDigitsFile;

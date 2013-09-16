@@ -77,7 +77,7 @@ public class AgiCommandReply {
         this();
 
         if (lines != null) {
-            this.lines = new ArrayList<>(lines);
+            this.lines = new ArrayList<String>(lines);
 
             if (!lines.isEmpty()) {
                 firstLine = lines.get(0);
@@ -102,7 +102,7 @@ public class AgiCommandReply {
             return Collections.unmodifiableMap(attributes);
         }
 
-        attributes = new HashMap<>();
+        attributes = new HashMap<String, String>();
 
         final Matcher matcher = ADDITIONAL_ATTRIBUTES_PATTERN.matcher(firstLine);
 
@@ -256,7 +256,7 @@ public class AgiCommandReply {
     private Map<String, String> parseAttributes(String s) {
         StringBuilder keyBuilder = new StringBuilder();
         StringBuilder valueBuilder = new StringBuilder();
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<String, String>();
 
         boolean inKey = true;
         boolean inQuotes = false;

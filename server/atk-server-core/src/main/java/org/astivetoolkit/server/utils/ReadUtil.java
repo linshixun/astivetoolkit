@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 public class ReadUtil {
 
-    ArrayList<String> lines = new ArrayList<>();
+    ArrayList<String> lines = new ArrayList<String>();
 
     public ReadUtil(BufferedReader reader) throws IOException {
         String s;

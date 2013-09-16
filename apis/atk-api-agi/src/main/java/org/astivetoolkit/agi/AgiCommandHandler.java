@@ -50,7 +50,7 @@ public class AgiCommandHandler {
      * @throws AgiException if is unable to perform I/O with Asterisk.
      */
     public AgiRequest getAgiRequest() throws AgiException {
-        ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<String>();
         String line;
 
         try {
@@ -76,7 +76,7 @@ public class AgiCommandHandler {
         List<String> lines;
         String line = null;
 
-        lines = new ArrayList<>();
+        lines = new ArrayList<String>();
 
         try {
             line = conn.readLine();

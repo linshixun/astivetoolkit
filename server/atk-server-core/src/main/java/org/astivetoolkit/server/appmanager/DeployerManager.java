@@ -119,8 +119,12 @@ public final class DeployerManager implements Deployer, AstDB {
                 LOG.info(AppLocale.getI18n("messageAppDeployed",
                         new Object[]{app.getInfo().getName()}));
             }
-        } catch (IOException | JclException | AstiveException ex) {
+        } catch (IOException ex) {
             throw new AstiveException(ex);
+        } catch (JclException ex) {
+            throw new AstiveException(ex);
+        } catch (AstiveException ex) {
+           throw new AstiveException(ex);
         }
     }
 
@@ -232,7 +236,10 @@ public final class DeployerManager implements Deployer, AstDB {
             } else {
                 LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
             }
-        } catch (org.xeustechnologies.jcl.exception.JclException | AstiveException ex) {
+        } catch (org.xeustechnologies.jcl.exception.JclException ex) {
+            LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+            throw new AstiveException(ex);
+        } catch (AstiveException ex) {
             LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
             throw new AstiveException(ex);
         }

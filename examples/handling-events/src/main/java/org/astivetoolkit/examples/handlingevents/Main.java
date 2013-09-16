@@ -28,7 +28,7 @@ public class Main {
         try {
             SimpleAstiveServer server = new SimpleAstiveServer(new App());
             server.start();
-        } catch (SystemException | IOException ex) {
-        }
+        } catch (SystemException ex) {
+        } catch (IOException ex) {}
     }
 }
