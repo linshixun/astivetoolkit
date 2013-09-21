@@ -128,7 +128,7 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
                         LOG.info(AppLocale.getI18n("messageDone"));
                     } catch (AstiveException ex) {
                         writer.println(AppLocale.getI18n("errorUnableToDeployApp"));
-                        LOG.error(AppLocale.getI18n("errorUnableToDeployApp"));
+                        LOG.warn(AppLocale.getI18n("errorUnableToDeployApp"));
                     }
 
                     writer.flush();
@@ -142,8 +142,8 @@ public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
                         writer.println(AppLocale.getI18n("messageDone"));
                         LOG.info(AppLocale.getI18n("messageDone"));
                     } catch (AstiveException ex) {
-                        writer.println(AppLocale.getI18n("errorUnableToDeployApp"));
-                        LOG.error(AppLocale.getI18n("errorUnableToDeployApp"));
+                        writer.println(AppLocale.getI18n("errorUnableToUndeployApp"));
+                        LOG.warn(AppLocale.getI18n("errorUnableToUndeployApp"));
                     }
 
                     writer.flush();

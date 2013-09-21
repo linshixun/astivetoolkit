@@ -21,6 +21,7 @@ package org.astivetoolkit.server.appmanager;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
@@ -29,7 +30,6 @@ import org.astivetoolkit.server.AstDB;
 import org.astivetoolkit.server.AstObj;
 import org.astivetoolkit.server.MyAstDB;
 import org.astivetoolkit.util.AppLocale;
-import org.astivetoolkit.util.CopyFile;
 import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
@@ -95,22 +95,22 @@ public final class DeployerManager implements Deployer, AstDB {
             }
 
             File srcFile = new File(appPath);
-            String dstFileStr = AbstractAstiveServer.ASTIVE_APPS + srcFile.getName();
-
-            // The name of the file must be use also to undeploy the apps.
+            File appsFolder = new File(AbstractAstiveServer.ASTIVE_APPS);
+            
+            // The name of the file must be use to undeploy the apps.
             AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());
 
             if (!appExist(app.getDeploymentId())) {
                 addApp(app);
 
-                if (!dstFileStr.equals(appPath)) {
-                    CopyFile.copyfile(appPath, dstFileStr);
-                }
+                File f = new File(AbstractAstiveServer.ASTIVE_APPS + srcFile.getName());
+                
+                if (!f.exists()) {               
+                    FileUtils.copyFileToDirectory(srcFile, appsFolder);
+                }               
             } else {
-                if (LOG.isInfoEnabled()) {
-                    LOG.warn(AppLocale.getI18n("errorAppAlreadyExist",
-                            new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
-                }
+                LOG.warn(AppLocale.getI18n("errorAppAlreadyExist",
+                        new Object[]{appPath, AbstractAstiveServer.ASTIVE_APPS}));
 
                 return;
             }
@@ -231,16 +231,16 @@ public final class DeployerManager implements Deployer, AstDB {
                         LOG.info(AppLocale.getI18n("messageAppUndeployed", new Object[]{app}));
                     }
                 } else {
-                    LOG.warn(AppLocale.getI18n("errorAppFileNotExist", new Object[]{app}));
+                    LOG.warn(AppLocale.getI18n("errorAppFileDoesNotExist", new Object[]{app}));
                 }
             } else {
-                LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+                LOG.warn(AppLocale.getI18n("errorAppDoesNotExist", new Object[]{app}));
             }
         } catch (org.xeustechnologies.jcl.exception.JclException ex) {
-            LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+            LOG.warn(AppLocale.getI18n("errorAppDoesNotExist", new Object[]{app}));
             throw new AstiveException(ex);
         } catch (AstiveException ex) {
-            LOG.warn(AppLocale.getI18n("errorAppNotExist", new Object[]{app}));
+            LOG.warn(AppLocale.getI18n("errorAppDoesNotExist", new Object[]{app}));
             throw new AstiveException(ex);
         }
     }
