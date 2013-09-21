@@ -2,6 +2,8 @@
 
 Astive is a toolkit and server for Java, with an extensible architecture for developing, maintaining, and deploying voice applications. Build high-quality products over Asterisk® PBX with the Astive developer solutions.
 
+Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/)
+
 ## Requirements
 
 * Java 1.5+
