@@ -28,7 +28,8 @@ import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- *
+ * This object receive connection from a FastAGI client.
+ * 
  * @since 1.0.0
  * @see Service
  */
@@ -108,7 +109,7 @@ public class FastAgiServerSocket extends ServerSocket implements Service, Defaul
         }
 
         try {
-            close();
+            close();            
         } catch (IOException ex) {
             throw new SystemException(AppLocale.getI18n("errorCantStopFastAgiServerSocket",
                     new Object[]{ex.getMessage()}));
