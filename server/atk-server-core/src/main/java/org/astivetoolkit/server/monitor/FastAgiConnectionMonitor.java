@@ -144,7 +144,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                 conn = server.acceptConnection();
 
                 // TODO: This should be configurable.
-                if (threadPoolExecutor.getMaximumPoolSize() <= threadPoolExecutor.getTaskCount()) {
+                if (threadPoolExecutor.getMaximumPoolSize() <= threadPoolExecutor.getActiveCount()) {
                     conn.close();
                     continue;
                 }
