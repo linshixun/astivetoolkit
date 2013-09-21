@@ -158,9 +158,7 @@ public class AgiCommandReply {
     }
 
     public int getResultCode() {
-        String r;
-
-        r = getResult();
+        result = getResult();
 
         if (result == null) {
             return -1;
