@@ -73,21 +73,21 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
     }
 
     /**
-     * @return the bindAddr
+     * @return server bindAddr
      */
     public InetAddress getBindAddr() {
         return bindAddr;
     }
 
     /**
-     * @return the port
+     * @return server port
      */
     public int getPort() {
         return port;
     }
 
     /**
-     * @return App version.
+     * @return server version.
      */
     public String getVersion() {
         StringBuilder sb =
@@ -101,19 +101,12 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
 
     @Override
     public void start() throws SystemException {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("messageStarting"));
-        }
-
         super.start();
+        launchConnectionMonitor();
     }
 
     @Override
     public void stop() throws SystemException {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(AppLocale.getI18n("messageStopping"));
-        }
-
         try {
             super.stop();
             System.exit(0);
