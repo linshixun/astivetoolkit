@@ -20,6 +20,7 @@ package org.astivetoolkit.server.monitor;
 
 import java.io.IOException;
 import java.net.SocketPermission;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -71,11 +72,18 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         int corePoolSize = threads;
         int maxPoolSize = threads;
         // TODO: This should be a parameter
-        long keepAliveTime = 5000;
+        long keepAliveTime = 0L;
 
+        BlockingQueue<Runnable> threadPool = new LinkedBlockingQueue <Runnable>();
+        
         threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
                 keepAliveTime, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>());
+                    threadPool);
+
+        //threadPoolExecutor.prestartAllCoreThreads();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageDone"));
+        }
     }
 
     /**
@@ -129,20 +137,19 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
      */
     @Override
     public void run() {
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             final FastAgiConnection conn;
 
             try {
                 conn = server.acceptConnection();
 
                 // TODO: This should be configurable.
-                if (threadPoolExecutor.getMaximumPoolSize() == threadPoolExecutor.getTaskCount()) {
+                if (threadPoolExecutor.getMaximumPoolSize() <= threadPoolExecutor.getTaskCount()) {
                     conn.close();
-
                     continue;
                 }
-
-                threadPoolExecutor.execute(new Runnable() {
+                
+                Runnable task = new Runnable() {
                     @Override
                     public void run() {
                         manager.add(conn);
@@ -156,13 +163,21 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                         try {
                             manager.remove(conn);
                         } catch (IOException ex) {
+                            System.out.println("DBG 1");
                             LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                     new Object[]{ex.getMessage()}));
                         }
                     }
-                });
+                };
+                
+                LOG.debug("Task count :: " +  threadPoolExecutor.getActiveCount());
+                threadPoolExecutor.execute(task); 
             } catch (IOException ex) {
-                LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
+                if(!server.isRunning()) {
+                    LOG.debug(AppLocale.getI18n("messageStoppingFastAgiConnectionMonitor"));   
+                    Thread.currentThread().interrupt();
+                    LOG.debug(AppLocale.getI18n("messageDone"));
+                }
             }
         }
     }

@@ -45,7 +45,6 @@ import org.astivetoolkit.util.AppLocale;
  */
 public class SimpleConnectionMonitor implements ConnectionMonitor {
     // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(SimpleConnectionMonitor.class);
     private Astivlet astivlet;
     private ConnectionManager manager;
@@ -109,7 +108,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
     public void run() {
         while (true) {
             try {
-                final FastAgiConnection conn = server.acceptConnection();
+                final FastAgiConnection conn = server.acceptConnection();        
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
