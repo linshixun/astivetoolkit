@@ -22,10 +22,19 @@ import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.agi.Connection;
 
 /**
- *
+ * Manage incoming connections from a telephone engine.
+ * 
  * @since 1.0.0
+ * @see FastAgiConectionMonitor
+ * @see SimpleConnectionMonitor
  */
 public interface ConnectionMonitor extends Runnable {
 
+    /**
+     * Process all incoming connection.
+     * 
+     * @param conn incoming connection.
+     * @throws AstiveException 
+     */
     void processConnection(Connection conn) throws AstiveException;
 }
