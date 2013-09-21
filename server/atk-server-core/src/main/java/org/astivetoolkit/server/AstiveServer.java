@@ -503,6 +503,7 @@ public class AstiveServer extends AbstractAstiveServer {
     public void stop() throws SystemException {
         super.stop();
         executorService.shutdown();
+        LOG.info(AppLocale.getI18n("messageShutdown"));
     }
     // </editor-fold>
 }
