@@ -55,14 +55,13 @@ import org.astivetoolkit.util.AppLocale;
 import org.astivetoolkit.util.NetUtil;
 
 /**
- * Final implementation for {@link AbstractAstiveServer}.
+ * Default implementation of {@link AbstractAstiveServer}.
  *
  * @since 1.0.0
  * @see AbstractAstiveServer
  */
 public class AstiveServer extends AbstractAstiveServer {
     // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(AstiveServer.class);
     private static ServiceProperties adminDaemonSP;
     private static ServiceProperties astivedSP;
@@ -74,10 +73,14 @@ public class AstiveServer extends AbstractAstiveServer {
     private static String TELNED_PROPERTIES =
             AbstractAstiveServer.ASTIVE_HOME + "/conf/telned.properties";
     private ExecutorService executorService;
-
+    private ConnectionMonitor monitor;
+    
     public AstiveServer(int port, int backlog, InetAddress bindAddr)
             throws SystemException, IOException {
         super(port, backlog, bindAddr);
+        
+        // A separate thread for services: Admin , Astive  and Telnet.
+        executorService = Executors.newFixedThreadPool(3);
     }
 
     /**
@@ -85,7 +88,7 @@ public class AstiveServer extends AbstractAstiveServer {
      */
     @Override
     protected void launchConnectionMonitor() {
-        ConnectionMonitor monitor = new FastAgiConnectionMonitor(this, astivedSP.getBacklog());
+        monitor = new FastAgiConnectionMonitor(this, astivedSP.getBacklog());
         executorService.execute(monitor);
     }
 
@@ -411,6 +414,10 @@ public class AstiveServer extends AbstractAstiveServer {
      */
     @Override
     public void start() throws SystemException {
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(AppLocale.getI18n("messageStartingAstiveServer"));
+        }
+        
         super.start();
 
         // Load properties for admin daemon
@@ -425,9 +432,6 @@ public class AstiveServer extends AbstractAstiveServer {
 
         // Load apps already in "apps"
         DeployerManager.getInstance();
-
-        executorService = Executors.newFixedThreadPool(3);
-        launchConnectionMonitor();
 
         try {
             if (!adminDaemonSP.isDisabled()) {
@@ -483,6 +487,10 @@ public class AstiveServer extends AbstractAstiveServer {
 
                 executorService.execute(ts);
             }
+            
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(AppLocale.getI18n("messageDone"));
+            }
         } catch (IOException ex) {
             LOG.warn(AppLocale.getI18n("errorUnexpectedFailure", new Object[]{ex.getMessage()}));
         }
@@ -493,8 +501,8 @@ public class AstiveServer extends AbstractAstiveServer {
      */
     @Override
     public void stop() throws SystemException {
-        executorService.shutdown();
         super.stop();
+        executorService.shutdown();
     }
     // </editor-fold>
 }
