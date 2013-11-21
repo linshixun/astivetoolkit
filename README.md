@@ -64,7 +64,11 @@ Core team:
 * [Pedro Sanders](https://github.com/psanders)
 * [Eudris Cabrera](https://github.com/ecabrerar)
 
-Contributors: https://github.com/psanders/astivetoolkit/contributors
+## Contributions
+- [How to contribute](http://astivetoolkit.org/documentation#contribute)
+- [Contributors](https://github.com/psanders/astivetoolkit/contributors)
+
+
 
 ### Copyright
 
