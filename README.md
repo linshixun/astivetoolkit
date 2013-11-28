@@ -62,9 +62,8 @@ Core team:
 * [Eudris Cabrera](https://github.com/ecabrerar)
 
 ## Contributions
-- [How to contribute](http://astivetoolkit.org/documentation#contribute)
-- [Contributors](https://github.com/psanders/astivetoolkit/contributors)
-
+* See our contributions guidelines on `CONTRIBUTING` 
+* [Contributors](https://github.com/psanders/astivetoolkit/contributors)
 
 
 ### Copyright
