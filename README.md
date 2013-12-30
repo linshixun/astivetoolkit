@@ -4,6 +4,8 @@ Astive is a toolkit and server for Java, with an extensible architecture for dev
 
 Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/)
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/psanders/astivetoolkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 ## Requirements
 
 * Java 1.5+
