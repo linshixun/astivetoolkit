@@ -17,14 +17,14 @@ Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/jo
 
 ## Features 
 
-* Multi-IVR applications.
+* Multi-IVR applications
 * Asterisk 1.8 >
-* Application-Server like operations(start, stop, undeploy, deploy...).
-* Advanced API's for IVR creation.
-* Event-driven architecture.
-* Support for FastAGI (AMI on the way).
-* Open Source.
-* Well documented.
+* Application-Server like operations(start, stop, undeploy, deploy...)
+* Advanced API's for IVR creation
+* Event-driven architecture
+* Support for FastAGI (AMI on the way)
+* Open Source
+* Well documented
 
 ## Getting Astive
 
