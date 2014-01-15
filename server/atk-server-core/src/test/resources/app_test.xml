@@ -1,3 +1,4 @@
+<!-- Test a duplicate astivlet ID -->
 <app>
     <name>ah</name>        
     <description>Multi module app.</description>
