@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.StreamFile;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.StreamFile}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class StreamFileTest extends TestCase {
   /**

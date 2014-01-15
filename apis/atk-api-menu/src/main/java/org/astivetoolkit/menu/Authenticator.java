@@ -21,10 +21,9 @@ package org.astivetoolkit.menu;
 /**
  * Provides access control restricted menus.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public abstract class Authenticator {
-
     private boolean authenticated = false;
     private int maxAuth = 3;
 

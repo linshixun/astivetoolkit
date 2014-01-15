@@ -26,10 +26,9 @@ import java.security.PermissionCollection;
  * of permissions store in {@link AstPolicy}.
  *
  * @see AstPolicy
- * @since 1.0.0
+ * @since 1.0
  */
 public final class AstPolicyUtil {
-
     private static PermissionCollection p = AstPolicy.getInstance().getPermissions();
 
     private AstPolicyUtil() {

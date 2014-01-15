@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.Verbose;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.Verbose}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class VerboseTest extends TestCase {
   /**

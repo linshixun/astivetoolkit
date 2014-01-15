@@ -27,41 +27,17 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Returns the digits received from the channel at the other end.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "GET DATA")
 public class GetData implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -6316397364689291658L;
-
-  /**
-   * Default max digits.
-   */
   private static final int DEFAULT_MAX_DIGITS = 1024;
-
-  /**
-   * Default max timeout.
-   */
   private static final int DEFAULT_TIMEOUT = 0;
-
-  /**
-   * Max digits to enter.
-   */
   @Parameter(position = 2)
   private Integer maxDigits;
-
-  /**
-   * Time in milliseconds to wait for DTMF. If a digit is pressed the wait
-   * time is reset. <p>With timeout set to -1 this command wait forever.
-   */
   @Parameter(position = 1)
   private Integer timeout;
-
-  /**
-   * Audio to send to channel.
-   */
   @Parameter(optional = false)
   private String file;
 

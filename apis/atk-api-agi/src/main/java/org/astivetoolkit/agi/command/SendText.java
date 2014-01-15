@@ -29,18 +29,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * <p>Returns 0 if text is sent, or if the channel does not support text
  * transmission. Returns -1 only on error/hangup.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SEND TEXT")
 public class SendText implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -323324435661044014L;
-
-  /**
-   * Text to send to channel.
-   */
   @Parameter(optional = false)
   private String text;
 

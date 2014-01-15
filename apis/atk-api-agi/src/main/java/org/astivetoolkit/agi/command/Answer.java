@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
+x * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -24,7 +24,7 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
 /**
  * Answers channel if not already in answer state.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "ANSWER")
 public class Answer implements Serializable {

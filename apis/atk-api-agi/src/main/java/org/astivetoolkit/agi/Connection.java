@@ -23,7 +23,7 @@ import java.io.IOException;
 /**
  * Provide read/write capabilities for few objects.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public interface Connection {
   /**

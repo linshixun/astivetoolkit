@@ -25,24 +25,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Sets a variable to the current channel.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET VARIABLE")
 public class SetVariable implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -6634799740139058533L;
-
-  /**
-   * Variable value.
-   */
   @Parameter(position = 1, optional = false)
   private String value;
-
-  /**
-   * Variable name.
-   */
   @Parameter(optional = false)
   private String variable;
 

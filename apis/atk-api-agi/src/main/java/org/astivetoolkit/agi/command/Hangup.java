@@ -26,18 +26,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * Hangs up the specified channel. If no channel name is given, hangs up the
  * current <code>channel</code>.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "HANGUP")
 public class Hangup implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -7294601691881839635L;
-
-  /**
-   * Channel name.
-   */
   @Parameter(optional = false)
   private String channel;
 

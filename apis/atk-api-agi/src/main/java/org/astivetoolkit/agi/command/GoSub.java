@@ -28,36 +28,17 @@ import org.astivetoolkit.agi.annotation.Separator;
  * Cause the channel to execute the specified dialplan subroutine, returning
  * to the dialplan with execution of a Return().
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "GOSUB")
 public class GoSub implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -9201675010003633043L;
-
-  /**
-   * The context of the called subroutine.
-   */
   @Parameter(optional = false)
   private String context;
-
-  /**
-   * The extension in the called context.
-   */
   @Parameter(position = 1, optional = false)
   private String extension;
-
-  /**
-   * The priority of the called extension.
-   */
   @Parameter(position = 2, optional = false)
   private String priority;
-
-  /**
-   * An optional list of arguments to be passed to the subroutine.
-   */
   @Parameter(position = 3)
   @ParamConverter
   @Separator

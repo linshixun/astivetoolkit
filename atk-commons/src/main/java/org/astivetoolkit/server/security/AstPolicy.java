@@ -31,10 +31,9 @@ import org.astivetoolkit.server.ServiceProperties;
  * is class is mean to be use in combination with {@link AstPolicyUtil}.
  *
  * @see AstPolicyUtil
- * @since 1.0.0
+ * @since 1.0
  */
 public final class AstPolicy extends Policy {
-
     private static PermissionCollection perms;
     private static final AstPolicy INSTANCE = new AstPolicy();
     /**

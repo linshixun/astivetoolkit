@@ -32,18 +32,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * <p>Use -1 for the <code>timeout</code> value if you desire the call to block
  * indefinitely.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "WAIT FOR DIGIT")
 public class WaitForDigit implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 1274177415080200306L;
-
-  /**
-   * Timeout in milliseconds.
-   */
   @Parameter(optional = false)
   private Integer timeout;
 

@@ -23,7 +23,7 @@ import java.io.InputStream;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class WeatherAPI {
 

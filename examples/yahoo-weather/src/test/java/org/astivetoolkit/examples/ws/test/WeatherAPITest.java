@@ -25,10 +25,9 @@ import org.astivetoolkit.examples.ws.WeatherAPI;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class WeatherAPITest extends TestCase {
-
     private String zip;
 
     public WeatherAPITest(String testName) {

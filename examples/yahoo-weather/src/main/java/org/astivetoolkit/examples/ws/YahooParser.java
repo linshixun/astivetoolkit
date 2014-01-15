@@ -30,10 +30,9 @@ import org.dom4j.io.SAXReader;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class YahooParser {
-
     private static Logger log = Logger.getLogger(YahooParser.class);
 
     public Weather parse(InputStream inputStream) throws DocumentException {

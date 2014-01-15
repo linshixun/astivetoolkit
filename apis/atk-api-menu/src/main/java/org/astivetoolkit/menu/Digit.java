@@ -21,10 +21,9 @@ package org.astivetoolkit.menu;
 /**
  * Code or decode DTMF tone.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum Digit {
-
     ONE_KEY("1"),
     TWO_KEY("2"),
     THREE_KEY("3"),

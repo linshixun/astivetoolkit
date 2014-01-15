@@ -28,10 +28,9 @@ import org.astivetoolkit.agi.fastagi.FastAgiConnection;
  * network(FastAgi) request.
  *
  * @see AstivletResponse
- * @since 1.0.0
+ * @since 1.0
  */
 public class AstivletRequest extends AgiRequest {
-
     private InetAddress localAddress;
     private InetAddress remoteAddress;
     private int localPort;

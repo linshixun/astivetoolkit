@@ -22,14 +22,11 @@ package org.astivetoolkit.agi;
 /**
  * Enum that handle the hangup cause for a <code>channel</code>.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum HangupCause { // TODO: Define all enum elements below this comment.
   UNKNOWN(-1);
 
-  /**
-   * Int value of this type.
-   */
   private int code;
 
   /**

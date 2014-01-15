@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SpeechDestroy;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SpeechDestroy}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SpeechDestroyTest extends TestCase {
   /**

@@ -34,25 +34,14 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <code>database del cidname 8453178070</code>
  *
- * @since 1.0.0
+ * @since 1.0
  * @see DatabasePut
  */
 @AgiCommand(command = "DATABASE DEL")
 public class DatabaseDel implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -6727659547412740265L;
-
-  /**
-   * Arbitrary name use to group a collection of values defined by a key.
-   */
   @Parameter(optional = false)
   private String family;
-
-  /**
-   * Element of database.
-   */
   @Parameter(position = 1, optional = false)
   private String key;
 

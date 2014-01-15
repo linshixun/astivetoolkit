@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Annotation to define an Agi command.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface AgiCommand {

@@ -34,7 +34,7 @@ import org.astivetoolkit.agi.StringConverter;
  * <p>The default converter is {@link StringConverter}. However, for future
  * commands new converters can be define extending the class {@link Converter}.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)

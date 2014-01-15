@@ -25,7 +25,7 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
  * Interrupts expected flow of Async AGI commands and returns control to
  * previous source (typically, the PBX dialplan).
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "ASYNC AGI BREAK")
 public class AsyncAgiBreak implements Serializable {

@@ -37,11 +37,9 @@ import org.astivetoolkit.util.AppLocale;
  * This class is a helper. Can be use to extract meta information from Agi
  * commands classes and then construct commands in string format.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public final class CommandProcessor {
-    // Usual logger.   
-
     private static final Logger LOG = Logger.getLogger(CommandProcessor.class);
 
     /**

@@ -21,10 +21,9 @@ package org.astivetoolkit.telnet;
 /**
  * Contains all the ANSI colors constants.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class ColorsANSI {
-
     public static final String SANE = "\u001B[0m";
     public static final String BRIGHT = "\u001B[1m";
     public static final String BLACK = "\u001B[0;30m";

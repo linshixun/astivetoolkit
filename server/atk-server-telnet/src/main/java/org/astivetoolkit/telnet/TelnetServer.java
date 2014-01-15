@@ -39,10 +39,9 @@ import org.astivetoolkit.util.NetUtil;
 /**
  * Default implementation of Astive Server - Telnet service.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public abstract class TelnetServer extends ServerSocket implements Runnable {
-
     private static final Logger LOG = Logger.getLogger(TelnetServer.class);
     private static String promptSymbol = ColorsANSI.BRIGHT + "[astive]$ " + ColorsANSI.SANE;
     private InetAddress bindAddr;

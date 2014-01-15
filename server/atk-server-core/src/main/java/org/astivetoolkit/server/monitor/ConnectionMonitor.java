@@ -24,7 +24,7 @@ import org.astivetoolkit.agi.Connection;
 /**
  * Manage incoming connections from a telephone engine.
  * 
- * @since 1.0.0
+ * @since 1.0
  * @see FastAgiConectionMonitor
  * @see SimpleConnectionMonitor
  */

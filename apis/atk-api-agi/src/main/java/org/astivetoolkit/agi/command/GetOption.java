@@ -25,31 +25,15 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Behaves similar to {@link StreamFile} but used with a timeout option.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "GET OPTION")
 public class GetOption implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -5788144017301928558L;
-
-  /**
-   * Time in milliseconds to wait for DTMF.
-   * <p>With timeout set to -1 this command wait forever.
-   */
   @Parameter(position = 2)
   private Integer timeout;
-
-  /**
-   * Can be use to the interrupt the audio on a channel.
-   */
   @Parameter(position = 1, optional = false)
   private String escapeDigits;
-
-  /**
-   * Audio to send to channel.
-   */
   @Parameter(optional = false)
   private String file;
 

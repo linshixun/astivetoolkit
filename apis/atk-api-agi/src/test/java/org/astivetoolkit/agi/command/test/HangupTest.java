@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.Hangup;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.Hangup}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class HangupTest extends TestCase {
   /**

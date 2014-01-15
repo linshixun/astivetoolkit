@@ -30,11 +30,10 @@ import org.astivetoolkit.util.AppLocale;
 /**
  * This object receive connection from a FastAGI client.
  * 
- * @since 1.0.0
+ * @since 1.0
  * @see Service
  */
 public class FastAgiServerSocket extends ServerSocket implements Service, DefaultAgiServerSettings {
-
     private static final Logger LOG = Logger.getLogger(FastAgiServerSocket.class);
     private InetAddress bindAddr;
     private int backlog;

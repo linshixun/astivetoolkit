@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * <p>This annotation should be used in combination with {@link Parameter} and
  * {@link ParamConverter}.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)

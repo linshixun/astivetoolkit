@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 /**
  * Used by AgiRequest to identify Agi fields.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)

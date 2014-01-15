@@ -30,11 +30,10 @@ import org.astivetoolkit.agi.SpeechRecognitionResult;
  * Extends the {@link AgiResponse} interface to provide astivlets, with the
  * capability of response to client requests.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see AstivletRequest
  */
 public class AstivletResponse implements AgiResponse {
-
     private AgiResponse response;
 
     /**

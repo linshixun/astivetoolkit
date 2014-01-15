@@ -26,18 +26,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * Changes the priority for continuation upon exiting the application. The
  * priority must be a valid priority or label.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET PRIORITY")
 public class SetPriority implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -7927872930023068529L;
-
-  /**
-   * The priority or label for continuation upon exiting the application.
-   */
   @Parameter(optional = false)
   private String priority;
 

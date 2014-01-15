@@ -25,7 +25,7 @@ import org.astivetoolkit.agi.Connection;
 /**
  * Create a communication channel from Asterisk to the Fastagi Server.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see Connection
  */
 public class FastAgiConnection implements Connection {

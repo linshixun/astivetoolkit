@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
  * Annotation used in combination with {@link ParamConveter} to define a
  * separator in a param conversion.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)

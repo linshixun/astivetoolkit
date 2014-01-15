@@ -29,7 +29,7 @@ import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 /**
  * Test case for {@link DeployerManager}.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class DeployerManagerTest extends TestCase {
 

@@ -24,7 +24,7 @@ import java.util.EventObject;
  * An ActionEvent is triggered when a {@link MenuItem} or {@link Menu} is
  * selected.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see Action
  * @see ActionListener
  */

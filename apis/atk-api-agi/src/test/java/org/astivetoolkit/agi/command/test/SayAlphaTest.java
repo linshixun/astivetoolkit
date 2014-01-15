@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SayAlpha;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SayAlpha}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SayAlphaTest extends TestCase {
   /**

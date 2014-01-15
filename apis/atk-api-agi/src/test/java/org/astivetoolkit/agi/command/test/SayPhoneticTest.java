@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SayPhonetic;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SayPhonetic}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SayPhoneticTest extends TestCase {
   /**

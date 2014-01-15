@@ -21,10 +21,9 @@ package org.astivetoolkit.server;
 /**
  * This exception is used whenever a critical action is perform by the system.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class SystemException extends Exception {
-
     private static final long serialVersionUID = 1L;
 
     /**

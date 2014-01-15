@@ -28,31 +28,16 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Returns 1 if successful, 0 otherwise.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see DatabaseDel
  */
 @AgiCommand(command = "DATABASE PUT")
 public class DatabasePut implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -8536786322579439275L;
-
-  /**
-   * Database family.
-   */
   @Parameter(optional = false)
   private String family;
-
-  /**
-   * Family element.
-   */
   @Parameter(position = 1, optional = false)
   private String key;
-
-  /**
-   * Family element value.
-   */
   @Parameter(position = 2, optional = false)
   private String value;
 

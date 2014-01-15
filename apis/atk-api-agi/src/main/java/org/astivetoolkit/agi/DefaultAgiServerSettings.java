@@ -22,15 +22,19 @@ package org.astivetoolkit.agi;
 /**
  * Define few global variables for an FASTAGI server.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public interface DefaultAgiServerSettings {
-  /**ADOC_COMME */
+  /**
+   * Default port for the Agi Server.
+   */
   public static int DEFAULT_AGI_SERVER_PORT = 4573;
-
-  /**ADOC_COMME */
+  /**
+   * Default maximum connection to Agi Server.
+   */
   public static int DEFAULT_AGI_SERVER_BACKLOG = 50;
-
-  /**ADOC_COMME */
+  /** 
+   * Default Bind Address
+   */
   public static String DEFAULT_AGI_SERVER_BIND_ADDR = "127.0.0.1";
 }

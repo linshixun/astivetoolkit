@@ -20,10 +20,9 @@ package org.astivetoolkit.server.admin;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum AdminCommand {
-
     /**
      * Start server.
      */
@@ -48,15 +47,12 @@ public enum AdminCommand {
      *
      */
     VERSION("version");
-    /**
-     * String value for this enum.
-     */
+ 
+    // String value for this enum.    
     private String command;
 
-    /**
-     * Create a new AdminCommand object with status code as parameter. This
-     * class is an enum, therefore can't be instantiated directly.
-     */
+    // Create a new AdminCommand object with status code as parameter. This
+    // class is an enum, therefore can't be instantiated directly.
     private AdminCommand(String command) {
         this.command = command;
     }

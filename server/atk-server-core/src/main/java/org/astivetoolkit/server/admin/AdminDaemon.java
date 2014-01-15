@@ -43,12 +43,11 @@ import org.astivetoolkit.util.NetUtil;
 /**
  * Provide remote access to the (@link DeployerManager) functionalities.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ConnectionMonitor
  * @see DeployerManager
  */
 public class AdminDaemon extends ServerSocket implements Deployer, Runnable {
-
     private static final Logger LOG = Logger.getLogger(AdminDaemon.class);
     private AbstractAstiveServer server;
     private InetAddress bindAddr;

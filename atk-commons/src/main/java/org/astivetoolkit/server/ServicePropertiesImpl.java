@@ -30,10 +30,9 @@ import org.astivetoolkit.util.AppLocale;
  * Final implementation of {@link ServiceProperties} use by {@link Service}.
  *
  * @see ServiceProperties, Service
- * @since 1.0.0
+ * @since 1.0
  */
 public final class ServicePropertiesImpl implements ServiceProperties {
-
     private InetAddress bindAddr;
     private List<InetAddress> onlyFrom;
     private Properties properties;

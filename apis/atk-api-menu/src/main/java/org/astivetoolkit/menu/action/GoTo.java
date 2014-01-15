@@ -26,11 +26,10 @@ import org.astivetoolkit.menu.MenuNavigator;
 /**
  * Use this action to jump from one {@link Menu} to another.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see GoExt
  */
 public class GoTo implements Action {
-
     private AgiResponse agiResponse;
     private Menu menu;
 

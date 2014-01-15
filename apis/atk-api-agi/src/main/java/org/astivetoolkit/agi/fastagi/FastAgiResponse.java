@@ -27,7 +27,7 @@ import org.astivetoolkit.util.AppLocale;
 /**
  * Final implementation of {@link AgiResponse} use for fast agi servers.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see AgiResponse
  * @see AstivletResponse
  */

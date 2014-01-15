@@ -27,7 +27,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Record to a file until a given DTMF digit in the sequence is received.
  *
- * <p>Returns -1 on hangup or error.  The format will specify what kind of file
+ * <p>Returns -1 on error or hangup.  The format will specify what kind of file
  * will be recorded. The <code>timeout</code> is the maximum record time in milliseconds, or '-1'
  * for no timeout. <code>offset samples</code> is optional, and, if provided, will seek
  * to the offset without exceeding the end of the file. <code>silence</code> is the number
@@ -35,57 +35,25 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * of DTMF digits or reaching timeout. <code>silence</code> value must be preceded by
  * 's=' and is also optional.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "RECORD FILE")
 public class RecordFile implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -7007752832292860291L;
-
-  /**
-   * Whether a beep should be played before recording.
-   */
   @Parameter(position = 5)
   @ParamConverter
   @BooleanChoose(valueOnTrue = "BEEP", valueOnFalse = "")
   private Boolean beep;
-
-  /**
-   * The amount of silence (in seconds) to allow before returning despite the
-   * lack of DTMF digits or reaching timeout.
-   */
   @Parameter(position = 6, prefix = "s=")
   private Integer maxSilence;
-
-  /**
-   * The offset samples to skip.
-   */
   @Parameter(position = 4)
   private Integer offset;
-
-  /**
-   * Maximum record time in milliseconds. Use -1 for no timeout.
-   */
   @Parameter(position = 3, optional = false)
   private Integer timeout;
-
-  /**
-   * Can be use to the interrupt the audio recording.
-   */
   @Parameter(position = 2, optional = false)
   private String escapeDigits;
-
-  /**
-   * Audio to send to channel.
-   */
   @Parameter(optional = false)
   private String file;
-
-  /**
-   * Format for the new audio.
-   */
   @Parameter(position = 1, optional = false)
   private String format;
 

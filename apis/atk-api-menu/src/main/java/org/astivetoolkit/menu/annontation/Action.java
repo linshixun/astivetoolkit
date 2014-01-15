@@ -24,7 +24,7 @@ import java.lang.annotation.Target;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see org.astivetoolkit.action.Action
  * @see ActionEvent
  */
@@ -32,6 +32,5 @@ import java.lang.annotation.Target;
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.METHOD)
 public @interface Action {
-
     public String actionId();
 }

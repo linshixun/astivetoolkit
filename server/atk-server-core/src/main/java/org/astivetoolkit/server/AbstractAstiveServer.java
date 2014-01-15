@@ -26,14 +26,13 @@ import org.astivetoolkit.util.AppLocale;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see Service
  * @see FastAgiServerSocket
  * @see AstiveServer
  * @see SimpleAstiveServer
  */
 public abstract class AbstractAstiveServer extends FastAgiServerSocket implements Service {
-
     public static final String ASTIVE_HOME = System.getenv("ASTIVE_HOME");
     public static final String ASTIVE_APPS = System.getenv("ASTIVE_HOME") + "/apps/";
     private InetAddress bindAddr;

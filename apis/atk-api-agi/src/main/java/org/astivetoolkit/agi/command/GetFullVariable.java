@@ -30,24 +30,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Ex.: return code: 200 result=1 (testvariable)
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "GET FULL VARIABLE")
 public class GetFullVariable implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -8554768673812519898L;
-
-  /**
-   * Channel name.
-   */
   @Parameter(position = 1)
   private String channel;
-
-  /**
-   * Channel variable.
-   */
   @Parameter(optional = false)
   private String variable;
 

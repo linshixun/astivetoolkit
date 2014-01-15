@@ -21,11 +21,10 @@ package org.astivetoolkit.menu.action;
 /**
  * The action to be performed as the result of user iteration.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ActionEvent
  */
 public interface Action {
-
     /**
      * Action to be executed.
      */

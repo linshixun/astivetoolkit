@@ -21,10 +21,9 @@ package org.astivetoolkit.agi;
 /**
  * Enumerator that map the presentation type for the callerId (@link AgiRequest).
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum PresentationType {
-
     ALLOWED(0, "allowed", "allowed"),
     ALLOWED_NOT_SCREENED(1, "allowed_not_screened", "allowed not screened"),
     ALLOWED_PASSED_SCREEN(2, "allowed_passed_screen", "allowed passed screen"),
@@ -34,11 +33,9 @@ public enum PresentationType {
     PROHIB_FAILED_SCREEN(6, "prohib_failed_screen", "prohib failed screen"),
     PROHIB(7, "prohib", "prohib"),
     UNAVAILABLE(8, "unavailable", "unavailable");
-    // PresentationType value.
+ 
     private int value;
-    // PresentationType name
     private String name;
-    // PresentationType description.
     private String literal;
 
     private PresentationType(final int value, final String name, final String literal) {

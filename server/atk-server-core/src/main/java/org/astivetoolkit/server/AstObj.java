@@ -40,10 +40,9 @@ import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 /**
  * Convenient class to manage Astive apps jars.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public final class AstObj {
-
     private static final String ASTIVE_DEPLOYMENT_DESCRIPTOR = "app.xml";
     private AppType app;
     private JarClassLoader jcl;

@@ -26,6 +26,8 @@ import org.astivetoolkit.agi.ChannelType;
 
 /**
  * Test case for {@link org.astivetoolkit.agi.AgiRequest}.
+ * 
+ * @since 1.0
  */
 public class AgiRequestTest extends TestCase {
   /**

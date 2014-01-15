@@ -44,12 +44,10 @@ import org.astivetoolkit.util.AppLocale;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ConnectionMonitor
  */
 public class FastAgiConnectionMonitor implements ConnectionMonitor {
-    // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(FastAgiConnectionMonitor.class);
     private ConnectionManager manager;
     private FastAgiServerSocket server;

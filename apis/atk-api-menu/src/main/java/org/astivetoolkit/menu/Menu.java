@@ -35,11 +35,10 @@ import org.astivetoolkit.menu.event.TimeoutListener;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see MenuItem
  */
 public class Menu extends MenuItem {
-
     private ArrayList<MenuItem> childs = new ArrayList<MenuItem>();
     private ArrayList<FailureListener> failListenerList = new ArrayList<FailureListener>();
     private ArrayList<InterDigitsTimeoutListener> interDigitsTimeoutListenerList = new ArrayList<InterDigitsTimeoutListener>();

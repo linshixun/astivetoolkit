@@ -23,7 +23,7 @@ package org.astivetoolkit.agi;
  * Convert data types use by Asterisk(Datetime, TimeZone,
  * array, boolean, int) to text.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class StringConverter implements Converter {
   /**

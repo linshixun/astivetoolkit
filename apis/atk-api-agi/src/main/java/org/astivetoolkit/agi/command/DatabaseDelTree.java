@@ -28,25 +28,14 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Returns 1 if successful, 0 otherwise.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see DatabaseDel
  */
 @AgiCommand(command = "DATABASE DELTREE")
 public class DatabaseDelTree implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -6776258350511425471L;
-
-  /**
-   * Database family.
-   */
   @Parameter(optional = false)
   private String family;
-
-  /**
-   * Keytree within family.
-   */
   @Parameter(position = 1)
   private String keyTree;
 

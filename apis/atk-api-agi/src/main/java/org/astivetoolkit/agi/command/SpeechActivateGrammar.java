@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Activates the specified grammar on the speech object.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SPEECH ACTIVATE GRAMMAR")
 public class SpeechActivateGrammar implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -2361008693647555696L;
-
-  /**
-   * Grammar name.
-   */
   @Parameter
   private String name;
 

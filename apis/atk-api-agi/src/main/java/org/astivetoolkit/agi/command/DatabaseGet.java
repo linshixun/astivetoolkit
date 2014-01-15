@@ -30,25 +30,14 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * Eg.: return code: 200 result=1 (testvariable)
  *
- * @since 1.0.0
+ * @since 1.0
  * @see DatabasePut
  */
 @AgiCommand(command = "DATABASE GET")
 public class DatabaseGet implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 5937402997584970009L;
-
-  /**
-   * Database family.
-   */
   @Parameter(optional = false)
   private String family;
-
-  /**
-   * Family element.
-   */
   @Parameter(position = 1, optional = false)
   private String key;
 

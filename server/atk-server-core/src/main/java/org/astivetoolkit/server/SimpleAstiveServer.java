@@ -30,7 +30,7 @@ import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
  * The SimpleAstiveServer is useful for testing purposes, and is not recommended 
  * for production enviroments.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see AbstractAstiveServer
  * @see AstiveServer
  */

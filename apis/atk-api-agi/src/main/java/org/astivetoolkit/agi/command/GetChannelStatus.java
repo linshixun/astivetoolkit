@@ -37,19 +37,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * <li>7 - Line is busy.
  * </ul>
  *
- * @since 1.0.0
+ * @since 1.0
  * @see GetChannelStatus
  */
 @AgiCommand(command = "CHANNEL STATUS")
 public class GetChannelStatus implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -820579790841625915L;
-
-  /**
-   * Channel name, or null for current channel.
-   */
+  // Channel name, or null for current channel.
   @Parameter
   private String channel;
 

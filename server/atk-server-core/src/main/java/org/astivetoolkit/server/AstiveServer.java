@@ -57,11 +57,10 @@ import org.astivetoolkit.util.NetUtil;
 /**
  * Default implementation of {@link AbstractAstiveServer}.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see AbstractAstiveServer
  */
 public class AstiveServer extends AbstractAstiveServer {
-    // A usual logging class
     private static final Logger LOG = Logger.getLogger(AstiveServer.class);
     private static ServiceProperties adminDaemonSP;
     private static ServiceProperties astivedSP;
@@ -78,7 +77,6 @@ public class AstiveServer extends AbstractAstiveServer {
     public AstiveServer(int port, int backlog, InetAddress bindAddr)
             throws SystemException, IOException {
         super(port, backlog, bindAddr);
-        
         // A separate thread for services: Admin , Astive  and Telnet.
         executorService = Executors.newFixedThreadPool(3);
     }

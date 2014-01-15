@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Contains the results of a speech recognition command.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SpeechRecognitionResult {
   private final AgiCommandReply AgiCommandReply;

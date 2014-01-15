@@ -25,7 +25,7 @@ import java.util.List;
  * Contains all parameters needed by a final implementation of {@link Service}.
  *
  * @see Service
- * @since 1.0.0
+ * @since 1.0
  */
 public interface ServiceProperties {
 

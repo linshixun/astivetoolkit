@@ -42,11 +42,9 @@ import org.astivetoolkit.menu.event.PositionChangeEvent;
  * The engine of Menu API. It eliminate the necessity of the loops commonly
  * needed by AGI, when creating user iteration/navigation.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class MenuNavigator {
-
-    // A usual logging class
     private static final Logger LOG = Logger.getLogger(MenuNavigator.class);
     private AgiResponse agiResponse;
     private Menu currentMenu;

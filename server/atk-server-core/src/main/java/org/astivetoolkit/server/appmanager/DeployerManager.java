@@ -37,11 +37,10 @@ import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 /**
  * Final implementation of interface {@link Deployer}.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see Deployer
  */
 public final class DeployerManager implements Deployer, AstDB {
-
     private static final Logger LOG = Logger.getLogger(DeployerManager.class);
     private static final DeployerManager INSTANCE = new DeployerManager();
     private static AstDB astDB;

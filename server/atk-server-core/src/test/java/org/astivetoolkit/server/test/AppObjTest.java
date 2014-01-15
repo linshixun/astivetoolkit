@@ -28,7 +28,7 @@ import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
 /**
  * Test case for {@link org.astivetoolkit.server.AstObj}.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class AppObjTest extends TestCase {
 

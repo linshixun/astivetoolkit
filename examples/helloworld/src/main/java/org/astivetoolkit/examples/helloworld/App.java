@@ -27,7 +27,7 @@ import org.astivetoolkit.astivlet.AstivletResponse;
 /**
  * Hello, World! example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class App extends Astivlet {
     @Override

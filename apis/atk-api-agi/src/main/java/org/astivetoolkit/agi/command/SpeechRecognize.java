@@ -25,30 +25,15 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Plays back given <code>prompt</code> while listening for speech and DTMF.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SPEECH RECOGNIZE")
 public class SpeechRecognize implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 6871133010336237807L;
-
-  /**
-   * Offset samples to skip when playing the prompt.
-   */
   @Parameter(position = 2)
   private Integer offset;
-
-  /**
-   *  Maximum recognition time(in milliseconds).
-   */
   @Parameter(position = 1, optional = false)
   private Integer timeout;
-
-  /**
-   * Prompt to play.
-   */
   @Parameter(optional = false)
   private String prompt;
 

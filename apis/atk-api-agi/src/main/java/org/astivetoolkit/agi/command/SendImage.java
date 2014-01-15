@@ -30,18 +30,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * transmission.  Returns -1 only on error/hangup. Image names should not
  * include extensions.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SEND IMAGE")
 public class SendImage implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -3133245749356443450L;
-
-  /**
-   * Image to sent to channel.
-   */
   @Parameter(optional = false)
   private String image;
 

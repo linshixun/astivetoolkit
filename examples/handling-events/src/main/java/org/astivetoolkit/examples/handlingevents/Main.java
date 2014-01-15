@@ -22,6 +22,10 @@ import java.io.IOException;
 import org.astivetoolkit.server.SimpleAstiveServer;
 import org.astivetoolkit.server.SystemException;
 
+/**
+ *
+ * @since 1.0
+ */
 public class Main {
 
     static public void main(String... args) {

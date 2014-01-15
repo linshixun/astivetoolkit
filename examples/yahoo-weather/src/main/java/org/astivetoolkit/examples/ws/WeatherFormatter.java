@@ -28,10 +28,9 @@ import org.apache.velocity.app.Velocity;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class WeatherFormatter {
-
     private static Logger log = Logger.getLogger(WeatherFormatter.class);
 
     public String format(Weather weather) throws Exception {

@@ -29,26 +29,15 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * not specified, then the <code>default</code> music on hold class will be used.
  * Always returns 0.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET MUSIC")
 public class SetMusic implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -5450998646107584670L;
-
-  /**
-   * Set musiconhold on or off.
-   */
   @Parameter(optional = false)
   @ParamConverter
   @BooleanChoose
   private Boolean on;
-
-  /**
-   * MusicOnHold class, or null for default.
-   */
   @Parameter(position = 1)
   private String classStr;
 

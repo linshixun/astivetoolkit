@@ -25,19 +25,12 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Create a speech object to be used by the other Speech AGI commands.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see SpeechDestroy
  */
 @AgiCommand(command = "SPEECH CREATE")
 public class SpeechCreate implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -8343359487319664122L;
-
-  /**
-   * The name of the speech engine to use for subsequent Speech AGI commands.
-   */
   @Parameter(optional = false)
   private String engine;
 

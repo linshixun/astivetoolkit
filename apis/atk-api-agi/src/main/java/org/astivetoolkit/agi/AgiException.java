@@ -23,7 +23,7 @@ package org.astivetoolkit.agi;
  * Thrown by AGI protocol(e.g. I/O operation issues or
  * malformed commands).
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class AgiException extends Exception {
   /**

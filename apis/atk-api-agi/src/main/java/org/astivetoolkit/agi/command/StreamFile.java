@@ -30,32 +30,16 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * the ASCII numerical value of the digit if one was pressed, or -1 on error
  * or if the channel was disconnected.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ControlStreamFile
  */
 @AgiCommand(command = "STREAM FILE")
 public class StreamFile implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -2252108911003941739L;
-
-  /**
-   * Silence time in milliseconds after audio finished. The default value
-   * is '0' (no silence).
-   */
   @Parameter(position = 2, optional = false)
   private Integer offset;
-
-  /**
-   * Can be use to the interrupt the audio on a channel.
-   */
   @Parameter(position = 1, optional = false)
   private String escapeDigits;
-
-  /**
-   * Audio to send to channel.
-   */
   @Parameter(optional = false)
   private String file;
 

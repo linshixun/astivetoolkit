@@ -22,12 +22,11 @@ import java.util.HashMap;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ActionEvent
  * @see Action
  */
 public class ActionMap {
-
     private ActionMap parent;
     private HashMap actions;
 

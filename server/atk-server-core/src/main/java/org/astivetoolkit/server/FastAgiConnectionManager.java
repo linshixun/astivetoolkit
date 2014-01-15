@@ -26,14 +26,12 @@ import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.util.AppLocale;
 
 /**
- * Connection manager for fast agi connections.
+ * Connection manager for fastagi connections.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ConnectionManager
  */
 public class FastAgiConnectionManager implements ConnectionManager {
-    // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(FastAgiConnectionManager.class);
     private ArrayList<Connection> conns;
 

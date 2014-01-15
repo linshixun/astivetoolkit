@@ -29,11 +29,9 @@ import org.astivetoolkit.agi.annotation.RequestField;
  * Contains the data sent by the requesting<code>channel</code> as well as the
  * parameters passed from the dialplan.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class AgiRequest {
-    // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(AgiRequest.class);
     private static Map<String, String> parameters;
     // Use to map Agi field with AgiRequest variables.

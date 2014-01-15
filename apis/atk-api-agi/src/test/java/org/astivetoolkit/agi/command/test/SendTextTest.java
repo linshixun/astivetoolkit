@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SendText;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SendText}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SendTextTest extends TestCase {
   /**

@@ -27,7 +27,7 @@ import org.astivetoolkit.astivlet.AstivletResponse;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class App extends Astivlet {
     private static final Logger LOG = Logger.getLogger(App.class);
@@ -49,7 +49,7 @@ public class App extends Astivlet {
             int failCount = 0;
 
             while (true) {
-                // Wait three seconds in beetween digits
+                // Wait three seconds in between digits
                 zip = response.getData(enterZip, 3000, 5);
                 // Wait ws response.
                 response.streamFile(pleaseWait);
@@ -58,12 +58,12 @@ public class App extends Astivlet {
                     // Invoking Yahoo Weather api.
                     Weather weather = WeatherAPI.getWeather(zip);
 
-                    // For the zip code: ...
+                    // For the Zip code: ...
                     response.streamFile(forZipcode);
                     response.sayDigits(zip);
                     response.streamFile("silence/2");
 
-                    // The temp is
+                    // The temperature is
                     response.streamFile(theTemperature);
                     response.sayDigits(weather.getTemp());
                     response.streamFile("silence/2");

@@ -22,7 +22,7 @@ package org.astivetoolkit.agi;
 /**
  * Enum that handle the status of a <code>channel</code>.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum ChannelType {
   /**
@@ -45,15 +45,12 @@ public enum ChannelType {
    * Channel type H.323
    */
   H323("H.323");
-  /**
-   * Type of channel as string.
-   */
+  
+  // Type of channel as string. 
   private String name;
 
-  /**
-   * Create a new ChannelStatus object with status code as parameter. This
-   * class is an enum, therefore can't be instantiated directly.
-   */
+  // Create a new ChannelStatus object with status code as parameter. This
+  // class is an enum, therefore can't be instantiated directly.
   private ChannelType(String name) {
     this.name = name;
   }

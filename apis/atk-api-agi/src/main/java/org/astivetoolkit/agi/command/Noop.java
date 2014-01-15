@@ -24,13 +24,10 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
 /**
  * Does nothing.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "NOOP")
 public class Noop implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -8349982286619204963L;
 
   /**

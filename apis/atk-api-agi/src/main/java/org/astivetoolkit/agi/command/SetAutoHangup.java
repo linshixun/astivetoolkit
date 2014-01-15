@@ -27,18 +27,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * the future. Of course it can be hungup before then as well. Setting to 0 will
  * cause the autohangup feature to be disabled on this channel.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET AUTOHANGUP")
 public class SetAutoHangup implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -5343593827052978984L;
-
-  /**
-   * Time in seconds to automatically hangup channel.
-   */
   @Parameter(optional = false)
   private Integer time;
 

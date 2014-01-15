@@ -26,24 +26,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * Sends <code>message</code> to the console via verbose message system.
  * <code>level</code> is the verbose level (1-4). Always returns 1.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "VERBOSE")
 public class Verbose implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 5179054735596539116L;
-
-  /**
-   * Verbosity level(1-4).
-   */
   @Parameter(position = 1, optional = false)
   private Integer level;
-
-  /**
-   * Message to send.
-   */
   @Parameter(optional = false)
   private String message;
 

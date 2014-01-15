@@ -24,14 +24,11 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
 /**
  * Destroy the speech object created by {@link SpeechCreate}.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see SpeechCreate
  */
 @AgiCommand(command = "SPEECH DESTROY")
 public class SpeechDestroy implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -4115626736069817017L;
 
   /**

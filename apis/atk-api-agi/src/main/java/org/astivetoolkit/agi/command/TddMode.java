@@ -29,18 +29,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Returns 1 if successful, or 0 if channel is not TDD-capable.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "TDD MODE")
 public class TddMode implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 5179054735596539116L;
-
-  /**
-   * Enable/Disable TDD transmission/reception on a channel.
-   */
   @Parameter(optional = false)
   @ParamConverter
   @BooleanChoose

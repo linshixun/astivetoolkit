@@ -28,24 +28,14 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Returns -1 for failure or 1 for success, and the string in parenthesis.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "RECEIVE TEXT")
 public class ReceiveText implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 3207689243657325448L;
-
-  /**
-   * Time in milliseconds to wait for text.
-   */
   @Parameter
   private Integer timeout;
 
-  /**
-   * Create a new ReceiveText object.
-   */
   public ReceiveText() {
     timeout = 0;
   }

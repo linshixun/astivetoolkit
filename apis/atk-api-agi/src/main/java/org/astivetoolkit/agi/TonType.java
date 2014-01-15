@@ -22,7 +22,7 @@ package org.astivetoolkit.agi;
 /**
  * Enumerator that map the ton type for an incoming call.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum TonType {UNKNOWN(0, "Unknown", "Unknown"),
   INTERNATIONAL(1, "International", "International"),

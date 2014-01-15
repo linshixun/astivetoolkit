@@ -29,7 +29,7 @@ import org.astivetoolkit.server.security.AstPolicyUtil;
  *
  * @see AstPolicy
  * @see AstPolicyUtil
- * @since 1.0.0
+ * @since 1.0
  */
 public class AstPolicyTest extends TestCase {
 

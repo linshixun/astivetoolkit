@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Deactivates the specified grammar on the speech object.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SPEECH DEACTIVATE GRAMMAR")
 public class SpeechDeactivateGrammar implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 6890496911801730598L;
-
-  /**
-   * Grammar name.
-   */
   @Parameter
   private String name;
 

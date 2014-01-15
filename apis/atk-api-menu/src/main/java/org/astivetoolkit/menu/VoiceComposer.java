@@ -38,12 +38,11 @@ import org.astivetoolkit.agi.command.StreamFile;
  * {@link #withFormat(String)} and {@link #withEscapeDigits(String)} only affect
  * subsequent commands.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see VoiceComposition
  * @see MenuItem
  */
 public class VoiceComposer {
-
     private static ArrayList<Object> commands;
     private static String escapeDigits;
     private static String format;

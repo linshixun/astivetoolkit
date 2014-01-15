@@ -30,13 +30,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * received, or 0 if the channel does not support text reception. Returns
  * -1 only on error/hangup.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "RECEIVE CHAR")
 public class ReceiveChar implements Serializable {
-  // Serial version identifier.   
   private static final long serialVersionUID = -4988177721603502302L; 
-  // Time in milliseconds to wait for char.   
   @Parameter
   private Integer timeout;
 

@@ -32,43 +32,19 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * <p>Returns 0 if playback completes without a digit being pressed, or the
  * ASCII numerical value of the digit if one was pressed or -1 on error/hangup.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SAY DATETIME")
 public class SayDatetime implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = 767818324021690725L;
-
-  /**
-   * Default format.
-   */
   public static final String DEFAULT_FORMAT = "ABdY 'digits/at' IMp";
-
-  /**
-   * Date and time to say.
-   */
   @Parameter(optional = false)
   @ParamConverter
   private Date date;
-
-  /**
-   * Can be use to the interrupt the audio on a channel.
-   */
   @Parameter(position = 1, optional = false)
   private String escapeDigits;
-
-  /**
-   * Can be used to define an specific format. The default format is defined
-   * by the constant DEFAULT_FORMAT.
-   */
   @Parameter(position = 2)
   private String format;
-
-  /**
-   * Timezone by default is current tz of Asterisk.
-   */
   @Parameter(position = 3)
   @ParamConverter
   private TimeZone timeZone;

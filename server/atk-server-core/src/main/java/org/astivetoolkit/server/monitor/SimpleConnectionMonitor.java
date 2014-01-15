@@ -40,11 +40,10 @@ import org.astivetoolkit.util.AppLocale;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  * @see ConnectionMonitor
  */
 public class SimpleConnectionMonitor implements ConnectionMonitor {
-    // A usual logging class
     private static final Logger LOG = Logger.getLogger(SimpleConnectionMonitor.class);
     private Astivlet astivlet;
     private ConnectionManager manager;

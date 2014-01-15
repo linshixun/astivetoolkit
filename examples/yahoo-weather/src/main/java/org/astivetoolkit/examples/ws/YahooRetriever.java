@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class YahooRetriever {
 

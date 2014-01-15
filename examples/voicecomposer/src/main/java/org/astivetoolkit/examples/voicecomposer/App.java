@@ -34,7 +34,7 @@ import org.astivetoolkit.menu.event.KeyListener;
 /**
  * VoiceComposer example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class App extends Astivlet {
 

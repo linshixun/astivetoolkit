@@ -23,6 +23,8 @@ import org.astivetoolkit.util.URLValidator;
 
 /**
  * Test case for URLValidator.
+ * 
+ * @since 1.0
  */
 public class URLValidatorTest extends TestCase {
 

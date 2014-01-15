@@ -22,7 +22,7 @@ package org.astivetoolkit.agi;
 /**
  * Enumerator that handle the status of a <code>channel</code>.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum ChannelStatus {
   /**
@@ -61,15 +61,12 @@ public enum ChannelStatus {
    * Line is busy
    */
   LINE_IS_BUSY(7);
-  /**
-   * Int value of this type.
-   */
+  
+  // Int value of this type.
   private int code;
 
-  /**
-   * Create a new ChannelStatus object with status code as parameter. This
-   * class is an enumerator, therefore can't be instantiated directly.
-   */
+  // Create a new ChannelStatus object with status code as parameter. This
+  // class is an enumerator, therefore can't be instantiated directly.
   private ChannelStatus(int code) {
     this.code = code;
   }

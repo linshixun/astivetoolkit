@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Sets the context for continuation upon exiting the application.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET CONTEXT")
 public class SetContext implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -518908570483537151L;
-
-  /**
-   * Desired context for channel.
-   */
   @Parameter(optional = false)
   private String context;
 

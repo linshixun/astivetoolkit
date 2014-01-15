@@ -29,24 +29,13 @@ import org.astivetoolkit.agi.annotation.Separator;
  *
  * <p>Returns whatever the application returns, or -2 on failure to find
  * application.
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "EXEC")
 public class Exec implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -6489004022425967088L;
-
-  /**
-   * Application to execute.
-   */
   @Parameter(optional = false)
   private String application;
-
-  /**
-   * Application options.
-   */
   @Parameter(position = 1)
   @ParamConverter
   @Separator

@@ -29,19 +29,12 @@ import org.astivetoolkit.agi.annotation.Parameter;
  *
  * <p>Eg.: return code: 200 result=1 (testvariable)
  *
- * @since 1.0.0
+ * @since 1.0
  * @see GetFullVariable
  */
 @AgiCommand(command = "GET VARIABLE")
 public class GetVariable implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -3524554548766620910L;
-
-  /**
-   * Variable name.
-   */
   @Parameter(optional = false)
   private String variable;
 

@@ -21,7 +21,7 @@ package org.astivetoolkit.examples.ws;
 /**
  * Yahoo Weather example.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class Weather {
     private String city;

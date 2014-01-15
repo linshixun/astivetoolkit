@@ -27,7 +27,7 @@ import org.astivetoolkit.agi.command.SayTime;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SayTime}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SayTimeTest extends TestCase {
   /**

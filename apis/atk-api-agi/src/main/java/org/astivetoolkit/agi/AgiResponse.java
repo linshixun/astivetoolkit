@@ -25,7 +25,7 @@ import java.util.TimeZone;
  * API with all commands supported by the AGI protocol, since Asterisk version
  * 1.0.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public interface AgiResponse {
 

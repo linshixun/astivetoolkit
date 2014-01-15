@@ -33,11 +33,9 @@ import org.astivetoolkit.util.AppLocale;
 /**
  * Final implementation for AstDB.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class MyAstDB implements AstDB {
-    // A usual logging class
-
     private static final Logger LOG = Logger.getLogger(MyAstDB.class);
     private static final MyAstDB INSTANCE = new MyAstDB();
     private static Map<String, AstObj> apps;

@@ -21,10 +21,9 @@ package org.astivetoolkit.telnet;
 /**
  * Enum that contains all possible commands to be executed by the TelnetServer.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public enum TelnetCommand {
-
     /**
      * Stop server.
      */

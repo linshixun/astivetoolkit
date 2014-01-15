@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SayNumber;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SayNumber}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SayNumberTest extends TestCase {
   /**

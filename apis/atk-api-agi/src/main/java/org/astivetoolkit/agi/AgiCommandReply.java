@@ -29,15 +29,15 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class AgiCommandReply {
-
     public static final int SC_TRYING = 100;
     public static final int SC_SUCCESS = 200;
     public static final int SC_INVALID_OR_UNKNOWN_COMMAND = 510;
     public static final int SC_DEAD_CHANNEL = 511;
     public static final int SC_INVALID_COMMAND_SYNTAX = 520;
+
     private static final Pattern STATUS_PATTERN = Pattern.compile("^(\\d{3})[ -]");
     private static final Pattern RESULT_PATTERN = Pattern.compile("^200 result=(\\S+)");
     private static final Pattern PARENTHESIS_PATTERN =

@@ -25,12 +25,10 @@ import org.astivetoolkit.agi.AgiResponse;
 /**
  * Use this action to jump from one context/extension/priority to another.
  *
- * @since 1.0.0
+ * @since 1.0
  * @see Action
  */
 public class GoExt implements Action {
-
-    // A usual logging class
     private static final Logger LOG = Logger.getLogger(GoExt.class);
     private AgiResponse agiResponse;
     private String context;

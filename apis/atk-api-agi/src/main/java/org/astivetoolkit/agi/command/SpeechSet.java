@@ -25,24 +25,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Set an engine-specific setting in a key/value format.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SPEECH SET")
-public class SpeechSet implements Serializable {
-  /**
-   * Serial version identifier.
-   */
+public class SpeechSet implements Serializable { 
   private static final long serialVersionUID = -1479993108651095058L;
-
-  /**
-   * Property name(key).
-   */
   @Parameter(optional = false)
   private String name;
-
-  /**
-   * Property value.
-   */
   @Parameter(position = 1, optional = false)
   private String value;
 

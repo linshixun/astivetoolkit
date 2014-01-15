@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Changes the <code>callerid</code> of the current <code>channel.</code>
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET CALLERID")
-public class SetCallerId implements Serializable {
-  /**
-   * Serial version identifier.
-   */
+public class SetCallerId implements Serializable { 
   private static final long serialVersionUID = -920453570097230648L;
-
-  /**
-   * Caller Id.
-   */
   @Parameter(optional = false)
   private String callerId;
 

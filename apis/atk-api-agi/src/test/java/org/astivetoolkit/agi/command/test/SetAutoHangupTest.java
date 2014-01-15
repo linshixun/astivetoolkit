@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SetAutoHangup;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SetAutoHangup}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SetAutoHangupTest extends TestCase {
   /**

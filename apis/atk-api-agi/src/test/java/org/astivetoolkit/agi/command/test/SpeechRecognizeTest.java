@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SpeechRecognize;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SpeechRecognize}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SpeechRecognizeTest extends TestCase {
   /**

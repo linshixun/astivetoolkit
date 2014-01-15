@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Changes the extension for continuation upon exiting the application.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SET EXTENSION")
 public class SetExtension implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -7607143769226787251L;
-
-  /**
-   * New extension.
-   */
   @Parameter(optional = false)
   private String extension;
 

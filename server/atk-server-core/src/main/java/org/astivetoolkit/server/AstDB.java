@@ -25,7 +25,7 @@ import org.astivetoolkit.astivlet.Astivlet;
 /**
  * Help manage Astive app objects.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public interface AstDB {
 

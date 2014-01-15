@@ -25,18 +25,11 @@ import org.astivetoolkit.agi.annotation.Parameter;
 /**
  * Unloads the specified grammar.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SPEECH UNLOAD GRAMMAR")
 public class SpeechUnloadGrammar implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -4469403465985143752L;
-
-  /**
-   * Grammar name.
-   */
   @Parameter
   private String name;
 

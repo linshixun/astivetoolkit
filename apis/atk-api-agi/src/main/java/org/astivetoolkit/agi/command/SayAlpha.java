@@ -29,24 +29,13 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * <p>Returns 0 if playback completes without a digit being pressed, or the ASCII
  * numerical value of the digit if one was pressed or -1 on error/hangup.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @AgiCommand(command = "SAY ALPHA")
 public class SayAlpha implements Serializable {
-  /**
-   * Serial version identifier.
-   */
   private static final long serialVersionUID = -2496223335807892306L;
-
-  /**
-   * Can be use to the interrupt the audio on a channel.
-   */
   @Parameter(position = 1, optional = false)
   private String escapeDigits;
-
-  /**
-   * Text to say.
-   */
   @Parameter(optional = false)
   private String text;
 

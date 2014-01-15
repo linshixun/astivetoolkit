@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.SayDigits;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.SayDigits}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class SayDigitsTest extends TestCase {
   /**

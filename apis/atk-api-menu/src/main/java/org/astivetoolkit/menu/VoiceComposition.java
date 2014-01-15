@@ -23,12 +23,11 @@ import java.util.List;
 
 /**
  * Registers multiple commands that will be sent in sequence. This
- * class needs to be use in conjuction with {@link Menu}.
+ * class needs to be use in conjunction with {@link Menu}.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public class VoiceComposition {
-
     private List<Object> commands;
 
     /**

@@ -22,7 +22,7 @@ package org.astivetoolkit.agi;
 /**
  * Perform an data conversion by using meta-data in an object.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 public interface Converter {
 }

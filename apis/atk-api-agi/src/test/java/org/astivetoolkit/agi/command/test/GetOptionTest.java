@@ -26,7 +26,7 @@ import org.astivetoolkit.agi.command.GetOption;
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.GetOption}.
  * 
- * @since 1.0.0
+ * @since 1.0
  */
 public class GetOptionTest extends TestCase {
   /**

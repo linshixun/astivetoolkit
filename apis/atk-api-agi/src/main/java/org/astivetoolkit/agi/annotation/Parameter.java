@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
  * <p>Keep in mind, that if a parameter is marked as optional and set as null
  * any subsequent parameter will be ignored.
  *
- * @since 1.0.0
+ * @since 1.0
  */
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
 @Target(value = java.lang.annotation.ElementType.FIELD)
