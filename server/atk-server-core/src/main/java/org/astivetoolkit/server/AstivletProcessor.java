@@ -28,6 +28,7 @@ import org.astivetoolkit.astivlet.AstivletResponse;
 import org.astivetoolkit.util.AppLocale;
 
 /**
+ * Helper class to execute astivlets.
  *
  * @since 1.0
  */
