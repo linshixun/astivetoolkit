@@ -3,12 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-    <version>1.0.0-RC1</version>
+    <version>1.0.0-RC2</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
-    <description>Astive is a toolkit and server for Java that provides an extensible
-        architecture for developing, maintaining, and deploying telephony applications.
-    </description>
+    <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
     <url>http://astivetoolkit.org</url>
     <modules>
         <module>atk-commons</module>
@@ -144,4 +142,12 @@
             <url>https://repository-astiveteam.forge.cloudbees.com/snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
+    <organization>
+    	<name>PhonyTive LLC</name>
+    	<url>http://phonytive.com</url>
+    </organization>
+    <ciManagement>
+    	<system>Buildhive</system>
+    	<url>https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/</url>
+    </ciManagement>
 </project>

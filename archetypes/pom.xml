@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
-        <version>1.0.0-RC1</version>
+        <version>1.0.0-RC2</version>
     </parent>
     <groupId>org.astivetoolkit.archetypes</groupId>
     <artifactId>archetypes</artifactId>

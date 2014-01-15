@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-RC1</version>
+        <version>1.0.0-RC2</version>
     </parent>
     <artifactId>voice-composer</artifactId>
     <name>Astive Toolkit :: Example :: Voice Composer</name>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-api-menu</artifactId>
-            <version>1.0.0-RC1</version>
+            <version>[1.0.0-RC1,]</version>
         </dependency>
     </dependencies>
     <build>
