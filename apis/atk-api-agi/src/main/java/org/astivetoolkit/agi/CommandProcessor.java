@@ -43,9 +43,7 @@ public final class CommandProcessor {
     private static final Logger LOG = Logger.getLogger(CommandProcessor.class);
 
     /**
-     * Build a command from a class marked with annotation
-     *
-     * @{@link AgiCommand}.
+     * Build a command from a class marked with {@link AgiCommand}.
      *
      * @param o object to in command generation.
      * @return command as string.
@@ -62,7 +60,7 @@ public final class CommandProcessor {
 
         StringBuilder cmd = new StringBuilder(command.command());
 
-        if (parameters == null) {
+        if (parameters == null || parameters.isEmpty()) {
             return command.command();
         }
 
@@ -181,16 +179,8 @@ public final class CommandProcessor {
         return cmd.toString().trim();
     }
 
-    /**
-     * Get all fields marked with annotation
-     *
-     * @Parameter in a class marked with annotation annotation
-     * @Command.
-     *
-     * @param o object to analyze.
-     * @return list of parameters
-     * @throws AgiException
-     */
+    // Get all fields marked with annotations {@link Parameter}    
+    // @param o object to analyze.
     private static List getParameters(Object o) throws AgiException {
         List parameters = new ArrayList();
         Field[] fs = o.getClass().getDeclaredFields();
@@ -223,11 +213,6 @@ public final class CommandProcessor {
             if (c != null) {
                 parameters.add(map.get(i));
             } else {
-                // Ignore any other parameter, since it break the
-                // secuense. Also send an Error message to alert the
-                // developers about that issue.
-                LOG.error(AppLocale.getI18n("messageIgnoringSubsequentParameters"));
-
                 break;
             }
         }
