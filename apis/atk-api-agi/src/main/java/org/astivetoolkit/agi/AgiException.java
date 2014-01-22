@@ -26,7 +26,7 @@ package org.astivetoolkit.agi;
  * @since 1.0
  */
 public class AgiException extends Exception {
-	private static final long serialVersionUID = 1104077605229857235L;
+  private static final long serialVersionUID = 1104077605229857235L;
 
   /**
    * Create a new AgiException object.
