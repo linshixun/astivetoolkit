@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
-import org.apache.log4j.Logger;
 import org.astivetoolkit.agi.annotation.AgiCommand;
 import org.astivetoolkit.agi.annotation.BooleanChoose;
 import org.astivetoolkit.agi.annotation.ParamConverter;
@@ -40,7 +39,6 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0
  */
 public final class CommandProcessor {
-    private static final Logger LOG = Logger.getLogger(CommandProcessor.class);
 
     /**
      * Build a command from a class marked with {@link AgiCommand}.
