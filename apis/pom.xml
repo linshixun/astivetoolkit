@@ -13,5 +13,6 @@
     <modules>
 	<module>atk-api-agi</module>
 	<module>atk-api-menu</module>
+	<module>atk-api-ami</module>
     </modules>
 </project>

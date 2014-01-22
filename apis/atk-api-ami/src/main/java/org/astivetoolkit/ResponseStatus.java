@@ -18,6 +18,10 @@
  */
 package org.astivetoolkit.ami;
 
+/**
+ * 
+ * @since 1.1
+ */
 public enum ResponseStatus {SUCCESS,
   GOODBYE,
   ERROR;

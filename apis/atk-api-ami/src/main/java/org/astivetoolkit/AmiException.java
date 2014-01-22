@@ -18,7 +18,6 @@
  */
 package org.astivetoolkit.ami;
 
-
 /**
  *
  * @since 1.1

@@ -18,6 +18,10 @@
  */
 package org.astivetoolkit.ami.action;
 
+/**
+ * 
+ * @since 1.1
+ */
 public class ParkAction extends ActionMessage {
   private String channel;
   private String channel2;

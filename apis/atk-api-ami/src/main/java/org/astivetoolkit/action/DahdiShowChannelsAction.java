@@ -18,7 +18,10 @@
  */
 package org.astivetoolkit.ami.action;
 
-
+/**
+ * 
+ * @since 1.1
+ */
 public class DahdiShowChannelsAction extends ActionMessage {
   private String dahdiChannel;
 

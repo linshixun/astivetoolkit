@@ -18,7 +18,10 @@
  */
 package org.astivetoolkit.ami.action;
 
-
+/**
+ * 
+ * @since 1.1
+ */
 public class IaxPeerlistAction extends ActionMessage {
   /**
    * Creates a new IaxPeerlistAction object.
