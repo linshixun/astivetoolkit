@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -34,7 +34,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
  */
 @AgiCommand(command = "RECEIVE CHAR")
 public class ReceiveChar implements Serializable {
-  private static final long serialVersionUID = -4988177721603502302L; 
+  private static final long serialVersionUID = -4988177721603502302L;
   @Parameter
   private Integer timeout;
 

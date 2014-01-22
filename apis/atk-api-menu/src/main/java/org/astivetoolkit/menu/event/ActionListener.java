@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link MenuItem} selections.
  *
@@ -28,12 +29,11 @@ package org.astivetoolkit.menu.event;
  * @see ActionEvent
  */
 public interface ActionListener {
-
-    /**
-     * Callback triggered when a {@link Menu} or {@link MenuItem} is selected
-     * by a Subject.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void processAction(ActionEvent evt);
+  /**
+   * Callback triggered when a {@link Menu} or {@link MenuItem} is selected
+   * by a Subject.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void processAction(ActionEvent evt);
 }

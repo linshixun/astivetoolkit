@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The InterDigitsTimeoutEvent is triggered when the <code>Subject</code> fails
  * to press the next key on time.
@@ -27,37 +28,36 @@ package org.astivetoolkit.menu.event;
  * @see DigitsEvent
  */
 public class InterDigitsTimeoutEvent extends DigitsEvent {
+  private int timeout;
 
-    private int timeout;
+  /**
+   * Create a new InterDigitsTimeoutEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param timeout to prevent this event the <code>Subject</code>(user)'s
+   * should press the next digit quickly.
+   */
+  public InterDigitsTimeoutEvent(final Object source, final String digits, final int timeout) {
+    super(source, digits);
+    this.timeout = timeout;
+  }
 
-    /**
-     * Create a new InterDigitsTimeoutEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     * @param timeout to prevent this event the <code>Subject</code>(user)'s
-     * should press the next digit quickly.
-     */
-    public InterDigitsTimeoutEvent(final Object source, final String digits, final int timeout) {
-        super(source, digits);
-        this.timeout = timeout;
-    }
+  /**
+   * Returns the timeout
+   *
+   * @return to prevent this event the <code>Subject</code>(user)'s should
+   * press the next digit quickly.
+   */
+  public int getTimeout() {
+    return timeout;
+  }
 
-    /**
-     * Returns the timeout
-     *
-     * @return to prevent this event the <code>Subject</code>(user)'s should
-     * press the next digit quickly.
-     */
-    public int getTimeout() {
-        return timeout;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + getDigits() + ", timeout = " + getTimeout() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + getDigits() + ", timeout = " + getTimeout() + "]";
+  }
 }

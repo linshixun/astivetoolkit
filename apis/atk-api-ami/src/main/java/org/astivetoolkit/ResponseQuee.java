@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -19,13 +19,11 @@
 package org.astivetoolkit.ami;
 
 import java.util.HashMap;
-
 import org.apache.log4j.Logger;
-
 import org.astivetoolkit.util.AppLocale;
 
 /**
- * 
+ *
  * @since 1.1
  */
 public class ResponseQuee {

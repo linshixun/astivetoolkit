@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -29,33 +29,33 @@ import org.astivetoolkit.agi.AgiResponse;
  * @see Action
  */
 public class GoExt implements Action {
-    private static final Logger LOG = Logger.getLogger(GoExt.class);
-    private AgiResponse agiResponse;
-    private String context;
-    private String extension;
-    private String priority;
+  private static final Logger LOG = Logger.getLogger(GoExt.class);
+  private AgiResponse agiResponse;
+  private String context;
+  private String extension;
+  private String priority;
 
-    /**
-     * Creates a new instance of GoExt
-     */
-    public GoExt(AgiResponse agiResponse, String context, String extension, String priority) {
-        this.agiResponse = agiResponse;
-        this.context = context;
-        this.extension = extension;
-        this.priority = priority;
-    }
+  /**
+   * Creates a new instance of GoExt
+   */
+  public GoExt(AgiResponse agiResponse, String context, String extension, String priority) {
+    this.agiResponse = agiResponse;
+    this.context = context;
+    this.extension = extension;
+    this.priority = priority;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void doAction() {
-        try {
-            agiResponse.setContext(context);
-            agiResponse.setExtension(extension);
-            agiResponse.setPriority(priority);
-        } catch (AgiException ex) {
-            LOG.warn(ex.getMessage());
-        }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void doAction() {
+    try {
+      agiResponse.setContext(context);
+      agiResponse.setExtension(extension);
+      agiResponse.setPriority(priority);
+    } catch (AgiException ex) {
+      LOG.warn(ex.getMessage());
     }
+  }
 }

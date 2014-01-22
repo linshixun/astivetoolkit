@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -36,6 +36,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
 @AgiCommand(command = "CONTROL STREAM FILE")
 public class ControlStreamFile implements Serializable {
   private static final long serialVersionUID = 3190091457969146433L;
+
   // Silence time in milliseconds after audio finished. The default value
   // is '0' (no silence).
   @Parameter(position = 2, optional = false)
@@ -104,8 +105,8 @@ public class ControlStreamFile implements Serializable {
    * @param rewindDigit repeat the audio.
    * @param pauseDigit stop the steam.
    */
-  public ControlStreamFile(final String file, final String escapeDigits, final Integer offset, final char forwardDigit,
-                          final char rewindDigit, final char pauseDigit) {
+  public ControlStreamFile(final String file, final String escapeDigits, final Integer offset,
+                           final char forwardDigit, final char rewindDigit, final char pauseDigit) {
     this.file = file;
     this.escapeDigits = escapeDigits;
     this.offset = offset;

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -29,36 +29,35 @@ import java.util.EventObject;
  * @see ActionListener
  */
 public class ActionEvent extends EventObject {
+  private String digits;
 
-    private String digits;
+  /**
+   * Create a new ActionEvent object, using a {@link MenuItem} or {@link Menu}
+   * as event source.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   */
+  public ActionEvent(final Object source, final String digits) {
+    super(source);
+    this.source = source;
+    this.digits = digits;
+  }
 
-    /**
-     * Create a new ActionEvent object, using a {@link MenuItem} or {@link Menu}
-     * as event source.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     */
-    public ActionEvent(final Object source, final String digits) {
-        super(source);
-        this.source = source;
-        this.digits = digits;
-    }
+  /**
+   * Returns the digits of the source that trigger this event.
+   *
+   * @return the digits is unique per menu.
+   */
+  public String getDigits() {
+    return digits;
+  }
 
-    /**
-     * Returns the digits of the source that trigger this event.
-     *
-     * @return the digits is unique per menu.
-     */
-    public String getDigits() {
-        return digits;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + digits + "]" ;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + digits + "]";
+  }
 }

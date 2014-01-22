@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link FailEvent}.
  *
@@ -25,12 +26,11 @@ package org.astivetoolkit.menu.event;
  * @see FailEvent
  */
 public interface FailureListener {
-
-    /**
-     * Callback triggered when <code>Subject</code> pressed invalid menu
-     * options.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void failurePerform(FailEvent evt);
+  /**
+   * Callback triggered when <code>Subject</code> pressed invalid menu
+   * options.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void failurePerform(FailEvent evt);
 }

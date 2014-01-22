@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link PositionChangeEvent}.
  *
@@ -25,12 +26,11 @@ package org.astivetoolkit.menu.event;
  * @see PositionChangeEvent
  */
 public interface PositionChangeListener {
-
-    /**
-     * Callback triggered when the {@link MenuNavigator} move from one
-     * {@link MenuItem} to another.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void positionChange(PositionChangeEvent evt);
+  /**
+   * Callback triggered when the {@link MenuNavigator} move from one
+   * {@link MenuItem} to another.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void positionChange(PositionChangeEvent evt);
 }

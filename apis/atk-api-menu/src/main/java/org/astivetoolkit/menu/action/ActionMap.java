@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -27,54 +27,95 @@ import java.util.HashMap;
  * @see Action
  */
 public class ActionMap {
-    private ActionMap parent;
-    private HashMap actions;
+  private ActionMap parent;
+  private HashMap actions;
 
-    /**
-     * Creates a new ActionMap object.
-     */
-    public ActionMap() {
-        actions = new HashMap();
-    }
+  /**
+   * Creates a new ActionMap object.
+   */
+  public ActionMap() {
+    actions = new HashMap();
+  }
 
-    /**
-     * @return Returns an array of the keys defined in this ActionMap and its
-     * parent.
-     */
-    public Object[] allKeys() {
-        // to be implemented
-        return null;
-    }
+  /**
+   * @return Returns an array of the keys defined in this ActionMap and its
+   * parent.
+   */
+  public Object[] allKeys() {
+    // to be implemented
+    return null;
+  }
 
-    public void clear() {
-        actions.clear();
-    }
+  /**
+   * DOCUMENT ME!
+   */
+  public void clear() {
+    actions.clear();
+  }
 
-    public Action get(Object key) {
-        return (Action) actions.get(key);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param key DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Action get(Object key) {
+    return (Action) actions.get(key);
+  }
 
-    public ActionMap getParent() {
-        return parent;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public ActionMap getParent() {
+    return parent;
+  }
 
-    public Object[] keys() {
-        return actions.entrySet().toArray();
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public Object[] keys() {
+    return actions.entrySet().toArray();
+  }
 
-    public void put(Object key, Action action) {
-        actions.put(key, action);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param key DOCUMENT ME!
+   * @param action DOCUMENT ME!
+   */
+  public void put(Object key, Action action) {
+    actions.put(key, action);
+  }
 
-    public void remove(Object key) {
-        actions.remove(key);
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param key DOCUMENT ME!
+   */
+  public void remove(Object key) {
+    actions.remove(key);
+  }
 
-    public void setParent(ActionMap map) {
-        parent = map;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param map DOCUMENT ME!
+   */
+  public void setParent(ActionMap map) {
+    parent = map;
+  }
 
-    public int size() {
-        return actions.size();
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int size() {
+    return actions.size();
+  }
 }

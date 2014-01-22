@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -19,9 +19,7 @@
 package org.astivetoolkit.ami;
 
 import java.io.IOException;
-
 import java.net.Socket;
-
 import org.astivetoolkit.ami.action.ActionMessage;
 import org.astivetoolkit.ami.action.LoginAction;
 import org.astivetoolkit.ami.action.LogoffAction;

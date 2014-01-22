@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -28,28 +28,28 @@ import java.util.List;
  * @since 1.0
  */
 public class VoiceComposition {
-    private List<Object> commands;
+  private List<Object> commands;
 
-    /**
-     * Create a new VoiceComposition object.
-     *
-     * @param commands to be execute in sequence.
-     */
-    public VoiceComposition(List<Object> commands) {
-        this.commands = commands;
-    }
+  /**
+   * Create a new VoiceComposition object.
+   *
+   * @param commands to be execute in sequence.
+   */
+  public VoiceComposition(List<Object> commands) {
+    this.commands = commands;
+  }
 
-    /**
-     * @return a sequence of commands to be executed.
-     */
-    public List<Object> getCommands() {
-        return Collections.unmodifiableList(commands);
-    }
+  /**
+   * @return a sequence of commands to be executed.
+   */
+  public List<Object> getCommands() {
+    return Collections.unmodifiableList(commands);
+  }
 
-    /**
-     * @param commands to be sent in sequence to the client.
-     */
-    public void setCommands(List<Object> commands) {
-        this.commands = commands;
-    }
+  /**
+   * @param commands to be sent in sequence to the client.
+   */
+  public void setCommands(List<Object> commands) {
+    this.commands = commands;
+  }
 }

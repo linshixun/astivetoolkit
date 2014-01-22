@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -29,47 +29,45 @@ import org.astivetoolkit.menu.MenuItem;
  * @see PositionChangeListener
  */
 public class PositionChangeEvent extends DigitsEvent {
+  private Object newObject;
+  private int position;
 
-    private Object newObject;
-    private int position;
+  /**
+   * Create new PositionChangeEvent.
+   *
+   * @param source the object that originated the event.
+   * @param newObject then new {@link MenuItem}.
+   * @param position the position of the new option in the menu.
+   */
+  public PositionChangeEvent(final Object source, final Object newObject, final int position) {
+    super(source, ((MenuItem) source).getDigits());
+    this.newObject = newObject;
+    this.position = position;
+  }
 
-    /**
-     * Create new PositionChangeEvent.
-     *
-     * @param source the object that originated the event.
-     * @param newObject then new {@link MenuItem}.
-     * @param position the position of the new option in the menu.
-     */
-    public PositionChangeEvent(final Object source, final Object newObject,
-            final int position) {
-        super(source, ((MenuItem) source).getDigits());
-        this.newObject = newObject;
-        this.position = position;
-    }
+  /**
+   * Returns the current {@link MenuItem}.
+   *
+   * @return the new menu item.
+   */
+  public Object getNewObject() {
+    return newObject;
+  }
 
-    /**
-     * Returns the current {@link MenuItem}.
-     *
-     * @return the new menu item.
-     */
-    public Object getNewObject() {
-        return newObject;
-    }
+  /**
+   * Returns the new position.
+   *
+   * @return the position of the new option in the menu.
+   */
+  public int getPosition() {
+    return position;
+  }
 
-    /**
-     * Returns the new position.
-     *
-     * @return the position of the new option in the menu.
-     */
-    public int getPosition() {
-        return position;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[position = " + getPosition() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[position = " + getPosition() + "]";
+  }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Pattern;
-
 import org.astivetoolkit.ami.action.ActionType;
 import org.astivetoolkit.ami.event.EventType;
 import org.astivetoolkit.ami.util.Utils;

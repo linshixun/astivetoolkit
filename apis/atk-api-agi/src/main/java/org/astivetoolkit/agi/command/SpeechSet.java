@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -28,7 +28,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * @since 1.0
  */
 @AgiCommand(command = "SPEECH SET")
-public class SpeechSet implements Serializable { 
+public class SpeechSet implements Serializable {
   private static final long serialVersionUID = -1479993108651095058L;
   @Parameter(optional = false)
   private String name;

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * A MaxFailerEvent is triggered when the maximum attempts to pick a menu
  * option is reached.
@@ -27,35 +28,34 @@ package org.astivetoolkit.menu.event;
  * @see DigitsEvent
  */
 public class MaxFailureEvent extends DigitsEvent {
+  private int maxFailure;
 
-    private int maxFailure;
+  /**
+   * Create a new MaxFailureEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param maxFailure the maximum attempts admitted by the menu.
+   */
+  public MaxFailureEvent(final Object source, final String digits, final int maxFailure) {
+    super(source, digits);
+    this.maxFailure = maxFailure;
+  }
 
-    /**
-     * Create a new MaxFailureEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     * @param maxFailure the maximum attempts admitted by the menu.
-     */
-    public MaxFailureEvent(final Object source, final String digits, final int maxFailure) {
-        super(source, digits);
-        this.maxFailure = maxFailure;
-    }
+  /**
+   * Returns the amount of attempts.
+   *
+   * @return the maximum amount of attempts.
+   */
+  public int getMaxFailure() {
+    return maxFailure;
+  }
 
-    /**
-     * Returns the amount of attempts.
-     *
-     * @return the maximum amount of attempts.
-     */
-    public int getMaxFailure() {
-        return maxFailure;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + getDigits() + ", maxFailure = " + getMaxFailure() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + getDigits() + ", maxFailure = " + getMaxFailure() + "]";
+  }
 }

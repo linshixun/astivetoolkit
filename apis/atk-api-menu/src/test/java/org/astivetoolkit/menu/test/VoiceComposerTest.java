@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -19,30 +19,39 @@
 package org.astivetoolkit.menu.test;
 
 import java.util.TimeZone;
-import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
 import org.astivetoolkit.menu.VoiceComposer;
 import org.astivetoolkit.menu.VoiceComposition;
+import junit.framework.TestCase;
 
 /**
  *
  * @since 1.0
  */
 public class VoiceComposerTest extends TestCase {
+  /**
+   * Creates a new VoiceComposerTest object.
+   *
+   * @param testName DOCUMENT ME!
+   */
+  public VoiceComposerTest(String testName) {
+    super(testName);
+  }
 
-    public VoiceComposerTest(String testName) {
-        super(testName);
-    }
-
-    public void testVoiceComposer() throws AgiException {
-        VoiceComposition vc =
-                VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())
-                .streamFile("file1").addSilence(1).withEscapeDigits("").sayAlpha("abcd").create();
-        assertEquals("STREAM FILE \"file1\" \"12345\" 0",
-                CommandProcessor.buildCommand(vc.getCommands().get(0)));
-        assertEquals("STREAM FILE \"silence/1\" \"12345\" 0",
-                CommandProcessor.buildCommand(vc.getCommands().get(1)));
-        assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(2)));
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @throws AgiException DOCUMENT ME!
+   */
+  public void testVoiceComposer() throws AgiException {
+    VoiceComposition vc =
+      VoiceComposer.withEscapeDigits("12345").withFormat("").withTimeZone(TimeZone.getDefault())
+       .streamFile("file1").addSilence(1).withEscapeDigits("").sayAlpha("abcd").create();
+    assertEquals("STREAM FILE \"file1\" \"12345\" 0",
+                 CommandProcessor.buildCommand(vc.getCommands().get(0)));
+    assertEquals("STREAM FILE \"silence/1\" \"12345\" 0",
+                 CommandProcessor.buildCommand(vc.getCommands().get(1)));
+    assertEquals("SAY ALPHA \"abcd\" \"\"", CommandProcessor.buildCommand(vc.getCommands().get(2)));
+  }
 }

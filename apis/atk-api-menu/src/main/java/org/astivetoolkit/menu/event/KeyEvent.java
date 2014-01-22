@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -29,35 +29,34 @@ import org.astivetoolkit.menu.Digit;
  * @see DigitsEvent
  */
 public class KeyEvent extends EventObject {
+  private Digit key;
 
-    private Digit key;
+  /**
+   * Creates a new KeyEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param key the key pressed by a <code>Subject</code>.
+   */
+  public KeyEvent(final Object source, final Digit key) {
+    super(source);
+    this.source = source;
+    this.key = key;
+  }
 
-    /**
-     * Creates a new KeyEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param key the key pressed by a <code>Subject</code>.
-     */
-    public KeyEvent(final Object source, final Digit key) {
-        super(source);
-        this.source = source;
-        this.key = key;
-    }
+  /**
+   * Returns the key pressed by <code>Subject</code>.
+   *
+   * @return the key pressed by a <code>Subject</code>.
+   */
+  public Digit getKey() {
+    return key;
+  }
 
-    /**
-     * Returns the key pressed by <code>Subject</code>.
-     *
-     * @return the key pressed by a <code>Subject</code>.
-     */
-    public Digit getKey() {
-        return key;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[key = " + getKey() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[key = " + getKey() + "]";
+  }
 }

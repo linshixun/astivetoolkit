@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * A TimeoutEvent is triggered when the maximum time(as define in {@link Menu})
  * waiting for user iteration is reached.
@@ -26,36 +27,35 @@ package org.astivetoolkit.menu.event;
  * @see TimeoutListener
  */
 public class TimeoutEvent extends DigitsEvent {
+  private int timeout;
 
-    private int timeout;
+  /**
+   * Create a new TimeoutEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param maxTimeout maximum time waiting for user iteration.
+   */
+  public TimeoutEvent(final Object source, final String digits, final int timeout) {
+    super(source, digits);
+    this.timeout = timeout;
+  }
 
-    /**
-     * Create a new TimeoutEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     * @param maxTimeout maximum time waiting for user iteration.
-     */
-    public TimeoutEvent(final Object source, final String digits, final int timeout) {
-        super(source, digits);
-        this.timeout = timeout;
-    }
+  /**
+   * Returns maximum time waiting for user iteration.
+   *
+   * @return maximum time (as define in the {@link Menu}) waiting for user
+   * iteration.
+   */
+  public int getTimeout() {
+    return timeout;
+  }
 
-    /**
-     * Returns maximum time waiting for user iteration.
-     *
-     * @return maximum time (as define in the {@link Menu}) waiting for user
-     * iteration.
-     */
-    public int getTimeout() {
-        return timeout;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + getDigits() + ", timeout = " + getTimeout() +"]" ;
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + getDigits() + ", timeout = " + getTimeout() + "]";
+  }
 }

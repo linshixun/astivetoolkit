@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -35,29 +35,58 @@ public enum TonType {UNKNOWN(0, "Unknown", "Unknown"),
   private int value;
   private String name;
   private String literal;
-  
+
   private TonType(final int value, final String name, final String literal) {
     this.value = value;
     this.name = name;
     this.literal = literal;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @param value DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public static TonType get(final int value) {
     return null;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @param name DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public static TonType getByName(final String name) {
     return null;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public String getLiteral() {
     return literal;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public int getValue() {
     return value;
   }

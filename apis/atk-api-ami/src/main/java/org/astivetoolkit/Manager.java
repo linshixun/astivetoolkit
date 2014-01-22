@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,10 +18,10 @@
  */
 package org.astivetoolkit.ami;
 
+import java.util.ArrayList;
 import org.astivetoolkit.ami.action.ActionMessage;
 import org.astivetoolkit.ami.action.ResponseMessage;
 import org.astivetoolkit.ami.event.ManagerEvent;
-import java.util.ArrayList;
 
 /**
  *

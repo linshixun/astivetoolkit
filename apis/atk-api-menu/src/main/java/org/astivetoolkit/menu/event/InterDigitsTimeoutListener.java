@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link InterDigitsTimeoutEvent}.
  *
@@ -25,11 +26,10 @@ package org.astivetoolkit.menu.event;
  * @see InterDigitsTimeoutEvent
  */
 public interface InterDigitsTimeoutListener {
-
-    /**
-     * Callback triggered when the maximum time between digits is passed.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void timeoutPerform(InterDigitsTimeoutEvent evt);
+  /**
+   * Callback triggered when the maximum time between digits is passed.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void timeoutPerform(InterDigitsTimeoutEvent evt);
 }

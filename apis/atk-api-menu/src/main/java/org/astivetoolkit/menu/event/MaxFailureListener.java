@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link MaxFailureEvent}.
  *
@@ -25,12 +26,11 @@ package org.astivetoolkit.menu.event;
  * @see MaxFailureEvent
  */
 public interface MaxFailureListener {
-
-    /**
-     * Callback triggered when maximum attempts is reached by a
-     * <code>Subject</code>.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void maxFailurePerform(MaxFailureEvent evt);
+  /**
+   * Callback triggered when maximum attempts is reached by a
+   * <code>Subject</code>.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void maxFailurePerform(MaxFailureEvent evt);
 }

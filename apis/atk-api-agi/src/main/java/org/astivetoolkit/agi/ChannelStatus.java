@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -61,7 +61,6 @@ public enum ChannelStatus {
    * Line is busy
    */
   LINE_IS_BUSY(7);
-  
   // Int value of this type.
   private int code;
 

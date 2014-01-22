@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -19,14 +19,14 @@
 package org.astivetoolkit.agi.test;
 
 import java.util.ArrayList;
-import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.AgiRequest;
 import org.astivetoolkit.agi.ChannelType;
+import junit.framework.TestCase;
 
 /**
  * Test case for {@link org.astivetoolkit.agi.AgiRequest}.
- * 
+ *
  * @since 1.0
  */
 public class AgiRequestTest extends TestCase {

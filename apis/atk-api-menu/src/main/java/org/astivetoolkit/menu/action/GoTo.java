@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -30,30 +30,30 @@ import org.astivetoolkit.menu.MenuNavigator;
  * @see GoExt
  */
 public class GoTo implements Action {
-    private AgiResponse agiResponse;
-    private Menu menu;
+  private AgiResponse agiResponse;
+  private Menu menu;
 
-    /**
-     * Creates a new GoTo object.
-     *
-     * @param agiResponse agi response.
-     * @param menu menu where to jump.
-     */
-    public GoTo(AgiResponse agiResponse, Menu menu) {
-        this.agiResponse = agiResponse;
-        this.menu = menu;
-    }
+  /**
+   * Creates a new GoTo object.
+   *
+   * @param agiResponse agi response.
+   * @param menu menu where to jump.
+   */
+  public GoTo(AgiResponse agiResponse, Menu menu) {
+    this.agiResponse = agiResponse;
+    this.menu = menu;
+  }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void doAction() {
-        try {
-            MenuNavigator e = new MenuNavigator(agiResponse);
-            e.run(menu);
-        } catch (AgiException ex) {
-            // Manage this exception
-        }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void doAction() {
+    try {
+      MenuNavigator e = new MenuNavigator(agiResponse);
+      e.run(menu);
+    } catch (AgiException ex) {
+      // Manage this exception
     }
+  }
 }

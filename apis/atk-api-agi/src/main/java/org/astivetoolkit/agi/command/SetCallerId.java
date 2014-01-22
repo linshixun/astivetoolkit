@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -28,7 +28,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
  * @since 1.0
  */
 @AgiCommand(command = "SET CALLERID")
-public class SetCallerId implements Serializable { 
+public class SetCallerId implements Serializable {
   private static final long serialVersionUID = -920453570097230648L;
   @Parameter(optional = false)
   private String callerId;

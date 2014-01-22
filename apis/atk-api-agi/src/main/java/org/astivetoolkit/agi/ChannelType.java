@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -45,7 +45,6 @@ public enum ChannelType {
    * Channel type H.323
    */
   H323("H.323");
-  
   // Type of channel as string. 
   private String name;
 

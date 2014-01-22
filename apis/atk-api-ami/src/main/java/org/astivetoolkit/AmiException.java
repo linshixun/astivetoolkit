@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.ami;
 
+
 /**
  *
  * @since 1.1
@@ -28,7 +29,8 @@ public class AmiException extends Exception {
   /**
    * Creates a new AmiException object.
    *
-   * @param msg DOCUMENT ME!
+   * @param msg
+   *            DOCUMENT ME!
    */
   public AmiException(String msg) {
     super(msg);

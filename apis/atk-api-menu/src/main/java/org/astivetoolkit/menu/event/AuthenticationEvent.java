@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -29,27 +29,26 @@ import org.astivetoolkit.menu.Authenticator;
  * @see AuthenticationListener
  */
 public class AuthenticationEvent extends EventObject {
+  private Authenticator authenticator;
 
-    private Authenticator authenticator;
+  /**
+   * Create a new AuthenticationEvent.
+   *
+   * @param source the object that originated the event.
+   * @param authenticator contains the authenticator mechanism.
+   */
+  public AuthenticationEvent(final Object source, final Authenticator authenticator) {
+    super(source);
+    this.authenticator = authenticator;
+    this.source = source;
+  }
 
-    /**
-     * Create a new AuthenticationEvent.
-     *
-     * @param source the object that originated the event.
-     * @param authenticator contains the authenticator mechanism.
-     */
-    public AuthenticationEvent(final Object source, final Authenticator authenticator) {
-        super(source);
-        this.authenticator = authenticator;
-        this.source = source;
-    }
-
-    /**
-     * Returns the {@link Authenticator} mechanism.
-     *
-     * @return the authenticator object.
-     */
-    public Authenticator getAuthenticator() {
-        return authenticator;
-    }
+  /**
+   * Returns the {@link Authenticator} mechanism.
+   *
+   * @return the authenticator object.
+   */
+  public Authenticator getAuthenticator() {
+    return authenticator;
+  }
 }

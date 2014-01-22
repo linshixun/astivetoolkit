@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -43,6 +43,7 @@ import org.astivetoolkit.agi.annotation.Parameter;
 @AgiCommand(command = "CHANNEL STATUS")
 public class GetChannelStatus implements Serializable {
   private static final long serialVersionUID = -820579790841625915L;
+
   // Channel name, or null for current channel.
   @Parameter
   private String channel;

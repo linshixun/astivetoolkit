@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -28,34 +28,33 @@ import java.util.EventObject;
  * @see DigitsListener
  */
 public class DigitsEvent extends EventObject {
+  private String digits;
 
-    private String digits;
+  /**
+   * Creates a new DigitsEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   */
+  public DigitsEvent(final Object source, final String digits) {
+    super(source);
+    this.digits = digits;
+  }
 
-    /**
-     * Creates a new DigitsEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     */
-    public DigitsEvent(final Object source, final String digits) {
-        super(source);
-        this.digits = digits;
-    }
+  /**
+   * Returns the digits pressed.
+   *
+   * @return the digits pressed by the user.
+   */
+  public String getDigits() {
+    return digits;
+  }
 
-    /**
-     * Returns the digits pressed.
-     *
-     * @return the digits pressed by the user.
-     */
-    public String getDigits() {
-        return digits;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + getDigits() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + getDigits() + "]";
+  }
 }

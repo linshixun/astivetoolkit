@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * A FailEvent is triggered when a <code>Subject</code> attempts to enter an
  * invalid menu option.
@@ -27,37 +28,36 @@ package org.astivetoolkit.menu.event;
  * @see DigitsEvent
  */
 public class FailEvent extends DigitsEvent {
+  private int failCount;
 
-    private int failCount;
+  /**
+   * Creates a new FailEvent object.
+   *
+   * @param source the object that originated the event.
+   * @param digits the digits pressed.
+   * @param failCount the amount of times the <code>Subject</code> has pressed
+   * an invalid menu option.
+   */
+  public FailEvent(final Object source, final String digits, final int failCount) {
+    super(source, digits);
+    this.failCount = failCount;
+  }
 
-    /**
-     * Creates a new FailEvent object.
-     *
-     * @param source the object that originated the event.
-     * @param digits the digits pressed.
-     * @param failCount the amount of times the <code>Subject</code> has pressed
-     * an invalid menu option.
-     */
-    public FailEvent(final Object source, final String digits, final int failCount) {
-        super(source, digits);
-        this.failCount = failCount;
-    }
+  /**
+   * Returns the fail count.
+   *
+   * @return the amount of times the <code>Subject</code> has pressed an
+   * invalid option.
+   */
+  public int getFailCount() {
+    return failCount;
+  }
 
-    /**
-     * Returns the fail count.
-     *
-     * @return the amount of times the <code>Subject</code> has pressed an
-     * invalid option.
-     */
-    public int getFailCount() {
-        return failCount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "[digits = " + getDigits() + ", failCount = " + getFailCount() + "]";
-    }
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String toString() {
+    return "[digits = " + getDigits() + ", failCount = " + getFailCount() + "]";
+  }
 }

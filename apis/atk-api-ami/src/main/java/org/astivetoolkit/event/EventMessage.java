@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,11 +18,11 @@
  */
 package org.astivetoolkit.ami.event;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.astivetoolkit.ami.Message;
 import org.astivetoolkit.ami.MessageType;
 import org.astivetoolkit.ami.Privilege;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link TimeoutListener}.
  *
@@ -25,11 +26,10 @@ package org.astivetoolkit.menu.event;
  * @see TimeoutEvent
  */
 public interface TimeoutListener {
-
-    /**
-     * Callback triggered when the maximum time to press the digits is reached.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void timeoutPerform(TimeoutEvent evt);
+  /**
+   * Callback triggered when the maximum time to press the digits is reached.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void timeoutPerform(TimeoutEvent evt);
 }

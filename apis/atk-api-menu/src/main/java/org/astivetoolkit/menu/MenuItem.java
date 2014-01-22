@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -44,400 +44,403 @@ import org.astivetoolkit.menu.event.KeyListener;
  * @see Menu
  */
 public class MenuItem {
-    private Action action;
-    private ArrayList<ActionListener> actionListenerList = new ArrayList<ActionListener>();
-    private ArrayList<AuthenticationListener> authenticationListenerList = new ArrayList<AuthenticationListener>();
-    private ArrayList<DigitsListener> digitsListenerList = new ArrayList<DigitsListener>();
-    private ArrayList<KeyListener> keyListenerList = new ArrayList<KeyListener>();
-    private Authenticator authenticator;
-    private List<VoiceComposition> voiceCompositionList;
-    private String digits;
-    private String file;
-    private boolean forgetAuthOnLeave = false;
-    private boolean mustAuthenticate;
-    private int priority;
-    /**
-     * Menu item parent.
-     */
-    protected MenuItem parent;
+  private Action action;
+  private ArrayList<ActionListener> actionListenerList = new ArrayList<ActionListener>();
+  private ArrayList<AuthenticationListener> authenticationListenerList =
+    new ArrayList<AuthenticationListener>();
+  private ArrayList<DigitsListener> digitsListenerList = new ArrayList<DigitsListener>();
+  private ArrayList<KeyListener> keyListenerList = new ArrayList<KeyListener>();
+  private Authenticator authenticator;
+  private List<VoiceComposition> voiceCompositionList;
 
-    /**
-     * Creates a new MenuItem object without parameters.
-     */
-    public MenuItem() {
-        voiceCompositionList = new ArrayList<VoiceComposition>();
-    }
+  /**
+   * Menu item parent.
+   */
+  protected MenuItem parent;
+  private String digits;
+  private String file;
+  private boolean forgetAuthOnLeave = false;
+  private boolean mustAuthenticate;
+  private int priority;
 
-    /**
-     * Creates a new MenuItem object with <code>digits</code> and
-     * <code>file</code> as parameters.
-     *
-     * @param digits digits must be unique per menu otherwise a
-     * {@link DuplicateDigitException} will be perform.
-     * @param file the file extension must not be included in the filename.
-     */
-    public MenuItem(String digits, String file) {
-        this.digits = digits;
-        this.file = file;
-        voiceCompositionList = new ArrayList<VoiceComposition>();
-    }
+  /**
+   * Creates a new MenuItem object without parameters.
+   */
+  public MenuItem() {
+    voiceCompositionList = new ArrayList<VoiceComposition>();
+  }
 
-    /**
-     * Creates a new MenuItem object with <code>digits</code>, <code>file</code>
-     * and <code>action</code> as parameters.
-     *
-     * @param digits digits must be unique per menu otherwise a
-     * {@link DuplicateDigitException} will be perform.
-     * @param file the file extension must not be included in the filename.
-     * @param action the action to execute if menu item is selected.
-     */
-    public MenuItem(String digits, String file, Action action) {
-        this.digits = digits;
-        this.file = file;
-        this.action = action;
-        voiceCompositionList = new ArrayList<VoiceComposition>();
-    }
+  /**
+   * Creates a new MenuItem object with <code>digits</code> and
+   * <code>file</code> as parameters.
+   *
+   * @param digits digits must be unique per menu otherwise a
+   * {@link DuplicateDigitException} will be perform.
+   * @param file the file extension must not be included in the filename.
+   */
+  public MenuItem(String digits, String file) {
+    this.digits = digits;
+    this.file = file;
+    voiceCompositionList = new ArrayList<VoiceComposition>();
+  }
 
-    /**
-     * Creates a new MenuItem object with <code>digits</code>, <code>file</code>,
-     * <code>action</code> and <code>priority</code> as parameters.
-     *
-     * @param digits digits must be unique per menu otherwise a
-     * {@link DuplicateDigitException} will be perform.
-     * @param file the file extension must not be included in the filename.
-     * @param action the action to execute if menu item is selected.
-     * @param priority force menu to assign an specific position in the menu.
-     */
-    public MenuItem(String digits, String file, Action action, int priority) {
-        this.digits = digits;
-        this.file = file;
-        this.action = action;
-        this.priority = priority;
-        voiceCompositionList = new ArrayList<VoiceComposition>();
-    }
+  /**
+   * Creates a new MenuItem object with <code>digits</code>, <code>file</code>
+   * and <code>action</code> as parameters.
+   *
+   * @param digits digits must be unique per menu otherwise a
+   * {@link DuplicateDigitException} will be perform.
+   * @param file the file extension must not be included in the filename.
+   * @param action the action to execute if menu item is selected.
+   */
+  public MenuItem(String digits, String file, Action action) {
+    this.digits = digits;
+    this.file = file;
+    this.action = action;
+    voiceCompositionList = new ArrayList<VoiceComposition>();
+  }
 
-    /**
-     * Registers the specified <code>action listener</code> to receive action
-     * events from this menu item. If the <code>listener</code> is
-     * <code>null</code>, no exception is thrown and no action is performed.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void addActionListener(ActionListener listener) {
-        actionListenerList.add(listener);
-    }
+  /**
+   * Creates a new MenuItem object with <code>digits</code>, <code>file</code>,
+   * <code>action</code> and <code>priority</code> as parameters.
+   *
+   * @param digits digits must be unique per menu otherwise a
+   * {@link DuplicateDigitException} will be perform.
+   * @param file the file extension must not be included in the filename.
+   * @param action the action to execute if menu item is selected.
+   * @param priority force menu to assign an specific position in the menu.
+   */
+  public MenuItem(String digits, String file, Action action, int priority) {
+    this.digits = digits;
+    this.file = file;
+    this.action = action;
+    this.priority = priority;
+    voiceCompositionList = new ArrayList<VoiceComposition>();
+  }
 
-    /**
-     * Registers the specified <code>authentication listener</code> to receive
-     * authentication events from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void addAuthenticationListener(AuthenticationListener listener) {
-        authenticationListenerList.add(listener);
-    }
+  /**
+   * Registers the specified <code>action listener</code> to receive action
+   * events from this menu item. If the <code>listener</code> is
+   * <code>null</code>, no exception is thrown and no action is performed.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void addActionListener(ActionListener listener) {
+    actionListenerList.add(listener);
+  }
 
-    /**
-     * Registers the specified <code>digits listener</code> to receive digits
-     * events from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void addDigitsListener(DigitsListener listener) {
-        digitsListenerList.add(listener);
-    }
+  /**
+   * Registers the specified <code>authentication listener</code> to receive
+   * authentication events from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void addAuthenticationListener(AuthenticationListener listener) {
+    authenticationListenerList.add(listener);
+  }
 
-    /**
-     * Registers the specified <code>key listener</code> to receive key events
-     * from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void addKeyListener(KeyListener listener) {
-        keyListenerList.add(listener);
-    }
+  /**
+   * Registers the specified <code>digits listener</code> to receive digits
+   * events from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void addDigitsListener(DigitsListener listener) {
+    digitsListenerList.add(listener);
+  }
 
-    /**
-     * Removes the specified <code>action listener</code> so it no longer
-     * receives action events from this menu item. If <code>listener</code>
-     * is <code>null</code>, no exception is thrown and no action is performed.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void removeActionListener(ActionListener listener) {
-        actionListenerList.remove(listener);
-    }
+  /**
+   * Registers the specified <code>key listener</code> to receive key events
+   * from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void addKeyListener(KeyListener listener) {
+    keyListenerList.add(listener);
+  }
 
-    /**
-     * Removes the specified <code>authentication listener</code> to receive
-     * authentication events from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void removeAuthenticationListener(AuthenticationListener listener) {
-        authenticationListenerList.remove(listener);
-    }
+  /**
+   * Registers a voice composition. If <code>file</code> is not
+   * <code>null</code>, it takes precedence over the voice composition.
+   *
+   * @param voiceComposition a set of commands to be performed in sequence.
+   */
+  public void addVoiceComposition(VoiceComposition voiceComposition) {
+    voiceCompositionList.add(voiceComposition);
+  }
 
-    /**
-     * Removes the specified <code>digits listener</code> to receive digits
-     * events from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void removeDigitListener(DigitsListener listener) {
-        digitsListenerList.remove(listener);
+  /**
+   * Notifies <code>action listeners</code> about an action event.
+   *
+   * @param evt the event.
+   */
+  protected void fireActionEvent_processAction(ActionEvent evt) {
+    for (ActionListener listener : actionListenerList) {
+      listener.processAction(evt);
     }
+  }
 
-    /**
-     * Removes the specified <code>key listener</code> to receive digits key
-     * events from this menu item.
-     *
-     * @param listener the object that receives a notification when an event of
-     * the specified type occurs.
-     */
-    public void removeKeyListener(KeyListener listener) {
-        keyListenerList.remove(listener);
+  /**
+   * Notifies <code>authentication listeners</code> about an authentication
+   * event.
+   *
+   * @param evt the event.
+   */
+  protected void fireAuthenticationEvent_onFailure(AuthenticationEvent evt) {
+    for (AuthenticationListener listener : authenticationListenerList) {
+      listener.onFailure(evt);
     }
+  }
 
-    /**
-     * Registers a voice composition. If <code>file</code> is not
-     * <code>null</code>, it takes precedence over the voice composition.
-     *
-     * @param voiceComposition a set of commands to be performed in sequence.
-     */
-    public void addVoiceComposition(VoiceComposition voiceComposition) {
-        voiceCompositionList.add(voiceComposition);
+  /**
+   * Notifies <code>authentication listeners</code> about an authentication event.
+   *
+   * @param evt the event.
+   */
+  protected void fireAuthenticationEvent_onSuccess(AuthenticationEvent evt) {
+    for (AuthenticationListener listener : authenticationListenerList) {
+      listener.onSuccess(evt);
     }
+  }
 
-    /**
-     * Returns the action.
-     *
-     * @return the action to perform if menu item is selected.
-     */
-    public Action getAction() {
-        return action;
+  /**
+   * Notifies <code>digits listeners</code> about a digits event.
+   *
+   * @param evt the event.
+   */
+  protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
+    for (DigitsListener listener : digitsListenerList) {
+      listener.digitsEnter(evt);
     }
+  }
 
-    /**
-     * Returns the authenticator object.
-     *
-     * @return a custom authentication mechanism for the menu item.
-     */
-    public Authenticator getAuthenticator() {
-        return authenticator;
+  /**
+   * Notifies <code>key listeners</code> about a key event.
+   *
+   * @param evt the event.
+   */
+  protected void fireKeyEvent_keyTyped(KeyEvent evt) {
+    for (KeyListener listener : keyListenerList) {
+      listener.keyTyped(evt);
     }
+  }
 
-    /**
-     * Returns the unique digits that select this menu item.
-     *
-     * @return the digits that select this menu item.
-     */
-    public String getDigits() {
-        return digits;
-    }
+  /**
+   * Returns the action.
+   *
+   * @return the action to perform if menu item is selected.
+   */
+  public Action getAction() {
+    return action;
+  }
 
-    /**
-     * Returns the file that represent this menu item.
-     *
-     * @return the file extension must not be included in the filename.
-     */
-    public String getFile() {
-        return file;
-    }
+  /**
+   * Returns the authenticator object.
+   *
+   * @return a custom authentication mechanism for the menu item.
+   */
+  public Authenticator getAuthenticator() {
+    return authenticator;
+  }
 
-    /**
-     * Returns false if desire to maintain authentication for a
-     * <code>Subject</code>
-     *
-     * @return whether or not should maintain authentication.
-     */
-    // WARNING: Verify if this function was implemented.
-    public boolean getForgetAuthOnLeave() {
-        return forgetAuthOnLeave;
-    }
+  /**
+   * Returns the unique digits that select this menu item.
+   *
+   * @return the digits that select this menu item.
+   */
+  public String getDigits() {
+    return digits;
+  }
 
-    /**
-     * Indicates if this menu item is restricted.
-     *
-     * @return whether or not should authenticate.
-     */
-    public boolean getMustAuthenticate() {
-        return mustAuthenticate;
-    }
+  /**
+   * Returns the file that represent this menu item.
+   *
+   * @return the file extension must not be included in the filename.
+   */
+  public String getFile() {
+    return file;
+  }
 
-    /**
-     * Returns the <code>parent</code> of this menu item.
-     *
-     * @return the parent.
-     */
-    public MenuItem getParent() {
-        return parent;
-    }
+  /**
+   * Returns false if desire to maintain authentication for a
+   * <code>Subject</code>
+   *
+   * @return whether or not should maintain authentication.
+   */
 
-    /**
-     * Returns the position of this menu item in the <code>parent</code> menu.
-     *
-     * @return the position in the <code>parent</code> menu.
-     */
-    public int getPriority() {
-        return priority;
-    }
+  // WARNING: Verify if this function was implemented.
+  public boolean getForgetAuthOnLeave() {
+    return forgetAuthOnLeave;
+  }
 
-    /**
-     * Returns an array with all the voice compositions registered on this menu
-     * item.
-     *
-     * @return all of this menu item's voice compositions or an empty array if
-     * no voice compositions are currently registered.
-     */
-    public List<VoiceComposition> getVoiceCompositions() {
-        return Collections.unmodifiableList(voiceCompositionList);
-    }
+  /**
+   * Indicates if this menu item is restricted.
+   *
+   * @return whether or not should authenticate.
+   */
+  public boolean getMustAuthenticate() {
+    return mustAuthenticate;
+  }
 
-    /**
-     * Removes the specified <code>voice composition</code>.
-     *
-     * @param voiceComposition the voice composition to remove.
-     */
-    public void removeVoiceComposition(VoiceComposition voiceComposition) {
-        voiceCompositionList.remove(voiceComposition);
-    }
+  /**
+   * Returns the <code>parent</code> of this menu item.
+   *
+   * @return the parent.
+   */
+  public MenuItem getParent() {
+    return parent;
+  }
 
-    /**
-     * Default action to be performed by this menu item if selected.
-     *
-     * @param action the action.
-     */
-    public void setAction(Action action) {
-        this.action = action;
-    }
+  /**
+   * Returns the position of this menu item in the <code>parent</code> menu.
+   *
+   * @return the position in the <code>parent</code> menu.
+   */
+  public int getPriority() {
+    return priority;
+  }
 
-    /**
-     * Sets the authenticator object.
-     *
-     * @param a custom authentication mechanism for the menu item.
-     */
-    public void setAuthenticator(Authenticator authenticator) {
-        this.authenticator = authenticator;
-    }
+  /**
+   * Returns an array with all the voice compositions registered on this menu
+   * item.
+   *
+   * @return all of this menu item's voice compositions or an empty array if
+   * no voice compositions are currently registered.
+   */
+  public List<VoiceComposition> getVoiceCompositions() {
+    return Collections.unmodifiableList(voiceCompositionList);
+  }
 
-    /**
-     * Sets the digits that will be use to select this menu item.
-     *
-     * @param digits the digits
-     */
-    public void setDigits(String digits) {
-        this.digits = digits;
-    }
+  /**
+   * Removes the specified <code>action listener</code> so it no longer
+   * receives action events from this menu item. If <code>listener</code>
+   * is <code>null</code>, no exception is thrown and no action is performed.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void removeActionListener(ActionListener listener) {
+    actionListenerList.remove(listener);
+  }
 
-    /**
-     * The <code>file</code> to play.
-     *
-     * @param file the <code>file</code> extension must not be included in the
-     * filename.
-     */
-    public void setFile(String file) {
-        this.file = file;
-    }
+  /**
+   * Removes the specified <code>authentication listener</code> to receive
+   * authentication events from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void removeAuthenticationListener(AuthenticationListener listener) {
+    authenticationListenerList.remove(listener);
+  }
 
-    /**
-     * Whether or not should forget authentication for a <code>Subject</code>
-     * after hang up.
-     *
-     * @param forgetAuthOnLeave by default authentication is temporally save
-     * base on callerId.
-     */
-    public void setForgetAuthOnLeave(boolean forgetAuthOnLeave) {
-        this.forgetAuthOnLeave = forgetAuthOnLeave;
-    }
+  /**
+   * Removes the specified <code>digits listener</code> to receive digits
+   * events from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void removeDigitListener(DigitsListener listener) {
+    digitsListenerList.remove(listener);
+  }
 
-    /**
-     * Establish if this menu item should be restricted.
-     *
-     * @param mustAuthenticate must authenticate.
-     */
-    public void setMustAuthenticate(boolean mustAuthenticate) {
-        this.mustAuthenticate = mustAuthenticate;
-    }
+  /**
+   * Removes the specified <code>key listener</code> to receive digits key
+   * events from this menu item.
+   *
+   * @param listener the object that receives a notification when an event of
+   * the specified type occurs.
+   */
+  public void removeKeyListener(KeyListener listener) {
+    keyListenerList.remove(listener);
+  }
 
-    /**
-     * Establish the priority of this menu item in the parent.
-     *
-     * @param priority the position into the parent menu.
-     */
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
+  /**
+   * Removes the specified <code>voice composition</code>.
+   *
+   * @param voiceComposition the voice composition to remove.
+   */
+  public void removeVoiceComposition(VoiceComposition voiceComposition) {
+    voiceCompositionList.remove(voiceComposition);
+  }
 
-    /**
-     * Notifies <code>action listeners</code> about an action event.
-     *
-     * @param evt the event.
-     */
-    protected void fireActionEvent_processAction(ActionEvent evt) {
-        for (ActionListener listener : actionListenerList) {
-            listener.processAction(evt);
-        }
-    }
+  /**
+   * Default action to be performed by this menu item if selected.
+   *
+   * @param action the action.
+   */
+  public void setAction(Action action) {
+    this.action = action;
+  }
 
-    /**
-     * Notifies <code>authentication listeners</code> about an authentication
-     * event.
-     *
-     * @param evt the event.
-     */
-    protected void fireAuthenticationEvent_onFailure(AuthenticationEvent evt) {
-        for (AuthenticationListener listener : authenticationListenerList) {
-            listener.onFailure(evt);
-        }
-    }
+  /**
+   * Sets the authenticator object.
+   *
+   * @param a custom authentication mechanism for the menu item.
+   */
+  public void setAuthenticator(Authenticator authenticator) {
+    this.authenticator = authenticator;
+  }
 
-    /**
-     * Notifies <code>authentication listeners</code> about an authentication event.
-     *
-     * @param evt the event.
-     */
-    protected void fireAuthenticationEvent_onSuccess(AuthenticationEvent evt) {
-        for (AuthenticationListener listener : authenticationListenerList) {
-            listener.onSuccess(evt);
-        }
-    }
+  /**
+   * Sets the digits that will be use to select this menu item.
+   *
+   * @param digits the digits
+   */
+  public void setDigits(String digits) {
+    this.digits = digits;
+  }
 
-    /**
-     * Notifies <code>digits listeners</code> about a digits event.
-     *
-     * @param evt the event.
-     */
-    protected void fireDigitsEvent_digitsEnter(DigitsEvent evt) {
-        for (DigitsListener listener : digitsListenerList) {
-            listener.digitsEnter(evt);
-        }
-    }
+  /**
+   * The <code>file</code> to play.
+   *
+   * @param file the <code>file</code> extension must not be included in the
+   * filename.
+   */
+  public void setFile(String file) {
+    this.file = file;
+  }
 
-    /**
-     * Notifies <code>key listeners</code> about a key event.
-     *
-     * @param evt the event.
-     */
-    protected void fireKeyEvent_keyTyped(KeyEvent evt) {
-        for (KeyListener listener : keyListenerList) {
-            listener.keyTyped(evt);
-        }
-    }
+  /**
+   * Whether or not should forget authentication for a <code>Subject</code>
+   * after hang up.
+   *
+   * @param forgetAuthOnLeave by default authentication is temporally save
+   * base on callerId.
+   */
+  public void setForgetAuthOnLeave(boolean forgetAuthOnLeave) {
+    this.forgetAuthOnLeave = forgetAuthOnLeave;
+  }
 
-    /**
-     * Sets the parent menu.
-     *
-     * @param parent the parent.
-     */
-    protected void setParent(MenuItem parent) {
-        this.parent = parent;
-    }
+  /**
+   * Establish if this menu item should be restricted.
+   *
+   * @param mustAuthenticate must authenticate.
+   */
+  public void setMustAuthenticate(boolean mustAuthenticate) {
+    this.mustAuthenticate = mustAuthenticate;
+  }
+
+  /**
+   * Sets the parent menu.
+   *
+   * @param parent the parent.
+   */
+  protected void setParent(MenuItem parent) {
+    this.parent = parent;
+  }
+
+  /**
+   * Establish the priority of this menu item in the parent.
+   *
+   * @param priority the position into the parent menu.
+   */
+  public void setPriority(int priority) {
+    this.priority = priority;
+  }
 }

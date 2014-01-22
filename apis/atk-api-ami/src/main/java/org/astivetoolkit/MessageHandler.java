@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,12 +18,12 @@
  */
 package org.astivetoolkit.ami;
 
-import org.astivetoolkit.ami.event.ManagerEvent;
-import org.astivetoolkit.util.AppLocale;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
+import org.astivetoolkit.ami.event.ManagerEvent;
+import org.astivetoolkit.util.AppLocale;
 
 /**
  *

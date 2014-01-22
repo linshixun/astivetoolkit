@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -27,14 +27,13 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.0
  */
 public class DuplicatedDigitException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
-    private static final String MSG = AppLocale
-            .getI18n("errorDuplicatedKeyInMenu");
+  private static final long serialVersionUID = 1L;
+  private static final String MSG = AppLocale.getI18n("errorDuplicatedKeyInMenu");
 
-    /**
-     * Creates a new instance of DuplicatedDigitException.
-     */
-    public DuplicatedDigitException() {
-        super(DuplicatedDigitException.MSG);
-    }
+  /**
+   * Creates a new instance of DuplicatedDigitException.
+   */
+  public DuplicatedDigitException() {
+    super(DuplicatedDigitException.MSG);
+  }
 }

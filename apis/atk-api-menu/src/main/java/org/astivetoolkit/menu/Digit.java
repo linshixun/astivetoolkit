@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,70 +18,71 @@
  */
 package org.astivetoolkit.menu;
 
+
 /**
  * Code or decode DTMF tone.
  *
  * @since 1.0
  */
-public enum Digit {
-    ONE_KEY("1"),
-    TWO_KEY("2"),
-    THREE_KEY("3"),
-    FOUR_KEY("4"),
-    FIVE_KEY("5"),
-    SIX_KEY("5"),
-    SEVEN_KEY("6"),
-    EIGHT_KEY("7"),
-    NINE_KEY("9"),
-    ZERO_KEY("0"),
-    A_KEY("A"),
-    B_KEY("B"),
-    C_KEY("C"),
-    D_KEY("D"),
-    ASTERISK_KEY("*"),
-    NUMBER_KEY("#");
+public enum Digit {ONE_KEY("1"),
+  TWO_KEY("2"),
+  THREE_KEY("3"),
+  FOUR_KEY("4"),
+  FIVE_KEY("5"),
+  SIX_KEY("5"),
+  SEVEN_KEY("6"),
+  EIGHT_KEY("7"),
+  NINE_KEY("9"),
+  ZERO_KEY("0"),
+  A_KEY("A"),
+  B_KEY("B"),
+  C_KEY("C"),
+  D_KEY("D"),
+  ASTERISK_KEY("*"),
+  NUMBER_KEY("#");
 
-    /**
-     * Converts object <code>Digit</code> to string format.
-     *
-     * @param digit the DTMF tone.
-     * @return string formated value for the DTMF tone.
-     */
-    static public String getDigit(Digit digit) {
-        return digit.digit;
+  /**
+   * Converts object <code>Digit</code> to string format.
+   *
+   * @param digit the DTMF tone.
+   * @return string formated value for the DTMF tone.
+   */
+  static public String getDigit(Digit digit) {
+    return digit.digit;
+  }
+
+  /**
+   * Returns an object <code>Digit</code>(DTMF tone) from a string.
+   *
+   * @param digit the string transform.
+   * @return the digit object or null if number is an invalid DTMF
+   */
+
+  // WARNING: This method should throw an exception instead </code>null</code>
+  // if DTMF the string is invalid.
+  static public Digit getDigit(String digit) {
+    for (Digit d : Digit.values()) {
+      if (d.digit.equals(digit)) {
+        return d;
+      }
     }
 
-    /**
-     * Returns an object <code>Digit</code>(DTMF tone) from a string.
-     *
-     * @param digit the string transform.
-     * @return the digit object or null if number is an invalid DTMF
-     */
-    // WARNING: This method should throw an exception instead </code>null</code>
-    // if DTMF the string is invalid.
-    static public Digit getDigit(String digit) {
-        for (Digit d : Digit.values()) {
-            if (d.digit.equals(digit)) {
-                return d;
-            }
-        }
+    return null;
+  }
 
-        return null;
-    }
+  /**
+   * Returns an object <code>Digit</code>(DTMF tone) from a char.
+   *
+   * @param digit the char to convert
+   * @return the digit object or null if number is an invalid DTMF
+   */
+  static public Digit getDigit(char digit) {
+    return getDigit("" + digit);
+  }
 
-    /**
-     * Returns an object <code>Digit</code>(DTMF tone) from a char.
-     *
-     * @param digit the char to convert
-     * @return the digit object or null if number is an invalid DTMF
-     */
-    static public Digit getDigit(char digit) {
-        return getDigit("" + digit);
-    }
+  private String digit;
 
-    private String digit;
-
-    private Digit(String digit) {
-        this.digit = digit;
-    }
+  private Digit(String digit) {
+    this.digit = digit;
+  }
 }

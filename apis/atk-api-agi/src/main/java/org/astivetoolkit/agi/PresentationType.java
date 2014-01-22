@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,49 +18,78 @@
  */
 package org.astivetoolkit.agi;
 
+
 /**
  * Enumerator that map the presentation type for the callerId (@link AgiRequest).
  *
  * @since 1.0
  */
-public enum PresentationType {
-    ALLOWED(0, "allowed", "allowed"),
-    ALLOWED_NOT_SCREENED(1, "allowed_not_screened", "allowed not screened"),
-    ALLOWED_PASSED_SCREEN(2, "allowed_passed_screen", "allowed passed screen"),
-    ALLOWED_FAILED_SCREEN(3, "allowed_failed_screen", "allowed failed screen"),
-    PROHIB_NOT_SCREENED(4, "prohib_not_screened", "prohib not screened"),
-    PROHIB_PASSED_SCREEN(5, "prohib_passed_screen", "prohib passed screen"),
-    PROHIB_FAILED_SCREEN(6, "prohib_failed_screen", "prohib failed screen"),
-    PROHIB(7, "prohib", "prohib"),
-    UNAVAILABLE(8, "unavailable", "unavailable");
- 
-    private int value;
-    private String name;
-    private String literal;
+public enum PresentationType {ALLOWED(0, "allowed", "allowed"),
+  ALLOWED_NOT_SCREENED(1, "allowed_not_screened", "allowed not screened"),
+  ALLOWED_PASSED_SCREEN(2, "allowed_passed_screen", "allowed passed screen"),
+  ALLOWED_FAILED_SCREEN(3, "allowed_failed_screen", "allowed failed screen"),
+  PROHIB_NOT_SCREENED(4, "prohib_not_screened", "prohib not screened"),
+  PROHIB_PASSED_SCREEN(5, "prohib_passed_screen", "prohib passed screen"),
+  PROHIB_FAILED_SCREEN(6, "prohib_failed_screen", "prohib failed screen"),
+  PROHIB(7, "prohib", "prohib"),
+  UNAVAILABLE(8, "unavailable", "unavailable");
 
-    private PresentationType(final int value, final String name, final String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+  private int value;
+  private String name;
+  private String literal;
 
-    public static PresentationType get(final int value) {
-        return null;
-    }
+  private PresentationType(final int value, final String name, final String literal) {
+    this.value = value;
+    this.name = name;
+    this.literal = literal;
+  }
 
-    public static PresentationType get(final String name) {
-        return null;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param value DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public static PresentationType get(final int value) {
+    return null;
+  }
 
-    public String getLiteral() {
-        return literal;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @param name DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public static PresentationType get(final String name) {
+    return null;
+  }
 
-    public String getName() {
-        return name;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getLiteral() {
+    return literal;
+  }
 
-    public int getValue() {
-        return value;
-    }
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
+  public int getValue() {
+    return value;
+  }
 }

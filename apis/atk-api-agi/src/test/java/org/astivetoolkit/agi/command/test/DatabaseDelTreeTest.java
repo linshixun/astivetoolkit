@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,14 +18,14 @@
  */
 package org.astivetoolkit.agi.command.test;
 
-import junit.framework.TestCase;
 import org.astivetoolkit.agi.AgiException;
 import org.astivetoolkit.agi.CommandProcessor;
 import org.astivetoolkit.agi.command.DatabaseDelTree;
+import junit.framework.TestCase;
 
 /**
  * Test case for command {@link org.astivetoolkit.agi.command.DatabaseDel}.
- * 
+ *
  * @since 1.0
  */
 public class DatabaseDelTreeTest extends TestCase {

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -19,7 +19,6 @@
 package org.astivetoolkit.ami.util;
 
 import java.util.ArrayList;
-
 import org.astivetoolkit.ami.MessageType;
 import org.astivetoolkit.ami.ResponseStatus;
 import org.astivetoolkit.ami.action.ActionType;
@@ -30,6 +29,19 @@ import org.astivetoolkit.ami.event.EventType;
  * @since 1.1
  */
 public class Utils {
+  // TODO: Move this to a most general util
+  private static String capitalizeFirstLetters(String s) {
+    s = s.toLowerCase();
+
+    for (int i = 0; i < s.length(); i++) {
+      if (i == 0) {
+        // Capitalize the first letter of the string.
+        s = String.format("%s%s", Character.toUpperCase(s.charAt(0)), s.substring(1));
+      }
+    }
+
+    return s;
+  }
 
   /**
    * DOCUMENT ME!
@@ -145,20 +157,6 @@ public class Utils {
     return capitalizeFirstLetters(responseStatus.toString().replace("_", "").toLowerCase());
   }
 
-  // TODO: Move this to a most general util
-  private static String capitalizeFirstLetters(String s) {
-    s = s.toLowerCase();
-
-    for (int i = 0; i < s.length(); i++) {
-      if (i == 0) {
-        // Capitalize the first letter of the string.
-        s = String.format("%s%s", Character.toUpperCase(s.charAt(0)), s.substring(1));
-      }
-    }
-
-    return s;
-  }  
-  
   /**
    * DOCUMENT ME!
    *

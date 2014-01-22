@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -24,22 +24,32 @@ import java.util.List;
 
 /**
  * Contains the results of a speech recognition command.
- * 
+ *
  * @since 1.0
  */
 public class SpeechRecognitionResult {
   private final AgiCommandReply AgiCommandReply;
 
+  /**
+   * Creates a new SpeechRecognitionResult object.
+   *
+   * @param AgiCommandReply DOCUMENT ME!
+   */
   public SpeechRecognitionResult(final AgiCommandReply AgiCommandReply) {
     this.AgiCommandReply = AgiCommandReply;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public List<SpeechResult> getAllResults() {
     final int numberOfResults = getNumberOfResults();
     final List<SpeechResult> results = new ArrayList<SpeechResult>(numberOfResults);
 
     for (int i = 0; i < numberOfResults; i++) {
-    final  SpeechResult result =
+      final SpeechResult result =
         new SpeechResult(Integer.valueOf(AgiCommandReply.getAttribute("score" + i)),
                          AgiCommandReply.getAttribute("text" + i),
                          AgiCommandReply.getAttribute("grammar" + i));
@@ -49,54 +59,104 @@ public class SpeechRecognitionResult {
     return results;
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public char getDigit() {
     final String digit = AgiCommandReply.getAttribute("digit");
- 
-    return ((digit == null) || (digit.length() == 0) ? 0 :digit.charAt(0));
+
+    return (((digit == null) || (digit.length() == 0)) ? 0 : digit.charAt(0));
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public int getEndpos() {
     return Integer.valueOf(AgiCommandReply.getAttribute("endpos"));
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public String getGrammar() {
     return AgiCommandReply.getAttribute("grammar0");
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public int getNumberOfResults() {
     final String numberOfResults = AgiCommandReply.getAttribute("results");
 
     return (numberOfResults == null) ? 0 : Integer.valueOf(numberOfResults);
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public int getScore() {
     final String score0 = AgiCommandReply.getAttribute("score0");
 
     return (score0 == null) ? 0 : Integer.valueOf(score0);
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public String getText() {
     return AgiCommandReply.getAttribute("text0");
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public boolean isDtmf() {
     return "digit".equals(AgiCommandReply.getExtra());
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public boolean isSpeech() {
     return "speech".equals(AgiCommandReply.getExtra());
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   public boolean isTimeout() {
     return "timeout".equals(AgiCommandReply.getExtra());
   }
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @return DOCUMENT ME!
+   */
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder(65);
-    
+
     sb.append("SpeechRecognitionResult[");
-    
+
     if (isDtmf()) {
       sb.append("dtmf=true,");
       sb.append("digit=").append(getDigit()).append(",");

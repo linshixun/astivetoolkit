@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu.event;
 
+
 /**
  * The listener interface for receiving {@link KeyEvent}.
  *
@@ -25,11 +26,10 @@ package org.astivetoolkit.menu.event;
  * @see KeyEvent
  */
 public interface KeyListener {
-
-    /**
-     * Callback triggered for every key pressed by <code>Subject</code>.
-     *
-     * @param evt the event submitted.
-     */
-    abstract void keyTyped(KeyEvent evt);
+  /**
+   * Callback triggered for every key pressed by <code>Subject</code>.
+   *
+   * @param evt the event submitted.
+   */
+  abstract void keyTyped(KeyEvent evt);
 }

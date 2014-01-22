@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -18,6 +18,7 @@
  */
 package org.astivetoolkit.menu;
 
+
 /**
  * WARNING: At the time of the last revision, I found this class unnecessary.
  *
@@ -25,21 +26,21 @@ package org.astivetoolkit.menu;
  */
 @Deprecated
 public class MenuException extends Exception {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * Creates a new MenuException object with a message.
-     *
-     * @param msg description of the exception.
-     */
-    public MenuException(final String msg) {
-        super(msg);
-    }
+  /**
+   * Creates a new MenuException object with a message.
+   *
+   * @param msg description of the exception.
+   */
+  public MenuException(final String msg) {
+    super(msg);
+  }
 
-    /**
-     * Creates a new MenuException object.
-     */
-    public MenuException() {
-        super();
-    }
+  /**
+   * Creates a new MenuException object.
+   */
+  public MenuException() {
+    super();
+  }
 }

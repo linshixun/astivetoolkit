@@ -1,5 +1,5 @@
-/* 
-x * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
+/*
+   x * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -28,5 +28,5 @@ import org.astivetoolkit.agi.annotation.AgiCommand;
  */
 @AgiCommand(command = "ANSWER")
 public class Answer implements Serializable {
-  private static final long serialVersionUID = -4939433835861816194L;  
+  private static final long serialVersionUID = -4939433835861816194L;
 }

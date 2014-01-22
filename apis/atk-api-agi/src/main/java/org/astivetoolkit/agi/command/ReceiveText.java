@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
  *
@@ -36,6 +36,9 @@ public class ReceiveText implements Serializable {
   @Parameter
   private Integer timeout;
 
+  /**
+   * Creates a new ReceiveText object.
+   */
   public ReceiveText() {
     timeout = 0;
   }
