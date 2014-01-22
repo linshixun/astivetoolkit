@@ -71,6 +71,6 @@ Core team:
 
 ### Copyright
 
-Copyright (C) 2010-2013 by [PhonyTive LLC](http://phonytive.com). Apache License, Version 2.0 (see LICENSE for details).
+Copyright (C) 2010-2014 by [PhonyTive LLC](http://phonytive.com). Apache License, Version 2.0 (see LICENSE for details).
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/psanders/astivetoolkit/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
