@@ -52,7 +52,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.7.1</version>
                 <configuration>
-                    <finalName>uber-${artifactId}-${version}</finalName>
+                    <finalName>uber-${project.artifactId}-${project.version}</finalName>
                 </configuration>
                 <executions>
                     <execution>
