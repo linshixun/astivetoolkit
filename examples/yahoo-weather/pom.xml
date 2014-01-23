@@ -52,7 +52,8 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <finalName>uber-${project.artifactId}-${project.version}</finalName>
+                	<minimizeJar>true</minimizeJar>
+                    <finalName>${project.artifactId}-with-dependencies</finalName>
                 </configuration>
                 <executions>
                     <execution>
