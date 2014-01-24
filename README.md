@@ -36,6 +36,8 @@ cd astivetoolkit
 ./assembly
 ```
 
+This script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
+
 ## Example
 
 A simple application:
