@@ -6,7 +6,7 @@ Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/jo
 
 ## Requirements
 
-* Java 1.5+
+* Java 1.6+
 * Maven 3.x.x+
 * Asterisk 1.8+
 * Git (optional)
