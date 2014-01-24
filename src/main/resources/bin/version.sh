@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+# Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
 # http://astivetoolkit.org
 #
 # This file is part of Astive Toolkit(ATK)
@@ -16,6 +16,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+command -v java >/dev/null 2>&1 || { echo "I require Java but it's not installed. Aborting." >&2; exit 1; }
 
 # Might fail if $0 is a link
 export ASTIVE_HOME=`dirname "$0"`/..

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+# Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
 # http://astivetoolkit.org
 #
 # This file is part of Astive Toolkit(ATK)
@@ -22,6 +22,8 @@
 # appCreator com.mycompany myproject
 
 # a usage function to display help for the user
+
+command -v mvn >/dev/null 2>&1 || { echo "I require Maven but it's not installed. Aborting." >&2; exit 1; }
 
 usage () {
      echo "appCreator"

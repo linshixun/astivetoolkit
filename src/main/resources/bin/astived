@@ -19,6 +19,8 @@
 
 # Operations include: Start or stop Astive, deploy or undeploy apps.
 
+command -v java >/dev/null 2>&1 || { echo "I require Java but it's not installed. Aborting." >&2; exit 1; }
+
 # Might fail if $0 is a link
 export ASTIVE_HOME=`dirname "$0"`/..
 export ASTIVE_APPS="$ASTIVE_HOME/apps"
