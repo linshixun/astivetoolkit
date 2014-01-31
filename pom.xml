@@ -120,6 +120,102 @@
                     <workDirectory>target/assembly/astive-${project.version}</workDirectory>
                 </configuration>
             </plugin>
+            
+        <!--Uncomment the following plugin declaration if you want  to fail the build if FindBugs finds problems.-->
+        <!--
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+                <effort>Max</effort>
+                <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+                <threshold>Low</threshold>
+                <xmlOutput>true</xmlOutput>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>analyze-compile</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+      -->
+ 
+        <!--
+        Comment the following plugin declarations if you don't want to create
+        FindBugs report without creating the project reports.
+       -->
+         
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+                <effort>Max</effort>
+                <failOnError>false</failOnError>
+                <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+                <threshold>Low</threshold>
+                <xmlOutput>true</xmlOutput>
+            </configuration>
+            <executions>
+            <execution>
+                <id>analyze-compile</id>
+                <phase>compile</phase>
+                <goals>
+                    <goal>check</goal>
+                </goals>
+            </execution>
+            </executions>
+        </plugin>
+        
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>xml-maven-plugin</artifactId>
+            <version>1.0</version>
+        <configuration>
+            <transformationSets>
+                <transformationSet>
+                <!-- Configures the source directory of XML files. -->
+                      <dir>${project.build.directory}/findbugs</dir>
+                <!-- Configures the directory in which the FindBugs report is written.-->
+                       <outputDir>${project.build.directory}/findbugs</outputDir>
+                    <!-- Selects the used stylesheet. -->
+                    <!-- <stylesheet>fancy-hist.xsl</stylesheet> -->
+                        <stylesheet>default.xsl</stylesheet>
+                    <!--<stylesheet>plain.xsl</stylesheet>-->
+                    <!--<stylesheet>fancy.xsl</stylesheet>-->
+                    <!--<stylesheet>summary.xsl</stylesheet>-->
+             <fileMappers>
+                <!-- Configures the file extension of the output files. -->
+                <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                    <targetExtension>.html</targetExtension>
+                </fileMapper>
+             </fileMappers>
+            </transformationSet>
+        </transformationSets>
+        </configuration>
+        <executions>
+            <!-- Ensures that the XSLT transformation is run when the project is compiled. -->
+            <execution>
+             <phase>compile</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            </execution>
+        </executions>
+        <dependencies>
+            <dependency>
+                 <groupId>com.google.code.findbugs</groupId>
+                 <artifactId>findbugs</artifactId>
+                 <version>2.0.1</version>
+            </dependency>
+        </dependencies>
+        </plugin>
+            
         </plugins>
         <pluginManagement>
             <plugins>
@@ -185,8 +281,21 @@
     	<system>Buildhive</system>
     	<url>https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/</url>
     </ciManagement>
-    <reporting>
-  <plugins>
+    
+    <!--
+      Comment the following reporting section if you don't want to create
+      FindBugs report as a part of the project reports.
+    -->
+  <reporting>
+  
+   <plugins>
+  
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+    </plugin>
+  
      <plugin>
            <groupId>org.codehaus.mojo</groupId>
            <artifactId>findbugs-maven-plugin</artifactId>
@@ -195,8 +304,11 @@
               <findbugsXmlOutput>true</findbugsXmlOutput>
               <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
               <xmlOutput>true</xmlOutput>
+              <effort>Max</effort>
+              <threshold>Low</threshold>
            </configuration>
         </plugin>
-  </plugins>
-</reporting>
+    </plugins>
+ </reporting>
+
 </project>
