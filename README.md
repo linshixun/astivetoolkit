@@ -67,8 +67,8 @@ Core team:
 * [Eudris Cabrera](https://github.com/ecabrerar)
 
 ## Contributions
-* Please see our [Contribution Documents](https://github.com/psanders/astivetoolkit/blob/dev/CONTRIBUTING.md) 
-* [Contributors](https://github.com/psanders/astivetoolkit/contributors)
+* Please see our [Contribution Documents](https://github.com/PhonyTive/astivetoolkit/blob/dev/CONTRIBUTING.md) 
+* [Contributors](https://github.com/PhonyTive/astivetoolkit/contributors)
 
 
 ### Copyright
