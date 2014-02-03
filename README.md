@@ -1,8 +1,8 @@
 # The Astive Toolkit Project
 
-This is the official Git repository for the Astive Toolkit project, which is part PhonyTive open source projects.
+This is the official Git repository for the Astive Toolkit project, which is part of PhonyTive open source projects.
 
-Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/)
+Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/)
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/jo
 
 ## Getting Astive
 
-A pre-assembled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK as follows:
+A pre-compiled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from Github as follows:
 
 ```bash
 git clone https://github.com/psanders/astivetoolkit.git
@@ -21,7 +21,7 @@ cd astivetoolkit
 ./assembly
 ```
 
-The script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
+NOTE: The script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
 
 ## Author
 
