@@ -1,6 +1,6 @@
-# Astive Toolkit
+# The Astive Toolkit Project
 
-Astive is a toolkit and server for Java, with an extensible architecture for developing, maintaining, and deploying voice applications. Build high-quality products over Asterisk® PBX with the Astive developer solutions.
+This is the official Git repository for the Astive Toolkit project, which is part PhonyTive open source projects.
 
 Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/)
 
@@ -10,21 +10,6 @@ Current status in BuildHive: [![Build Status](https://buildhive.cloudbees.com/jo
 * Maven 3.x.x+
 * Asterisk 1.8+
 * Git (optional)
-
-## Communications diagram
-
-![Astive Communications Diagram](http://astivetoolkit.org/data/uploads/astive_communications_diagram.png)
-
-## Features 
-
-* Multi-IVR applications
-* Asterisk 1.8 >
-* Application-Server like operations(start, stop, undeploy, deploy...)
-* Advanced API's for IVR creation
-* Event-driven architecture
-* Support for FastAGI (AMI on the way)
-* Open Source
-* Well documented
 
 ## Getting Astive
 
@@ -38,27 +23,6 @@ cd astivetoolkit
 
 The script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
 
-## Example
-
-A simple application:
-
-```java
-public class App extends Astivlet {
-    @Override
-    public void service(AstivletRequest request, AstivletResponse response) {
-        try {
-            response.answer();
-            response.streamFile("tt-monkeys");
-            response.hangup();
-        } catch (AgiException ex) {
-            out.print(ex.getMessage());
-        }
-    }
-}
-```
-
-Looking for something more advanced? check out the examples in [the website](http://astivetoolkit.org/downloads).
-
 ## Author
 
 Core team:
@@ -69,7 +33,6 @@ Core team:
 ## Contributions
 * Please see our [Contribution Documents](https://github.com/PhonyTive/astivetoolkit/blob/dev/CONTRIBUTING.md) 
 * [Contributors](https://github.com/PhonyTive/astivetoolkit/contributors)
-
 
 ### Copyright
 
