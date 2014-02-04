@@ -14,7 +14,7 @@ This is the official Git repository for the Astive Toolkit project, which is par
 A pre-compiled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from Github as follows:
 
 ```bash
-git clone https://github.com/psanders/astivetoolkit.git
+git clone https://github.com/PhonyTive/astivetoolkit.git
 cd astivetoolkit
 ./assembly
 ```
