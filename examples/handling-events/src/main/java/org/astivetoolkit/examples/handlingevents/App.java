@@ -1,11 +1,6 @@
 /* 
-<<<<<<< HEAD:examples/handlingevents/src/main/java/com/phonytive/astive/examples/handlingevents/App.java
- * Copyright (C) 2010-2013 PhonyTive LLC
- * http://astive.phonytive.com
-=======
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
->>>>>>> dev:examples/handling-events/src/main/java/org/astivetoolkit/examples/handlingevents/App.java
  *
  * This file is part of Astive Toolkit(ATK)
  *
