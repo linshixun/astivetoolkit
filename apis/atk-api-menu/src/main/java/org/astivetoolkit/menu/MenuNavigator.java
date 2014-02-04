@@ -436,7 +436,7 @@ public class MenuNavigator {
     }
   }
 
-  private void setCurrentMenu(Menu currentMenu) {
-    this.currentMenu = currentMenu;
-  }
+    private void setCurrentMenu(Menu currentMenu) {
+        this.currentMenu = currentMenu;
+    }
 }
