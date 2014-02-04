@@ -3,19 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-<<<<<<< HEAD
-    <name>Astive Toolkit</name>
-    <version>1.0.0-M4</version>
-    <packaging>pom</packaging>        
-    <url>http://astivetoolkit.org</url>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>mc-release</id>
-            <name>Local Maven repository of releases</name>
-            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
-        </pluginRepository>
-    </pluginRepositories>          
-=======
     <version>1.0.0-RC2</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
@@ -32,7 +19,6 @@
         <module>archetypes</module>
         <module>examples</module>
     </modules>
->>>>>>> dev
     <build>
         <plugins>
 			<plugin>
@@ -66,11 +52,7 @@
                     <aggregate>true</aggregate>
                     <properties>
                         <owner>PhonyTive LLC</owner>
-<<<<<<< HEAD
-                        <year>2013</year>
-=======
                         <year>2014</year>
->>>>>>> dev
                         <email>psanders@kaffeineminds.com</email>
                     </properties>
                     <includes>
@@ -97,9 +79,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
-<<<<<<< HEAD
-            </plugin>            
-=======
             </plugin>
 	    <plugin>
 	  	<groupId>org.apache.maven.plugins</groupId>
@@ -109,14 +88,13 @@
                     <excludePackageNames>org.astivetoolkit.util:org.astivetoolkit.agi.annotations:org.astivetoolkit.examples:org.astivetoolkit.server:noNamespace:</excludePackageNames>
                 </configuration>
 	    </plugin>
->>>>>>> dev
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -173,31 +151,6 @@
             </plugins>
         </pluginManagement>
     </build>
-<<<<<<< HEAD
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
-    <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.
- </description>
-    <modules>
-        <module>astive-commons</module>
-        <module>api</module>
-        <module>server</module>
-        <module>astive-archetype</module>
-    </modules>
-</project>
-=======
  	<properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -233,4 +186,3 @@
     	<url>https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/</url>
     </ciManagement>
 </project>
->>>>>>> dev
