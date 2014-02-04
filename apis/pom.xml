@@ -4,17 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.astivetoolkit</groupId>
-<<<<<<< HEAD:api/pom.xml
-        <artifactId>astivetoolkit</artifactId>        
-        <version>1.0.0-M4</version>
-    </parent>       
-    <artifactId>api</artifactId>
-    <name>Astive Toolkit :: APIs</name>
-    <packaging>pom</packaging>
-    <modules>
-	<module>astive-agi</module>
-	<module>astive-menu</module>	
-=======
         <artifactId>astivetoolkit</artifactId>
         <version>1.0.0-RC2</version>
     </parent>
@@ -24,6 +13,5 @@
     <modules>
 	<module>atk-api-agi</module>
 	<module>atk-api-menu</module>
->>>>>>> dev:apis/pom.xml
     </modules>
 </project>
