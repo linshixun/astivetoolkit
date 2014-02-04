@@ -206,10 +206,6 @@
     	<url>https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/</url>
     </ciManagement>
     
-    <!--
-      Comment the following reporting section if you don't want to create
-      FindBugs report as a part of the project reports.
-    -->
   <reporting>
    <plugins>
     <plugin>
@@ -217,7 +213,10 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.7</version>
     </plugin>
-  
+   <!--
+      Comment the following reporting section if you don't want to create
+      FindBugs report as a part of the project reports.
+    -->
      <plugin>
            <groupId>org.codehaus.mojo</groupId>
            <artifactId>findbugs-maven-plugin</artifactId>
@@ -230,10 +229,23 @@
               <threshold>Low</threshold>
            </configuration>
         </plugin>
-        <plugin>
+
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jxr-plugin</artifactId>
+		<version>2.3</version>
+	</plugin>
+   <!--
+      Comment the following reporting section if you don't want to create
+      checkstyle report as a part of the project reports.
+    -->
+    <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
            <version>2.11</version>
+	   <configuration>
+		 <configLocation>config/maven_checks.xml</configLocation>
+	   </configuration>
           <reportSets>
             <reportSet>
               <reports>
@@ -241,14 +253,59 @@
               </reports>
             </reportSet>
           </reportSets>
-        </plugin>
-    </plugins>
- </reporting>
- 
+    </plugin>
+	<!--
+          Comment the following reporting section if you don't want to create
+          PMD report as a part of the project reports.
+     -->
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-pmd-plugin</artifactId>
+		<version>3.0.1</version>
+	</plugin>
+
+   <!--
+      Comment the following reporting section if you don't want to create
+      TagList report as a part of the project reports.
+    -->
+
+	<plugin>
+    	<groupId>org.codehaus.mojo</groupId>
+    	<artifactId>taglist-maven-plugin</artifactId>
+    	<version>2.4</version>
+	<configuration>
+	<tags>
+		<tag>TODO</tag>
+		<tag>@todo</tag>
+		<tag>FIXME</tag>
+		<tag>XXX</tag>
+		</tags>
+	</configuration>
+	</plugin>
+
+	<plugin>
+    	<groupId>org.codehaus.mojo</groupId>
+    	<artifactId>clirr-maven-plugin</artifactId>
+    	<version>2.6.1</version>
+    	<configuration>
+	        <minSeverity>info</minSeverity>
+    	</configuration>
+	</plugin>
+	<plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-surefire-report-plugin</artifactId>
+    	<version>2.16</version>
+	    <configuration>
+	    	<showSuccess>false</showSuccess>
+	    </configuration>
+       </plugin>
+ </plugins>
+</reporting>
+
 <profiles>
 <!--if you want  to fail the build if FindBugs finds problems.--> 
 <profile>
- <id>quickbugreport</id>
+ <id>failonbug</id>
  <activation>
 	<activeByDefault>false</activeByDefault>
 </activation>
@@ -300,28 +357,7 @@
                     </goals>
                 </execution>
             </executions>
-        </plugin>
-        <plugin>
-   <groupId>org.apache.maven.plugins</groupId>
-   <artifactId>maven-checkstyle-plugin</artifactId>
-   <version>2.11</version>
-   <executions>
-     <execution>
-       <id>validate</id>
-       <phase>validate</phase>
-       <configuration>
-         <configLocation>checkstyle.xml</configLocation>
-         <encoding>UTF-8</encoding>
-         <consoleOutput>true</consoleOutput>
-         <failsOnError>true</failsOnError>
-         <linkXRef>false</linkXRef>
-       </configuration>
-       <goals>
-         <goal>check</goal>
-       </goals>
-     </execution>
-   </executions>
- </plugin>
+        </plugin>       
 
        </plugins>
     </build>
@@ -329,7 +365,7 @@
 
 <!-- if you want to create  FindBugs report without creating the project reports.  -->
 <profile>
-	<id>fullbugreport</id>
+	<id>quickbugreport</id>
 	<activation>
 	   <activeByDefault>false</activeByDefault>
 	</activation>
@@ -430,6 +466,6 @@
    </build>
   </profile>
 </profiles>
- 
+
 
 </project>
