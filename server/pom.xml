@@ -5,6 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
+<<<<<<< HEAD
         <version>1.0.0-M4</version>
     </parent>    
     <artifactId>server</artifactId>
@@ -14,5 +15,16 @@
 	<module>astive-core</module>
         <module>astive-client</module>
         <module>astive-telnet</module>
+=======
+        <version>1.0.0-RC2</version>
+    </parent>
+    <artifactId>server</artifactId>
+    <name>Astive Toolkit :: Server</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>atk-server-core</module>
+        <module>atk-server-client</module>
+        <module>atk-server-telnet</module>
+>>>>>>> dev
     </modules>
 </project>

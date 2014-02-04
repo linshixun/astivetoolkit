@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>    
+    <name>Handling Events</name>
+    <description>Events Driven Example</description>
+    <astivlet>
+        <astivletId>HandlingEvents</astivletId>
+        <class>org.astivetoolkit.examples.handlingevents.App</class>
+    </astivlet>
+    <astivletMapping>
+        <astivletId>HandlingEvents</astivletId>
+        <urlPattern>/examples/HandlingEvents</urlPattern>
+    </astivletMapping>
+</app>

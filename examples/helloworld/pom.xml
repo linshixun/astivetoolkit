@@ -1,22 +1,23 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>examples</artifactId>
-    <groupId>com.phonytive.astive</groupId>
-    <version>1.0.0-M2</version>
-  </parent>
-  <!--<groupId>com.phonytive.astive</groupId>-->
-  <artifactId>helloworld</artifactId>
-  <packaging>jar</packaging>
-  <name>Astive :: Examples :: Hello World</name>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.astivetoolkit.examples</groupId>
+        <artifactId>examples</artifactId>
+        <version>1.0.0-RC2</version>
+    </parent>
+    <artifactId>helloworld</artifactId>
+    <name>Astive Toolkit :: Example :: Hello, World!</name>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>com.phonytive.astive</groupId>
-            <artifactId>astive-client</artifactId>
-            <version>1.0.0-M2</version>
-            <type>jar</type>
+            <groupId>org.astivetoolkit</groupId>
+            <artifactId>atk-server-client</artifactId>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 </project>

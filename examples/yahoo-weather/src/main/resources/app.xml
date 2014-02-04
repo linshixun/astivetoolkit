@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>    
+    <name>YahooWeather</name>
+    <description>Yahoo Weather API</description>
+    <astivlet>
+        <astivletId>YahooWeather</astivletId>
+        <class>org.astivetoolkit.examples.ws.App</class>
+    </astivlet>
+    <astivletMapping>
+        <astivletId>YahooWeather</astivletId>
+        <urlPattern>/examples/YahooWeather</urlPattern>
+    </astivletMapping>   
+</app>

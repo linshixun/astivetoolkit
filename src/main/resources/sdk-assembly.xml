@@ -3,34 +3,45 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
     <id>sdk-${project.version}</id>
-    <formats>        
+    <formats>
         <format>tar.gz</format>
     </formats>
     <fileSets>
         <fileSet>
-            <fileMode>761</fileMode>
+            <fileMode>751</fileMode>
+            <directoryMode>751</directoryMode>
             <directory>src/main/resources/bin</directory>
             <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
             <excludes>
                 <exclude>astived</exclude>
                 <exclude>version.sh</exclude>
             </excludes>
+            <filtered>true</filtered>
         </fileSet>
         <fileSet>
-            <directory>src/main/resources/basedir</directory>
+            <fileMode>644</fileMode>
+            <directoryMode>751</directoryMode>
+            <directory>${basedir}</directory>
+            <includes>
+                <include>README.txt</include>
+                <include>NOTICE</include>
+                <include>LICENSE</include>
+            </includes>
             <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
         </fileSet>
     </fileSets>
     <includeBaseDirectory>false</includeBaseDirectory>
-    <moduleSets>        
+    <moduleSets>
         <moduleSet>
             <binaries>
+                <fileMode>644</fileMode>
+                <directoryMode>751</directoryMode>
                 <outputDirectory>/${project.artifactId}-sdk-${project.version}</outputDirectory>
                 <unpack>false</unpack>
             </binaries>
-            <includes>                
-                <include>com.phonytive.astive:astive-archetype</include>
+            <includes>
+                <include>org.astivetoolkit.archetypes:atk-archetype-simple-ivr</include>
             </includes>
-        </moduleSet>       
+        </moduleSet>
     </moduleSets>
 </assembly>

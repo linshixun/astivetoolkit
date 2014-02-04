@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app>    
+    <name>Voice Composer Example</name>
+    <description>...</description>
+    <astivlet>
+        <astivletId>VoiceComposer</astivletId>
+        <class>org.astivetoolkit.examples.voicecomposer.App</class>
+    </astivlet>
+    <astivletMapping>
+        <astivletId>VoiceComposer</astivletId>
+        <urlPattern>/examples/VoiceComposer</urlPattern>
+    </astivletMapping>   
+</app>
