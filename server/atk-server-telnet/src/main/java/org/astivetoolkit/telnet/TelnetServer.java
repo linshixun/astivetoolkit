@@ -1,11 +1,6 @@
 /* 
-<<<<<<< HEAD:server/astive-telnet/src/main/java/com/phonytive/astive/telnet/TelnetServer.java
- * Copyright (C) 2010-2013 PhonyTive LLC
- * http://astive.phonytive.com
-=======
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
->>>>>>> dev:server/atk-server-telnet/src/main/java/org/astivetoolkit/telnet/TelnetServer.java
  *
  * This file is part of Astive Toolkit(ATK)
  *
