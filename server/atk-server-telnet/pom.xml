@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit</groupId>
         <artifactId>server</artifactId>
-        <version>1.0.0-RC2</version>
+        <version>1.0.0-RC2-SNAPSHOT</version>
     </parent>
     <artifactId>atk-server-telnet</artifactId>
     <name>Astive Toolkit :: Server :: Telnet</name>
@@ -14,7 +14,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>atk-commons</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
