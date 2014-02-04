@@ -4,17 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.astivetoolkit</groupId>
-<<<<<<< HEAD:astive-commons/pom.xml
-        <artifactId>astivetoolkit</artifactId>        
-        <version>1.0.0-M4</version>
-    </parent>
-    <artifactId>astive-commons</artifactId>
-    <name>Astive Toolkit :: Commons</name>
-    <packaging>jar</packaging>
-    <build>
-        <plugins>
-            <plugin>                
-=======
         <artifactId>astivetoolkit</artifactId>
         <version>1.0.0-RC2</version>
     </parent>
@@ -47,7 +36,6 @@
     <build>
     	<plugins>
     		 <plugin>
->>>>>>> dev:atk-commons/pom.xml
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
