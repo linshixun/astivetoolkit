@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2010-2013 by PhonyTive LLC (http://phonytive.com)
+# Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
 # http://astivetoolkit.org
 #
 # This file is part of Astive Toolkit(ATK)
@@ -23,11 +23,13 @@
 
 # a usage function to display help for the user
 
+command -v mvn >/dev/null 2>&1 || { echo "I require Maven but it's not installed. Aborting." >&2; exit 1; }
+
 usage () {
      echo "appCreator"
      echo "usage: appCreator yourcompany yourproject"
      echo "Create a new application with yourcompany folder and yourproject name."
-     echo "do not use spaces in your company and project's names"
+     echo "do not use spaces in company and project names"
      echo " "
      echo $errmsg
 }
