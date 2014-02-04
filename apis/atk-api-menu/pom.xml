@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-<<<<<<< HEAD:api/astive-menu/pom.xml
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.astivetoolkit</groupId>
-        <artifactId>api</artifactId>
-        <version>1.0.0-M4</version>
-    </parent>
-    <artifactId>astive-menu</artifactId>
-    <name>Astive Toolkit :: APIs :: Menu</name>
-=======
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -20,7 +9,6 @@
     </parent>
     <artifactId>atk-api-menu</artifactId>
     <name>Astive Toolkit :: API :: Menu</name>
->>>>>>> dev:apis/atk-api-menu/pom.xml
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
