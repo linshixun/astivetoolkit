@@ -1,11 +1,6 @@
 /* 
-<<<<<<< HEAD:api/astive-agi/src/main/java/com/phonytive/astive/agi/AgiCommandHandler.java
- * Copyright (C) 2010-2013 PhonyTive LLC
- * http://astive.phonytive.com
-=======
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
->>>>>>> dev:apis/atk-api-agi/src/main/java/org/astivetoolkit/agi/AgiCommandHandler.java
  *
  * This file is part of Astive Toolkit(ATK)
  *
