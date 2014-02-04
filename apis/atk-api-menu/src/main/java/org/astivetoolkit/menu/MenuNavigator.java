@@ -1,11 +1,6 @@
 /* 
-<<<<<<< HEAD:api/astive-menu/src/main/java/com/phonytive/astive/menu/MenuNavigator.java
- * Copyright (C) 2010-2013 PhonyTive LLC
- * http://astive.phonytive.com
-=======
  * Copyright (C) 2010-2014 by PhonyTive LLC (http://phonytive.com)
  * http://astivetoolkit.org
->>>>>>> dev:apis/atk-api-menu/src/main/java/org/astivetoolkit/menu/MenuNavigator.java
  *
  * This file is part of Astive Toolkit(ATK)
  *
