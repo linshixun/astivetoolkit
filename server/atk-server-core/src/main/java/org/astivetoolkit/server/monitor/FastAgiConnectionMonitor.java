@@ -161,7 +161,6 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                         try {
                             manager.remove(conn);
                         } catch (IOException ex) {
-                            System.out.println("DBG 1");
                             LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                     new Object[]{ex.getMessage()}));
                         }
