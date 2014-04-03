@@ -16,12 +16,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami;
+package org.astivetoolkit;
 
 import java.util.ArrayList;
-import org.astivetoolkit.ami.action.ActionMessage;
-import org.astivetoolkit.ami.action.ResponseMessage;
-import org.astivetoolkit.ami.event.ManagerEvent;
+
+import org.astivetoolkit.action.ActionMessage;
+import org.astivetoolkit.action.ResponseMessage;
+import org.astivetoolkit.event.ManagerEvent;
 
 /**
  *

@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami.util;
+package org.astivetoolkit.util;
 
 import java.util.ArrayList;
-import org.astivetoolkit.ami.MessageType;
-import org.astivetoolkit.ami.ResponseStatus;
-import org.astivetoolkit.ami.action.ActionType;
-import org.astivetoolkit.ami.event.EventType;
+
+import org.astivetoolkit.MessageType;
+import org.astivetoolkit.ResponseStatus;
+import org.astivetoolkit.action.ActionType;
+import org.astivetoolkit.event.EventType;
 
 /**
  *

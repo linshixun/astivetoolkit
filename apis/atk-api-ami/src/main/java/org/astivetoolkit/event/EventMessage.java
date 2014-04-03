@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami.event;
+package org.astivetoolkit.event;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.astivetoolkit.ami.Message;
-import org.astivetoolkit.ami.MessageType;
-import org.astivetoolkit.ami.Privilege;
+
+import org.astivetoolkit.Message;
+import org.astivetoolkit.MessageType;
+import org.astivetoolkit.Privilege;
 
 /**
  *

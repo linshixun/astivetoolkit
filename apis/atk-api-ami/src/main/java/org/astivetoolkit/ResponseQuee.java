@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami;
+package org.astivetoolkit;
 
 import java.util.HashMap;
 import org.apache.log4j.Logger;

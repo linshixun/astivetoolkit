@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami.action;
+package org.astivetoolkit.action;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
-import org.astivetoolkit.ami.Message;
-import org.astivetoolkit.ami.MessageType;
+
+import org.astivetoolkit.Message;
+import org.astivetoolkit.MessageType;
 
 /**
  *

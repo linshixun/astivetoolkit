@@ -16,16 +16,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami;
+package org.astivetoolkit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Pattern;
-import org.astivetoolkit.ami.action.ActionType;
-import org.astivetoolkit.ami.event.EventType;
-import org.astivetoolkit.ami.util.Utils;
+
+import org.astivetoolkit.action.ActionType;
+import org.astivetoolkit.event.EventType;
 import org.astivetoolkit.util.AppLocale;
+import org.astivetoolkit.util.Utils;
 
 /**
  *

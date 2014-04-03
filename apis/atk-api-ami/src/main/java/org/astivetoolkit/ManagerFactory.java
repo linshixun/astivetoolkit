@@ -16,14 +16,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami;
+package org.astivetoolkit;
 
 import java.io.IOException;
 import java.net.Socket;
-import org.astivetoolkit.ami.action.ActionMessage;
-import org.astivetoolkit.ami.action.LoginAction;
-import org.astivetoolkit.ami.action.LogoffAction;
-import org.astivetoolkit.ami.action.ResponseMessage;
+
+import org.astivetoolkit.action.ActionMessage;
+import org.astivetoolkit.action.LoginAction;
+import org.astivetoolkit.action.LogoffAction;
+import org.astivetoolkit.action.ResponseMessage;
 import org.astivetoolkit.util.AppLocale;
 
 /**

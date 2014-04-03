@@ -16,11 +16,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami.action;
+package org.astivetoolkit.action;
 
 import java.util.ArrayList;
-import org.astivetoolkit.ami.AmiException;
-import org.astivetoolkit.ami.Message;
+
+import org.astivetoolkit.AmiException;
+import org.astivetoolkit.Message;
 
 /**
  *

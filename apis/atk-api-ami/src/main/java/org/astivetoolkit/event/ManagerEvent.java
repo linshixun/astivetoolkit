@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami.event;
+package org.astivetoolkit.event;
 
 import java.util.HashMap;
 

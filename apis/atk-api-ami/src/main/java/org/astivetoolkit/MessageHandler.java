@@ -16,13 +16,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.astivetoolkit.ami;
+package org.astivetoolkit;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
-import org.astivetoolkit.ami.event.ManagerEvent;
+import org.astivetoolkit.event.ManagerEvent;
 import org.astivetoolkit.util.AppLocale;
 
 /**
