@@ -34,14 +34,6 @@ public class ManagerEventFactory {
   private ManagerEventFactory() {
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param source DOCUMENT ME!
-   * @param msg DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public ManagerEvent getEvent(Object source, Message msg) {
     logger.warn(AppLocale.getI18n("unknownEvent",
                                   new Object[] { msg.getMessageLines().get(0), msg.toString() }));
@@ -49,14 +41,9 @@ public class ManagerEventFactory {
     return new ManagerEvent(source, EventType.UNKNOWN, msg.getParams());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static ManagerEventFactory getInstance() {
     return INSTANCE;
   }
 
-  // TODO: Implemente a "create" method for each event type
+  // TODO: Implement a "create" method for each event type
 }

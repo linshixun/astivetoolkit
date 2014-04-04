@@ -21,7 +21,6 @@ package org.astivetoolkit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.regex.Pattern;
 
 import org.astivetoolkit.action.ActionType;
 import org.astivetoolkit.event.EventType;
@@ -34,43 +33,22 @@ import org.astivetoolkit.util.Utils;
  */
 public class Message {
   public static final String SEPARATOR = ": ";
-  private Enum subType;
+  private Enum<?> subType;
   private HashMap<String, String> params;
   private MessageType type;
-  private Pattern p = Pattern.compile("");
 
-  /**
-   * Creates a new Message object.
-   *
-   * @param type DOCUMENT ME!
-   * @param subType DOCUMENT ME!
-   */
-  public Message(MessageType type, Enum subType) {
+  public Message(MessageType type, Enum<?> subType) {
     this.type = type;
     this.subType = subType;
-    params = new HashMap();
+    params = new HashMap<String, String>();
   }
 
-  /**
-   * Creates a new Message object.
-   *
-   * @param type DOCUMENT ME!
-   * @param subType DOCUMENT ME!
-   * @param params DOCUMENT ME!
-   */
-  public Message(MessageType type, Enum subType, HashMap<String, String> params) {
+  public Message(MessageType type, Enum<?> subType, HashMap<String, String> params) {
     this.type = type;
     this.subType = subType;
     this.params = params;
   }
 
-  /**
-   * Creates a new Message object.
-   *
-   * @param lines DOCUMENT ME!
-   *
-   * @throws AmiException DOCUMENT ME!
-   */
   public Message(ArrayList<String> lines) throws AmiException {
     String messageType = lines.get(0).split(SEPARATOR)[0];
     String messageSubType = lines.get(0).split(SEPARATOR)[1];
@@ -89,7 +67,7 @@ public class Message {
       throw new AmiException(AppLocale.getI18n("unknownActionType"));
     }
 
-    params = new HashMap();
+    params = new HashMap<String, String>();
 
     for (int i = 1; i < lines.size(); i++) {
       String k = lines.get(i).split(SEPARATOR)[0];
@@ -98,27 +76,16 @@ public class Message {
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param key DOCUMENT ME!
-   * @param value DOCUMENT ME!
-   */
   public void addParameter(String key, String value) {
     params.put(key, value);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public ArrayList<String> getMessageLines() {
-    ArrayList<String> lines = new ArrayList();
+    ArrayList<String> lines = new ArrayList<String>();
     // First line
     lines.add(getType() + SEPARATOR + getSubType());
 
-    Iterator i = getParams().keySet().iterator();
+    Iterator<?> i = getParams().keySet().iterator();
 
     while (i.hasNext()) {
       String k = (String) i.next();
@@ -129,76 +96,36 @@ public class Message {
     return lines;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param key DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getParameter(String key) {
     return params.get(key);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public HashMap<String, String> getParams() {
     return params;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
-  public Enum getSubType() {
+
+  public Enum<?> getSubType() {
     return subType;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public MessageType getType() {
     return type;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param params DOCUMENT ME!
-   */
   public void setParams(HashMap<String, String> params) {
     this.params = params;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param subType DOCUMENT ME!
-   */
-  public void setSubType(Enum subType) {
+
+  public void setSubType(Enum<?> subType) {
     this.subType = subType;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param type DOCUMENT ME!
-   */
   public void setType(MessageType type) {
     this.type = type;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   @Override
   public String toString() {
     StringBuilder b = new StringBuilder();
@@ -227,7 +154,7 @@ public class Message {
     b.append("\n");
 
     if (!getParams().isEmpty()) {
-      Iterator i = getParams().keySet().iterator();
+      Iterator<?> i = getParams().keySet().iterator();
 
       while (i.hasNext()) {
         String k = (String) i.next();

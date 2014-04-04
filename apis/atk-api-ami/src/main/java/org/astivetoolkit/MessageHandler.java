@@ -21,8 +21,6 @@ package org.astivetoolkit;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
 import org.astivetoolkit.event.ManagerEvent;
 import org.astivetoolkit.util.AppLocale;
 
@@ -31,7 +29,6 @@ import org.astivetoolkit.util.AppLocale;
  * @since 1.1
  */
 class MessageHandler implements Runnable {
-  private static final Logger logger = Logger.getLogger(MessageHandler.class);
   private final BufferedReader reader;
   private final Manager manager;
   private final PrintWriter writer;
@@ -39,14 +36,6 @@ class MessageHandler implements Runnable {
   private final String protocolVersion;
   private boolean threadDone = false;
 
-  /**
-   * Creates a new MessageHandler object.
-   *
-   * @param manager DOCUMENT ME!
-   * @param client DOCUMENT ME!
-   *
-   * @throws AmiException DOCUMENT ME!
-   */
   public MessageHandler(Manager manager, Socket client)
                  throws AmiException {
     try {
@@ -57,16 +46,13 @@ class MessageHandler implements Runnable {
       protocolVersion = reader.readLine();
       responseQuee = new ResponseQuee();
     } catch (IOException ex) {
-      // send the msg
+      // send the message
       throw new AmiException();
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   */
   public void checkInPacket() {
-    ArrayList<String> lines = new ArrayList();
+    ArrayList<String> lines = new ArrayList<String>();
 
     try {
       String s;
@@ -110,22 +96,10 @@ class MessageHandler implements Runnable {
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   */
   public void done() {
     threadDone = true;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param actionId DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   *
-   * @throws AmiException DOCUMENT ME!
-   */
   public Message getMessage(long actionId) throws AmiException {
     synchronized (responseQuee) {
       while (!responseQuee.messageExist("" + actionId)) {
@@ -139,11 +113,6 @@ class MessageHandler implements Runnable {
     return responseQuee.pullMessage("" + actionId);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public String getProtocolVersion() {
     return protocolVersion;
   }
@@ -156,9 +125,6 @@ class MessageHandler implements Runnable {
     return writer;
   }
 
-  /**
-   * DOCUMENT ME!
-   */
   @Override
   public void run() {
     while (!threadDone) {
@@ -166,11 +132,6 @@ class MessageHandler implements Runnable {
     }
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param msg DOCUMENT ME!
-   */
   public void sendMessage(Message msg) {
     getWriter().println(msg);
     getWriter().flush();

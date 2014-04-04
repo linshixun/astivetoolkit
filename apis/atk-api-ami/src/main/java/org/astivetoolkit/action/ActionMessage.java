@@ -33,11 +33,6 @@ public abstract class ActionMessage extends Message {
   private ActionType action;
   private long actionId = -1;
 
-  /**
-   * Creates a new ActionMessage object.
-   *
-   * @param action DOCUMENT ME!
-   */
   public ActionMessage(ActionType action) {
     super(MessageType.ACTION, action);
     this.action = action;
@@ -45,20 +40,10 @@ public abstract class ActionMessage extends Message {
     this.actionId = (new Date()).getTime();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public ActionType getAction() {
     return action;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public long getActionId() {
     return actionId;
   }
@@ -68,20 +53,10 @@ public abstract class ActionMessage extends Message {
     return false;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param action DOCUMENT ME!
-   */
   public void setAction(ActionType action) {
     this.action = action;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   @Override
   public String toString() {
     StringBuilder b = new StringBuilder();

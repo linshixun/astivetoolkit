@@ -37,29 +37,10 @@ public class ManagerFactory {
   private ManagerFactory() {
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param host DOCUMENT ME!
-   * @param userName DOCUMENT ME!
-   * @param password DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public Manager createManager(final String host, final String userName, final String password) {
     return createManager(host, Manager.DEFAULT_PORT, userName, password);
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param host DOCUMENT ME!
-   * @param port DOCUMENT ME!
-   * @param userName DOCUMENT ME!
-   * @param password DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public Manager createManager(final String host, final int port, final String userName,
                                final String password) {
     return new Manager() {
@@ -123,11 +104,6 @@ public class ManagerFactory {
       };
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static ManagerFactory getInstance() {
     return INSTANCE;
   }

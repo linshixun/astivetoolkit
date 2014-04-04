@@ -36,7 +36,6 @@ public class SetvarAction extends ActionMessage {
    */
   public SetvarAction(String variable, String value) {
     super(ActionType.SETVAR);
-    this.channel = channel;
     this.variable = variable;
     this.value = value;
   }

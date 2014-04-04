@@ -19,6 +19,7 @@
 package org.astivetoolkit;
 
 import java.util.HashMap;
+
 import org.apache.log4j.Logger;
 import org.astivetoolkit.util.AppLocale;
 
@@ -28,7 +29,7 @@ import org.astivetoolkit.util.AppLocale;
  */
 public class ResponseQuee {
   private static final Logger logger = Logger.getLogger(ResponseQuee.class);
-  private static HashMap<String, Message> responseQuee = new HashMap();
+  private static HashMap<String, Message> responseQuee = new HashMap<String, Message>();
 
   /**
    * DOCUMENT ME!

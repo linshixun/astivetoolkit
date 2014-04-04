@@ -44,13 +44,6 @@ public class Utils {
     return s;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param actionTypeStr DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static ActionType getActionType(String actionTypeStr) {
     StringBuilder b = new StringBuilder();
     String[] s = splitOnCapitals(actionTypeStr);
@@ -66,26 +59,12 @@ public class Utils {
     return ActionType.valueOf(b.toString().toUpperCase());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param actionType DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String getActionType(ActionType actionType) {
     String s = joinCapitals(actionType.toString().split("_"));
 
     return s;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param eventTypeStr DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static EventType getEventType(String eventTypeStr) {
     StringBuilder b = new StringBuilder();
     String[] s = splitOnCapitals(eventTypeStr);
@@ -101,70 +80,28 @@ public class Utils {
     return EventType.valueOf(b.toString().toUpperCase());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param eventType DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String getEventType(EventType eventType) {
     String s = joinCapitals(eventType.toString().split("_"));
 
     return s;
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param messageTypeStr DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static MessageType getMessageType(String messageTypeStr) {
     return MessageType.valueOf(messageTypeStr.toUpperCase());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param messageType DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String getMessageType(MessageType messageType) {
     return capitalizeFirstLetters(messageType.toString().replace("_", ""));
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param actionTypeStr DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static ResponseStatus getResponseStatus(String actionTypeStr) {
     return ResponseStatus.valueOf(actionTypeStr.toUpperCase());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param responseStatus DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String getResponseStatus(ResponseStatus responseStatus) {
     return capitalizeFirstLetters(responseStatus.toString().replace("_", "").toLowerCase());
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param str DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String joinCapitals(String[] str) {
     StringBuilder b = new StringBuilder();
 
@@ -175,13 +112,6 @@ public class Utils {
     return b.toString();
   }
 
-  /**
-   * DOCUMENT ME!
-   *
-   * @param str DOCUMENT ME!
-   *
-   * @return DOCUMENT ME!
-   */
   public static String[] splitOnCapitals(String str) {
     ArrayList<String> array = new ArrayList<String>();
     StringBuilder builder = new StringBuilder();

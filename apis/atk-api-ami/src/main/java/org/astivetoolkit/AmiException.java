@@ -24,22 +24,13 @@ package org.astivetoolkit;
  * @since 1.1
  */
 public class AmiException extends Exception {
-  private String msg;
 
-  /**
-   * Creates a new AmiException object.
-   *
-   * @param msg
-   *            DOCUMENT ME!
-   */
-  public AmiException(String msg) {
-    super(msg);
-    this.msg = msg;
-  }
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * Creates a new AmiException object.
-   */
-  public AmiException() {
-  }
+	public AmiException(String msg) {
+		super(msg);
+	}
+
+	public AmiException() {
+	}
 }
