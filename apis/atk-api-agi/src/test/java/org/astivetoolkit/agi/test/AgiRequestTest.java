@@ -93,7 +93,8 @@ public class AgiRequestTest extends TestCase {
     assertEquals(ar.getPriority(), "1");
     assertFalse(ar.isEnhanced());
     assertNull(ar.getAccountCode());
-
-    // TODO: Check parameters/arguments
+    assertEquals("2", ar.getQueryParameter("ext"));
+    assertNull(ar.getQueryParameter("uid"));
+    assertEquals("John",ar.getArguments()[0]);
   }
 }
