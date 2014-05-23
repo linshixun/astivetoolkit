@@ -73,10 +73,10 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         long keepAliveTime = 0L;
 
         BlockingQueue<Runnable> threadPool = new LinkedBlockingQueue <Runnable>();
-        
+
         threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
                 keepAliveTime, TimeUnit.MILLISECONDS,
-                    threadPool);
+                threadPool);
 
         //threadPoolExecutor.prestartAllCoreThreads();
         if (LOG.isDebugEnabled()) {
@@ -114,7 +114,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                 AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug("messageDone");
+                    LOG.debug(AppLocale.getI18n("messageDone"));
                 }
             } else {
                 LOG.error(AppLocale.getI18n("errorUnableToPlaceCallCheckNetPermissions"));
@@ -146,7 +146,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                     conn.close();
                     continue;
                 }
-                
+
                 Runnable task = new Runnable() {
                     @Override
                     public void run() {
@@ -161,18 +161,17 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                         try {
                             manager.remove(conn);
                         } catch (IOException ex) {
-                            System.out.println("DBG 1");
                             LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                     new Object[]{ex.getMessage()}));
                         }
                     }
                 };
-                
-                LOG.debug("Task count :: " +  threadPoolExecutor.getActiveCount());
-                threadPoolExecutor.execute(task); 
+
+                LOG.debug(AppLocale.getI18n("messageTaskCount") +  threadPoolExecutor.getActiveCount());
+                threadPoolExecutor.execute(task);
             } catch (IOException ex) {
                 if(!server.isRunning()) {
-                    LOG.debug(AppLocale.getI18n("messageStoppingFastAgiConnectionMonitor"));   
+                    LOG.debug(AppLocale.getI18n("messageStoppingFastAgiConnectionMonitor"));
                     Thread.currentThread().interrupt();
                     LOG.debug(AppLocale.getI18n("messageDone"));
                 }
