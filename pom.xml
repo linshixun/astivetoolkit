@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
     <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
