@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-    <version>1.0.0-RC2-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
     <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
@@ -153,7 +153,7 @@
  	<properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    	<project.version>1.0.0-RC2-SNAPSHOT</project.version>
+    	<project.version>1.0.0</project.version>
 	</properties>
 	
     <dependencyManagement>
