@@ -4,6 +4,7 @@
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
     <version>1.0.0</version>
+
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
     <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
@@ -12,6 +13,14 @@
     	<name>PhonyTive LLC</name>
     	<url>http://phonytive.com</url>
     </organization>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <modules>
         <module>atk-commons</module>
         <module>apis</module>
@@ -19,7 +28,6 @@
         <module>archetypes</module>
         <module>examples</module>
     </modules>
-    
     
     <build>
         <plugins>
@@ -167,13 +175,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-        </dependency>
+         </dependency>
          <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>
-         
+         </dependency>
         </dependencies>
     </dependencyManagement>
 	
@@ -182,6 +189,7 @@
         <url>scm:git://github.com/psanders/astivetoolkit.git</url>
         <developerConnection>scm:git://github.com/psanders/astivetoolkit.git</developerConnection>
     </scm>
+
     <pluginRepositories>
         <pluginRepository>
             <id>mc-release</id>
