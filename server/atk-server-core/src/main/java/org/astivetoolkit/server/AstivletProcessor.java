@@ -70,6 +70,7 @@ public class AstivletProcessor {
             LOG.error(ex.getMessage());
         } catch (InvocationTargetException ex) {
             LOG.error(AppLocale.getI18n("errorEnsureVersionsMatch"));
+            ex.printStackTrace();
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
                     new Object[]{"/" + request.getScript()}));

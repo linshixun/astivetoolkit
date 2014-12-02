@@ -18,6 +18,8 @@
  */
 package org.astivetoolkit.astivlet;
 
+import org.astivetoolkit.agi.AgiException;
+
 /**
  * Defines methods that all astivles must implement.
  *
@@ -37,5 +39,5 @@ public abstract class Astivlet {
      * @param request the <code>channel</code> information.
      * @param response the actions to be performed by the client.
      */
-    abstract protected void service(AstivletRequest request, AstivletResponse response);
+    abstract protected void service(AstivletRequest request, AstivletResponse response) throws AgiException;
 }

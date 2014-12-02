@@ -37,7 +37,7 @@ import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
 public class SimpleAstiveServer extends AbstractAstiveServer {
 
     private Astivlet astivlet;
-    private ExecutorService executorService;
+    //private ExecutorService executorService;
     private int port;
     private int backlog;
     private InetAddress bindAddr;
@@ -155,7 +155,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     @Override
     public void start() throws SystemException {
         super.start();
-        executorService = Executors.newSingleThreadExecutor();
+        //executorService = Executors.newSingleThreadExecutor();
         launchConnectionMonitor();
     }
 
@@ -164,7 +164,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
      */
     @Override
     public void stop() throws SystemException {
-        executorService.shutdown();
+        //executorService.shutdown();
         super.stop();
     }
 }
