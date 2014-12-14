@@ -9,7 +9,6 @@
     </parent>
     <artifactId>atk-commons</artifactId>
     <name>Astive Toolkit :: Commons</name>
-    
     <packaging>jar</packaging>
     <dependencies>
 		<dependency>

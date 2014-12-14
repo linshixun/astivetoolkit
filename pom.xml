@@ -170,13 +170,11 @@
             </plugins>
         </pluginManagement>
     </build>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.version>1.0.0</project.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -196,37 +194,15 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <scm>
         <connection>scm:git://github.com/PhonyTive/astivetoolkit.git</connection>
-        <url>scm:git://github.com/PhonyTive/astivetoolkit.git</url>
         <developerConnection>scm:git://github.com/PhonyTive/astivetoolkit.git</developerConnection>
+        <url>http://astivetoolkit.org</url>
     </scm>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>mc-release</id>
-            <name>Local Maven repository of releases</name>
-            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Astive Release Repository</name>
-            <url>https://repository-astiveteam.forge.cloudbees.com/release/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Astive Snapshots Repository</name>
-            <url>https://repository-astiveteam.forge.cloudbees.com/snapshot/</url>
-        </snapshotRepository>
-    </distributionManagement>
     <ciManagement>
         <system>Buildhive</system>
         <url>https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/</url>
     </ciManagement>
-
     <reporting>
         <plugins>
             <plugin>
