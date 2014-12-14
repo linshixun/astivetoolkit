@@ -15,7 +15,7 @@
             <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-server-client</artifactId>
             <version>1.0.0</version>
-	    <scope>provided</scope>
+	        <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>

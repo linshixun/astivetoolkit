@@ -16,6 +16,5 @@
         <module>yahoo-weather</module>
         <module>speech-recognition</module>
         <module>voicecomposer</module>
-        <module>astive-js</module>
     </modules>
 </project>
