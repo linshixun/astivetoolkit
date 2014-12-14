@@ -185,9 +185,9 @@
     </dependencyManagement>
 
     <scm>
-        <connection>scm:git://github.com/psanders/astivetoolkit.git</connection>
-        <url>scm:git://github.com/psanders/astivetoolkit.git</url>
-        <developerConnection>scm:git://github.com/psanders/astivetoolkit.git</developerConnection>
+        <connection>scm:git://github.com/PhonyTive/astivetoolkit.git</connection>
+        <url>scm:git://github.com/PhonyTive/astivetoolkit.git</url>
+        <developerConnection>scm:git://github.com/PhonyTive/astivetoolkit.git</developerConnection>
     </scm>
 
     <pluginRepositories>
@@ -231,7 +231,7 @@
                 <version>2.5.2</version>
                 <configuration>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+                    <!--<findbugsXmlWithMessages>true</findbugsXmlWithMessages>-->
                     <xmlOutput>true</xmlOutput>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
