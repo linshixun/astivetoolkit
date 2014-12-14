@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>voice-composer</artifactId>
     <name>Astive Toolkit :: Example :: Voice Composer</name>
