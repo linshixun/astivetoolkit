@@ -12,8 +12,9 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-commons</artifactId>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

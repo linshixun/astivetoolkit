@@ -4,7 +4,6 @@
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
     <version>1.0.1-SNAPSHOT</version>
-
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
     <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing, maintaining, and deploying telephony applications.</description>
@@ -20,7 +19,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <modules>
         <module>atk-commons</module>
         <module>apis</module>
@@ -28,7 +26,6 @@
         <module>archetypes</module>
         <module>examples</module>
     </modules>
-
     <build>
         <plugins>
             <plugin>
@@ -157,12 +154,6 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.version>1.0.0</project.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -472,6 +463,8 @@
             </build>
         </profile>
     </profiles>
-
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 </project>

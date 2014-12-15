@@ -6,10 +6,10 @@
         <groupId>org.astivetoolkit</groupId>
         <artifactId>astivetoolkit</artifactId>
         <version>1.0.1-SNAPSHOT</version>
+        <relativePath>..</relativePath>
     </parent>
     <artifactId>atk-commons</artifactId>
     <name>Astive Toolkit :: Commons</name>
-    
     <packaging>jar</packaging>
     <dependencies>
 		<dependency>

@@ -14,7 +14,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>atk-api-agi</artifactId>
-            <version>${project.version}</version>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
     </dependencies>
 </project>
