@@ -25,10 +25,10 @@ import org.astivetoolkit.agi.Connection;
  * Manage incoming connections from a telephone engine.
  * 
  * @since 1.0
- * @see FastAgiConectionMonitor
+ * @see FastAgiConnectionMonitor
  * @see SimpleConnectionMonitor
  */
-public interface ConnectionMonitor extends Runnable {
+public interface ConnectionMonitor {
 
     /**
      * Process all incoming connection.

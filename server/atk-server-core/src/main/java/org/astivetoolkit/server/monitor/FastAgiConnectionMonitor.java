@@ -20,10 +20,8 @@ package org.astivetoolkit.server.monitor;
 
 import java.io.IOException;
 import java.net.SocketPermission;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.agi.AgiCommandHandler;
@@ -122,19 +120,21 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                 try {
                     fastConn.getSocket().close();
                 } catch (IOException ex) {
-                    // Drop connection
+                    // Drop connection an report exception
+                    throw new AstiveException(ex);
                 }
             }
         } catch (AgiException ex) {
             LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[]{ex.getMessage()}));
+            throw new AstiveException(ex);
         }
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void run() {
+    //@Override
+    public void run() throws AstiveException {
         while (!Thread.currentThread().isInterrupted()) {
             final FastAgiConnection conn;
 
@@ -147,15 +147,18 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                     continue;
                 }
 
-                Runnable task = new Runnable() {
+                Callable task = new Callable() {
+
                     @Override
-                    public void run() {
+                    public Object call() throws Exception {
+
                         manager.add(conn);
 
                         try {
                             processConnection(conn);
                         } catch (AstiveException ex) {
                             LOG.warn(ex.getMessage());
+                            throw new AstiveException(ex);
                         }
 
                         try {
@@ -163,18 +166,26 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                         } catch (IOException ex) {
                             LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                     new Object[]{ex.getMessage()}));
+                            throw new AstiveException(ex);
                         }
+                        return null;
                     }
                 };
 
-                LOG.debug(AppLocale.getI18n("messageTaskCount") +  threadPoolExecutor.getActiveCount());
-                threadPoolExecutor.execute(task);
+                LOG.debug(AppLocale.getI18n("messageTaskCount") + threadPoolExecutor.getActiveCount());
+                Future future = threadPoolExecutor.submit(task);
+
+                future.get();
             } catch (IOException ex) {
                 if(!server.isRunning()) {
                     LOG.debug(AppLocale.getI18n("messageStoppingFastAgiConnectionMonitor"));
                     Thread.currentThread().interrupt();
                     LOG.debug(AppLocale.getI18n("messageDone"));
                 }
+            }  catch (InterruptedException e) {
+                throw new AstiveException(e);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
             }
         }
     }
