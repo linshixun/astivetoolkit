@@ -1,4 +1,4 @@
-# The Astive Toolkit Project [![Build Status](https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/badge/icon)](https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/)
+# The Astive Toolkit Project
 
 This is the official Git repository for the Astive Toolkit project, which is part of PhonyTive open source projects.
 
