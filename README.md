@@ -1,5 +1,4 @@
-# The Astive Toolkit Project [![Build Status](https://travis-ci.org/fonoster/astivetoolkit.svg)](https://travis-ci.org/fonoster/astivetoolkit)
-
+# The Astive Toolkit Project 
 This is the official Git repository for the Astive Toolkit project, which is part of PhonyTive open source projects.
 
 ## Requirements
