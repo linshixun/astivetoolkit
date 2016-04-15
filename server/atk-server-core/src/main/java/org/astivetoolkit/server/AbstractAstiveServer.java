@@ -21,6 +21,7 @@ package org.astivetoolkit.server;
 import java.io.IOException;
 import java.net.InetAddress;
 import org.apache.log4j.Logger;
+import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.Version;
 import org.astivetoolkit.util.AppLocale;
 
@@ -96,10 +97,10 @@ public abstract class AbstractAstiveServer extends FastAgiServerSocket implement
         return sb.toString();
     }
 
-    protected abstract void launchConnectionMonitor();
+    protected abstract void launchConnectionMonitor() throws AstiveException;
 
     @Override
-    public void start() throws SystemException {
+    public void start() throws SystemException, AstiveException {
         super.start();
         launchConnectionMonitor();
     }

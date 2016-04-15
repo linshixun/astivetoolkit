@@ -18,30 +18,14 @@
  */
 package org.astivetoolkit.server;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import static java.lang.System.out;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.OptionBuilder;
-import org.apache.commons.cli.Options;
+import com.sun.corba.se.impl.util.Version;
+import org.apache.commons.cli.*;
 import org.apache.log4j.Category;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.astivetoolkit.AstiveException;
-import org.astivetoolkit.Version;
 import org.astivetoolkit.server.admin.AdminCommand;
 import org.astivetoolkit.server.admin.AdminDaemon;
 import org.astivetoolkit.server.admin.AdminDaemonClient;
@@ -53,6 +37,19 @@ import org.astivetoolkit.server.utils.InitOutput;
 import org.astivetoolkit.telnet.TelnetServer;
 import org.astivetoolkit.util.AppLocale;
 import org.astivetoolkit.util.NetUtil;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import static java.lang.System.out;
 
 /**
  * Default implementation of {@link AbstractAstiveServer}.
@@ -87,7 +84,7 @@ public class AstiveServer extends AbstractAstiveServer {
     @Override
     protected void launchConnectionMonitor() {
         monitor = new FastAgiConnectionMonitor(this, astivedSP.getBacklog());
-        executorService.execute(monitor);
+        executorService.execute((Runnable) monitor);
     }
 
     public static void main(String[] args) throws Exception {
@@ -369,11 +366,7 @@ public class AstiveServer extends AbstractAstiveServer {
     private static boolean isCommand(String cmd) {
         AdminCommand ac = AdminCommand.get(cmd);
 
-        if (ac == null) {
-            return false;
-        }
-
-        return true;
+        return ac != null;
     }
 
     private static boolean isFileJar(String file) {

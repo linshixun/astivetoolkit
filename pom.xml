@@ -4,21 +4,26 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.astivetoolkit</groupId>
     <artifactId>astivetoolkit</artifactId>
-<<<<<<< HEAD
     <version>1.0.1-SNAPSHOT</version>
-=======
-    <version>1.0.0</version>
->>>>>>> master
     <name>Astive Toolkit</name>
     <packaging>pom</packaging>
+
     <description>Astive is a toolkit and server for Java that provides an extensible architecture for developing,
         maintaining, and deploying telephony applications.
     </description>
+
     <url>http://astivetoolkit.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <organization>
-        <name>PhonyTive LLC</name>
-        <url>http://phonytive.com</url>
+        <name>Fonoster Inc</name>
+        <url>http://fonoster.com</url>
     </organization>
+
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -26,29 +31,27 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-<<<<<<< HEAD
-=======
+
     <developers>
         <developer>
-            <name>Pedro Sanders</name>
-            <email>sanderspedro@gmail.com</email>
-            <organization>PhonyTive LLC</organization>
-            <organizationUrl>http://www.phonytive.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Eudris Cabrera</name>
-            <email>eudris@gmail.com</email>
-            <organization>PhonyTive LLC</organization>
-            <organizationUrl>http://www.phonytive.com</organizationUrl>
+            <name>Fonoster Team</name>
+            <email>fonosterteam@fonoster.com</email>
+            <organization>Fonoster Inc</organization>
+            <organizationUrl>http://www.fonoster.com</organizationUrl>
         </developer>
     </developers>
->>>>>>> master
+
     <modules>
         <module>atk-commons</module>
         <module>apis</module>
         <module>server</module>
         <module>archetypes</module>
     </modules>
+
+    <scm>
+        <developerConnection>scm:git:http://github.com/fonoster/astivetoolkit</developerConnection>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -70,10 +73,6 @@
                     </execution>
                 </executions>
             </plugin>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
             <plugin>
                 <inherited>false</inherited>
                 <groupId>com.google.code.maven-license-plugin</groupId>
@@ -108,10 +107,6 @@
                     </execution>
                 </executions>
             </plugin>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -151,49 +146,19 @@
                     </descriptors>
                     <finalName>astivetoolkit</finalName>
                     <outputDirectory>dist</outputDirectory>
-                    <workDirectory>target/assembly/astive-${project.version}</workDirectory>
+                    <workDirectory>target/assembly/astive-${pr}</workDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.apache.maven.plugins</groupId>
-                                        <artifactId>maven-antrun-plugin</artifactId>
-                                        <versionRange>[1.7,)</versionRange>
-                                        <goals>
-                                            <goal>run</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
-<<<<<<< HEAD
-
-=======
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.version>1.0.0</project.version>
-    </properties>
->>>>>>> master
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -213,200 +178,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-<<<<<<< HEAD
 
-    <scm>
-        <connection>scm:git://github.com/PhonyTive/astivetoolkit.git</connection>
-        <url>scm:git://github.com/PhonyTive/astivetoolkit.git</url>
-        <developerConnection>scm:git://github.com/PhonyTive/astivetoolkit.git</developerConnection>
-=======
-    <scm>
-        <connection>scm:git://github.com/PhonyTive/astivetoolkit.git</connection>
-        <developerConnection>scm:git://github.com/PhonyTive/astivetoolkit.git</developerConnection>
-        <url>http://astivetoolkit.org</url>
->>>>>>> master
-    </scm>
-    <ciManagement>
-        <system>Buildhive</system>
-<<<<<<< HEAD
-        <url>https://buildhive.cloudbees.com/job/psanders/job/astivetoolkit/</url>
-    </ciManagement>
-
-=======
-        <url>https://buildhive.cloudbees.com/job/PhonyTive/job/astivetoolkit/</url>
-    </ciManagement>
->>>>>>> master
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.7</version>
-            </plugin>
-            <!--
-               Comment the following reporting section if you don't want to create
-               FindBugs report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.5.2</version>
-<<<<<<< HEAD
-                <configuration>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <!--<findbugsXmlWithMessages>true</findbugsXmlWithMessages>-->
-                    <xmlOutput>true</xmlOutput>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
-            </plugin>
-            <!--
-               Comment the following reporting section if you don't want to create
-               checkstyle report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.11</version>
-                <configuration>
-                    <configLocation>config/maven_checks.xml</configLocation>
-=======
-                <configuration>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <!--<findbugsXmlWithMessages>true</findbugsXmlWithMessages>-->
-                    <xmlOutput>true</xmlOutput>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
->>>>>>> master
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <!--
-                  Comment the following reporting section if you don't want to create
-                  PMD report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.0.1</version>
-            </plugin>
-<<<<<<< HEAD
-
-            <!--
-               Comment the following reporting section if you don't want to create
-               TagList report as a part of the project reports.
-             -->
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <tags>
-                        <tag>TODO</tag>
-                        <tag>@todo</tag>
-                        <tag>FIXME</tag>
-                        <tag>XXX</tag>
-                    </tags>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>clirr-maven-plugin</artifactId>
-                <version>2.6.1</version>
-                <configuration>
-                    <minSeverity>info</minSeverity>
-=======
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
-            </plugin>
-            <!--
-               Comment the following reporting section if you don't want to create
-               checkstyle report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.11</version>
-                <configuration>
-                    <configLocation>config/maven_checks.xml</configLocation>
->>>>>>> master
-                </configuration>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>checkstyle</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-<<<<<<< HEAD
-=======
-            <!--
-                  Comment the following reporting section if you don't want to create
-                  PMD report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.0.1</version>
-            </plugin>
-            <!--
-               Comment the following reporting section if you don't want to create
-               TagList report as a part of the project reports.
-             -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <tags>
-                        <tag>TODO</tag>
-                        <tag>@todo</tag>
-                        <tag>FIXME</tag>
-                        <tag>XXX</tag>
-                    </tags>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>clirr-maven-plugin</artifactId>
-                <version>2.6.1</version>
-                <configuration>
-                    <minSeverity>info</minSeverity>
-                </configuration>
-            </plugin>
->>>>>>> master
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <showSuccess>false</showSuccess>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
     <profiles>
         <!--if you want  to fail the build if FindBugs finds problems.-->
         <profile>
@@ -414,8 +186,6 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-<<<<<<< HEAD
-
             <build>
                 <plugins>
                     <plugin>
@@ -476,29 +246,16 @@
             </activation>
             <build>
                 <plugins>
-=======
-
-            <build>
-                <plugins>
-
->>>>>>> master
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>2.3.2</version>
                         <configuration>
-<<<<<<< HEAD
                             <source>1.7</source>
                             <target>1.7</target>
                         </configuration>
                     </plugin>
-=======
-                            <source>1.6</source>
-                            <target>1.6</target>
-                        </configuration>
-                    </plugin>
 
->>>>>>> master
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <!--There is a bug with the fileMode and directoryMode for
@@ -514,9 +271,6 @@
                             <workDirectory>target/assembly/astive-${project.version}</workDirectory>
                         </configuration>
                     </plugin>
-<<<<<<< HEAD
-
-=======
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>findbugs-maven-plugin</artifactId>
@@ -538,124 +292,8 @@
                         </executions>
                     </plugin>
 
-                </plugins>
-            </build>
-        </profile>
-        <!-- if you want to create  FindBugs report without creating the project reports.  -->
-        <profile>
-            <id>quickbugreport</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>2.3.2</version>
-                        <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <!--There is a bug with the fileMode and directoryMode for
-                        the zip format in the previous versions-->
-                        <version>2.4</version>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/resources/sdk-assembly.xml</descriptor>
-                                <descriptor>src/main/resources/server-assembly.xml</descriptor>
-                            </descriptors>
-                            <finalName>astivetoolkit</finalName>
-                            <outputDirectory>dist</outputDirectory>
-                            <workDirectory>target/assembly/astive-${project.version}</workDirectory>
-                        </configuration>
-                    </plugin>
->>>>>>> master
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
-                        <version>2.5.2</version>
-                        <configuration>
-                            <effort>Max</effort>
-                            <failOnError>false</failOnError>
-                            <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
-                            <threshold>Low</threshold>
-                            <xmlOutput>true</xmlOutput>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>analyze-compile</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-<<<<<<< HEAD
-
-=======
->>>>>>> master
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>xml-maven-plugin</artifactId>
-                        <version>1.0</version>
-                        <configuration>
-                            <transformationSets>
-                                <transformationSet>
-                                    <!-- Configures the source directory of XML files. -->
-                                    <dir>${project.build.directory}/findbugs</dir>
-                                    <!-- Configures the directory in which the FindBugs report is written.-->
-                                    <outputDir>${project.build.directory}/findbugs</outputDir>
-                                    <!-- Selects the used stylesheet. -->
-                                    <!-- <stylesheet>fancy-hist.xsl</stylesheet> -->
-                                    <stylesheet>default.xsl</stylesheet>
-                                    <!--<stylesheet>plain.xsl</stylesheet>-->
-                                    <!--<stylesheet>fancy.xsl</stylesheet>-->
-                                    <!--<stylesheet>summary.xsl</stylesheet>-->
-                                    <fileMappers>
-                                        <!-- Configures the file extension of the output files. -->
-<<<<<<< HEAD
-                                        <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
-=======
-                                        <fileMapper
-                                                implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
->>>>>>> master
-                                            <targetExtension>.html</targetExtension>
-                                        </fileMapper>
-                                    </fileMappers>
-                                </transformationSet>
-                            </transformationSets>
-                        </configuration>
-                        <executions>
-                            <!-- Ensures that the XSLT transformation is run when the project is compiled. -->
-                            <execution>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>transform</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.google.code.findbugs</groupId>
-                                <artifactId>findbugs</artifactId>
-                                <version>2.0.1</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-<<<<<<< HEAD
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-=======
->>>>>>> master
 </project>
