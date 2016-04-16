@@ -404,7 +404,7 @@ public class AstiveServer extends AbstractAstiveServer {
      * {@inheritDoc}
      */
     @Override
-    public void start() throws SystemException {
+    public void start() throws SystemException, AstiveException {
         if (LOG.isDebugEnabled()) {
             LOG.debug(AppLocale.getI18n("messageStartingAstiveServer"));
         }
