@@ -18,6 +18,8 @@
  */
 package org.astivetoolkit.server;
 
+import org.astivetoolkit.AstiveException;
+
 /**
  *
  * @since 1.0
@@ -26,7 +28,7 @@ public interface Service {
 
     boolean isRunning();
 
-    void start() throws SystemException;
+    void start() throws SystemException, AstiveException;
 
     void stop() throws SystemException;
 }

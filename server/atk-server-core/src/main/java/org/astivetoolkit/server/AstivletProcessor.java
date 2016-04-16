@@ -61,15 +61,20 @@ public class AstivletProcessor {
             m.setAccessible(true);
             m.invoke(astivlet, new Object[]{request, response});
         } catch (NoSuchMethodException ex) {
-            LOG.error(ex.getMessage());
+            LOG.error(ex);
+            throw new AstiveException(ex.getMessage());
         } catch (SecurityException ex) {
-            LOG.error(ex.getMessage());
+            LOG.error(ex);
+            throw new AstiveException(ex.getMessage());
         } catch (IllegalAccessException ex) {
-            LOG.error(ex.getMessage());
+            LOG.error(ex);
+            throw new AstiveException(ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            LOG.error(ex.getMessage());
+            LOG.error(ex);
+            throw new AstiveException(ex.getMessage());
         } catch (InvocationTargetException ex) {
             LOG.error(AppLocale.getI18n("errorEnsureVersionsMatch"));
+            throw new AstiveException(ex.getMessage());
         } catch (NullPointerException ex) {
             throw new AstiveException(AppLocale.getI18n("errorResourceNotExist",
                     new Object[]{"/" + request.getScript()}));
@@ -92,14 +97,19 @@ public class AstivletProcessor {
             m.invoke(astivlet, new Object[]{request, response});
         } catch (NoSuchMethodException ex ) {
             LOG.error(ex.getMessage());
+            throw new AstiveException(ex);
         } catch (SecurityException ex ) {
             LOG.error(ex.getMessage());
+            throw new AstiveException(ex);
         } catch (IllegalAccessException ex) {
             LOG.error(ex.getMessage());
+            throw new AstiveException(ex);
         } catch (IllegalArgumentException ex) {
             LOG.error(ex.getMessage());
+            throw new AstiveException(ex);
         } catch (InvocationTargetException ex) {
             LOG.error(ex.getMessage());
+            throw new AstiveException(ex);
         }
     }
 }

@@ -19,6 +19,7 @@
 package org.astivetoolkit.server.monitor;
 
 import java.io.IOException;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
@@ -83,7 +84,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
             AgiCommandHandler cHandler = new AgiCommandHandler(fastConn);
             FastAgiResponse response = new FastAgiResponse(cHandler);
             AstivletRequest aRequest = new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
-            AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
+            AstivletResponse aResponse = new AstivletResponse(response);
             String requestAppName = aRequest.getRequestURL();
 
             if (LOG.isDebugEnabled()) {
@@ -97,26 +98,28 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
             }
         } catch (AgiException ex) {
             LOG.error(AppLocale.getI18n("errorUnexpectedFailure", new Object[]{ex.getMessage()}));
+            throw new AstiveException(ex);
         }
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void run() {
+    //@Override
+    public void run() throws AstiveException {
         while (true) {
             try {
-                final FastAgiConnection conn = server.acceptConnection();        
-                executorService.execute(new Runnable() {
+                final FastAgiConnection conn = server.acceptConnection();
+                executorService.submit(new Callable() {
+
                     @Override
-                    public void run() {
+                    public Object call() throws AstiveException {
                         manager.add(conn);
 
                         try {
                             processConnection(conn);
-                        } catch (AstiveException ex) {
-                            LOG.warn(ex.getMessage());
+                        } catch (AstiveException e) {
+                            throw new AstiveException(e);
                         }
 
                         try {
@@ -124,11 +127,15 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
                         } catch (IOException ex) {
                             LOG.error(AppLocale.getI18n("errorConnectionClosed",
                                     new Object[]{ex.getMessage()}));
+                            throw new AstiveException(AppLocale.getI18n("errorConnectionClosed",
+                                    new Object[]{ex.getMessage()}));
                         }
+                        return null;
                     }
                 });
             } catch (IOException ex) {
                 LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
+                throw new AstiveException(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
             }
         }
     }
@@ -147,14 +154,14 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
      * Returns the {@link org.astivetoolkit.astivlet.Astivlet} that will be
      * performed.
      *
-     * @returns the astivlet to perform.
+     * @return the astivlet to perform.
      */
     public Astivlet getAstivlet() {
         return astivlet;
     }
 
     // TODO: This should be generalized. For instance, creating an interface
-    // ConectionMonitorMappStrategy indicating how to mapp the apps for this
+    // ConnectionMonitorMappStrategy indicating how to mapp the apps for this
     // server. Then create a SimpleMappingStrategy or some like that
     @Deprecated
     private static String getAppName(Astivlet astivlet) {

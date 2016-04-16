@@ -33,7 +33,7 @@ command -v mvn >/dev/null 2>&1 || { echo "I require Maven but it's not installed
 
 echo "\nPlease wait, this may take few minutes...\n"
 
-mvn -q package assembly:assembly -DskipTests=true $OPTIONS
+mvn -q install assembly:assembly -DskipTests=true $OPTIONS
 
 if [ $? = 0 ]; then
     echo " * Congratulations, you have assembled a new astive-server and astive-sdk"	

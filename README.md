@@ -3,7 +3,7 @@ This is the official Git repository for the Astive Toolkit project, which is par
 
 ## Requirements
 
-* Java 1.6+
+* Java 1.7+
 * Maven 3.x.x+
 * Asterisk 1.8+
 * Git (optional)

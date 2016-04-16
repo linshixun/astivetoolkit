@@ -18,12 +18,12 @@
  */
 package org.astivetoolkit.server;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
+
+import java.io.IOException;
+import java.net.InetAddress;
 
 /**
  * SimpleAstiveServer is a convenient implementation of {@link AbstractAstiveServer}. 
@@ -37,7 +37,7 @@ import org.astivetoolkit.server.monitor.SimpleConnectionMonitor;
 public class SimpleAstiveServer extends AbstractAstiveServer {
 
     private Astivlet astivlet;
-    private ExecutorService executorService;
+    //private ExecutorService executorService;
     private int port;
     private int backlog;
     private InetAddress bindAddr;
@@ -144,7 +144,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
      * {@inheritDoc}
      */
     @Override
-    protected void launchConnectionMonitor() {
+    protected void launchConnectionMonitor() throws AstiveException {
         SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
         monitor.run();
     }
@@ -153,9 +153,9 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
      * {@inheritDoc}
      */
     @Override
-    public void start() throws SystemException {
+    public void start() throws SystemException, AstiveException {
         super.start();
-        executorService = Executors.newSingleThreadExecutor();
+        //executorService = Executors.newSingleThreadExecutor();
         launchConnectionMonitor();
     }
 
@@ -164,7 +164,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
      */
     @Override
     public void stop() throws SystemException {
-        executorService.shutdown();
+        //executorService.shutdown();
         super.stop();
     }
 }

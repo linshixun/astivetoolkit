@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>handling-events</artifactId>
     <name>Astive Toolkit :: Example :: Handling Events</name>
@@ -18,12 +18,12 @@
         <dependency>
             <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-api-agi</artifactId>
-            <version>${project.version}</version>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
         <dependency>
             <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-api-menu</artifactId>
-            <version>${project.version}</version>
+            <version>[1.0.0-RC1,)</version>
         </dependency>
         <dependency>
             <groupId>org.astivetoolkit</groupId>

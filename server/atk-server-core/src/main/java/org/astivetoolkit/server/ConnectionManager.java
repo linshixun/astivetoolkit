@@ -18,9 +18,10 @@
  */
 package org.astivetoolkit.server;
 
+import org.astivetoolkit.agi.Connection;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import org.astivetoolkit.agi.Connection;
 
 /**
  *
@@ -28,11 +29,11 @@ import org.astivetoolkit.agi.Connection;
  */
 public interface ConnectionManager {
 
-    public void add(Connection conn);
+    void add(Connection conn);
 
-    public ArrayList<Connection> connections();
+    ArrayList<Connection> connections();
 
-    public void remove(Connection conn) throws IOException;
+    void remove(Connection conn) throws IOException;
 
-    public void removeAll() throws IOException;
+    void removeAll() throws IOException;
 }

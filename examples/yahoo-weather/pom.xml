@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.astivetoolkit.examples</groupId>
         <artifactId>examples</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>yahoo-weather</artifactId>
     <name>Astive Toolkit :: Example :: Yahoo Weather</name>
@@ -14,8 +14,8 @@
         <dependency>
             <groupId>org.astivetoolkit</groupId>
             <artifactId>atk-server-client</artifactId>
-            <version>1.0.0</version>
-	    <scope>provided</scope>
+            <version>[1.0.0-RC1,)</version>
+	        <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>dom4j</groupId>
