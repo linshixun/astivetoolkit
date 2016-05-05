@@ -28,7 +28,7 @@ import org.astivetoolkit.agi.Connection;
  * @see FastAgiConnectionMonitor
  * @see SimpleConnectionMonitor
  */
-public interface ConnectionMonitor {
+public interface ConnectionMonitor extends Runnable {
 
     /**
      * Process all incoming connection.

@@ -18,17 +18,13 @@
  */
 package org.astivetoolkit.server;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.util.AppLocale;
+
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * Final implementation for AstDB.

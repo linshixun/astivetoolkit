@@ -67,23 +67,10 @@ public final class AstPolicy extends Policy {
      * @param servicesProperties the service to be protected.
      */
     public void addPermissions(ServiceProperties servicesProperties) {
-        List<InetAddress> onlyFromList = servicesProperties.getOnlyFrom();
-        Iterator<InetAddress> onlyFromIterator = onlyFromList.iterator();
+        List<String> onlyFromList = servicesProperties.getOnlyFrom();
 
-        while (onlyFromIterator.hasNext()) {
-            InetAddress currentInetAddress = onlyFromIterator.next();
-            StringBuilder sb = new StringBuilder();
-            sb.append(currentInetAddress.getHostAddress());
-            sb.append(":");
-
-            // WARN: Hardcode !
-            if (servicesProperties.getServiceName().equals("astived")) {
-                sb.append("*");
-            } else {
-                sb.append(servicesProperties.getPort());
-            }
-
-            perms.add(new SocketPermission(sb.toString(), DEFAULT_ACTION));
+        for (String remoteHost : onlyFromList) {
+            perms.add(new SocketPermission(remoteHost, DEFAULT_ACTION));
         }
     }
 

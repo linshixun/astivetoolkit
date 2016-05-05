@@ -18,10 +18,6 @@
  */
 package org.astivetoolkit.server.monitor;
 
-import java.io.IOException;
-import java.net.SocketPermission;
-import java.util.concurrent.*;
-
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.agi.AgiCommandHandler;
@@ -39,6 +35,10 @@ import org.astivetoolkit.server.FastAgiServerSocket;
 import org.astivetoolkit.server.security.AstPolicy;
 import org.astivetoolkit.server.security.AstPolicyUtil;
 import org.astivetoolkit.util.AppLocale;
+
+import java.io.IOException;
+import java.net.SocketPermission;
+import java.util.concurrent.*;
 
 /**
  *
@@ -134,7 +134,7 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
      * {@inheritDoc}
      */
     //@Override
-    public void run() throws AstiveException {
+    public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             final FastAgiConnection conn;
 
@@ -182,10 +182,10 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                     Thread.currentThread().interrupt();
                     LOG.debug(AppLocale.getI18n("messageDone"));
                 }
-            }  catch (InterruptedException e) {
-                throw new AstiveException(e);
+            } catch (InterruptedException e) {
+                LOG.warn(e.getMessage());
             } catch (ExecutionException e) {
-                e.printStackTrace();
+                LOG.warn(e.getMessage());
             }
         }
     }

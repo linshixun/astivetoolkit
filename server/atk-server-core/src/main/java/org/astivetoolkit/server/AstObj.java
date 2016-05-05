@@ -18,14 +18,11 @@
  */
 package org.astivetoolkit.server;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import noNamespace.AppDocument;
 import noNamespace.AppType;
 import noNamespace.AstivletMappingType;
 import noNamespace.AstivletType;
+import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlException;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
@@ -37,12 +34,18 @@ import org.xeustechnologies.jcl.JclObjectFactory;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Convenient class to manage Astive apps jars.
  *
  * @since 1.0
  */
 public final class AstObj {
+    private static final Logger LOG = Logger.getLogger(AstObj.class);
     private static final String ASTIVE_DEPLOYMENT_DESCRIPTOR = "app.xml";
     private AppType app;
     private JarClassLoader jcl;
@@ -98,19 +101,19 @@ public final class AstObj {
                     if (!URLValidator.isValidURL(url)) {
                         throw new AstiveException(AppLocale.getI18n("invalidURL"));
                     }
-
                     Astivlet ast = getAstivletByURLPattern(url);
 
                     if (ast != null) { // URL Pattern already exist
                         throw new AstiveException(AppLocale.getI18n("patternAlreadyDefine"));
                     }
-
                     astivlets.put(url, getAstivletByClass(at.getClass1()));
                 }
             }
         } catch (XmlException ex) {
+            LOG.error(ex.getMessage());
             throw new AstiveException(ex);
         } catch (Exception ex) {
+            LOG.error(ex.getMessage());
             throw new AstiveException(ex);
         }
     }

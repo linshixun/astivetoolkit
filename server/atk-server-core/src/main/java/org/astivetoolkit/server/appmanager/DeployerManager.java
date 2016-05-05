@@ -18,9 +18,6 @@
  */
 package org.astivetoolkit.server.appmanager;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
@@ -33,6 +30,10 @@ import org.astivetoolkit.util.AppLocale;
 import org.xeustechnologies.jcl.exception.JclException;
 import org.xeustechnologies.jcl.proxy.CglibProxyProvider;
 import org.xeustechnologies.jcl.proxy.ProxyProviderFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Final implementation of interface {@link Deployer}.
@@ -95,7 +96,7 @@ public final class DeployerManager implements Deployer, AstDB {
 
             File srcFile = new File(appPath);
             File appsFolder = new File(AbstractAstiveServer.ASTIVE_APPS);
-            
+
             // The name of the file must be use to undeploy the apps.
             AstObj app = new AstObj(srcFile.getName(), srcFile.getCanonicalPath());
 

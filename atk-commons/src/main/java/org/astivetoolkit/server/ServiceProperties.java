@@ -51,7 +51,7 @@ public interface ServiceProperties {
      * @return by default <code>service</code> accept connections only from *
      * the <code>local</code> machine.
      */
-    List<InetAddress> getOnlyFrom();
+    List<String> getOnlyFrom();
 
     /**
      * Returns the
@@ -127,7 +127,7 @@ public interface ServiceProperties {
      * @param onlyFrom by default a service can only be accessed from the local
      * machine.
      */
-    void setOnlyFrom(List<InetAddress> onlyFrom);
+    void setOnlyFrom(List<String> onlyFrom);
 
     /**
      * A valid port to where the service is bound.

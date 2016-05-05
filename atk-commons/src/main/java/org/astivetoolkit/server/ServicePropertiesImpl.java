@@ -34,7 +34,7 @@ import org.astivetoolkit.util.AppLocale;
  */
 public final class ServicePropertiesImpl implements ServiceProperties {
     private InetAddress bindAddr;
-    private List<InetAddress> onlyFrom;
+    private List<String> onlyFrom;
     private Properties properties;
     private String server;
     private String serviceName;
@@ -76,23 +76,20 @@ public final class ServicePropertiesImpl implements ServiceProperties {
             }));
         }
 
-        try {
-            final List<InetAddress> onlyFromList = new ArrayList<InetAddress>();
+        final List<String> onlyFromList = new ArrayList<>();
+
+        if (properties.get("onlyFrom") != null) {
             final String[] l = properties.get("onlyFrom").toString().split(",");
 
             for (int i = 0; l.length > i; i++) {
-                final InetAddress id = InetAddress.getByName(l[i].trim());
-                onlyFromList.add(id);
+                onlyFromList.add(l[i].trim());
             }
-
-            setOnlyFrom(onlyFromList);
-        } catch (UnknownHostException ex) {
-            throw new SystemException(AppLocale.getI18n("errorUnknownHost",
-                    new Object[]{
-                properties.get("onlyFrom").toString().trim()
-            }));
-        } catch (NullPointerException ex) {
+        } else {
+            // All host
+            onlyFromList.add("*");
         }
+
+        setOnlyFrom(onlyFromList);
 
         setServer((String) properties.get("server"));
         setServiceName(serviceName);
@@ -118,7 +115,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
      * {@inheritDoc}
      */
     @Override
-    public List<InetAddress> getOnlyFrom() {
+    public List<String> getOnlyFrom() {
         return Collections.unmodifiableList(onlyFrom);
     }
 
@@ -203,7 +200,7 @@ public final class ServicePropertiesImpl implements ServiceProperties {
      * {@inheritDoc}
      */
     @Override
-    public void setOnlyFrom(final List<InetAddress> onlyFrom) {
+    public void setOnlyFrom(final List<String> onlyFrom) {
         this.onlyFrom = onlyFrom;
     }
 

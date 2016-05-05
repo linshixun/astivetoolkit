@@ -18,15 +18,10 @@
  */
 package org.astivetoolkit.server.monitor;
 
-import java.io.IOException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.agi.AgiCommandHandler;
 import org.astivetoolkit.agi.AgiException;
-import org.astivetoolkit.agi.AgiResponse;
 import org.astivetoolkit.agi.Connection;
 import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.agi.fastagi.FastAgiResponse;
@@ -38,6 +33,11 @@ import org.astivetoolkit.server.ConnectionManager;
 import org.astivetoolkit.server.FastAgiConnectionManager;
 import org.astivetoolkit.server.FastAgiServerSocket;
 import org.astivetoolkit.util.AppLocale;
+
+import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -106,7 +106,7 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
      * {@inheritDoc}
      */
     //@Override
-    public void run() throws AstiveException {
+    public void run() {
         while (true) {
             try {
                 final FastAgiConnection conn = server.acceptConnection();
@@ -135,7 +135,6 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
                 });
             } catch (IOException ex) {
                 LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
-                throw new AstiveException(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
             }
         }
     }
