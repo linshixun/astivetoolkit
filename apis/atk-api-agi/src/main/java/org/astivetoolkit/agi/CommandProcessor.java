@@ -18,19 +18,11 @@
  */
 package org.astivetoolkit.agi;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TimeZone;
-import org.astivetoolkit.agi.annotation.AgiCommand;
-import org.astivetoolkit.agi.annotation.BooleanChoose;
-import org.astivetoolkit.agi.annotation.ParamConverter;
-import org.astivetoolkit.agi.annotation.Parameter;
-import org.astivetoolkit.agi.annotation.Separator;
+import org.astivetoolkit.agi.annotation.*;
 import org.astivetoolkit.util.AppLocale;
+
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * This class is a helper. Can be use to extract meta information from Agi
@@ -74,19 +66,18 @@ public final class CommandProcessor {
                 throw new AgiException(ex);
             }
 
-            // Separate parameters
-            cmd.append(" ");
-
             if (param instanceof String || param instanceof Character) {
                 if (param instanceof Character) {
                     Character c = (Character) param;
 
                     if (!c.toString().trim().isEmpty()) {
+                        cmd.append(" ");
                         cmd.append("\"");
                         cmd.append(c);
                         cmd.append("\"");
                     }
                 } else {
+                    cmd.append(" ");
                     cmd.append("\"");
                     cmd.append(param.toString().trim());
                     cmd.append("\"");
@@ -110,6 +101,7 @@ public final class CommandProcessor {
                     String[] paramArr = (String[]) param;
                     String paramStr = sc.fromArrayString(paramArr, separator.value());
 
+                    cmd.append(" ");
                     cmd.append("\"");
                     cmd.append(paramStr);
                     cmd.append("\"");
@@ -137,9 +129,12 @@ public final class CommandProcessor {
                     t = bc.valueOnTrue();
                 }
 
-                cmd.append("\"");
-                cmd.append(t);
-                cmd.append("\"");
+                if (!t.isEmpty()) {
+                    cmd.append(" ");
+                    cmd.append("\"");
+                    cmd.append(t);
+                    cmd.append("\"");
+                }
             } else if (param instanceof Date) {
                 if (!field.isAnnotationPresent(ParamConverter.class)) {
                     throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
@@ -148,6 +143,7 @@ public final class CommandProcessor {
                 // TODO: Move this to a converter.
                 Date date = (Date) param;
                 long seconds = date.getTime() / 1000;
+                cmd.append(" ");
                 cmd.append("\"");
                 cmd.append(seconds);
                 cmd.append("\"");
@@ -159,16 +155,19 @@ public final class CommandProcessor {
                 // TODO: Move this to a converter.
                 TimeZone tz = (TimeZone) param;
                 String id = tz.getID();
+                cmd.append(" ");
                 cmd.append("\"");
                 cmd.append(id);
                 cmd.append("\"");
             } else {
                 if (!p.prefix().isEmpty()) {
+                    cmd.append(" ");
                     cmd.append("\"");
                     cmd.append(p.prefix());
                     cmd.append(param);
                     cmd.append("\"");
                 } else {
+                    cmd.append(" ");
                     cmd.append(param);
                 }
             }

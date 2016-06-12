@@ -50,7 +50,7 @@ public class RecordFileTest extends TestCase {
     int timeout = -1;
     int offset = 0;
     String beep = "BEEP";
-    int silence = 0;
+    int silence = 5000;
 
     // Testing first constructor
     StringBuilder b = new StringBuilder("RECORD FILE");
@@ -85,6 +85,16 @@ public class RecordFileTest extends TestCase {
     b.append(silence);
     b.append("\"");
     command = new RecordFile(filename, format, escapeDigits, timeout, offset, true, silence);
-    assertEquals(b.toString(), CommandProcessor.buildCommand(command));
+    assertEquals("Result -> "  + b.toString(), b.toString(), CommandProcessor.buildCommand(command));
+
+    // Testing 3th constructor with beep disabled
+    command = new RecordFile(filename, format, escapeDigits, timeout, offset, false, silence);
+    assertEquals("RECORD FILE \"" + filename
+      + "\" \"" + format
+      + "\" \"" + escapeDigits
+      + "\" " + timeout
+      + " " + offset
+      + " \"s=" + silence + "\"" ,
+      CommandProcessor.buildCommand(command));
   }
 }

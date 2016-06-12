@@ -18,14 +18,15 @@
  */
 package org.astivetoolkit.server;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.astivlet.Astivlet;
 import org.astivetoolkit.astivlet.AstivletRequest;
 import org.astivetoolkit.astivlet.AstivletResponse;
 import org.astivetoolkit.util.AppLocale;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Helper class to execute astivlets.
@@ -73,6 +74,8 @@ public class AstivletProcessor {
             LOG.error(ex);
             throw new AstiveException(ex.getMessage());
         } catch (InvocationTargetException ex) {
+            System.out.println("Devil Exception :: cause by :P ");
+            ex.printStackTrace();
             LOG.error(AppLocale.getI18n("errorEnsureVersionsMatch"));
             throw new AstiveException(ex.getMessage());
         } catch (NullPointerException ex) {

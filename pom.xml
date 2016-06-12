@@ -198,7 +198,6 @@
                             <target>1.7</target>
                         </configuration>
                     </plugin>
-
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <!--There is a bug with the fileMode and directoryMode for
