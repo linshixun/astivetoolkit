@@ -27,11 +27,11 @@ cd astivetoolkit
 
 NOTE: The script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
 
-## Getting Started With Astive
+## Getting started with Astive
 
 A good way to start building apps with Astive is by reading the [wiki](https://github.com/fonoster/astivetoolkit/wiki/GuideHelloWorldTutorial). There you will find detail information in how to build, test, and deploy your apps.
 
-## Getting Help
+## Getting help
 
 The best way to get help is through the [Google Groups](http://bit.ly/13KGLyx). You can also follow @astivetoolkit on Twitter for events and quick updates.
 
