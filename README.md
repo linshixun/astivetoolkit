@@ -1,5 +1,8 @@
 # The Astive Toolkit Project 
-This is the official Git repository for the Astive Toolkit.
+
+Astive Toolkit (ATK) was designed to overcome the complexity of building custom voice applications on Asterisk PBX. ATK, uses Asterisk's AGI and AMI to create powerful interactive menus with Java. Most of the ATK functionalities can be replaced to allow third-parties implementations or services.
+
+ATK makes creating voice applications easier for developers, however, it is important to have a good Asterisk foundation. 
 
 ## Requirements
 
@@ -10,7 +13,7 @@ This is the official Git repository for the Astive Toolkit.
 
 ## Getting Astive
 
-A pre-compiled version of ATK can be found in [the website](http://astivetoolkit.org/downloads). You can also build ATK from Github as follows:
+To download and build ATK perform the following steps in your console:
 
 ```bash
 git clone https://github.com/fonoster/astivetoolkit.git
@@ -20,6 +23,10 @@ cd astivetoolkit
 
 NOTE: The script will generate the Astive Server and the SDK. You can find the assemblies in folder 'dist'.
 
+## Getting Started With Astive
+
+A good way to start building apps with Astive is by reading the [wiki](https://github.com/fonoster/astivetoolkit/wiki/GuideHelloWorldTutorial). There you will find detail information in how to build, test, and deploy your apps.
+
 ## Author
 
 Core team:
@@ -28,10 +35,9 @@ Core team:
 * [Eudris Cabrera](https://github.com/ecabrerar)
 
 ## Contributions
-* Please see our [Contribution Documents](https://github.com/fonoster/astivetoolkit/blob/dev/CONTRIBUTING.md) 
+* Please see our [Contribution Documents](https://raw.githubusercontent.com/fonoster/astivetoolkit/master/CONTRIBUTORS) 
 * [Contributors](https://github.com/fonoster/astivetoolkit/contributors)
 
 ### Copyright
 
 Copyright (C) 2010-2016 by [Fonoster, INC](https://fonoster.com). Apache License, Version 2.0 (see LICENSE for details).
-
