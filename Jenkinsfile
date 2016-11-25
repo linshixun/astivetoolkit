@@ -1,5 +1,4 @@
 node {
-
     stage 'Checkout'
     deleteDir()                                            // Cleanup workspace
     checkout scm
