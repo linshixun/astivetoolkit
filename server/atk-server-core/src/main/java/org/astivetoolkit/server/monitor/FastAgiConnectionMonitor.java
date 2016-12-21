@@ -22,7 +22,6 @@ import org.apache.log4j.Logger;
 import org.astivetoolkit.AstiveException;
 import org.astivetoolkit.agi.AgiCommandHandler;
 import org.astivetoolkit.agi.AgiException;
-import org.astivetoolkit.agi.AgiResponse;
 import org.astivetoolkit.agi.Connection;
 import org.astivetoolkit.agi.fastagi.FastAgiConnection;
 import org.astivetoolkit.agi.fastagi.FastAgiResponse;
@@ -58,6 +57,8 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
      * @param threads maximum threads allow for the server.
      */
     public FastAgiConnectionMonitor(FastAgiServerSocket server, int threads) {
+        long keepAliveTime = 0L;
+
         if (LOG.isDebugEnabled()) {
             LOG.debug(AppLocale.getI18n("messageStartingConnectionMonitor"));
         }
@@ -65,18 +66,12 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
         this.server = server;
         manager = new FastAgiConnectionManager();
 
-        int corePoolSize = threads;
-        int maxPoolSize = threads;
-        // TODO: This should be a parameter
-        long keepAliveTime = 0L;
+        BlockingQueue<Runnable> threadPool = new LinkedBlockingQueue<>();
 
-        BlockingQueue<Runnable> threadPool = new LinkedBlockingQueue <Runnable>();
-
-        threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize,
+        threadPoolExecutor = new ThreadPoolExecutor(threads, threads,
                 keepAliveTime, TimeUnit.MILLISECONDS,
                 threadPool);
 
-        //threadPoolExecutor.prestartAllCoreThreads();
         if (LOG.isDebugEnabled()) {
             LOG.debug(AppLocale.getI18n("messageDone"));
         }
@@ -95,19 +90,18 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
 
             FastAgiConnection fastConn = (FastAgiConnection) conn;
 
-            StringBuilder sbr = new StringBuilder();
-            sbr.append(fastConn.getSocket().getInetAddress().getHostAddress());
-            sbr.append(":");
-            sbr.append(fastConn.getSocket().getPort());
+            String sbr = fastConn.getSocket().getInetAddress().getHostAddress() +
+                    ":" +
+                    fastConn.getSocket().getPort();
 
-            SocketPermission sp = new SocketPermission(sbr.toString(), AstPolicy.DEFAULT_ACTION);
+            SocketPermission sp = new SocketPermission(sbr, AstPolicy.DEFAULT_ACTION);
 
             if (AstPolicyUtil.hasPermission(sp)) {
                 AgiCommandHandler cHandler = new AgiCommandHandler(conn);
                 FastAgiResponse response = new FastAgiResponse(cHandler);
                 AstivletRequest aRequest =
                         new AstivletRequest(cHandler.getAgiRequest().getLines(), fastConn);
-                AstivletResponse aResponse = new AstivletResponse((AgiResponse) response);
+                AstivletResponse aResponse = new AstivletResponse(response);
 
                 AstivletProcessor.invokeAstivlet(aRequest, aResponse);
 
@@ -173,19 +167,15 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
                 };
 
                 LOG.debug(AppLocale.getI18n("messageTaskCount") + threadPoolExecutor.getActiveCount());
-                Future future = threadPoolExecutor.submit(task);
 
-                future.get();
+                threadPoolExecutor.submit(task);
+                
             } catch (IOException ex) {
                 if(!server.isRunning()) {
                     LOG.debug(AppLocale.getI18n("messageStoppingFastAgiConnectionMonitor"));
                     Thread.currentThread().interrupt();
                     LOG.debug(AppLocale.getI18n("messageDone"));
                 }
-            } catch (InterruptedException e) {
-                LOG.warn(e.getMessage());
-            } catch (ExecutionException e) {
-                LOG.warn(e.getMessage());
             }
         }
     }
