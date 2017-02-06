@@ -48,4 +48,4 @@ Core team:
 
 ### Copyright
 
-Copyright (C) 2010-2016 by [Fonoster, INC](https://fonoster.com). Apache License, Version 2.0 (see LICENSE for details).
+Copyright (C) 2010-2017 by [Fonoster, INC](https://fonoster.com). Apache License, Version 2.0 (see LICENSE for details).
