@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2016 by Fonoster Inc (http://fonoster.com)
+ * Copyright (C) 2017 by Fonoster Inc (http://fonoster.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -18,10 +18,11 @@
  */
 package org.astivetoolkit.agi;
 
+import org.astivetoolkit.util.AppLocale;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.astivetoolkit.util.AppLocale;
 
 /**
  * Handle communication with Asterisk, at the lowest level.

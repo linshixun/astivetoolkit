@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2016 by Fonoster Inc (http://fonoster.com)
+ * Copyright (C) 2017 by Fonoster Inc (http://fonoster.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)

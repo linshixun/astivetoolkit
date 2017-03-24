@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2016 by Fonoster Inc (http://fonoster.com)
+ * Copyright (C) 2017 by Fonoster Inc (http://fonoster.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -119,7 +119,6 @@ public final class CommandProcessor {
                             new Object[]{Separator.class}));
                 }
 
-                // XXX: Move this to a converter.
                 BooleanChoose bc = field.getAnnotation(BooleanChoose.class);
 
                 String t = bc.valueOnFalse();
@@ -140,7 +139,6 @@ public final class CommandProcessor {
                     throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
                 }
 
-                // TODO: Move this to a converter.
                 Date date = (Date) param;
                 long seconds = date.getTime() / 1000;
                 cmd.append(" ");
@@ -152,7 +150,6 @@ public final class CommandProcessor {
                     throw new AgiException(AppLocale.getI18n("cantFoundAnnotation"));
                 }
 
-                // TODO: Move this to a converter.
                 TimeZone tz = (TimeZone) param;
                 String id = tz.getID();
                 cmd.append(" ");

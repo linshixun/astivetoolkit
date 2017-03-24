@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2016 by Fonoster Inc (http://fonoster.com)
+ * Copyright (C) 2017 by Fonoster Inc (http://fonoster.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -37,7 +37,6 @@ import java.net.InetAddress;
 public class SimpleAstiveServer extends AbstractAstiveServer {
 
     private Astivlet astivlet;
-    //private ExecutorService executorService;
     private int port;
     private int backlog;
     private InetAddress bindAddr;
@@ -51,6 +50,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
         super();
         this.port = DEFAULT_AGI_SERVER_PORT;
         this.astivlet = astivlet;
+        this.backlog = 200;
     }
 
     /**
@@ -145,7 +145,7 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
      */
     @Override
     protected void launchConnectionMonitor() throws AstiveException {
-        SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet);
+        SimpleConnectionMonitor monitor = new SimpleConnectionMonitor(this, astivlet, backlog);
         monitor.run();
     }
 
@@ -155,7 +155,6 @@ public class SimpleAstiveServer extends AbstractAstiveServer {
     @Override
     public void start() throws SystemException, AstiveException {
         super.start();
-        //executorService = Executors.newSingleThreadExecutor();
         launchConnectionMonitor();
     }
 

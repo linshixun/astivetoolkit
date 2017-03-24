@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2010-2016 by Fonoster Inc (http://fonoster.com)
+ * Copyright (C) 2017 by Fonoster Inc (http://fonoster.com)
  * http://astivetoolkit.org
  *
  * This file is part of Astive Toolkit(ATK)
@@ -135,7 +135,6 @@ public class FastAgiConnectionMonitor implements ConnectionMonitor {
             try {
                 conn = server.acceptConnection();
 
-                // TODO: This should be configurable.
                 if (threadPoolExecutor.getMaximumPoolSize() <= threadPoolExecutor.getActiveCount()) {
                     conn.close();
                     continue;
