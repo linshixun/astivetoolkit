@@ -1,4 +1,4 @@
-Copyright (C) 2010-${year} by Fonoster Inc (http://fonoster.com)
+Copyright (C) ${year} by Fonoster Inc (http://fonoster.com)
 http://astivetoolkit.org
 
 This file is part of Astive Toolkit(ATK)
