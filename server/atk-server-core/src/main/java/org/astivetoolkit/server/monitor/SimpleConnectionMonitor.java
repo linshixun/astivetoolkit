@@ -35,9 +35,7 @@ import org.astivetoolkit.server.FastAgiServerSocket;
 import org.astivetoolkit.util.AppLocale;
 
 import java.io.IOException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  *
@@ -48,9 +46,8 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
     private static final Logger LOG = Logger.getLogger(SimpleConnectionMonitor.class);
     private Astivlet astivlet;
     private ConnectionManager manager;
-    private ExecutorService executorService;
+    private ThreadPoolExecutor threadPoolExecutor;
     private FastAgiServerSocket server;
-    private int maxThreads = 10;
 
     /**
      * Creates a new SimpleConnectionMonitor object.
@@ -58,15 +55,22 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
      * @param server the server.
      * @param astivlet the application.
      */
-    public SimpleConnectionMonitor(FastAgiServerSocket server, Astivlet astivlet) {
+    public SimpleConnectionMonitor(FastAgiServerSocket server, Astivlet astivlet, int threads) {
+        long keepAliveTime = 0L;
+
         if (LOG.isDebugEnabled()) {
             LOG.debug(AppLocale.getI18n("messageStartingConnectionMonitor"));
         }
 
         this.server = server;
         this.astivlet = astivlet;
-        manager = new FastAgiConnectionManager();
-        executorService = Executors.newFixedThreadPool(maxThreads);
+        this.manager = new FastAgiConnectionManager();
+
+        BlockingQueue<Runnable> threadPool = new LinkedBlockingQueue<>();
+
+        threadPoolExecutor = new ThreadPoolExecutor(threads, threads,
+                keepAliveTime, TimeUnit.MILLISECONDS,
+                threadPool);
     }
 
     /**
@@ -108,9 +112,17 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
     //@Override
     public void run() {
         while (true) {
+            final FastAgiConnection conn;
+
             try {
-                final FastAgiConnection conn = server.acceptConnection();
-                executorService.submit(new Callable() {
+                conn = server.acceptConnection();
+
+                if (threadPoolExecutor.getMaximumPoolSize() <= threadPoolExecutor.getActiveCount()) {
+                    conn.close();
+                    continue;
+                }
+
+                Callable task = new Callable() {
 
                     @Override
                     public Object call() throws AstiveException {
@@ -132,7 +144,11 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
                         }
                         return null;
                     }
-                });
+                };
+
+                LOG.debug(AppLocale.getI18n("messageTaskCount") + threadPoolExecutor.getActiveCount());
+
+                threadPoolExecutor.submit(task);
             } catch (IOException ex) {
                 LOG.error(AppLocale.getI18n("errorConnectionClosed", new Object[]{ex.getMessage()}));
             }
@@ -159,22 +175,4 @@ public class SimpleConnectionMonitor implements ConnectionMonitor {
         return astivlet;
     }
 
-    // TODO: This should be generalized. For instance, creating an interface
-    // ConnectionMonitorMappStrategy indicating how to mapp the apps for this
-    // server. Then create a SimpleMappingStrategy or some like that
-    @Deprecated
-    private static String getAppName(Astivlet astivlet) {
-        /*
-         * try { InputStream is = astivlet.getClass().getResourceAsStream("/" +
-         * AbstractAstiveServer.ASTIVE_DEPLOYMENT_DESCRIPTOR); int c = -1;
-         * StringBuilder sBuilder = new StringBuilder();
-         *
-         * while ((c = is.read()) != -1) { sBuilder.append((char) c); }
-         *
-         * // WARNING: Uncomment this //return
-         * Utils.getAppName(sBuilder.toString()); } catch (FileNotFoundException
-         * ex) { } catch (IOException ex) { }
-         */
-        return null;
-    }
 }
