@@ -39,7 +39,6 @@
             <excludes>
                 <exclude>appCreator</exclude>
                 <exclude>installSDK</exclude>
-                <exclude>uninstallSDK</exclude>
             </excludes>
         </fileSet>
         <fileSet>
