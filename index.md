@@ -1,4 +1,4 @@
-Astive Toolkit (ATK) is an Open Source project sponsored by [Fonoster, INC](https://fonoster.com). If you are interested in building communication systems using SIP you may also want to check [Sip I/O](https://https://github.com/psanders/sip.io), a new Sip Server built at Fonoster's.
+Astive Toolkit (ATK) is an Open Source project sponsored by [Fonoster, INC](https://fonoster.com). If you are interested in building communication systems using SIP you may also want to check [Sip I/O](https://github.com/psanders/sip.io), a new Sip Server built at Fonoster's.
 
 # The Astive Toolkit Project 
 
