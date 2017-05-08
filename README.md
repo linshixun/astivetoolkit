@@ -37,7 +37,7 @@ A good way to start building apps with Astive is by reading the [wiki](https://g
 
 The best way to get help is through the [Google Groups](http://bit.ly/13KGLyx). You can also follow @astivetoolkit on Twitter for events and quick updates.
 
-## Author
+## Authors
 
 Core team:
 
