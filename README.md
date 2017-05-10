@@ -1,8 +1,8 @@
 Astive Toolkit (ATK) is an Open Source project sponsored by [Fonoster, Inc](https://fonoster.com). If you are interested in building communication systems using SIP you may also want to check [Sip I/O](https://github.com/psanders/sip.io), a new Sip Server built at Fonoster Inc.
 
-# ATK: Media Controller and Application Server for Asterisk PBX
+# ATK: Toolkit and Application Server for Asterisk PBX
 
-Astive Toolkit (ATK) was designed to overcome the complexity of building custom voice applications on Asterisk PBX. ATK, uses Asterisk's AGI and AMI to create powerful interactive menus with Java. Most of ATK functions can be replaced to allow third-parties implementations or services.
+Astive Toolkit(ATK) was designed to overcome the complexity of building custom voice applications on Asterisk PBX. ATK, uses Asterisk's AGI and AMI to create powerful interactive menus with Java. Most of ATK functions can be replaced to allow third-parties implementations or services.
 
 ATK makes creating voice applications easier for developers, however, it is important to have a good Asterisk foundation. To learn some key concepts and get up and running, check out the following tutorials:
 
